@@ -16,6 +16,7 @@
 // 3. Standard library headers
 #include <fstream>
 #include <sstream>
+#include <cmath>
 
 // 4. External library headers
 #include <boost/format.hpp>
@@ -134,7 +135,7 @@ void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_o
 
   a_os << "MESH2D\n";
   std::string tempStr("E3T"), format("%5d");
-  int ival = static_cast<int>(log(a_io.m_points.size())) + 1;
+  int ival = static_cast<int>(std::log10(a_io.m_points.size())) + 1;
   if (ival > 5)
   {
     std::stringstream ss;
@@ -156,10 +157,24 @@ void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_o
     tempStr = (boost::format(format.c_str()) % id).str();
     a_os << " " << tempStr;
 
+    // order the points so that the one with the lowest number is first
     int numPoints = cells[i + 1];
+    int* points = &cells[i + 2]; // points for cell start at i + 2
+    int lowPointNumber = points[0];
+    int lowPointIndex = 0;
+    for (int j = 1; j < numPoints; ++j)
+    {
+      if (points[j] < lowPointNumber)
+      {
+        lowPointNumber = points[j];
+        lowPointIndex = j;
+      }
+    }
     for (int j = 0; j < numPoints; ++j)
     {
-      tempStr = (boost::format(format.c_str()) % (cells[i + 2 + j] + 1)).str();
+      int pointIndex = (j + lowPointIndex) % numPoints;
+      // add 1 to change from 0 based to 1 based point numbers.
+      tempStr = (boost::format(format.c_str()) % (points[pointIndex] + 1)).str();
       a_os << " " << tempStr;
     }
     tempStr = (boost::format(format.c_str()) % 1).str();
@@ -174,8 +189,15 @@ void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_o
     ++id;
     tempStr = (boost::format(format.c_str()) % id).str();
     Pt3d& p(a_io.m_points[i]);
-    a_os << "ND " << tempStr << " " << STRstd(p.x, -1, 15, STR_FULLWIDTH) << " "
-         << STRstd(p.y, -1, 15, STR_FULLWIDTH) << " " << STRstd(p.z, -1, 15, STR_FULLWIDTH) << "\n";
+
+    int test_precision = -1;
+#ifdef TEST_PRECISION
+    test_precision = TEST_PRECISION;
+#endif
+    a_os << "ND " << tempStr << " "
+         << STRstd(p.x, test_precision, 15, STR_FULLWIDTH) << " "
+         << STRstd(p.y, test_precision, 15, STR_FULLWIDTH) << " "
+         << STRstd(p.z, test_precision, 15, STR_FULLWIDTH) << "\n";
   }
 } //  MeMultiPolyTo2dmImpl::Write2dm
 
@@ -228,7 +250,10 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os)
 //------------------------------------------------------------------------------
 static void iTestFromPolyFile(std::string a_fileBase)
 {
-  const std::string path(ttGetXmsngTestPath() + "/meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "meshing/");
+  // not using ttGetXmsngTestPath() because the XMSNG_TEST_PATH is not defined
+  // in xmscore.
+  //const std::string path(ttGetXmsngTestPath() + "meshing/");
   std::string outFile = path + a_fileBase + "_out.2dm";
   std::string baseFile = path + a_fileBase + "_base.2dm";
   {
@@ -356,80 +381,80 @@ void MeMultiPolyTo2dmUnitTests::testCase4()
   // Compare
   std::string base =
     "MESH2D\n"
-    "E3T     1     2     1    18     1\n"
-    "E3T     2     3     2    24     1\n"
-    "E3T     3    23     3    24     1\n"
-    "E3T     4    24    18    17     1\n"
+    "E3T     1     1    18     2     1\n"
+    "E3T     2     2    24     3     1\n"
+    "E3T     3     3    24    23     1\n"
+    "E3T     4    17    24    18     1\n"
     "E3T     5     4    23    27     1\n"
-    "E3T     6     4     3    23     1\n"
-    "E3T     7    24     2    18     1\n"
-    "E3T     8     6     5    20     1\n"
-    "E3T     9     7     6    19     1\n"
-    "E3T    10    20    19     6     1\n"
-    "E3T    11    28    20    27     1\n"
-    "E3T    12     8     7    19     1\n"
+    "E3T     6     3    23     4     1\n"
+    "E3T     7     2    18    24     1\n"
+    "E3T     8     5    20     6     1\n"
+    "E3T     9     6    19     7     1\n"
+    "E3T    10     6    20    19     1\n"
+    "E3T    11    20    27    28     1\n"
+    "E3T    12     7    19     8     1\n"
     "E3T    13     8    19    22     1\n"
     "E3T    14     5    27    20     1\n"
-    "E3T    15     5     4    27     1\n"
-    "E3T    16    27    23    29     1\n"
-    "E3T    17    25    24    17     1\n"
-    "E3T    18    25    17    16     1\n"
+    "E3T    15     4    27     5     1\n"
+    "E3T    16    23    29    27     1\n"
+    "E3T    17    17    25    24     1\n"
+    "E3T    18    16    25    17     1\n"
     "E3T    19    23    26    29     1\n"
     "E3T    20    15    26    25     1\n"
-    "E3T    21    29    26    28     1\n"
+    "E3T    21    26    28    29     1\n"
     "E3T    22    14    26    15     1\n"
     "E3T    23    15    25    16     1\n"
     "E3T    24    13    26    14     1\n"
-    "E3T    25    21    28    12     1\n"
+    "E3T    25    12    21    28     1\n"
     "E3T    26     8    22     9     1\n"
     "E3T    27     9    22    11     1\n"
-    "E3T    28    21    12    22     1\n"
-    "E3T    29    28    21    20     1\n"
-    "E3T    30    13    12    28     1\n"
-    "E3T    31    11    10     9     1\n"
-    "E3T    32    12    11    22     1\n"
-    "E3T    33    28    26    13     1\n"
-    "E3T    34    29    28    27     1\n"
+    "E3T    28    12    22    21     1\n"
+    "E3T    29    20    28    21     1\n"
+    "E3T    30    12    28    13     1\n"
+    "E3T    31     9    11    10     1\n"
+    "E3T    32    11    22    12     1\n"
+    "E3T    33    13    28    26     1\n"
+    "E3T    34    27    29    28     1\n"
     "E3T    35    14    47    30     1\n"
-    "E3T    36    47    14    15     1\n"
-    "E3T    37    46    45    47     1\n"
-    "E3T    38    53    30    47     1\n"
-    "E3T    39    53    45    44     1\n"
+    "E3T    36    14    15    47     1\n"
+    "E3T    37    45    47    46     1\n"
+    "E3T    38    30    47    53     1\n"
+    "E3T    39    44    53    45     1\n"
     "E3T    40    30    52    31     1\n"
-    "E3T    41    52    30    53     1\n"
-    "E3T    42    53    47    45     1\n"
+    "E3T    41    30    53    52     1\n"
+    "E3T    42    45    53    47     1\n"
     "E3T    43    12    13    31     1\n"
     "E3T    44    10    11    33     1\n"
     "E3T    45    31    56    32     1\n"
-    "E3T    46    56    31    52     1\n"
-    "E3T    47    49    33    32     1\n"
-    "E3T    48    48    34    33     1\n"
-    "E3T    49    33    34    10     1\n"
-    "E3T    50    49    32    56     1\n"
-    "E3T    51    31    32    12     1\n"
+    "E3T    46    31    52    56     1\n"
+    "E3T    47    32    49    33     1\n"
+    "E3T    48    33    48    34     1\n"
+    "E3T    49    10    33    34     1\n"
+    "E3T    50    32    56    49     1\n"
+    "E3T    51    12    31    32     1\n"
     "E3T    52    52    58    56     1\n"
-    "E3T    53    54    44    43     1\n"
-    "E3T    54    57    49    56     1\n"
+    "E3T    53    43    54    44     1\n"
+    "E3T    54    49    56    57     1\n"
     "E3T    55    55    57    58     1\n"
     "E3T    56    52    55    58     1\n"
-    "E3T    57    58    57    56     1\n"
+    "E3T    57    56    58    57     1\n"
     "E3T    58    42    55    54     1\n"
-    "E3T    59    55    41    40     1\n"
+    "E3T    59    40    55    41     1\n"
     "E3T    60    41    55    42     1\n"
-    "E3T    61    55    40    57     1\n"
+    "E3T    61    40    57    55     1\n"
     "E3T    62    42    54    43     1\n"
-    "E3T    63    57    40    39     1\n"
-    "E3T    64    50    49    57     1\n"
-    "E3T    65    48    35    34     1\n"
-    "E3T    66    51    35    48     1\n"
-    "E3T    67    49    48    33     1\n"
-    "E3T    68    51    39    38     1\n"
+    "E3T    63    39    57    40     1\n"
+    "E3T    64    49    57    50     1\n"
+    "E3T    65    34    48    35     1\n"
+    "E3T    66    35    48    51     1\n"
+    "E3T    67    33    49    48     1\n"
+    "E3T    68    38    51    39     1\n"
     "E3T    69    39    51    50     1\n"
     "E3T    70    36    38    37     1\n"
-    "E3T    71    38    36    51     1\n"
-    "E3T    72    51    36    35     1\n"
-    "E3T    73    50    57    39     1\n"
-    "E3T    74    54    53    44     1\n"
+    "E3T    71    36    51    38     1\n"
+    "E3T    72    35    51    36     1\n"
+    "E3T    73    39    50    57     1\n"
+    "E3T    74    44    54    53     1\n"
     "ND     1             0.0             0.0             0.0\n"
     "ND     2             0.0            10.0             0.0\n"
     "ND     3             0.0            20.0             0.0\n"
@@ -569,7 +594,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 {
-  const std::string path(ttGetXmsngTestPath() + "/meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "meshing/");
   const std::string fname(path + "CasePatch6.txt");
   std::string fbase("CasePatch6");
   std::vector<std::vector<std::vector<Pt3d>>> inside;
@@ -618,7 +643,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
 {
-  const std::string path(ttGetXmsngTestPath() + "/meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "meshing/");
   std::string fbase("CaseTransitionToConstSize");
   std::string fname(path + "CaseTransitionToConstSize.txt");
   std::string inPolyFile(fname);
@@ -629,7 +654,11 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
   MePolyInput& pp(ip.m_polys.back());
   VecPt3d2d outPoly;
   VecPt3d3d inPolys;
-  tutReadPolygons(inPolyFile, outPoly, inPolys);
+  if (!tutReadPolygons(inPolyFile, outPoly, inPolys))
+  {
+    TS_ASSERT(std::string(fname + " does not exist.").empty());
+    return;
+  }
   pp.m_outPoly = outPoly[0];
   pp.m_insidePolys = inPolys[0];
   pp.m_constSizeBias = 0.15;

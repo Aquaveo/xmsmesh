@@ -86,6 +86,8 @@ set(xmsmesh_py
 # Tests
 if (BUILD_TESTING)
  add_definitions(-DCXX_TEST -DCXXTEST4)
+ add_definitions(-DXMSNG_TEST_PATH="test_files/")
+ #add_definitions(-DTEST_PRECISION=8)
 
  list(APPEND xmsmesh_sources
     xmsmesh/meshing/detail/MePolyPaverToMeshPts.t.h
@@ -100,6 +102,7 @@ if (BUILD_TESTING)
     xmsmesh/meshing/MePolyMesher.t.h
     xmsmesh/meshing/MeMultiPolyMesher.t.h
     xmsmesh/meshing/MePolyRedistributePts.t.h
+    xmsmesh/tutorial/TutMeshing.t.h
  )
 
  find_package(CxxTest)

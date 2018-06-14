@@ -17,8 +17,6 @@
 #include <cfloat>
 
 // 4. External library headers
-#include <vtkPoints.h>
-#include <vtkUnstructuredGrid.h>
 
 // 5. Shared code headers
 #include <xmscore/points/pt.h>

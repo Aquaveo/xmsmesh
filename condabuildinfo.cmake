@@ -5,6 +5,7 @@ set(EXT_INCLUDE_DIRS
 set(EXT_LIB_DIRS "${CMAKE_INSTALL_PREFIX}/lib")
 set(EXT_LIBS
   xmscore
+  xmsinterp
 )
 
 set(Boost_USE_STATIC_LIBS TRUE)

@@ -60,12 +60,12 @@ namespace xms
 /// \param a_fname File name where the polygon is stored
 /// \param a_io MeMultiPolyMesherIo class that is filled by this function
 //------------------------------------------------------------------------------
-void tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io)
+bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io)
 {
   a_io = MeMultiPolyMesherIo();
   std::fstream os(a_fname, std::fstream::in);
   if (!os.is_open())
-    return;
+    return false;
 
   std::string card;
   size_t numpts;
@@ -190,6 +190,7 @@ void tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
     }
     card = "";
   }
+  return true;
 } // tutReadMeshIoFromFile
 //------------------------------------------------------------------------------
 /// \brief  helper function to read polygons from a text file
@@ -198,18 +199,20 @@ void tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
 /// the polygon.
 /// \param a_inside 2d vector of locations to define multiple inside polygons
 //------------------------------------------------------------------------------
-void tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d& a_inside)
+bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d& a_inside)
 {
   a_outside.resize(0);
   a_inside.resize(0);
 
   MeMultiPolyMesherIo io;
-  tutReadMeshIoFromFile(a_fname, io);
+  if (!tutReadMeshIoFromFile(a_fname, io))
+    return false;
   for (size_t i = 0; i < io.m_polys.size(); ++i)
   {
     a_outside.push_back(io.m_polys[i].m_outPoly);
     a_inside.push_back(io.m_polys[i].m_insidePolys);
   }
+  return true;
 } // tutReadPolygons
 //------------------------------------------------------------------------------
 /// \brief  helper function to generate 2dm file and compare to a baseline
@@ -279,7 +282,7 @@ void TutMeshingIntermediateTests::test_Example_SimplePolygon()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_SimplePolygon";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_SimplePolygon
@@ -323,7 +326,7 @@ void TutMeshingIntermediateTests::test_Example_ComplexPolygon()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_ComplexPolygon";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_ComplexPolygon
@@ -361,7 +364,7 @@ void TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_SimplePolygonWithHole";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole
@@ -398,7 +401,7 @@ void TutMeshingIntermediateTests::test_Example_Breakline()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_Breakline";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_Breakline
@@ -451,7 +454,7 @@ void TutMeshingIntermediateTests::test_Example_RefinePoints()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_RefinePoints";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_RefinePoints
@@ -463,7 +466,7 @@ void TutMeshingIntermediateTests::test_Example_RefinePoints()
 //! [snip_test_Example_MultiPolygon]
 void TutMeshingIntermediateTests::test_Example_MultiplePolygons()
 {
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string fname(path + "Example_MultiPolys.txt");
   xms::VecPt3d3d inside;
   xms::VecPt3d2d outside;
@@ -533,7 +536,7 @@ void TutMeshingIntermediateTests::test_Example_ScalarPaving()
   input.m_polys[0].m_sizeFunction = linear;
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_ScalarPaving";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_ScalarPaving
@@ -569,7 +572,7 @@ void TutMeshingIntermediateTests::test_Example_Patch()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_Patch";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_Patch
@@ -628,7 +631,7 @@ void TutMeshingIntermediateTests::test_Example_ConstantSmooth()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(xms::ttGetXmsngTestPath() + "/Tutorial_Meshing/");
+  const std::string path(std::string(XMSNG_TEST_PATH) + "Tutorial_Meshing/");
   const std::string baseFile = path + "Example_ConstantSmooth";
   tutGenerateAndCompare2dm(input, baseFile);
 

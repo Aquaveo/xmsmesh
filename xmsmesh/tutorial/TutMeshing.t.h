@@ -24,8 +24,8 @@ namespace xms
 {
 class MeMultiPolyMesherIo;
 
-void tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io);
-void tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d& a_inside);
+bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io);
+bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d& a_inside);
 } // namspace xms
 
 /// \brief Class for testing meshing functionality

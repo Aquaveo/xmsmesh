@@ -19,7 +19,6 @@
 #include <sstream>
 
 // 4. External library headers
-#include <vtkCellType.h>
 #include <boost/format.hpp>
 #include <boost/unordered_map.hpp>
 
@@ -488,6 +487,11 @@ void MeMultiPolyMesherImpl::AppendMesh(VecPt3d& a_points,
                                        const VecInt& a_triangles,
                                        VecInt& a_cells)
 {
+  // These correspond to defines in vtkCellType. There are classes downstream from
+  // meshing that convert a cell stream into a vtkUnstructured grid that use these
+  // magic numbers.
+  const int VTK_TRI(5);
+
   VecInt cells;
   cells.swap(a_cells);
   int cellCount = 0;
@@ -497,7 +501,7 @@ void MeMultiPolyMesherImpl::AppendMesh(VecPt3d& a_points,
     cells.reserve(cellCount * 5);
     for (size_t i = 0; i < a_triangles.size(); i += 3)
     {
-      cells.push_back(VTK_TRIANGLE);
+      cells.push_back(VTK_TRI);
       cells.push_back(3);
       cells.push_back(a_triangles[i + 0]);
       cells.push_back(a_triangles[i + 1]);
