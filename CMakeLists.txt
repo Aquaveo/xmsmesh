@@ -33,7 +33,7 @@ endif(IS_CONDA_BUILD)
 
 message("External Include Dirs: ${EXT_INCLUDE_DIRS}")
 message("External Lib Dirs: ${EXT_LIB_DIRS}")
-message("Extneral Libs: ${EXT_LIBS}")
+message("External Libs: ${EXT_LIBS}")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${EXT_INCLUDE_DIRS})
@@ -75,19 +75,19 @@ set(xmsmesh_headers
 )
 
 # Pybind11 sources
-set(xmsmesh_py
-  xmsinterp/python/cxxtest.cpp
-  xmsinterp/python/xmsinterp_py.cpp
+set(xmsmesh_py_source
+  # xmsmesh/python/cxxtest.cpp
+  xmsmesh/python/xmsmesh_py.cpp
   # Meshing
-  xmsinterp/python/interpolate/interpolate_py.h
-  xmsinterp/python/interpolate/interpolate_py.cpp
+  xmsmesh/python/meshing/meshing_py.h
+  xmsmesh/python/meshing/meshing_py.cpp
+  xmsmesh/python/meshing/MeshUtils_py.cpp
 )
 
 # Tests
 if (BUILD_TESTING)
- add_definitions(-DCXX_TEST -DCXXTEST4)
  add_definitions(-DXMSNG_TEST_PATH="test_files/")
- #add_definitions(-DTEST_PRECISION=8)
+ add_definitions(-DCXX_TEST -DCXXTEST4)
 
  list(APPEND xmsmesh_sources
     xmsmesh/meshing/detail/MePolyPaverToMeshPts.t.h
@@ -107,7 +107,7 @@ if (BUILD_TESTING)
 
  find_package(CxxTest)
  if(CXXTEST_FOUND)
-   include_directories(${CXXTEST_INCLUDE_DIR})
+   include_directories(${CXXTEST_INCLUDE_DIRS})
    enable_testing()
 
    set(CXXTEST_TESTGEN_ARGS --xunit-printer --have-eh)
@@ -158,11 +158,12 @@ if(IS_PYTHON_BUILD)
     endif()
 
     pybind11_add_module(xmsmesh_py
-      ${xmsmesh_py}
+      ${xmsmesh_py_source}
     )
+
     target_include_directories(xmsmesh_py
         PRIVATE
-          PYTHON_INCLUDE_DIRS
+          ${PYTHON_INCLUDE_DIRS}
     )
     target_link_libraries(xmsmesh_py
       PRIVATE
