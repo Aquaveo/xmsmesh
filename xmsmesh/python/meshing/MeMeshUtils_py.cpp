@@ -20,9 +20,9 @@ namespace py = pybind11;
 //----- Python Interface -------------------------------------------------------
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
-void initMeshUtils(py::module &m) {
+void initMeMeshUtils(py::module &m) {
 
-    py::module modMeshUtils = m.def_submodule("MeshUtils")
+    py::module modMeshUtils = m.def_submodule("MeMeshUtils")
     .def("size_function_from_depth", [](py::iterable depths, double min_size,
                                          double max_size) -> py::iterable {
 

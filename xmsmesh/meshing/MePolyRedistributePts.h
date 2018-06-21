@@ -42,6 +42,7 @@ public:
                             MePolyOffsetterOutput& a_out,
                             int a_polyOffsetIter) = 0;
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) = 0;
+  virtual ~MePolyRedistributePts();
 
 private:
   XM_DISALLOW_COPY_AND_ASSIGN(MePolyRedistributePts);
@@ -49,7 +50,6 @@ private:
 
 protected:
   MePolyRedistributePts();
-  virtual ~MePolyRedistributePts();
 };
 //----- Function prototypes ----------------------------------------------------
 

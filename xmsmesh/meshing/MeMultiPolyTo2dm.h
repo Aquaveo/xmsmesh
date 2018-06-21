@@ -49,10 +49,10 @@ public:
   virtual bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os) = 0;
 
   virtual void SetObserver(BSHP<Observer> a_) = 0;
+  virtual ~MeMultiPolyTo2dm() {}
 
 protected:
   MeMultiPolyTo2dm() {}
-  virtual ~MeMultiPolyTo2dm() {}
 
 private:
   XM_DISALLOW_COPY_AND_ASSIGN(MeMultiPolyTo2dm);

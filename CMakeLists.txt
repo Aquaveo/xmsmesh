@@ -81,7 +81,12 @@ set(xmsmesh_py_source
   # Meshing
   xmsmesh/python/meshing/meshing_py.h
   xmsmesh/python/meshing/meshing_py.cpp
-  xmsmesh/python/meshing/MeshUtils_py.cpp
+  xmsmesh/python/meshing/MeMeshUtils_py.cpp
+  xmsmesh/python/meshing/MeMultiPolyMesher_py.cpp
+  xmsmesh/python/meshing/MeMultiPolyMesherIo_py.cpp
+  xmsmesh/python/meshing/MePolyMesher_py.cpp
+  xmsmesh/python/meshing/MeMultiPolyTo2dm_py.cpp
+  xmsmesh/python/meshing/MePolyRedistributePts_py.cpp
 )
 
 # Tests

@@ -43,11 +43,11 @@ public:
 
   virtual bool MeshIt(MeMultiPolyMesherIo& a_io) = 0;
   virtual void SetObserver(boost::shared_ptr<Observer> a_) = 0;
+  virtual ~MeMultiPolyMesher() {}
 
   /// \endcond
 protected:
   MeMultiPolyMesher() {}
-  virtual ~MeMultiPolyMesher() {}
 
 private:
   XM_DISALLOW_COPY_AND_ASSIGN(MeMultiPolyMesher)

@@ -16,5 +16,12 @@ namespace py = pybind11;
 //----- Python Interface -------------------------------------------------------
 
 void initMeshing(py::module &m) {
-    initMeshUtils(m);
+    initMeMeshUtils(m);
+    initMeMultiPolyMesher(m);
+    initMePolyInput(m);
+    initMeRefinePoint(m);
+    initMeMultiPolyMesherIo(m);
+    initMeMultiPolyTo2dm(m);
+    initMePolyMesher(m);
+    initMePolyRedistributePts(m);
 }
