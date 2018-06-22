@@ -23,8 +23,12 @@ class TestMeMultiPolyMesher(unittest.TestCase):
     def test_set_observer(self):
         mesher = MeMultiPolyMesher()
         obs = Observer()
+        obs.pytest_id = "ObserverTestMeMultiPolyMesher"
         mesher.set_observer(obs)
-        # TODO: Expand testing here
+        # TODO we don't have a way to test this yet.
+
+    def test_mesh_it(self):
+        pass
 
     def test_check_for_intersections_1(self):
         io = MeMultiPolyMesherIo()
@@ -50,7 +54,6 @@ class TestMeMultiPolyMesher(unittest.TestCase):
 
         poly_input = MePolyInput()
         poly_input.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
-        # TODO: Do we need to handle inputing 2d points: e.g, convert (90, 10) to (90, 10, 0)
         poly_input.inside_polys = (((10, 50, 0), (90, 50, 0), (90, 90, 0), (10, 10, 0)),)
         io.poly_inputs = (poly_input,)
 
@@ -72,7 +75,6 @@ class TestMeMultiPolyMesher(unittest.TestCase):
 
         poly_inputs = MePolyInput()
         poly_inputs.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
-        # TODO: Do we need to handle inputing 2d points: e.g, convert (90, 10) to (90, 10, 0)
         poly_inputs.inside_polys = (((90, 10, 0), (110, 10, 0), (110, 20, 0), (90, 20, 0)),)
         io.poly_inputs = (poly_inputs,)
 
@@ -118,7 +120,6 @@ class TestMeMultiPolyMesher(unittest.TestCase):
 
         poly_input = MePolyInput()
         poly_input.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
-        # TODO: Do we need to handle inputing 2d points: e.g, convert (90, 10) to (90, 10, 0)
         poly_input.inside_polys = (((10, 10, 0), (60, 10, 0), (60, 60, 0), (10, 60, 0)),
                              ((40, 40, 0), (90, 40, 0), (90, 90, 0), (40, 90, 0)))
         io.poly_inputs = (poly_input,)

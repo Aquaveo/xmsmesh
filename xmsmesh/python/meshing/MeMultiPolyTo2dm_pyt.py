@@ -1,6 +1,7 @@
 """Test MeMultiPolyTo2dm_py.cpp."""
 import unittest
 import numpy as np
+import os
 from xmscore_py.misc import Observer
 from xmsmesh_py.meshing import MeMultiPolyTo2dm
 from xmsmesh_py.meshing import MeMultiPolyMesherIo
@@ -34,6 +35,7 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
         to2dm = MeMultiPolyTo2dm()
         io = MeMultiPolyMesherIo()
         rv = to2dm.generate_2dm(io, "fname.2dm")
+        self.assertTrue(os.path.isfile("fname.2dm"))
 
     def test_case_4(self):
         # build test case 4 polys
@@ -199,33 +201,3 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
 
         self.assertTrue(success)
         self.assertEqual(expected, result)
-
-    def test_case_2(self):
-        #   self.internal_test_from_poly_file("case2")
-        pass
-
-    def test_case_101(self):
-        #   self.internal_test_from_poly_file("case101")
-        pass
-
-    def test_case_102(self):
-        #   self.internal_test_from_poly_file("case102")
-        pass
-
-    def test_case_103(self):
-        #   self.internal_test_from_poly_file("case103")
-        pass
-
-    def test_case_pave_geo(self):
-        #   self.internal_test_from_poly_file("CasePaveGeo")
-        pass
-
-    def test_case_pave_san_diego(self):
-        #   self.internal_test_from_poly_file("CasePaveSanDiego")
-        pass
-
-    def test_case_patch6(self):
-        pass
-
-    def test_case_pave_const_size_transition(self):
-        pass

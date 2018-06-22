@@ -32,17 +32,56 @@ class TestMePolyRedistributePts(unittest.TestCase):
         mesher = MePolyRedistributePts()
         self.assertIsInstance(mesher, MePolyRedistributePts)
 
-    def test_interp_edge_lengths(self):
+    def test_set_size_func_01(self):
+        r = MePolyRedistributePts()
+        sf = InterpLinear()
+        r.set_size_func(sf)
+        # TODO: No way to test if there size function was set correctly
+
+    def test_set_size_func_02(self):
+        r = MePolyRedistributePts()
+        sf = InterpIdw()
+        r.set_size_func(sf)
+        # TODO: No way to test if there size function was set correctly
+
+    def test_set_size_fun_from_poly(self):
         out_poly = ((0, 0, 0), (0, 10, 0), (10, 10, 0), (10, 0, 0))
         in_polys = ()
         r = MePolyRedistributePts()
         size_bias = 1.0
         r.set_size_func_from_poly(out_poly, in_polys, size_bias)
+        # TODO: No way to test if there size function was set correctly
 
-        pts = ((1, 1, 0), (1, 9, 0), (9, 9, 0), (9, 1, 0))
-        # interp_edge_lengths is not exposed, only on the C++ impl
-        # lengths = (,)
-        # r.interp_edge_lengths(pts, lengths)
+    def test_constant_size_func(self):
+        r = MePolyRedistributePts()
+        r.set_constant_size_func(0.75)
+        poly_line = ((0, 0, 0), (1, 0, 0), (2, 0, 0), (3, 0, 0))
+        new_poly_line = r.redistribute(poly_line)
+        base_poly_line = [
+            [0., 0., 0.], [0.75, 0., 0.], [1.5, 0., 0.],
+            [2.25, 0., 0.], [3., 0., 0.]
+        ]
+        np.testing.assert_array_equal(base_poly_line, new_poly_line)
 
-        # base_lengths = (10.0, 10.0, 10.0)
-        # self.assertArraysEqual(base_lengths, lengths)
+    # TODO: This Crashes when using size bias
+    # def test_constant_size_bias(self):
+    #     r = MePolyRedistributePts()
+    #     r.set_constant_size_bias(1.5)
+    #     poly_line = ((0, 0, 0), (1, 0, 0), (2, 0, 0), (3, 0, 0))
+    #     new_poly_line = r.redistrubte(poly_line)
+    #     base_poly_line = []  # Haven't gotten a base yet
+    #     np.testing.assert_array_equal(base_poly_line, new_poly_line)
+
+    def test_redistribute(self):
+        r = MePolyRedistributePts()
+        r.set_constant_size_func(7)
+        # r.set_constant_size_bias(3.5)
+        poly_line = [(x, 0, 0) for x in range(0, 100, 2)]
+        new_poly_line = r.redistribute(poly_line)
+        base_poly_line = np.array([
+            [0., 0., 0.], [7., 0., 0.], [14., 0., 0.], [21., 0., 0.], [28., 0., 0.],
+            [35., 0., 0.], [42., 0., 0.], [49., 0., 0.], [56., 0., 0.], [63., 0., 0.],
+            [70., 0., 0.], [77., 0., 0.], [84., 0., 0.], [91., 0., 0.], [98., 0., 0.]
+        ])
+        np.testing.assert_array_almost_equal(np.array(base_poly_line), new_poly_line, decimal=7)
+

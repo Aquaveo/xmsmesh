@@ -5,9 +5,6 @@ from xmscore_py.misc import Observer
 from xmsmesh_py.meshing import MePolyMesher
 from xmsmesh_py.meshing import MeMultiPolyMesherIo
 from xmsmesh_py.meshing import MePolyInput
-from xmsmesh_py.meshing import MeRefinePoint
-from xmsinterp_py.interpolate import InterpLinear
-from xmsinterp_py.interpolate import InterpIdw
 
 
 class TestMePolyMesher(unittest.TestCase):
@@ -36,4 +33,24 @@ class TestMePolyMesher(unittest.TestCase):
         mesher = MePolyMesher()
         obs = Observer()
         mesher.set_observer(obs)
-        # TODO: Expand testing here
+        
+    def test_mesh_it(self):
+        outside_poly = ((5, 0, 0), (10, 5, 0), (10, 15, 0),
+                        (5, 20, 0), (0, 15, 0), (0, 5, 0))
+        inside_polys = (((10, 5, 0), (10, 15, 0), (0, 15, 0), (0, 5, 0)),)
+        poly_input = MePolyInput()
+        poly_input.outside_poly = outside_poly
+        poly_input.inside_polys = inside_polys
+        mesher = MePolyMesher()
+        mesher_io = MeMultiPolyMesherIo()
+        mesher_io.poly_inputs = (poly_input,)
+        status, points, tris, cells = mesher.mesh_it(mesher_io, 0)
+        self.assertEqual(True, status)
+        np.testing.assert_array_equal([[0.,  5.,  0.], [5.,  0.,  0.], [10.,  5.,  0.],
+                                       [10., 15.,  0.], [5., 20.,  0.], [0., 15.,  0.]], points)
+        np.testing.assert_array_equal((2, 0, 1, 5, 3, 4), tris)
+        np.testing.assert_array_equal((), cells)
+
+    def test_get_processed_refine_pts(self):
+        # TODO: How do we test this?
+        pass
