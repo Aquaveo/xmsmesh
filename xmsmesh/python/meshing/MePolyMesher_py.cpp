@@ -24,7 +24,7 @@ void initMePolyMesher(py::module &m) {
     py::class_<xms::MePolyMesher, boost::shared_ptr<xms::MePolyMesher>>(m, "MePolyMesher")
         .def(py::init(&xms::MePolyMesher::New))
         .def("mesh_it", [](xms::MePolyMesher &self,
-                           xms::MeMultiPolyMesherIo mesh_io,
+                           xms::MeMultiPolyMesherIo &mesh_io,
                            size_t polyIdx) -> py::tuple {
             xms::VecPt3d vec_pts;
             xms::VecInt vec_tris, vec_cell;

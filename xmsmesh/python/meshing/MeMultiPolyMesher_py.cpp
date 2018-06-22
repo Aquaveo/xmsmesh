@@ -25,7 +25,7 @@ void initMeMultiPolyMesher(py::module &m) {
     py::class_<xms::MeMultiPolyMesher, boost::shared_ptr<xms::MeMultiPolyMesher>>(m, "MeMultiPolyMesher")
         .def(py::init(&xms::MeMultiPolyMesher::New))
         .def("mesh_it", [](xms::MeMultiPolyMesher &self,
-                           xms::MeMultiPolyMesherIo mesh_io) -> py::iterable {
+                           xms::MeMultiPolyMesherIo &mesh_io) -> py::iterable {
             if (self.MeshIt(mesh_io)) {
               return py::make_tuple(true, "");
             } else {

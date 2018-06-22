@@ -122,8 +122,8 @@ void initMeMultiPolyMesherIo(py::module &m) {
 void initMePolyInput(py::module &m) {
     py::class_<xms::MePolyInput, boost::shared_ptr<xms::MePolyInput>>(m, "MePolyInput")
         .def(py::init<>([](py::iterable out_poly, py::iterable inside_polys, double bias,
-                           boost::shared_ptr<xms::InterpBase> size_function,
-                           py::iterable poly_corners, boost::shared_ptr<xms::InterpBase> elev_function) {
+                           boost::shared_ptr<xms::InterpBase> &size_function,
+                           py::iterable poly_corners, boost::shared_ptr<xms::InterpBase> &elev_function) {
             xms::VecPt3d vec_out_poly;
             for (auto item : out_poly) {
               if(!py::isinstance<py::iterable>(item)) {

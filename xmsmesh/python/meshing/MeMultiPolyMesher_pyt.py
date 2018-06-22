@@ -44,7 +44,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 0 intersects with the segment defined by points 2 and 3 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, errors) = mesher.mesh_it(io)
+        (success, io_out, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -65,7 +65,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 0 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, errors) = mesher.mesh_it(io)
+        (success, io_out, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -87,7 +87,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
                    "\n\n"
 
         mesher = MeMultiPolyMesher()
-        (success, errors) = mesher.mesh_it(io)
+        (success, io_out, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -109,7 +109,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 0 intersects with the segment defined by points 3 and 0 of outer polygon 1.\n" \
             "\n\n"
 
-        (success, errors) = mesher.mesh_it(io)
+        (success, io_out, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -135,7 +135,26 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 1 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, errors) = mesher.mesh_it(io)
+        (success, io_out, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
+    def test_simple_polygon(self):
+        input_poly = MePolyInput()
+        input_poly.outside_poly = [
+            (0, 10, 0), (0, 20, 0), (0, 30, 0), (0, 40, 0), (0, 50, 0), (0, 60, 0), (0, 70, 0), (0, 80, 0),
+            (0, 90, 0), (0, 100, 0), (10, 100, 0), (20, 100, 0), (30, 100, 0), (40, 100, 0), (50, 100, 0), (60, 100, 0),
+            (70, 100, 0), (80, 100, 0), (90, 100, 0), (100, 100, 0), (100, 90, 0), (100, 80, 0), (100, 70, 0),
+            (100, 60, 0), (100, 50, 0), (100, 40, 0), (100, 30, 0), (100, 20, 0), (100, 10, 0), (100, 0, 0),
+            (90, 0, 0), (80, 0, 0), (70, 0, 0), (60, 0, 0), (50, 0, 0), (40, 0, 0), (30, 0, 0), (20, 0, 0), (10, 0, 0),
+            (0, 0, 0)
+        ]
+        input_poly.inside_polys = [
+            [(40, 40, 0), (50, 40, 0), (60, 40, 0), (60, 50, 0),
+             (60, 60, 0), (50, 60, 0), (40, 60, 0), (40, 50, 0)]
+        ]
+        input = MeMultiPolyMesherIo()
+        input.poly_inputs = [input_poly]
+        mesher = MeMultiPolyMesher()
+        status, io, error = mesher.mesh_it(input)
+        self.assertEqual(io.points, ())
