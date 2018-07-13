@@ -23,14 +23,38 @@ if __name__ == "__main__":
                 'compiler.libcxx': 'libstdc++11'
             })
 
-        # Add additional configurations for xms options
+    pybind_updated_builds = []
+    for settings, options, env_vars, build_requires, reference in builder.items:
+        # pybind option
+        if not settings['compiler'] == "apple-clang" \
+                and ((not settings['compiler'] == "Visual Studio" \
+                or int(settings['compiler.version']) > 12) \
+                and settings['arch'] == "x86_64"):
+            pybind_options = dict(options)
+            pybind_options.update({'xmsmesh:pybind': True})
+            pybind_updated_builds.append([settings, pybind_options, env_vars, build_requires])
+
+        pybind_updated_builds.append([settings, options, env_vars, build_requires])
+    builder.builds = pybind_updated_builds
+
+    xms_updated_builds = []
+    for settings, options, env_vars, build_requires, reference in builder.items:
+        # xms option
         if settings['compiler'] == 'Visual Studio' and 'MD' in settings['compiler.runtime']:
             xms_options = dict(options)
             xms_options.update({'xmsmesh:xms': True})
-            updated_builds.append([settings, xms_options, env_vars, build_requires])
+            xms_updated_builds.append([settings, xms_options, env_vars, build_requires])
+        xms_updated_builds.append([settings, options, env_vars, build_requires])
+    builder.builds = xms_updated_builds
 
-        updated_builds.append([settings, options, env_vars, build_requires])
-
-    builder.builds = updated_builds
+    testing_updated_builds = []
+    for settings, options, env_vars, build_requires, reference in builder.items:
+        # testing option
+        if not options.get('xmsmesh:xms', False) and not options.get('xmsmesh:pybind', False):
+            testing_options = dict(options)
+            testing_options.update({'xmsmesh:testing': True})
+            testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
+        testing_updated_builds.append([settings, options, env_vars, build_requires])
+    builder.builds = testing_updated_builds
 
     builder.run()
