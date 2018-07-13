@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 export XMS_VERSION="0.0.0"
-#export XMS_RUN_TESTS="1"
 export CONAN_REFERENCE="xmsmesh/${XMS_VERSION}"
 export CONAN_USERNAME="aquaveo"
 export CONAN_CHANNEL="stable"

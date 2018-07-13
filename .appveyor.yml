@@ -10,7 +10,6 @@ environment:
     # Assume we are only building on tagged commits.
     # Will not work on untagged commits.
     XMS_VERSION: ${APPVEYOR_REPO_TAG_NAME}
-    XMS_RUN_TESTS: 1
     CONAN_REFERENCE: "xmsmesh/${XMS_VERSION}"
     CONAN_USERNAME: "aquaveo"
     CONAN_CHANNEL: "stable"

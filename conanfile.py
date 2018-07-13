@@ -10,10 +10,14 @@ class XmsinterpConan(ConanFile):
     url = "https://github.com/Aquaveo/xmsmesh"
     description = "Meshing library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"xms": [True, False]}
-    default_options = "xms=False", "boost:fPIC=True"
+    options = {
+        "xms": [True, False],
+        "pybind": [True, False],
+        "testing": [True, False],
+    }
+    default_options = "xms=False", "pybind=False", "testing=False"
     generators = "cmake"
-    build_requires = "cxxtest/4.4@aquaveo/stable", "xmscore/1.0.25@aquaveo/stable", "xmsinterp/1.0.8@aquaveo/stable"
+    build_requires = "cxxtest/4.4@aquaveo/stable"
     exports = "CMakeLists.txt", "LICENSE"
     exports_sources = "xmsmesh/*"
 
@@ -27,40 +31,55 @@ class XmsinterpConan(ConanFile):
         s_compiler_version = self.settings.compiler.version
 
         self.options['xmscore'].xms = self.options.xms
+        self.options['xmscore'].pybind = self.options.pybind
+        self.options['xmscore'].testing = self.options.testing
 
-        if s_compiler == "clang" and s_os == 'Linux':
+        self.options['xmsinterp'].xms = self.options.xms
+        self.options['xmsinterp'].pybind = self.options.pybind
+        self.options['xmsinterp'].testing = self.options.testing
+
+        if s_compiler != "Visual Studio" and s_compiler != "apple-clang":
+            self.options['boost'].fPIC = True
+        elif s_compiler == "apple-clang":
+            self.options['boost'].fPIC = False
+
+        if s_compiler == "apple-clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
-        if s_compiler == "clang" \
-                and s_os == 'Darwin' \
-                and s_compiler_version < "9.0":
+        if s_compiler == "apple-clang" \
+                and s_os == 'Macos' \
+                and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
 
     def requirements(self):
+        """Requirments"""
         if self.options.xms:
             self.requires("boost/1.60.0@aquaveo/testing")
-            self.requires("xmscore/1.0.25@aquaveo/stable")
-            self.requires("interp/1.0.8@aquaveo/stable")
+            self.requires("xmscore/[>1.0.25]@aquaveo/stable")
+            self.requires("interp/[>1.0.7]@aquaveo/stable")
         else:
             self.requires("boost/1.66.0@conan/stable")
-            self.requires("xmscore/1.0.25@aquaveo/stable")
-            self.requires("interp/1.0.8@aquaveo/stable")
+            self.requires("xmscore/[>1.0.25]@aquaveo/stable")
+            self.requires("interp/[>1.0.7]@aquaveo/stable")
             # self.requires("pybind11/2.2.2@aquaveo/stable")
 
     def build(self):
-        xms_run_tests = self.env.get('XMS_RUN_TESTS', None)
-        run_tests = xms_run_tests != 'None' and xms_run_tests is not None
-
         cmake = CMake(self)
 
-        if self.settings.compiler == 'Visual Studio':
+        if self.settings.compiler == 'Visual Studio' \
+           and self.settings.compiler.version == "12":
             cmake.definitions["XMS_BUILD"] = self.options.xms
 
-        cmake.definitions["BUILD_TESTING"] = run_tests
+        # CXXTest doesn't play nice with PyBind. Also, it would be nice to not
+        # have tests in release code. Thus, if we want to run tests, we will
+        # build a test version (without python), run the tests, and then (on
+        # sucess) rebuild the library without tests.
+        cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
+        cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.configure(source_folder=".")
         cmake.build()
 
-        if run_tests:
+        if self.options.testing:
             print("***********(0.0)*************")
             try:
                 cmake.test()
