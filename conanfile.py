@@ -53,15 +53,20 @@ class XmsinterpConan(ConanFile):
 
     def requirements(self):
         """Requirments"""
+        # If building for XMS, use the older, custom boost
         if self.options.xms:
             self.requires("boost/1.60.0@aquaveo/testing")
-            self.requires("xmscore/[>1.0.25]@aquaveo/stable")
-            self.requires("interp/[>1.0.7]@aquaveo/stable")
         else:
             self.requires("boost/1.66.0@conan/stable")
-            self.requires("xmscore/[>1.0.25]@aquaveo/stable")
-            self.requires("xmsinterp/[>1.0.7]@aquaveo/stable")
-            # self.requires("pybind11/2.2.2@aquaveo/stable")
+
+        # Pybind if not visual studio 2013
+        if not (self.settings.compiler == 'Visual Studio' \
+                and self.settings.compiler.version == "12") \
+                and self.options.pybind:
+            self.requires("pybind11/2.2.2@aquaveo/stable")
+
+        self.requires("xmscore/[>1.0.25]@aquaveo/stable")
+        self.requires("xmsinterp/[>1.0.7]@aquaveo/stable")
 
     def build(self):
         cmake = CMake(self)
