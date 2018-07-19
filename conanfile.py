@@ -18,7 +18,7 @@ class XmsinterpConan(ConanFile):
     default_options = "xms=False", "pybind=False", "testing=False"
     generators = "cmake"
     build_requires = "cxxtest/4.4@aquaveo/stable"
-    exports = "CMakeLists.txt", "LICENSE"
+    exports = "CMakeLists.txt", "LICENSE", "test_files/*"
     exports_sources = "xmsmesh/*"
 
     def configure(self):

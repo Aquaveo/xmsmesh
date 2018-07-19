@@ -159,7 +159,11 @@ if(IS_PYTHON_BUILD)
         include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
 
     else()
-        include("pybind11Tools.cmake") # TODO: Set this using conan variables...
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
     endif()
 
     pybind11_add_module(xmsmesh_py
