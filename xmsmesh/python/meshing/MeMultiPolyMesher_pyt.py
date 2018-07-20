@@ -23,7 +23,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
     def test_set_observer(self):
         mesher = MeMultiPolyMesher()
         obs = Observer()
-        obs.pytest_id = "ObserverTestMeMultiPolyMesher"
+        # obs.pytest_id = "ObserverTestMeMultiPolyMesher"
         mesher.set_observer(obs)
         # TODO we don't have a way to test this yet.
 
@@ -44,7 +44,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 0 intersects with the segment defined by points 2 and 3 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, io_out, errors) = mesher.mesh_it(io)
+        (success, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -65,7 +65,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 0 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, io_out, errors) = mesher.mesh_it(io)
+        (success, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -87,7 +87,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
                    "\n\n"
 
         mesher = MeMultiPolyMesher()
-        (success, io_out, errors) = mesher.mesh_it(io)
+        (success, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -109,7 +109,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 0 intersects with the segment defined by points 3 and 0 of outer polygon 1.\n" \
             "\n\n"
 
-        (success, io_out, errors) = mesher.mesh_it(io)
+        (success, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -135,7 +135,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             "polygon 1 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, io_out, errors) = mesher.mesh_it(io)
+        (success, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -156,5 +156,6 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         input = MeMultiPolyMesherIo()
         input.poly_inputs = [input_poly]
         mesher = MeMultiPolyMesher()
-        status, io, error = mesher.mesh_it(input)
-        self.assertEqual(io.points, ())
+        status, error = mesher.mesh_it(input)
+        self.assertTrue(status)
+        self.assertEqual(error, '')
