@@ -277,9 +277,9 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor"></span>    test_precision = TEST_PRECISION;</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor"></span>    a_os &lt;&lt; <span class="stringliteral">&quot;ND &quot;</span> &lt;&lt; tempStr &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;         &lt;&lt; STRstd(p.x, test_precision, 15, STR_FULLWIDTH) &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;         &lt;&lt; STRstd(p.y, test_precision, 15, STR_FULLWIDTH) &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;         &lt;&lt; STRstd(p.z, test_precision, 15, STR_FULLWIDTH) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;         &lt;&lt; STRstd(p.x, test_precision, 14, STR_FULLWIDTH) &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;         &lt;&lt; STRstd(p.y, test_precision, 14, STR_FULLWIDTH) &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;         &lt;&lt; STRstd(p.z, test_precision, 14, STR_FULLWIDTH) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  }</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;} <span class="comment">//  MeMultiPolyTo2dmImpl::Write2dm</span></div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
@@ -325,8 +325,8 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> iTestFromPolyFile(std::string a_fileBase)</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;{</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  <span class="keyword">const</span> std::string path(std::string(XMSNG_TEST_PATH) + <span class="stringliteral">&quot;meshing/&quot;</span>);</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="comment">// not using ttGetXmsngTestPath() because the XMSNG_TEST_PATH is not defined</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  <span class="keyword">const</span> std::string path(std::string(XMSMESH_TEST_PATH) + <span class="stringliteral">&quot;meshing/&quot;</span>);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  <span class="comment">// not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined</span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  <span class="comment">// in xmscore.</span></div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <span class="comment">//const std::string path(ttGetXmsngTestPath() + &quot;meshing/&quot;);</span></div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  std::string outFile = path + a_fileBase + <span class="stringliteral">&quot;_out.2dm&quot;</span>;</div>
@@ -518,64 +518,64 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    <span class="stringliteral">&quot;E3T    72    35    51    36     1\n&quot;</span></div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="stringliteral">&quot;E3T    73    39    50    57     1\n&quot;</span></div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <span class="stringliteral">&quot;E3T    74    44    54    53     1\n&quot;</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="stringliteral">&quot;ND     1             0.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <span class="stringliteral">&quot;ND     2             0.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="stringliteral">&quot;ND     3             0.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    <span class="stringliteral">&quot;ND     4             0.0            30.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <span class="stringliteral">&quot;ND     5             0.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <span class="stringliteral">&quot;ND     6             0.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="stringliteral">&quot;ND     7             0.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="stringliteral">&quot;ND     8            10.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="stringliteral">&quot;ND     9            20.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    <span class="stringliteral">&quot;ND    10            30.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <span class="stringliteral">&quot;ND    11            30.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <span class="stringliteral">&quot;ND    12            30.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="stringliteral">&quot;ND    13            30.0            30.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="stringliteral">&quot;ND    14            30.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="stringliteral">&quot;ND    15            30.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    <span class="stringliteral">&quot;ND    16            30.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="stringliteral">&quot;ND    17            20.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="stringliteral">&quot;ND    18            10.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="stringliteral">&quot;ND    19            10.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    <span class="stringliteral">&quot;ND    20            10.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    <span class="stringliteral">&quot;ND    21            20.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    <span class="stringliteral">&quot;ND    22            20.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    <span class="stringliteral">&quot;ND    23            10.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    <span class="stringliteral">&quot;ND    24            10.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="stringliteral">&quot;ND    25            20.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="stringliteral">&quot;ND    26            20.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    <span class="stringliteral">&quot;ND    27 8.5108202542291 31.757958032906             0.0\n&quot;</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="stringliteral">&quot;ND    28 19.918901892813 32.426918311488             0.0\n&quot;</span></div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    <span class="stringliteral">&quot;ND    29 14.906323131347 26.659241919112             0.0\n&quot;</span></div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    <span class="stringliteral">&quot;ND    30            40.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <span class="stringliteral">&quot;ND    31            40.0            30.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    <span class="stringliteral">&quot;ND    32            40.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="stringliteral">&quot;ND    33            40.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <span class="stringliteral">&quot;ND    34            40.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    <span class="stringliteral">&quot;ND    35            50.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    <span class="stringliteral">&quot;ND    36            60.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    <span class="stringliteral">&quot;ND    37            70.0            60.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <span class="stringliteral">&quot;ND    38            70.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    <span class="stringliteral">&quot;ND    39            70.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    <span class="stringliteral">&quot;ND    40            70.0            30.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <span class="stringliteral">&quot;ND    41            70.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="stringliteral">&quot;ND    42            70.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    <span class="stringliteral">&quot;ND    43            70.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    <span class="stringliteral">&quot;ND    44            60.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    <span class="stringliteral">&quot;ND    45            50.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="stringliteral">&quot;ND    46            40.0             0.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    <span class="stringliteral">&quot;ND    47            40.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    <span class="stringliteral">&quot;ND    48            50.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    <span class="stringliteral">&quot;ND    49            50.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="stringliteral">&quot;ND    50            60.0            40.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    <span class="stringliteral">&quot;ND    51            60.0            50.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    <span class="stringliteral">&quot;ND    52            50.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    <span class="stringliteral">&quot;ND    53            50.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    <span class="stringliteral">&quot;ND    54            60.0            10.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    <span class="stringliteral">&quot;ND    55            60.0            20.0             0.0\n&quot;</span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    <span class="stringliteral">&quot;ND    56 48.371140004857 31.770815509095             0.0\n&quot;</span></div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    <span class="stringliteral">&quot;ND    57 59.828479553661 32.416248616621             0.0\n&quot;</span></div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    <span class="stringliteral">&quot;ND    58 54.803686217591 26.664267399073             0.0\n&quot;</span>;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="stringliteral">&quot;ND     1            0.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    <span class="stringliteral">&quot;ND     2            0.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="stringliteral">&quot;ND     3            0.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    <span class="stringliteral">&quot;ND     4            0.0           30.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <span class="stringliteral">&quot;ND     5            0.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <span class="stringliteral">&quot;ND     6            0.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="stringliteral">&quot;ND     7            0.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="stringliteral">&quot;ND     8           10.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <span class="stringliteral">&quot;ND     9           20.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    <span class="stringliteral">&quot;ND    10           30.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <span class="stringliteral">&quot;ND    11           30.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <span class="stringliteral">&quot;ND    12           30.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    <span class="stringliteral">&quot;ND    13           30.0           30.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    <span class="stringliteral">&quot;ND    14           30.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="stringliteral">&quot;ND    15           30.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    <span class="stringliteral">&quot;ND    16           30.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="stringliteral">&quot;ND    17           20.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="stringliteral">&quot;ND    18           10.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <span class="stringliteral">&quot;ND    19           10.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    <span class="stringliteral">&quot;ND    20           10.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    <span class="stringliteral">&quot;ND    21           20.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    <span class="stringliteral">&quot;ND    22           20.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    <span class="stringliteral">&quot;ND    23           10.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    <span class="stringliteral">&quot;ND    24           10.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="stringliteral">&quot;ND    25           20.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="stringliteral">&quot;ND    26           20.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    <span class="stringliteral">&quot;ND    27 8.510820254229 31.75795803291            0.0\n&quot;</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="stringliteral">&quot;ND    28 19.91890189281 32.42691831149            0.0\n&quot;</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    <span class="stringliteral">&quot;ND    29 14.90632313135 26.65924191911            0.0\n&quot;</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    <span class="stringliteral">&quot;ND    30           40.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <span class="stringliteral">&quot;ND    31           40.0           30.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    <span class="stringliteral">&quot;ND    32           40.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <span class="stringliteral">&quot;ND    33           40.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <span class="stringliteral">&quot;ND    34           40.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    <span class="stringliteral">&quot;ND    35           50.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    <span class="stringliteral">&quot;ND    36           60.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    <span class="stringliteral">&quot;ND    37           70.0           60.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <span class="stringliteral">&quot;ND    38           70.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    <span class="stringliteral">&quot;ND    39           70.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    <span class="stringliteral">&quot;ND    40           70.0           30.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <span class="stringliteral">&quot;ND    41           70.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="stringliteral">&quot;ND    42           70.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    <span class="stringliteral">&quot;ND    43           70.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    <span class="stringliteral">&quot;ND    44           60.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    <span class="stringliteral">&quot;ND    45           50.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="stringliteral">&quot;ND    46           40.0            0.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    <span class="stringliteral">&quot;ND    47           40.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    <span class="stringliteral">&quot;ND    48           50.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    <span class="stringliteral">&quot;ND    49           50.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="stringliteral">&quot;ND    50           60.0           40.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    <span class="stringliteral">&quot;ND    51           60.0           50.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    <span class="stringliteral">&quot;ND    52           50.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    <span class="stringliteral">&quot;ND    53           50.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    <span class="stringliteral">&quot;ND    54           60.0           10.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    <span class="stringliteral">&quot;ND    55           60.0           20.0            0.0\n&quot;</span></div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    <span class="stringliteral">&quot;ND    56 48.37114000486  31.7708155091            0.0\n&quot;</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    <span class="stringliteral">&quot;ND    57 59.82847955366 32.41624861662            0.0\n&quot;</span></div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    <span class="stringliteral">&quot;ND    58 54.80368621759 26.66426739907            0.0\n&quot;</span>;</div>
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;  TS_ASSERT_EQUALS(base, ss.str());</div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;} <span class="comment">// MeMultiPolyTo2dmUnitTests::testCase4</span></div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
@@ -635,7 +635,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00595"></a><span class="lineno"><a class="line" href="class_me_multi_poly_to2dm_intermediate_tests.html#a84226b4982620e02a55dcc8a2a183dc3">  595</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_me_multi_poly_to2dm_intermediate_tests.html#a84226b4982620e02a55dcc8a2a183dc3">MeMultiPolyTo2dmIntermediateTests::testCasePatch6</a>()</div>
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;{</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;  <span class="keyword">const</span> std::string path(std::string(XMSNG_TEST_PATH) + <span class="stringliteral">&quot;meshing/&quot;</span>);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;  <span class="keyword">const</span> std::string path(std::string(XMSMESH_TEST_PATH) + <span class="stringliteral">&quot;meshing/&quot;</span>);</div>
 <div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;  <span class="keyword">const</span> std::string fname(path + <span class="stringliteral">&quot;CasePatch6.txt&quot;</span>);</div>
 <div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;  std::string fbase(<span class="stringliteral">&quot;CasePatch6&quot;</span>);</div>
 <div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;  std::vector&lt;std::vector&lt;std::vector&lt;Pt3d&gt;&gt;&gt; inside;</div>
@@ -683,7 +683,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00644"></a><span class="lineno"><a class="line" href="class_me_multi_poly_to2dm_intermediate_tests.html#a6dafe689950322b86ab34ee1a81db31d">  644</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_me_multi_poly_to2dm_intermediate_tests.html#a6dafe689950322b86ab34ee1a81db31d">MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition</a>()</div>
 <div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;{</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;  <span class="keyword">const</span> std::string path(std::string(XMSNG_TEST_PATH) + <span class="stringliteral">&quot;meshing/&quot;</span>);</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;  <span class="keyword">const</span> std::string path(std::string(XMSMESH_TEST_PATH) + <span class="stringliteral">&quot;meshing/&quot;</span>);</div>
 <div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;  std::string fbase(<span class="stringliteral">&quot;CaseTransitionToConstSize&quot;</span>);</div>
 <div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;  std::string fname(path + <span class="stringliteral">&quot;CaseTransitionToConstSize.txt&quot;</span>);</div>
 <div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;  std::string inPolyFile(fname);</div>
@@ -765,7 +765,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_multi_poly_to2dm_8cpp.html">MeMultiPolyTo2dm.cpp</a></li>
-    <li class="footer">Generated on Fri Jul 20 2018 17:26:46 for xmsmesh by
+    <li class="footer">Generated on Mon Jul 23 2018 19:06:04 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
