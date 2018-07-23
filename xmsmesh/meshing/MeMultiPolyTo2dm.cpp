@@ -250,8 +250,8 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os)
 //------------------------------------------------------------------------------
 static void iTestFromPolyFile(std::string a_fileBase)
 {
-  const std::string path(std::string(XMSNG_TEST_PATH) + "meshing/");
-  // not using ttGetXmsngTestPath() because the XMSNG_TEST_PATH is not defined
+  const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+  // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
   // in xmscore.
   //const std::string path(ttGetXmsngTestPath() + "meshing/");
   std::string outFile = path + a_fileBase + "_out.2dm";
@@ -594,7 +594,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 {
-  const std::string path(std::string(XMSNG_TEST_PATH) + "meshing/");
+  const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
   const std::string fname(path + "CasePatch6.txt");
   std::string fbase("CasePatch6");
   std::vector<std::vector<std::vector<Pt3d>>> inside;
@@ -643,7 +643,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
 {
-  const std::string path(std::string(XMSNG_TEST_PATH) + "meshing/");
+  const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
   std::string fbase("CaseTransitionToConstSize");
   std::string fname(path + "CaseTransitionToConstSize.txt");
   std::string inPolyFile(fname);
