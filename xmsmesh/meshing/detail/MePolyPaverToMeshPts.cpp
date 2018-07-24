@@ -79,7 +79,7 @@ public:
                      const std::vector<std::vector<Pt3d>>& a_inPolys,
                      double a_bias,
                      double a_xyTol,
-                     std::vector<Pt3d>& a_meshPts);
+                     std::vector<Pt3d>& a_meshPts) override;
   //------------------------------------------------------------------------------
   /// \brief
   //------------------------------------------------------------------------------

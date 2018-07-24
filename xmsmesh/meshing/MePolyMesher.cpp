@@ -95,7 +95,7 @@ public:
   /// \param a_: The observer.
   //------------------------------------------------------------------------------
   virtual void SetObserver(BSHP<Observer> a_) override { m_observer = a_; }
-  virtual void GetProcessedRefinePts(std::vector<Pt3d>& a_pts);
+  virtual void GetProcessedRefinePts(std::vector<Pt3d>& a_pts) override;
 
   void TestWithPoints(const VecInt& a_outPoly,
                       const VecInt2d& a_inPolys,

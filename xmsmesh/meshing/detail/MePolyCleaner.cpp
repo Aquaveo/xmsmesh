@@ -69,7 +69,8 @@ static void iDumpOutput(const MePolyOffsetterOutput& a_output)
     int i  = -1;
     for (auto loop : a_output.m_loops)
     {
-      std::cout << "loop type: " << a_output.m_loopTypes[++i] << " loop number: " << i << std::endl;
+      ++i;
+      std::cout << "loop type: " << a_output.m_loopTypes[i] << " loop number: " << i << std::endl;
       for (auto idx : loop)
       {
         std::cout << idx << ", ";
