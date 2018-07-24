@@ -18,7 +18,7 @@ var classxms_1_1_me_poly_mesher_impl =
     [ "FindAllPolyPointIdxs", "classxms_1_1_me_poly_mesher_impl.html#aa1999551495593bd32bdaf4900ffe232", null ],
     [ "FindPolyPointIdxs", "classxms_1_1_me_poly_mesher_impl.html#a93aa4ab00b964d86520bb9e223e68a17", null ],
     [ "GenerateMeshPts", "classxms_1_1_me_poly_mesher_impl.html#ab70755776812847322ea8895f3ee8d25", null ],
-    [ "GetProcessedRefinePts", "classxms_1_1_me_poly_mesher_impl.html#ab301ba9b1b55c11df60858170dfd97e1", null ],
+    [ "GetProcessedRefinePts", "classxms_1_1_me_poly_mesher_impl.html#aab7ff4fdd10edf54ee16cc52b9be6abf", null ],
     [ "MeshFromInputs", "classxms_1_1_me_poly_mesher_impl.html#a33f9baab82615955be26ccf01722c5b4", null ],
     [ "MeshIt", "classxms_1_1_me_poly_mesher_impl.html#af43b21c3f2bc08efd92e93be0c1905fb", null ],
     [ "MeshIt", "classxms_1_1_me_poly_mesher_impl.html#ad5166c04cb918385473ca991020a9234", null ],

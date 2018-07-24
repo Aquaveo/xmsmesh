@@ -7,9 +7,7 @@ var dir_abd8c1a13056d463f3dafa116a92b72c =
     [ "MeIntersectPolys.t.h", "_me_intersect_polys_8t_8h.html", [
       [ "MeIntersectPolysUnitTests", "class_me_intersect_polys_unit_tests.html", "class_me_intersect_polys_unit_tests" ]
     ] ],
-    [ "MePolyCleaner.cpp", "_me_poly_cleaner_8cpp.html", [
-      [ "MePolyCleanerImpl", "classxms_1_1_me_poly_cleaner_impl.html", "classxms_1_1_me_poly_cleaner_impl" ]
-    ] ],
+    [ "MePolyCleaner.cpp", "_me_poly_cleaner_8cpp.html", "_me_poly_cleaner_8cpp" ],
     [ "MePolyCleaner.h", "_me_poly_cleaner_8h.html", [
       [ "MePolyCleaner", "classxms_1_1_me_poly_cleaner.html", "classxms_1_1_me_poly_cleaner" ]
     ] ],

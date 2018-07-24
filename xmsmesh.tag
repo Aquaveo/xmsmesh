@@ -3255,8 +3255,8 @@
       <type>virtual void</type>
       <name>GetProcessedRefinePts</name>
       <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ab301ba9b1b55c11df60858170dfd97e1</anchor>
-      <arglist>(std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+      <anchor>aab7ff4fdd10edf54ee16cc52b9be6abf</anchor>
+      <arglist>(std::vector&lt; Pt3d &gt; &amp;a_pts) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
