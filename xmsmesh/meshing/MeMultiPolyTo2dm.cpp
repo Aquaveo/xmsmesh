@@ -254,8 +254,9 @@ static void iTestFromPolyFile(std::string a_fileBase)
   // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
   // in xmscore.
   //const std::string path(ttGetXmsngTestPath() + "meshing/");
-  std::string outFile = path + a_fileBase + "_out.2dm";
-  std::string baseFile = path + a_fileBase + "_base.2dm";
+  std::string outFile;
+  std::string baseFile;
+  ttGetTestFilePaths(path, a_fileBase, ".2dm", baseFile, outFile);
   {
     std::fstream os;
     os.open(outFile.c_str(), std::fstream::out);

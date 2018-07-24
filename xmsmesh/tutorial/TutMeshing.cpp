@@ -219,10 +219,12 @@ bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d
 /// \param a_input poly mesher input
 /// \param a_baseFilenameWithPath base file name for output file and base line file
 //------------------------------------------------------------------------------
-void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_baseFilenameWithPath)
+void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_fileBase)
 {
-  std::string outFile = a_baseFilenameWithPath + "_out.2dm";
-  std::string baseFile = a_baseFilenameWithPath + "_base.2dm";
+  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
+  std::string outFile;
+  std::string baseFile;
+  ttGetTestFilePaths(path, a_fileBase, ".2dm", baseFile, outFile);
   {
     std::fstream os(outFile.c_str(), std::fstream::out);
     TS_ASSERT(!os.bad());
@@ -282,8 +284,7 @@ void TutMeshingIntermediateTests::test_Example_SimplePolygon()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_SimplePolygon";
+  const std::string baseFile = "Example_SimplePolygon";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_SimplePolygon
 //! [snip_test_Example_SimplePolygon]
@@ -326,8 +327,7 @@ void TutMeshingIntermediateTests::test_Example_ComplexPolygon()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_ComplexPolygon";
+  const std::string baseFile = "Example_ComplexPolygon";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_ComplexPolygon
 //! [snip_test_Example_ComplexPolygon]
@@ -364,8 +364,7 @@ void TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_SimplePolygonWithHole";
+  const std::string baseFile = "Example_SimplePolygonWithHole";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole
 //! [snip_test_Example_SimplePolygonWithHole]
@@ -401,8 +400,7 @@ void TutMeshingIntermediateTests::test_Example_Breakline()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_Breakline";
+  const std::string baseFile = "Example_Breakline";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_Breakline
 //! [snip_test_Example_Breakline]
@@ -454,8 +452,7 @@ void TutMeshingIntermediateTests::test_Example_RefinePoints()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_RefinePoints";
+  const std::string baseFile = "Example_RefinePoints";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_RefinePoints
 //! [snip_test_Example_RefinePoints]
@@ -486,7 +483,7 @@ void TutMeshingIntermediateTests::test_Example_MultiplePolygons()
   input.m_refPts.push_back(xms::MeRefinePoint(p1, 1.0, true));
 
   // generate the mesh and check the base line
-  const std::string baseFile = path + "Example_MultiPolys";
+  const std::string baseFile = "Example_MultiPolys";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_MultiplePolygons
 //! [snip_test_Example_MultiPolygon]
@@ -536,8 +533,7 @@ void TutMeshingIntermediateTests::test_Example_ScalarPaving()
   input.m_polys[0].m_sizeFunction = linear;
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_ScalarPaving";
+  const std::string baseFile = "Example_ScalarPaving";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_ScalarPaving
 //! [snip_test_Example_ScalarPaving]
@@ -572,8 +568,7 @@ void TutMeshingIntermediateTests::test_Example_Patch()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_Patch";
+  const std::string baseFile = "Example_Patch";
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_Patch
 //! [snip_test_Example_Patch]
@@ -631,14 +626,13 @@ void TutMeshingIntermediateTests::test_Example_ConstantSmooth()
   input.m_polys.push_back(inputPoly);
 
   // generate the mesh and check the base line
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
-  const std::string baseFile = path + "Example_ConstantSmooth";
+  const std::string baseFile = "Example_ConstantSmooth";
   tutGenerateAndCompare2dm(input, baseFile);
 
   // now make the polygon grow to a bigger size element
   input.m_polys.front().m_constSizeFunction = 50;
 
-  const std::string baseFile2 = path + "Example_ConstantSmooth2";
+  const std::string baseFile2 = "Example_ConstantSmooth2";
   tutGenerateAndCompare2dm(input, baseFile2);
 } // TutMeshingIntermediateTests::test_Example_ConstantSmooth
 //! [snip_test_Example_ConstantSmooth]
