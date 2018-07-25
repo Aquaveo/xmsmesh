@@ -49,10 +49,12 @@ class MeMultiPolyTo2dmImpl : public MeMultiPolyTo2dm
 public:
   MeMultiPolyTo2dmImpl() {}
 
-  bool Generate2dm(MeMultiPolyMesherIo& a_input, const std::string& a_outFileName) override;
-  bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os) override;
+  bool Generate2dm(MeMultiPolyMesherIo& a_input, const std::string& a_outFileName,
+                   int a_precision = 14) override;
+  bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os,
+                   int a_precision = 14) override;
 
-  void Write2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os);
+  void Write2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os, int a_precision);
 
   //------------------------------------------------------------------------------
   /// \brief sets the observer class to give feedback on the grid generation process
@@ -87,22 +89,26 @@ BSHP<MeMultiPolyTo2dm> MeMultiPolyTo2dm::New()
 /// \brief Creates a 2dm file from polygons
 /// \param[in] a_io: Input/output of polygons and options for generating a mesh.
 /// \param[in] a_outFileName: output filename
+/// \param[in] a_precision: pinted digits of precision of points in file
 /// \return true if the mesh was generated.
 //------------------------------------------------------------------------------
-bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, const std::string& a_outFileName)
+bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, const std::string& a_outFileName,
+                                       int a_precision)
 {
   std::fstream os(a_outFileName.c_str(), std::fstream::out);
   if (os.bad())
     return false;
-  return Generate2dm(a_io, os);
+  return Generate2dm(a_io, os, a_precision);
 } // MeMultiPolyTo2dmImpl::Generate2dm
 //------------------------------------------------------------------------------
 /// \brief Creates a 2dm file from polygons by meshing.
 /// \param[in] a_io: Input/output of polygons and options for generating a mesh.
 /// \param[in] a_os: output stream to store the mesh
+/// \param[in] a_precision: pinted digits of precision of points in file
 /// \return true if a mesh was created
 //------------------------------------------------------------------------------
-bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os)
+bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os,
+                                       int a_precision)
 {
   if (a_os.bad())
   {
@@ -120,7 +126,7 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& 
   }
 
   // write the 2dm
-  Write2dm(a_io, a_os);
+  Write2dm(a_io, a_os, a_precision);
   return true;
 } // MeMultiPolyTo2dmImpl::GenerateUGrid
 //------------------------------------------------------------------------------
@@ -128,8 +134,10 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& 
 /// MeMultiPolyMesherIo class.
 /// \param[in] a_io: Input/output of polygons and options for generating a mesh.
 /// \param[in] a_os: output stream to store the mesh
+/// \param[in] a_precision: pinted digits of precision of points in file
 //------------------------------------------------------------------------------
-void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os)
+void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os,
+                                    int a_precision)
 {
   XM_ENSURE_TRUE_NO_ASSERT(a_io.m_points.size() && a_io.m_cells.size());
 
@@ -195,9 +203,9 @@ void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_o
     test_precision = TEST_PRECISION;
 #endif
     a_os << "ND " << tempStr << " "
-         << STRstd(p.x, test_precision, 14, STR_FULLWIDTH) << " "
-         << STRstd(p.y, test_precision, 14, STR_FULLWIDTH) << " "
-         << STRstd(p.z, test_precision, 14, STR_FULLWIDTH) << "\n";
+         << STRstd(p.x, test_precision, a_precision, STR_FULLWIDTH) << " "
+         << STRstd(p.y, test_precision, a_precision, STR_FULLWIDTH) << " "
+         << STRstd(p.z, test_precision, a_precision, STR_FULLWIDTH) << "\n";
   }
 } //  MeMultiPolyTo2dmImpl::Write2dm
 
@@ -233,8 +241,10 @@ static VecPt3d iArrayToVecPt3d(double* a_array, int a_size)
 //------------------------------------------------------------------------------
 /// \brief
 /// \param a_filename: Path and filename of the polygon file.
+/// \param a_precision: Precision used to write 2dm file points.
 //------------------------------------------------------------------------------
-static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os)
+static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os,
+                                   int a_precision)
 {
   std::string inPolyFile(a_filename);
   MeMultiPolyTo2dmImpl p2g;
@@ -242,13 +252,14 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os)
   std::vector<std::vector<Pt3d>> outside;
   MeMultiPolyMesherIo io;
   tutReadMeshIoFromFile(inPolyFile, io);
-  p2g.Generate2dm(io, a_os);
+  p2g.Generate2dm(io, a_os, a_precision);
 } // iReadPolysAndCreate2dm
 //------------------------------------------------------------------------------
 /// \brief
 /// \param a_fileBase: Base of filename (prefix) of the polygon file.
+/// \param a_precision: Precision used to write 2dm file points.
 //------------------------------------------------------------------------------
-static void iTestFromPolyFile(std::string a_fileBase)
+static void iTestFromPolyFile(std::string a_fileBase, int a_precision = 14)
 {
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
   // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
@@ -260,7 +271,7 @@ static void iTestFromPolyFile(std::string a_fileBase)
   {
     std::fstream os;
     os.open(outFile.c_str(), std::fstream::out);
-    iReadPolysAndCreate2dm(path + a_fileBase + ".txt", os);
+    iReadPolysAndCreate2dm(path + a_fileBase + ".txt", os, a_precision);
   }
   TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
   // ugExportVtkUGridAndCompare(ug, path, a_fileBase);
@@ -587,7 +598,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveGeo()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
 {
-  iTestFromPolyFile("CasePaveSanDiego");
+  iTestFromPolyFile("CasePaveSanDiego", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego
 //------------------------------------------------------------------------------
 /// \brief Tests two patched polys next to each other, and one paved poly next
