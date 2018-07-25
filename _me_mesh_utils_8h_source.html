@@ -135,28 +135,31 @@ $(document).ready(function(){initNavTree('_me_mesh_utils_8h_source.html','');});
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//----- Structs / Classes ------------------------------------------------------</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//----- Function prototypes ----------------------------------------------------</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> meSizeFunctionFromDepth(<span class="keyword">const</span> VecDbl&amp; a_depths,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                             VecDbl&amp; a_size,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> meSizeFunctionFromDepth(<span class="keyword">const</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a5de59c68ff16d81cb2a429173f3a2fa5">VecDbl</a>&amp; a_depths,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                             <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a5de59c68ff16d81cb2a429173f3a2fa5">VecDbl</a>&amp; a_size,</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                             <span class="keywordtype">double</span> a_minSize,</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                             <span class="keywordtype">double</span> a_maxSize);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> meSmoothSizeFunction(BSHP&lt;TrTin&gt; a_tin,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                          <span class="keyword">const</span> VecFlt&amp; a_sizes,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                          <span class="keyword">const</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a>&amp; a_sizes,</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                          <span class="keywordtype">double</span> a_sizeRatio,</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                          <span class="keywordtype">double</span> a_minSize,</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                          <span class="keywordtype">int</span> a_anchorType,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                          <span class="keyword">const</span> DynBitset&amp; a_ptFlags,</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                          VecFlt&amp; a_smoothSize);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                          <span class="keyword">const</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a>&amp; a_ptFlags,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                          <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a>&amp; a_smoothSize);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> meSmoothElevBySlope(BSHP&lt;TrTin&gt; a_tin,</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                         <span class="keyword">const</span> VecFlt&amp; a_sizes,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                         <span class="keyword">const</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a>&amp; a_sizes,</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                         <span class="keywordtype">double</span> a_maxSize,</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                         <span class="keywordtype">int</span> a_anchorType,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                         <span class="keyword">const</span> DynBitset&amp; a_ptFlags,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                         VecFlt&amp; a_smoothSize);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                         <span class="keyword">const</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a>&amp; a_ptFlags,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                         <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a>&amp; a_smoothSize);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <span class="comment">// namespace xms</span></div>
 <div class="ttc" id="set_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/set_8h.html">set.h</a></div></div>
 <div class="ttc" id="_dyn_bitset_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/_dyn_bitset_8h.html">DynBitset.h</a></div></div>
+<div class="ttc" id="namespacexms_html_a386622729e9b0e733d6eaac4e0e711c7"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a></div><div class="ttdeci">std::vector&lt; float &gt; VecFlt</div></div>
 <div class="ttc" id="boost__defines_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/boost__defines_8h.html">boost_defines.h</a></div></div>
+<div class="ttc" id="namespacexms_html_a5de59c68ff16d81cb2a429173f3a2fa5"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#a5de59c68ff16d81cb2a429173f3a2fa5">VecDbl</a></div><div class="ttdeci">std::vector&lt; double &gt; VecDbl</div></div>
+<div class="ttc" id="namespacexms_html_aba8c1eacfbbd2d1f45cef2fd55a35d93"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a></div><div class="ttdeci">boost::dynamic_bitset&lt; size_t &gt; DynBitset</div></div>
 <div class="ttc" id="vector_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/vector_8h.html">vector.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -164,7 +167,7 @@ $(document).ready(function(){initNavTree('_me_mesh_utils_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_mesh_utils_8h.html">MeMeshUtils.h</a></li>
-    <li class="footer">Generated on Wed Jul 25 2018 16:51:08 for xmsmesh by
+    <li class="footer">Generated on Wed Jul 25 2018 21:33:36 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

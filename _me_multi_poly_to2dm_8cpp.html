@@ -105,7 +105,9 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp.html','');})
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">MeMultiPolyTo2dm.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -116,10 +118,12 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp.html','');})
 <code>#include &lt;cmath&gt;</code><br/>
 <code>#include &lt;boost/format.hpp&gt;</code><br/>
 <code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_string_util_8h.html">xmscore/misc/StringUtil.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_const_8h.html">xmscore/misc/XmConst.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_error_8h.html">xmscore/misc/XmError.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_log_8h.html">xmscore/misc/XmLog.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/pt_8h.html">xmscore/points/pt.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/vector_8h.html">xmscore/stl/vector.h</a>&gt;</code><br/>
+<code>#include &lt;xmsinterp/geometry/geoms.h&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_me_multi_poly_mesher_8h_source.html">xmsmesh/meshing/MeMultiPolyMesher.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_me_multi_poly_mesher_io_8h_source.html">xmsmesh/meshing/MeMultiPolyMesherIo.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/carray_8h.html">xmscore/misc/carray.h</a>&gt;</code><br/>
@@ -134,6 +138,20 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_multi_poly_to2dm_impl.html">xms::MeMultiPolyTo2dmImpl</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a VTK Unstructured Grid from polygons.  <a href="classxms_1_1_me_multi_poly_to2dm_impl.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacexms"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html">xms</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ad4f352dce9eeb1aca333bf6c37b12a15"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::iTransformInputs</b> (<a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_io, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;a_ptMiddle)</td></tr>
+<tr class="memdesc:ad4f352dce9eeb1aca333bf6c37b12a15"><td class="mdescLeft">&#160;</td><td class="mdescRight">finds the bounds of the input polygons and computes the middle. Then the input points are translated by subtracting the middle. This can save precision when working in projected coordinates (UTM).  <a href="#ad4f352dce9eeb1aca333bf6c37b12a15">More...</a><br/></td></tr>
+<tr class="separator:ad4f352dce9eeb1aca333bf6c37b12a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22eaa3fb655b535b217719abb0a5e611"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::iTranslateOutputs</b> (const <a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_tmpIo, const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;a_ptMiddle, bool a_transform, <a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_io)</td></tr>
+<tr class="memdesc:a22eaa3fb655b535b217719abb0a5e611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates the output points from the poly mesher based on a_ptMiddle. See iTransformInputs.  <a href="#a22eaa3fb655b535b217719abb0a5e611">More...</a><br/></td></tr>
+<tr class="separator:a22eaa3fb655b535b217719abb0a5e611"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
@@ -145,7 +163,7 @@ Classes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_multi_poly_to2dm_8cpp.html">MeMultiPolyTo2dm.cpp</a></li>
-    <li class="footer">Generated on Wed Jul 25 2018 16:51:08 for xmsmesh by
+    <li class="footer">Generated on Wed Jul 25 2018 21:33:36 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

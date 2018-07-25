@@ -273,7 +273,7 @@ $(document).ready(function(){initNavTree('_me_poly_paver_to_mesh_pts_8cpp_source
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keywordtype">void</span> MePolyPaverToMeshPtsImpl::Setup()</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;{</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="comment">// Calculate tolerance for point comparison</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  m_meshPts = BSHP&lt;VecPt3d&gt;(<span class="keyword">new</span> VecPt3d());</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  m_meshPts = BSHP&lt;VecPt3d&gt;(<span class="keyword">new</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a0dc29604ee813731d584232b63f54922">VecPt3d</a>());</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  m_offsetter = <a class="code" href="classxms_1_1_me_poly_offsetter.html#a2af9c3ec15be470eb7a455a90b32a569">MePolyOffsetter::New</a>();</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  m_cleaner = <a class="code" href="classxms_1_1_me_poly_cleaner.html#a09905c7c0f0212906a232a14a19c45a2">MePolyCleaner::New</a>();</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  m_polyEnvelopeArea = AreaFromPolyStack();</div>
@@ -489,8 +489,8 @@ $(document).ready(function(){initNavTree('_me_poly_paver_to_mesh_pts_8cpp_source
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="keyword">static</span> <span class="keywordtype">double</span> iEnvelopeArea(<span class="keyword">const</span> std::vector&lt;Pt3d&gt;&amp; a_pts)</div>
 <div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;{</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  <span class="keywordtype">double</span> area;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;  Pt3d pMin(XM_DBL_HIGHEST),</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    pMax(XM_DBL_LOWEST); <span class="comment">// changed to XM_DBL_LOWEST because it is an arbitrarily low value</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;  <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">Pt3d</a> pMin(<a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a2405d59c64287fc04dd46a911a4f16c6">XM_DBL_HIGHEST</a>),</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    pMax(<a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a96ffa8332bb58934b5dd1927c1f5d900">XM_DBL_LOWEST</a>); <span class="comment">// changed to XM_DBL_LOWEST because it is an arbitrarily low value</span></div>
 <div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; a_pts.size(); ++i)</div>
 <div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;  {</div>
 <div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    gmAddToExtents(a_pts[i], pMin, pMax);</div>
@@ -620,6 +620,7 @@ $(document).ready(function(){initNavTree('_me_poly_paver_to_mesh_pts_8cpp_source
 <div class="ttc" id="classxms_1_1_me_poly_offsetter_html_a2af9c3ec15be470eb7a455a90b32a569"><div class="ttname"><a href="classxms_1_1_me_poly_offsetter.html#a2af9c3ec15be470eb7a455a90b32a569">xms::MePolyOffsetter::New</a></div><div class="ttdeci">static BSHP&lt; MePolyOffsetter &gt; New()</div><div class="ttdoc">Creates a BufferPoly class. </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_offsetter_8cpp_source.html#l00096">MePolyOffsetter.cpp:96</a></div></div>
 <div class="ttc" id="pt_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/pt_8h.html">pt.h</a></div></div>
 <div class="ttc" id="classxms_1_1_me_poly_redistribute_pts_html_a022428867bdc83af2bb0550a752390bd"><div class="ttname"><a href="classxms_1_1_me_poly_redistribute_pts.html#a022428867bdc83af2bb0550a752390bd">xms::MePolyRedistributePts::New</a></div><div class="ttdeci">static BSHP&lt; MePolyRedistributePts &gt; New()</div><div class="ttdoc">Creates an instance of this class. </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_redistribute_pts_8cpp_source.html#l00152">MePolyRedistributePts.cpp:152</a></div></div>
+<div class="ttc" id="namespacexms_html_a96ffa8332bb58934b5dd1927c1f5d900"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#a96ffa8332bb58934b5dd1927c1f5d900">xms::XM_DBL_LOWEST</a></div><div class="ttdeci">static const double XM_DBL_LOWEST</div></div>
 <div class="ttc" id="_test_tools_8h_html_ad074895a54cf874aed416e323758f355"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/_test_tools_8h.html#ad074895a54cf874aed416e323758f355">TS_ASSERT_DELTA_VECPT3D</a></div><div class="ttdeci">#define TS_ASSERT_DELTA_VECPT3D(a, b, delta)</div></div>
 <div class="ttc" id="classxms_1_1_me_poly_paver_to_mesh_pts_html_a542a0dd9f8636800428df6314179c3fd"><div class="ttname"><a href="classxms_1_1_me_poly_paver_to_mesh_pts.html#a542a0dd9f8636800428df6314179c3fd">xms::MePolyPaverToMeshPts::New</a></div><div class="ttdeci">static BSHP&lt; MePolyPaverToMeshPts &gt; New()</div><div class="ttdoc">Creates a new instance of this class. </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_paver_to_mesh_pts_8cpp_source.html#l00120">MePolyPaverToMeshPts.cpp:120</a></div></div>
 <div class="ttc" id="_me_poly_redistribute_pts_8h_html"><div class="ttname"><a href="_me_poly_redistribute_pts_8h.html">MePolyRedistributePts.h</a></div></div>
@@ -633,7 +634,9 @@ $(document).ready(function(){initNavTree('_me_poly_paver_to_mesh_pts_8cpp_source
 <div class="ttc" id="_me_poly_cleaner_8h_html"><div class="ttname"><a href="_me_poly_cleaner_8h.html">MePolyCleaner.h</a></div></div>
 <div class="ttc" id="class_me_poly_paver_to_mesh_pts_unit_tests_html_a2e2b26108f8ca13cc7fdf560cbeb73d3"><div class="ttname"><a href="class_me_poly_paver_to_mesh_pts_unit_tests.html#a2e2b26108f8ca13cc7fdf560cbeb73d3">MePolyPaverToMeshPtsUnitTests::testCase1</a></div><div class="ttdeci">void testCase1()</div><div class="ttdoc">tests the figure below </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_paver_to_mesh_pts_8cpp_source.html#l00479">MePolyPaverToMeshPts.cpp:479</a></div></div>
 <div class="ttc" id="_me_poly_paver_to_mesh_pts_8t_8h_html"><div class="ttname"><a href="_me_poly_paver_to_mesh_pts_8t_8h.html">MePolyPaverToMeshPts.t.h</a></div></div>
+<div class="ttc" id="namespacexms_html_a0dc29604ee813731d584232b63f54922"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#a0dc29604ee813731d584232b63f54922">xms::VecPt3d</a></div><div class="ttdeci">std::vector&lt; Pt3d &gt; VecPt3d</div></div>
 <div class="ttc" id="classxms_1_1_me_poly_cleaner_html_a09905c7c0f0212906a232a14a19c45a2"><div class="ttname"><a href="classxms_1_1_me_poly_cleaner.html#a09905c7c0f0212906a232a14a19c45a2">xms::MePolyCleaner::New</a></div><div class="ttdeci">static BSHP&lt; MePolyCleaner &gt; New()</div><div class="ttdoc">Creates a new instance of this class. </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_cleaner_8cpp_source.html#l00094">MePolyCleaner.cpp:94</a></div></div>
+<div class="ttc" id="classxms_1_1_pt3_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3&lt; double &gt;</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div></div>
 <div class="ttc" id="_me_poly_paver_to_mesh_pts_8h_html"><div class="ttname"><a href="_me_poly_paver_to_mesh_pts_8h.html">MePolyPaverToMeshPts.h</a></div></div>
 <div class="ttc" id="_me_intersect_polys_8h_html"><div class="ttname"><a href="_me_intersect_polys_8h.html">MeIntersectPolys.h</a></div></div>
@@ -641,13 +644,14 @@ $(document).ready(function(){initNavTree('_me_poly_paver_to_mesh_pts_8cpp_source
 <div class="ttc" id="classxms_1_1_me_poly_paver_to_mesh_pts_html"><div class="ttname"><a href="classxms_1_1_me_poly_paver_to_mesh_pts.html">xms::MePolyPaverToMeshPts</a></div><div class="ttdoc">Generates mesh node locations by paving a polygon. </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_paver_to_mesh_pts_8h_source.html#l00029">MePolyPaverToMeshPts.h:29</a></div></div>
 <div class="ttc" id="_xm_error_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/_xm_error_8h.html">XmError.h</a></div></div>
 <div class="ttc" id="_test_tools_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/_test_tools_8h.html">TestTools.h</a></div></div>
+<div class="ttc" id="namespacexms_html_a2405d59c64287fc04dd46a911a4f16c6"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#a2405d59c64287fc04dd46a911a4f16c6">xms::XM_DBL_HIGHEST</a></div><div class="ttdeci">static const double XM_DBL_HIGHEST</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="dir_abd8c1a13056d463f3dafa116a92b72c.html">detail</a></li><li class="navelem"><a class="el" href="_me_poly_paver_to_mesh_pts_8cpp.html">MePolyPaverToMeshPts.cpp</a></li>
-    <li class="footer">Generated on Wed Jul 25 2018 16:51:08 for xmsmesh by
+    <li class="footer">Generated on Wed Jul 25 2018 21:33:36 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -5,5 +5,7 @@ var searchData=
   ['deletetrianglesoutsidepolys',['DeleteTrianglesOutsidePolys',['../classxms_1_1_me_poly_mesher_impl.html#a2e59d8e57abad6732e8d8a34bad05d48',1,'xms::MePolyMesherImpl']]],
   ['do_5fgrouping',['do_grouping',['https://aquaveo.github.io/xmscore/classxms_1_1_st_comma_numpunct.html#aa2069686f9a15d91b346c3988be3a954',1,'xms::StCommaNumpunct']]],
   ['do_5fthousands_5fsep',['do_thousands_sep',['https://aquaveo.github.io/xmscore/classxms_1_1_st_comma_numpunct.html#a94e9b55f55470d2bb10f1451bff1d172',1,'xms::StCommaNumpunct']]],
-  ['dooffset',['DoOffset',['../classxms_1_1_me_poly_offsetter_impl.html#a77b6ce23a97f4c51cd517b45a128119e',1,'xms::MePolyOffsetterImpl']]]
+  ['dooffset',['DoOffset',['../classxms_1_1_me_poly_offsetter_impl.html#a77b6ce23a97f4c51cd517b45a128119e',1,'xms::MePolyOffsetterImpl']]],
+  ['dynamicbitsetfrompyiter',['DynamicBitsetFromPyIter',['https://aquaveo.github.io/xmscore/namespacexms.html#a49bb2e3cc528e336292b521275482042',1,'xms']]],
+  ['dynbitsettovecboolean',['DynBitsetToVecBoolean',['https://aquaveo.github.io/xmscore/namespacexms.html#afde2102c1e6c433c09ef13194a92feeb',1,'xms']]]
 ];

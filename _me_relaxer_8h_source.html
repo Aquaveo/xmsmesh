@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('_me_relaxer_8h_source.html','');});
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">static</span> BSHP&lt;MeRelaxer&gt; <a class="code" href="classxms_1_1_me_relaxer.html#a4b8262f42ecba1079856b39d239b55ba">New</a>();</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> Relax(<span class="keyword">const</span> VecInt&amp; a_fixedPoints, boost::shared_ptr&lt;TrTin&gt; a_tin) = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> Relax(<span class="keyword">const</span> <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#ad81e1ef6499bc0e65df973717a1e2fbb">VecInt</a>&amp; a_fixedPoints, boost::shared_ptr&lt;TrTin&gt; a_tin) = 0;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetObserver(boost::shared_ptr&lt;Observer&gt; a) = 0;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">protected</span>:</div>
@@ -152,6 +152,7 @@ $(document).ready(function(){initNavTree('_me_relaxer_8h_source.html','');});
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace xms</span></div>
 <div class="ttc" id="classxms_1_1_me_relaxer_html_a4b8262f42ecba1079856b39d239b55ba"><div class="ttname"><a href="classxms_1_1_me_relaxer.html#a4b8262f42ecba1079856b39d239b55ba">xms::MeRelaxer::New</a></div><div class="ttdeci">static BSHP&lt; MeRelaxer &gt; New()</div><div class="ttdoc">Creates a new instance of the class. </div><div class="ttdef"><b>Definition:</b> <a href="_me_relaxer_8cpp_source.html#l00523">MeRelaxer.cpp:523</a></div></div>
 <div class="ttc" id="classxms_1_1_me_relaxer_html_a43548aeaafaa92be6d39d7ec5c47cc87"><div class="ttname"><a href="classxms_1_1_me_relaxer.html#a43548aeaafaa92be6d39d7ec5c47cc87">xms::MeRelaxer::MeRelaxer</a></div><div class="ttdeci">MeRelaxer()</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="_me_relaxer_8cpp_source.html#l00532">MeRelaxer.cpp:532</a></div></div>
+<div class="ttc" id="namespacexms_html_ad81e1ef6499bc0e65df973717a1e2fbb"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#ad81e1ef6499bc0e65df973717a1e2fbb">xms::VecInt</a></div><div class="ttdeci">std::vector&lt; int &gt; VecInt</div></div>
 <div class="ttc" id="boost__defines_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/boost__defines_8h.html">boost_defines.h</a></div></div>
 <div class="ttc" id="classxms_1_1_me_relaxer_html_a1c06d7b2b73945aaf9a38482afec01d6"><div class="ttname"><a href="classxms_1_1_me_relaxer.html#a1c06d7b2b73945aaf9a38482afec01d6">xms::MeRelaxer::~MeRelaxer</a></div><div class="ttdeci">virtual ~MeRelaxer()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> <a href="_me_relaxer_8cpp_source.html#l00538">MeRelaxer.cpp:538</a></div></div>
 <div class="ttc" id="base__macros_8h_html_a5580a05bffe13e3b72158e01e41c3945"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/base__macros_8h.html#a5580a05bffe13e3b72158e01e41c3945">XM_DISALLOW_COPY_AND_ASSIGN</a></div><div class="ttdeci">#define XM_DISALLOW_COPY_AND_ASSIGN(TypeName)</div></div>
@@ -164,7 +165,7 @@ $(document).ready(function(){initNavTree('_me_relaxer_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="dir_abd8c1a13056d463f3dafa116a92b72c.html">detail</a></li><li class="navelem"><a class="el" href="_me_relaxer_8h.html">MeRelaxer.h</a></li>
-    <li class="footer">Generated on Wed Jul 25 2018 16:51:08 for xmsmesh by
+    <li class="footer">Generated on Wed Jul 25 2018 21:33:36 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

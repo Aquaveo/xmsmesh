@@ -21,9 +21,7 @@ var dir_7b496edbef050d8b43485d3aed8596cb =
       [ "MeRefinePoint", "classxms_1_1_me_refine_point.html", "classxms_1_1_me_refine_point" ],
       [ "MeMultiPolyMesherIo", "classxms_1_1_me_multi_poly_mesher_io.html", "classxms_1_1_me_multi_poly_mesher_io" ]
     ] ],
-    [ "MeMultiPolyTo2dm.cpp", "_me_multi_poly_to2dm_8cpp.html", [
-      [ "MeMultiPolyTo2dmImpl", "classxms_1_1_me_multi_poly_to2dm_impl.html", "classxms_1_1_me_multi_poly_to2dm_impl" ]
-    ] ],
+    [ "MeMultiPolyTo2dm.cpp", "_me_multi_poly_to2dm_8cpp.html", "_me_multi_poly_to2dm_8cpp" ],
     [ "MeMultiPolyTo2dm.h", "_me_multi_poly_to2dm_8h.html", [
       [ "MeMultiPolyTo2dm", "classxms_1_1_me_multi_poly_to2dm.html", "classxms_1_1_me_multi_poly_to2dm" ]
     ] ],

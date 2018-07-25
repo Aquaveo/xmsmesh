@@ -3193,6 +3193,13 @@
       <anchor>aa287cf480811360dd1dfb467abec212b</anchor>
       <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetTranslatePointsForTesting</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>aa5adfc725d753d2e927dc2e71f57b021</anchor>
+      <arglist>(bool a_)</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
       <name>SetObserver</name>
@@ -3205,6 +3212,13 @@
       <name>m_prog</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
       <anchor>ad04e8ca93cf865389d0a3384343a8316</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_translatePointsForTesting</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>acd2ca82af9e0823ebe68352ff6b119ec</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
