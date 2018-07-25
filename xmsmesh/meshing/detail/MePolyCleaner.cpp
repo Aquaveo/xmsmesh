@@ -1878,6 +1878,8 @@ void MePolyCleanerUnitTests::testCleanIn9()
   vO.push_back(o);
   MePolyCleanerImpl p;
   p.IntersectCleanInPolys(vO, o1, 1e-9);
+
+#if BOOST_VERSION > 106100
   TS_ASSERT_EQUALS(2, o1.m_loops.size());
 
   if (2 != o1.m_loops.size())
@@ -1895,6 +1897,19 @@ void MePolyCleanerUnitTests::testCleanIn9()
   TS_ASSERT_EQUALS_VEC(loop1, o1.m_loops[1])
   std::vector<int> baseLoopTypes = {2, 1};
   TS_ASSERT_EQUALS_VEC(baseLoopTypes, o1.m_loopTypes);
+#else
+  TS_ASSERT_EQUALS(1, o1.m_loops.size());
+  if (1 != o1.m_loops.size())
+    return;
+  std::vector<Pt3d> basePts = {{6, 2, 0}, {6, 4, 0}, {0, 4, 0}, {0, 2, 0}, {7, 5, 0}, {3, 5, 0},
+                               {3, 0, 0}, {7, 0, 0}, {1, 1, 0}, {3, 1, 0}, {1, 3, 0}, {5, 3, 0},
+                               {2, 0, 0}, {5, 0, 0}, {3, 4, 0}, {3, 2, 0}, {2, 2, 0}, {1, 2, 0}};
+  TS_ASSERT_EQUALS_VEC(basePts, o1.m_pts);
+  std::vector<size_t> baseLoop = {17, 8, 9, 16, 15, 9, 12, 6, 13, 7, 4, 5, 14, 2, 3};
+  TS_ASSERT_EQUALS_VEC(baseLoop, o1.m_loops[0]);
+  std::vector<int> baseLoopType = {1};
+  TS_ASSERT_EQUALS_VEC(baseLoopType, o1.m_loopTypes);
+#endif
 } // MePolyCleanerUnitTests::testCleanIn9
 //------------------------------------------------------------------------------
 /// \brief tests the figure below
@@ -1933,6 +1948,8 @@ void MePolyCleanerUnitTests::testCleanIn10()
   vO.push_back(o);
   MePolyCleanerImpl p;
   p.IntersectCleanInPolys(vO, o1, 1e-9);
+
+#if BOOST_VERSION > 106100
   TS_ASSERT_EQUALS(2, o1.m_loops.size());
   if (2 != o1.m_loops.size())
   {
@@ -1948,6 +1965,18 @@ void MePolyCleanerUnitTests::testCleanIn10()
   TS_ASSERT_EQUALS_VEC(loop1, o1.m_loops[1]);
   std::vector<int> baseLoopType = {2, 1};
   TS_ASSERT_EQUALS_VEC(baseLoopType, o1.m_loopTypes);
+#else
+  TS_ASSERT_EQUALS(1, o1.m_loops.size());
+  if (1 != o1.m_loops.size())
+    return;
+  std::vector<Pt3d> basePts = {{7, 7, 0}, {0, 7, 0}, {0, 2, 0}, {3, 2, 0}, {3, 0, 0}, {7, 0, 0},
+                               {1, 1, 0}, {3, 1, 0}, {1, 3, 0}, {2, 2, 0}, {1, 2, 0}};
+  TS_ASSERT_EQUALS_VEC(basePts, o1.m_pts);
+  std::vector<size_t> baseLoop = {10, 6, 7, 9, 3, 4, 5, 0, 1, 2};
+  TS_ASSERT_EQUALS_VEC(baseLoop, o1.m_loops[0]);
+  std::vector<int> baseLoopType = {1};
+  TS_ASSERT_EQUALS_VEC(baseLoopType, o1.m_loopTypes);
+#endif
 } // MePolyCleanerUnitTests::testCleanIn10
 //------------------------------------------------------------------------------
 /// \brief tests the figure below

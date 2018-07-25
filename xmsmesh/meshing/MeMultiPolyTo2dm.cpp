@@ -23,10 +23,12 @@
 
 // 5. Shared code headers
 #include <xmscore/misc/StringUtil.h>
+#include <xmscore/misc/XmConst.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/XmLog.h>
 #include <xmscore/points/pt.h> // Pt3d
 #include <xmscore/stl/vector.h>
+#include <xmsinterp/geometry/geoms.h>
 #include <xmsmesh/meshing/MeMultiPolyMesher.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmscore/misc/carray.h>
@@ -57,15 +59,98 @@ public:
   void Write2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os, int a_precision);
 
   //------------------------------------------------------------------------------
+  /// \brief sets the flag for testing.
+  /// \param a_: The flag.
+  //------------------------------------------------------------------------------
+  void SetTranslatePointsForTesting(bool a_) { m_translatePointsForTesting = true; }
+
+  //------------------------------------------------------------------------------
   /// \brief sets the observer class to give feedback on the grid generation process
   /// \param a_: The observer.
   //------------------------------------------------------------------------------
   virtual void SetObserver(BSHP<Observer> a_) override { m_prog = a_; }
 
   BSHP<Observer> m_prog; ///< observer class to give feedback on grid generation process
+
+  /// translates input points to midpoint of input bounds. This removes a lot of insignificant
+  /// digits when working in projected coordinate system (UTM).
+  bool m_translatePointsForTesting = false; 
 };
 
 //----- Internal functions -----------------------------------------------------
+//------------------------------------------------------------------------------
+/// \brief finds the bounds of the input polygons and computes the middle. Then
+/// the input points are translated by subtracting the middle. This can save
+/// precision when working in projected coordinates (UTM).
+/// \param[in,out] a_io MeMultiPolyMesherIo class that is modified by this
+/// function
+/// \param[out] a_ptMiddle The computed middle point of the input polygons
+//------------------------------------------------------------------------------
+static void iTransformInputs(MeMultiPolyMesherIo& a_io, Pt3d& a_ptMiddle)
+{
+    Pt3d overallMin(XM_DBL_HIGHEST), overallMax(XM_DBL_LOWEST);
+    // get bounds of polygons
+    for (auto& polyio : a_io.m_polys)
+    {
+      Pt3d polyioMin, polyioMax;
+      gmExtents2D(polyio.m_outPoly, polyioMin, polyioMax);
+      for (auto& poly: polyio.m_insidePolys)
+      {
+        Pt3d ptMin, ptMax;
+        gmExtents2D(poly, ptMin, ptMax);
+        gmAddToExtents(ptMin, polyioMin, polyioMax);
+      }
+      gmAddToExtents(polyioMin, overallMin, overallMax);
+      gmAddToExtents(polyioMax, overallMin, overallMax);
+    }
+    // compute the middle of the polygon bounds
+    a_ptMiddle = (overallMin + overallMax)/ 2.0;
+    // subtract the bounds middle from all polygon points
+    for (auto& polyio : a_io.m_polys)
+    {
+      for (auto& p : polyio.m_outPoly)
+      {
+        p -= a_ptMiddle;
+      }
+      for (auto& poly: polyio.m_insidePolys)
+      {
+        for (auto& p : poly)
+        {
+          p -= a_ptMiddle;
+        }
+      }
+    }
+    // subtract the bounds middle from all refine points
+    for (auto& rpt : a_io.m_refPts)
+    {
+      rpt.m_pt -= a_ptMiddle;
+    }
+} // iTransformInputs
+//------------------------------------------------------------------------------
+/// \brief Translates the output points from the poly mesher based on 
+/// a_ptMiddle. See iTransformInputs
+/// \param[in] a_tmpIo MeMultiPolyMesherIo class that has an output mesh
+/// \param[in] a_ptMiddle The computed middle point of the input polygons
+/// \param[in] a_transform Flag indicating if the data needs to be transformed
+/// back to the original coordinate space.
+/// \param[out] a_io MeMultiPolyMesherIo class that will have the final mesh
+/// transformed back to original coordinate space.
+//------------------------------------------------------------------------------
+static void iTranslateOutputs(const MeMultiPolyMesherIo& a_tmpIo, const Pt3d& a_ptMiddle,
+                              bool a_transform, MeMultiPolyMesherIo& a_io)
+{
+  a_io.m_points = a_tmpIo.m_points;
+  a_io.m_cells = a_tmpIo.m_cells;
+  a_io.m_cellPolygons = a_tmpIo.m_cellPolygons;
+  if (a_transform)
+  {
+    // translate the mesh outputs back to original coords
+    for (auto& p : a_io.m_points)
+    {
+      p += a_ptMiddle;
+    }
+  }
+} // iTranslateOutputs
 
 //----- Class / Function definitions -------------------------------------------
 //////////////////////////////////////////////////////////////////////////////
@@ -116,14 +201,24 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& 
     return false;
   }
 
+  // translate
+  Pt3d ptMiddle;
+  MeMultiPolyMesherIo io = a_io;
+  if (m_translatePointsForTesting)
+  {
+    iTransformInputs(io, ptMiddle);
+  }
+
   // Mesh the polygons
   BSHP<MeMultiPolyMesher> mp = MeMultiPolyMesher::New();
   mp->SetObserver(m_prog);
-  if (!mp->MeshIt(a_io))
+  if (!mp->MeshIt(io))
   {
     XM_LOG(xmlog::error, "Failed to generate mesh from polygons.");
     return false;
   }
+
+  iTranslateOutputs(io, ptMiddle, m_translatePointsForTesting, a_io);
 
   // write the 2dm
   Write2dm(a_io, a_os, a_precision);
