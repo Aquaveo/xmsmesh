@@ -3176,22 +3176,22 @@
       <type>bool</type>
       <name>Generate2dm</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>ad4238760700ded25711034593f5acc1d</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, const std::string &amp;a_outFileName) override</arglist>
+      <anchor>a613e67f17a3f177bb3ba90f998e670ca</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, const std::string &amp;a_outFileName, int a_precision=14) override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Generate2dm</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a0d3e4fa9cd69f37b94180f8d68713102</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os) override</arglist>
+      <anchor>ae15db24f2197420111410e40eef3adb8</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision=14) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Write2dm</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a568fe8048e6a108c785052f8d5bc2dcd</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os)</arglist>
+      <anchor>aa287cf480811360dd1dfb467abec212b</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
