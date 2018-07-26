@@ -719,7 +719,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;  {</div>
 <div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;    std::string outFile = path + <span class="stringliteral">&quot;CasePatch6_out.2dm&quot;</span>;</div>
 <div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;    std::fstream os(outFile.c_str(), std::fstream::out);</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;    imp.<a class="code" href="classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f">Generate2dm</a>(input, os);</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;    imp.<a class="code" href="classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f">Generate2dm</a>(input, os, 10);</div>
 <div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;    os.close();</div>
 <div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;    std::string baseFile = path + <span class="stringliteral">&quot;CasePatch6_base.2dm&quot;</span>;</div>
 <div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;    <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html#a910e81903f66d29dc334d1ed7c57ca5d">TS_ASSERT_TXT_FILES_EQUAL</a>(baseFile, outFile);</div>
@@ -729,7 +729,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    std::string outFile = path + <span class="stringliteral">&quot;CasePatch6a_out.2dm&quot;</span>;</div>
 <div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    std::fstream os(outFile.c_str(), std::fstream::out);</div>
 <div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;    input.<a class="code" href="classxms_1_1_me_multi_poly_mesher_io.html#a0bb7270c90ac0115140d38b6b3670e08">m_polys</a>[1].m_polyCorners[0] = 5;</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;    imp.<a class="code" href="classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f">Generate2dm</a>(input, os);</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;    imp.<a class="code" href="classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f">Generate2dm</a>(input, os, 10);</div>
 <div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;    os.close();</div>
 <div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;    std::string baseFile = path + <span class="stringliteral">&quot;CasePatch6a_base.2dm&quot;</span>;</div>
 <div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;    <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html#a910e81903f66d29dc334d1ed7c57ca5d">TS_ASSERT_TXT_FILES_EQUAL</a>(baseFile, outFile);</div>
@@ -739,7 +739,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    std::string outFile = path + <span class="stringliteral">&quot;CasePatch6b_out.2dm&quot;</span>;</div>
 <div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;    std::fstream os(outFile.c_str(), std::fstream::out);</div>
 <div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;    input.<a class="code" href="classxms_1_1_me_multi_poly_mesher_io.html#a0bb7270c90ac0115140d38b6b3670e08">m_polys</a>[1].m_polyCorners[1] = 10;</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    imp.<a class="code" href="classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f">Generate2dm</a>(input, os);</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    imp.<a class="code" href="classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f">Generate2dm</a>(input, os, 10);</div>
 <div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    os.close();</div>
 <div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    std::string baseFile = path + <span class="stringliteral">&quot;CasePatch6b_base.2dm&quot;</span>;</div>
 <div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html#a910e81903f66d29dc334d1ed7c57ca5d">TS_ASSERT_TXT_FILES_EQUAL</a>(baseFile, outFile);</div>
@@ -844,7 +844,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp_source.html'
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_multi_poly_to2dm_8cpp.html">MeMultiPolyTo2dm.cpp</a></li>
-    <li class="footer">Generated on Thu Jul 26 2018 15:27:38 for xmsmesh by
+    <li class="footer">Generated on Thu Jul 26 2018 16:24:00 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
