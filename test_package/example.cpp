@@ -4,7 +4,7 @@
 int main() {
   std::stringstream ss;
 
-  ss << "Garbage" << std::end;
+  ss << "Garbage" << std::endl;
 
   std::cout << ss.str() << std::endl;
 }
