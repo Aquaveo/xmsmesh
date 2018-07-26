@@ -231,7 +231,7 @@ void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_fi
     if (os.bad())
       return;
     BSHP<MeMultiPolyTo2dm> pm = MeMultiPolyTo2dm::New();
-    pm->Generate2dm(a_io, os);
+    pm->Generate2dm(a_io, os, 10);
   }
   TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
 } // tutGenerateAndCompare2dm

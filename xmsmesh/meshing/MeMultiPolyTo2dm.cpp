@@ -14,6 +14,7 @@
 #include <xmsmesh/meshing/MeMultiPolyTo2dm.h>
 
 // 3. Standard library headers
+#include <array>
 #include <fstream>
 #include <sstream>
 #include <cmath>
@@ -52,17 +53,11 @@ public:
   MeMultiPolyTo2dmImpl() {}
 
   bool Generate2dm(MeMultiPolyMesherIo& a_input, const std::string& a_outFileName,
-                   int a_precision = 14) override;
+                   int a_precision = 15) override;
   bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os,
-                   int a_precision = 14) override;
+                   int a_precision = 15) override;
 
   void Write2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os, int a_precision);
-
-  //------------------------------------------------------------------------------
-  /// \brief sets the flag for testing.
-  /// \param a_: The flag.
-  //------------------------------------------------------------------------------
-  void SetTranslatePointsForTesting(bool a_) { m_translatePointsForTesting = true; }
 
   //------------------------------------------------------------------------------
   /// \brief sets the observer class to give feedback on the grid generation process
@@ -72,85 +67,64 @@ public:
 
   BSHP<Observer> m_prog; ///< observer class to give feedback on grid generation process
 
-  /// translates input points to midpoint of input bounds. This removes a lot of insignificant
-  /// digits when working in projected coordinate system (UTM).
-  bool m_translatePointsForTesting = false; 
+  /// to avoid different order of cells/elements on different OS'es we will sort
+  /// the cells for consistent results
+  bool m_sortCellsForTesting = true;
 };
 
 //----- Internal functions -----------------------------------------------------
+
 //------------------------------------------------------------------------------
-/// \brief finds the bounds of the input polygons and computes the middle. Then
-/// the input points are translated by subtracting the middle. This can save
-/// precision when working in projected coordinates (UTM).
-/// \param[in,out] a_io MeMultiPolyMesherIo class that is modified by this
-/// function
-/// \param[out] a_ptMiddle The computed middle point of the input polygons
+/// \brief sorts the cells based so that the node with the smallest number will
+///        be first and then the cells are sorted.
+/// \param[in] a_io MeMultiPolyMesherIo class that has an output mesh
 //------------------------------------------------------------------------------
-static void iTransformInputs(MeMultiPolyMesherIo& a_io, Pt3d& a_ptMiddle)
+static void iSortCellsForTesting(MeMultiPolyMesherIo& a_io)
 {
-    Pt3d overallMin(XM_DBL_HIGHEST), overallMax(XM_DBL_LOWEST);
-    // get bounds of polygons
-    for (auto& polyio : a_io.m_polys)
-    {
-      Pt3d polyioMin, polyioMax;
-      gmExtents2D(polyio.m_outPoly, polyioMin, polyioMax);
-      for (auto& poly: polyio.m_insidePolys)
-      {
-        Pt3d ptMin, ptMax;
-        gmExtents2D(poly, ptMin, ptMax);
-        gmAddToExtents(ptMin, polyioMin, polyioMax);
-      }
-      gmAddToExtents(polyioMin, overallMin, overallMax);
-      gmAddToExtents(polyioMax, overallMin, overallMax);
-    }
-    // compute the middle of the polygon bounds
-    a_ptMiddle = (overallMin + overallMax)/ 2.0;
-    // subtract the bounds middle from all polygon points
-    for (auto& polyio : a_io.m_polys)
-    {
-      for (auto& p : polyio.m_outPoly)
-      {
-        p -= a_ptMiddle;
-      }
-      for (auto& poly: polyio.m_insidePolys)
-      {
-        for (auto& p : poly)
-        {
-          p -= a_ptMiddle;
-        }
-      }
-    }
-    // subtract the bounds middle from all refine points
-    for (auto& rpt : a_io.m_refPts)
-    {
-      rpt.m_pt -= a_ptMiddle;
-    }
-} // iTransformInputs
-//------------------------------------------------------------------------------
-/// \brief Translates the output points from the poly mesher based on 
-/// a_ptMiddle. See iTransformInputs
-/// \param[in] a_tmpIo MeMultiPolyMesherIo class that has an output mesh
-/// \param[in] a_ptMiddle The computed middle point of the input polygons
-/// \param[in] a_transform Flag indicating if the data needs to be transformed
-/// back to the original coordinate space.
-/// \param[out] a_io MeMultiPolyMesherIo class that will have the final mesh
-/// transformed back to original coordinate space.
-//------------------------------------------------------------------------------
-static void iTranslateOutputs(const MeMultiPolyMesherIo& a_tmpIo, const Pt3d& a_ptMiddle,
-                              bool a_transform, MeMultiPolyMesherIo& a_io)
-{
-  a_io.m_points = a_tmpIo.m_points;
-  a_io.m_cells = a_tmpIo.m_cells;
-  a_io.m_cellPolygons = a_tmpIo.m_cellPolygons;
-  if (a_transform)
+  VecInt& outCells(a_io.m_cells);
+
+  // build array of sorted cells
+  std::vector<std::array<int, 6>> sortableCells;
+  for (size_t i = 0; i < outCells.size();)
   {
-    // translate the mesh outputs back to original coords
-    for (auto& p : a_io.m_points)
+    std::array<int, 6> cell = {-1, -1, -1, -1, -1, -1};
+    cell[4] = outCells[i];
+    int nPts = cell[5] = outCells[i+1];
+    int minIndex(outCells[i+2]);
+    auto minItr = cell.begin();
+    for (int j=0; j<nPts; ++j)
     {
-      p += a_ptMiddle;
+      int idx = outCells[i+2+j];
+      cell[j] = idx;
+      if (idx < minIndex)
+      {
+        minIndex = idx;
+        minItr = cell.begin() + j;
+      }
+    }
+    i += (size_t)nPts + 2;
+    
+    // put minimum index point first
+    std::rotate(cell.begin(), minItr, cell.begin() + nPts);
+    sortableCells.push_back(cell);
+  }
+  int cnt(0);
+  std::sort(sortableCells.begin(), sortableCells.end());
+
+  // place cells back in output
+  for (auto& c : sortableCells)
+  {
+    outCells[cnt++] = c[4];
+    outCells[cnt++] = c[5];
+    outCells[cnt++] = c[0];
+    outCells[cnt++] = c[1];
+    outCells[cnt++] = c[2];
+    if (c[3] != -1)
+    {
+      outCells[cnt++] = c[3];
     }
   }
-} // iTranslateOutputs
+} // iSortCellsForTesting
 
 //----- Class / Function definitions -------------------------------------------
 //////////////////////////////////////////////////////////////////////////////
@@ -201,24 +175,14 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& 
     return false;
   }
 
-  // translate
-  Pt3d ptMiddle;
-  MeMultiPolyMesherIo io = a_io;
-  if (m_translatePointsForTesting)
-  {
-    iTransformInputs(io, ptMiddle);
-  }
-
   // Mesh the polygons
   BSHP<MeMultiPolyMesher> mp = MeMultiPolyMesher::New();
   mp->SetObserver(m_prog);
-  if (!mp->MeshIt(io))
+  if (!mp->MeshIt(a_io))
   {
     XM_LOG(xmlog::error, "Failed to generate mesh from polygons.");
     return false;
   }
-
-  iTranslateOutputs(io, ptMiddle, m_translatePointsForTesting, a_io);
 
   // write the 2dm
   Write2dm(a_io, a_os, a_precision);
@@ -244,6 +208,11 @@ void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_o
     std::stringstream ss;
     ss << "%" << ival << "d";
     format = ss.str();
+  }
+
+  if (m_sortCellsForTesting)
+  {
+    iSortCellsForTesting(a_io);
   }
 
   int id(0);
@@ -352,9 +321,8 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os,
 //------------------------------------------------------------------------------
 /// \brief
 /// \param a_fileBase: Base of filename (prefix) of the polygon file.
-/// \param a_precision: Precision used to write 2dm file points.
 //------------------------------------------------------------------------------
-static void iTestFromPolyFile(std::string a_fileBase, int a_precision = 14)
+static void iTestFromPolyFile(std::string a_fileBase)
 {
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
   // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
@@ -366,7 +334,7 @@ static void iTestFromPolyFile(std::string a_fileBase, int a_precision = 14)
   {
     std::fstream os;
     os.open(outFile.c_str(), std::fstream::out);
-    iReadPolysAndCreate2dm(path + a_fileBase + ".txt", os, a_precision);
+    iReadPolysAndCreate2dm(path + a_fileBase + ".txt", os, 10);
   }
   TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
   // ugExportVtkUGridAndCompare(ug, path, a_fileBase);
@@ -489,137 +457,137 @@ void MeMultiPolyTo2dmUnitTests::testCase4()
   std::string base =
     "MESH2D\n"
     "E3T     1     1    18     2     1\n"
-    "E3T     2     2    24     3     1\n"
-    "E3T     3     3    24    23     1\n"
-    "E3T     4    17    24    18     1\n"
-    "E3T     5     4    23    27     1\n"
-    "E3T     6     3    23     4     1\n"
-    "E3T     7     2    18    24     1\n"
+    "E3T     2     2    18    24     1\n"
+    "E3T     3     2    24     3     1\n"
+    "E3T     4     3    23     4     1\n"
+    "E3T     5     3    24    23     1\n"
+    "E3T     6     4    23    27     1\n"
+    "E3T     7     4    27     5     1\n"
     "E3T     8     5    20     6     1\n"
-    "E3T     9     6    19     7     1\n"
-    "E3T    10     6    20    19     1\n"
-    "E3T    11    20    27    28     1\n"
+    "E3T     9     5    27    20     1\n"
+    "E3T    10     6    19     7     1\n"
+    "E3T    11     6    20    19     1\n"
     "E3T    12     7    19     8     1\n"
     "E3T    13     8    19    22     1\n"
-    "E3T    14     5    27    20     1\n"
-    "E3T    15     4    27     5     1\n"
-    "E3T    16    23    29    27     1\n"
-    "E3T    17    17    25    24     1\n"
-    "E3T    18    16    25    17     1\n"
-    "E3T    19    23    26    29     1\n"
-    "E3T    20    15    26    25     1\n"
-    "E3T    21    26    28    29     1\n"
-    "E3T    22    14    26    15     1\n"
-    "E3T    23    15    25    16     1\n"
-    "E3T    24    13    26    14     1\n"
-    "E3T    25    12    21    28     1\n"
-    "E3T    26     8    22     9     1\n"
-    "E3T    27     9    22    11     1\n"
-    "E3T    28    12    22    21     1\n"
-    "E3T    29    20    28    21     1\n"
-    "E3T    30    12    28    13     1\n"
-    "E3T    31     9    11    10     1\n"
-    "E3T    32    11    22    12     1\n"
-    "E3T    33    13    28    26     1\n"
-    "E3T    34    27    29    28     1\n"
-    "E3T    35    14    47    30     1\n"
-    "E3T    36    14    15    47     1\n"
-    "E3T    37    45    47    46     1\n"
-    "E3T    38    30    47    53     1\n"
-    "E3T    39    44    53    45     1\n"
-    "E3T    40    30    52    31     1\n"
-    "E3T    41    30    53    52     1\n"
-    "E3T    42    45    53    47     1\n"
-    "E3T    43    12    13    31     1\n"
-    "E3T    44    10    11    33     1\n"
+    "E3T    14     8    22     9     1\n"
+    "E3T    15     9    11    10     1\n"
+    "E3T    16     9    22    11     1\n"
+    "E3T    17    10    11    33     1\n"
+    "E3T    18    10    33    34     1\n"
+    "E3T    19    11    22    12     1\n"
+    "E3T    20    12    13    31     1\n"
+    "E3T    21    12    21    28     1\n"
+    "E3T    22    12    22    21     1\n"
+    "E3T    23    12    28    13     1\n"
+    "E3T    24    12    31    32     1\n"
+    "E3T    25    13    26    14     1\n"
+    "E3T    26    13    28    26     1\n"
+    "E3T    27    14    15    47     1\n"
+    "E3T    28    14    26    15     1\n"
+    "E3T    29    14    47    30     1\n"
+    "E3T    30    15    25    16     1\n"
+    "E3T    31    15    26    25     1\n"
+    "E3T    32    16    25    17     1\n"
+    "E3T    33    17    24    18     1\n"
+    "E3T    34    17    25    24     1\n"
+    "E3T    35    20    27    28     1\n"
+    "E3T    36    20    28    21     1\n"
+    "E3T    37    23    26    29     1\n"
+    "E3T    38    23    29    27     1\n"
+    "E3T    39    26    28    29     1\n"
+    "E3T    40    27    29    28     1\n"
+    "E3T    41    30    47    53     1\n"
+    "E3T    42    30    52    31     1\n"
+    "E3T    43    30    53    52     1\n"
+    "E3T    44    31    52    56     1\n"
     "E3T    45    31    56    32     1\n"
-    "E3T    46    31    52    56     1\n"
-    "E3T    47    32    49    33     1\n"
+    "E3T    46    32    49    33     1\n"
+    "E3T    47    32    56    49     1\n"
     "E3T    48    33    48    34     1\n"
-    "E3T    49    10    33    34     1\n"
-    "E3T    50    32    56    49     1\n"
-    "E3T    51    12    31    32     1\n"
-    "E3T    52    52    58    56     1\n"
-    "E3T    53    43    54    44     1\n"
-    "E3T    54    49    56    57     1\n"
-    "E3T    55    55    57    58     1\n"
-    "E3T    56    52    55    58     1\n"
-    "E3T    57    56    58    57     1\n"
-    "E3T    58    42    55    54     1\n"
+    "E3T    49    33    49    48     1\n"
+    "E3T    50    34    48    35     1\n"
+    "E3T    51    35    48    51     1\n"
+    "E3T    52    35    51    36     1\n"
+    "E3T    53    36    38    37     1\n"
+    "E3T    54    36    51    38     1\n"
+    "E3T    55    38    51    39     1\n"
+    "E3T    56    39    50    57     1\n"
+    "E3T    57    39    51    50     1\n"
+    "E3T    58    39    57    40     1\n"
     "E3T    59    40    55    41     1\n"
-    "E3T    60    41    55    42     1\n"
-    "E3T    61    40    57    55     1\n"
+    "E3T    60    40    57    55     1\n"
+    "E3T    61    41    55    42     1\n"
     "E3T    62    42    54    43     1\n"
-    "E3T    63    39    57    40     1\n"
-    "E3T    64    49    57    50     1\n"
-    "E3T    65    34    48    35     1\n"
-    "E3T    66    35    48    51     1\n"
-    "E3T    67    33    49    48     1\n"
-    "E3T    68    38    51    39     1\n"
-    "E3T    69    39    51    50     1\n"
-    "E3T    70    36    38    37     1\n"
-    "E3T    71    36    51    38     1\n"
-    "E3T    72    35    51    36     1\n"
-    "E3T    73    39    50    57     1\n"
-    "E3T    74    44    54    53     1\n"
-    "ND     1            0.0            0.0            0.0\n"
-    "ND     2            0.0           10.0            0.0\n"
-    "ND     3            0.0           20.0            0.0\n"
-    "ND     4            0.0           30.0            0.0\n"
-    "ND     5            0.0           40.0            0.0\n"
-    "ND     6            0.0           50.0            0.0\n"
-    "ND     7            0.0           60.0            0.0\n"
-    "ND     8           10.0           60.0            0.0\n"
-    "ND     9           20.0           60.0            0.0\n"
-    "ND    10           30.0           60.0            0.0\n"
-    "ND    11           30.0           50.0            0.0\n"
-    "ND    12           30.0           40.0            0.0\n"
-    "ND    13           30.0           30.0            0.0\n"
-    "ND    14           30.0           20.0            0.0\n"
-    "ND    15           30.0           10.0            0.0\n"
-    "ND    16           30.0            0.0            0.0\n"
-    "ND    17           20.0            0.0            0.0\n"
-    "ND    18           10.0            0.0            0.0\n"
-    "ND    19           10.0           50.0            0.0\n"
-    "ND    20           10.0           40.0            0.0\n"
-    "ND    21           20.0           40.0            0.0\n"
-    "ND    22           20.0           50.0            0.0\n"
-    "ND    23           10.0           20.0            0.0\n"
-    "ND    24           10.0           10.0            0.0\n"
-    "ND    25           20.0           10.0            0.0\n"
-    "ND    26           20.0           20.0            0.0\n"
-    "ND    27 8.510820254229 31.75795803291            0.0\n"
-    "ND    28 19.91890189281 32.42691831149            0.0\n"
-    "ND    29 14.90632313135 26.65924191911            0.0\n"
-    "ND    30           40.0           20.0            0.0\n"
-    "ND    31           40.0           30.0            0.0\n"
-    "ND    32           40.0           40.0            0.0\n"
-    "ND    33           40.0           50.0            0.0\n"
-    "ND    34           40.0           60.0            0.0\n"
-    "ND    35           50.0           60.0            0.0\n"
-    "ND    36           60.0           60.0            0.0\n"
-    "ND    37           70.0           60.0            0.0\n"
-    "ND    38           70.0           50.0            0.0\n"
-    "ND    39           70.0           40.0            0.0\n"
-    "ND    40           70.0           30.0            0.0\n"
-    "ND    41           70.0           20.0            0.0\n"
-    "ND    42           70.0           10.0            0.0\n"
-    "ND    43           70.0            0.0            0.0\n"
-    "ND    44           60.0            0.0            0.0\n"
-    "ND    45           50.0            0.0            0.0\n"
-    "ND    46           40.0            0.0            0.0\n"
-    "ND    47           40.0           10.0            0.0\n"
-    "ND    48           50.0           50.0            0.0\n"
-    "ND    49           50.0           40.0            0.0\n"
-    "ND    50           60.0           40.0            0.0\n"
-    "ND    51           60.0           50.0            0.0\n"
-    "ND    52           50.0           20.0            0.0\n"
-    "ND    53           50.0           10.0            0.0\n"
-    "ND    54           60.0           10.0            0.0\n"
-    "ND    55           60.0           20.0            0.0\n"
-    "ND    56 48.37114000486  31.7708155091            0.0\n"
-    "ND    57 59.82847955366 32.41624861662            0.0\n"
-    "ND    58 54.80368621759 26.66426739907            0.0\n";
+    "E3T    63    42    55    54     1\n"
+    "E3T    64    43    54    44     1\n"
+    "E3T    65    44    53    45     1\n"
+    "E3T    66    44    54    53     1\n"
+    "E3T    67    45    47    46     1\n"
+    "E3T    68    45    53    47     1\n"
+    "E3T    69    49    56    57     1\n"
+    "E3T    70    49    57    50     1\n"
+    "E3T    71    52    55    58     1\n"
+    "E3T    72    52    58    56     1\n"
+    "E3T    73    55    57    58     1\n"
+    "E3T    74    56    58    57     1\n"
+    "ND     1             0.0             0.0             0.0\n"
+    "ND     2             0.0            10.0             0.0\n"
+    "ND     3             0.0            20.0             0.0\n"
+    "ND     4             0.0            30.0             0.0\n"
+    "ND     5             0.0            40.0             0.0\n"
+    "ND     6             0.0            50.0             0.0\n"
+    "ND     7             0.0            60.0             0.0\n"
+    "ND     8            10.0            60.0             0.0\n"
+    "ND     9            20.0            60.0             0.0\n"
+    "ND    10            30.0            60.0             0.0\n"
+    "ND    11            30.0            50.0             0.0\n"
+    "ND    12            30.0            40.0             0.0\n"
+    "ND    13            30.0            30.0             0.0\n"
+    "ND    14            30.0            20.0             0.0\n"
+    "ND    15            30.0            10.0             0.0\n"
+    "ND    16            30.0             0.0             0.0\n"
+    "ND    17            20.0             0.0             0.0\n"
+    "ND    18            10.0             0.0             0.0\n"
+    "ND    19            10.0            50.0             0.0\n"
+    "ND    20            10.0            40.0             0.0\n"
+    "ND    21            20.0            40.0             0.0\n"
+    "ND    22            20.0            50.0             0.0\n"
+    "ND    23            10.0            20.0             0.0\n"
+    "ND    24            10.0            10.0             0.0\n"
+    "ND    25            20.0            10.0             0.0\n"
+    "ND    26            20.0            20.0             0.0\n"
+    "ND    27 8.5108202542291 31.757958032906             0.0\n"
+    "ND    28 19.918901892813 32.426918311488             0.0\n"
+    "ND    29 14.906323131347 26.659241919112             0.0\n"
+    "ND    30            40.0            20.0             0.0\n"
+    "ND    31            40.0            30.0             0.0\n"
+    "ND    32            40.0            40.0             0.0\n"
+    "ND    33            40.0            50.0             0.0\n"
+    "ND    34            40.0            60.0             0.0\n"
+    "ND    35            50.0            60.0             0.0\n"
+    "ND    36            60.0            60.0             0.0\n"
+    "ND    37            70.0            60.0             0.0\n"
+    "ND    38            70.0            50.0             0.0\n"
+    "ND    39            70.0            40.0             0.0\n"
+    "ND    40            70.0            30.0             0.0\n"
+    "ND    41            70.0            20.0             0.0\n"
+    "ND    42            70.0            10.0             0.0\n"
+    "ND    43            70.0             0.0             0.0\n"
+    "ND    44            60.0             0.0             0.0\n"
+    "ND    45            50.0             0.0             0.0\n"
+    "ND    46            40.0             0.0             0.0\n"
+    "ND    47            40.0            10.0             0.0\n"
+    "ND    48            50.0            50.0             0.0\n"
+    "ND    49            50.0            40.0             0.0\n"
+    "ND    50            60.0            40.0             0.0\n"
+    "ND    51            60.0            50.0             0.0\n"
+    "ND    52            50.0            20.0             0.0\n"
+    "ND    53            50.0            10.0             0.0\n"
+    "ND    54            60.0            10.0             0.0\n"
+    "ND    55            60.0            20.0             0.0\n"
+    "ND    56 48.371140004857 31.770815509095             0.0\n"
+    "ND    57 59.828479553661 32.416248616621             0.0\n"
+    "ND    58 54.803686217591 26.664267399073             0.0\n";
   TS_ASSERT_EQUALS(base, ss.str());
 } // MeMultiPolyTo2dmUnitTests::testCase4
 ////////////////////////////////////////////////////////////////////////////////
@@ -693,7 +661,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveGeo()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
 {
-  iTestFromPolyFile("CasePaveSanDiego", 10);
+  iTestFromPolyFile("CasePaveSanDiego");
 } // MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego
 //------------------------------------------------------------------------------
 /// \brief Tests two patched polys next to each other, and one paved poly next
