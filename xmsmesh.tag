@@ -3176,15 +3176,15 @@
       <type>bool</type>
       <name>Generate2dm</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a613e67f17a3f177bb3ba90f998e670ca</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, const std::string &amp;a_outFileName, int a_precision=14) override</arglist>
+      <anchor>aafda4a4beeefa85e90ffb36dcc245e2f</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, const std::string &amp;a_outFileName, int a_precision=15) override</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>Generate2dm</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>ae15db24f2197420111410e40eef3adb8</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision=14) override</arglist>
+      <anchor>a4ac8878fd5655b10eb796aebbdd53d34</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision=15) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -3192,13 +3192,6 @@
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
       <anchor>aa287cf480811360dd1dfb467abec212b</anchor>
       <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetTranslatePointsForTesting</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>aa5adfc725d753d2e927dc2e71f57b021</anchor>
-      <arglist>(bool a_)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -3216,9 +3209,9 @@
     </member>
     <member kind="variable">
       <type>bool</type>
-      <name>m_translatePointsForTesting</name>
+      <name>m_sortCellsForTesting</name>
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>acd2ca82af9e0823ebe68352ff6b119ec</anchor>
+      <anchor>a56f0e1a3428070f7b8f1d59ea4243a89</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">

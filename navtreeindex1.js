@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"class_me_poly_cleaner_unit_tests.html#ac1eada42c4765331a5b8dc2111e0a5c8":[4,0,7,21],
 "class_me_poly_cleaner_unit_tests.html#ac422896cd79745fa68bcb71a05ecbe8a":[4,0,7,31],
 "class_me_poly_cleaner_unit_tests.html#ac4c85ecfd1617db6bb958965bf850219":[4,0,7,23],
 "class_me_poly_cleaner_unit_tests.html#ac8fada9ab3806bea2a8511b1d78c382d":[4,0,7,2],
@@ -217,13 +216,12 @@ var NAVTREEINDEX1 =
 "classxms_1_1_me_multi_poly_to2dm.html#a8a3ee646bf8ad45c7d0583eb67adaad5":[4,0,1,22,0],
 "classxms_1_1_me_multi_poly_to2dm_impl.html":[4,0,1,21],
 "classxms_1_1_me_multi_poly_to2dm_impl.html#a472acd2f5c53046b92dd1238b81c0090":[4,0,1,21,3],
-"classxms_1_1_me_multi_poly_to2dm_impl.html#a613e67f17a3f177bb3ba90f998e670ca":[4,0,1,21,1],
+"classxms_1_1_me_multi_poly_to2dm_impl.html#a4ac8878fd5655b10eb796aebbdd53d34":[4,0,1,21,2],
+"classxms_1_1_me_multi_poly_to2dm_impl.html#a56f0e1a3428070f7b8f1d59ea4243a89":[4,0,1,21,6],
 "classxms_1_1_me_multi_poly_to2dm_impl.html#a8c7f7caece2cc945a66f586bebaa3038":[4,0,1,21,0],
-"classxms_1_1_me_multi_poly_to2dm_impl.html#aa287cf480811360dd1dfb467abec212b":[4,0,1,21,5],
-"classxms_1_1_me_multi_poly_to2dm_impl.html#aa5adfc725d753d2e927dc2e71f57b021":[4,0,1,21,4],
-"classxms_1_1_me_multi_poly_to2dm_impl.html#acd2ca82af9e0823ebe68352ff6b119ec":[4,0,1,21,7],
-"classxms_1_1_me_multi_poly_to2dm_impl.html#ad04e8ca93cf865389d0a3384343a8316":[4,0,1,21,6],
-"classxms_1_1_me_multi_poly_to2dm_impl.html#ae15db24f2197420111410e40eef3adb8":[4,0,1,21,2],
+"classxms_1_1_me_multi_poly_to2dm_impl.html#aa287cf480811360dd1dfb467abec212b":[4,0,1,21,4],
+"classxms_1_1_me_multi_poly_to2dm_impl.html#aafda4a4beeefa85e90ffb36dcc245e2f":[4,0,1,21,1],
+"classxms_1_1_me_multi_poly_to2dm_impl.html#ad04e8ca93cf865389d0a3384343a8316":[4,0,1,21,5],
 "classxms_1_1_me_poly_cleaner.html":[4,0,1,2],
 "classxms_1_1_me_poly_cleaner.html#a09905c7c0f0212906a232a14a19c45a2":[4,0,1,2,0],
 "classxms_1_1_me_poly_cleaner_impl.html":[4,0,1,1],
@@ -249,5 +247,7 @@ var NAVTREEINDEX1 =
 "classxms_1_1_me_poly_mesher.html#a55f927c865f21214a3ddf83d555a81be":[4,0,1,24,2],
 "classxms_1_1_me_poly_mesher.html#a5dc2541f0308964ab8cbbd7904838385":[4,0,1,24,0],
 "classxms_1_1_me_poly_mesher_impl.html":[4,0,1,23],
-"classxms_1_1_me_poly_mesher_impl.html#a00fb4dc1014d53393112779603450986":[4,0,1,23,44]
+"classxms_1_1_me_poly_mesher_impl.html#a00fb4dc1014d53393112779603450986":[4,0,1,23,44],
+"classxms_1_1_me_poly_mesher_impl.html#a1034ebceca22bdb7585ab828f79b9891":[4,0,1,23,42],
+"classxms_1_1_me_poly_mesher_impl.html#a1d24271858e850fcaa42ab4c80c47fb5":[4,0,1,23,35]
 };

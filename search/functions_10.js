@@ -16,7 +16,6 @@ var searchData=
   ['setsizefunc',['SetSizeFunc',['../classxms_1_1_me_poly_redistribute_pts_impl.html#a1c773779d1f1945dcb543b33b6149b8f',1,'xms::MePolyRedistributePtsImpl']]],
   ['setsizefuncfrompoly',['SetSizeFuncFromPoly',['../classxms_1_1_me_poly_redistribute_pts_impl.html#a23f79b88f89afe2013c665573a14b23d',1,'xms::MePolyRedistributePtsImpl']]],
   ['setskipping',['SetSkipping',['https://aquaveo.github.io/xmscore/classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea',1,'xms::ETestMessagingState']]],
-  ['settranslatepointsfortesting',['SetTranslatePointsForTesting',['../classxms_1_1_me_multi_poly_to2dm_impl.html#aa5adfc725d753d2e927dc2e71f57b021',1,'xms::MeMultiPolyTo2dmImpl']]],
   ['setup',['setUp',['https://aquaveo.github.io/xmscore/classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html#a6dba6d1735b30b7609e49c411da5eb6e',1,'python::misc::observer_pyt::TestObserver']]],
   ['setupcolumnforrectpatch3a',['SetUpColumnForRectPatch3a',['../classxms_1_1_me_poly_patcher_impl.html#a0afa25a0f74734d056b3c4bc078fd221',1,'xms::MePolyPatcherImpl']]],
   ['setupinin',['SetupInIn',['../classxms_1_1_me_intersect_polys_1_1impl.html#aa683047b668278e38e64efda08e45109',1,'xms::MeIntersectPolys::impl::SetupInIn()'],['../classxms_1_1_me_intersect_polys.html#a6d5eb91f1c8aec61dc8cb98886263eab',1,'xms::MeIntersectPolys::SetupInIn()']]],

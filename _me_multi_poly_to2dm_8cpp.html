@@ -113,6 +113,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_to2dm_8cpp.html','');})
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="_me_multi_poly_to2dm_8h_source.html">xmsmesh/meshing/MeMultiPolyTo2dm.h</a>&gt;</code><br/>
+<code>#include &lt;array&gt;</code><br/>
 <code>#include &lt;fstream&gt;</code><br/>
 <code>#include &lt;sstream&gt;</code><br/>
 <code>#include &lt;cmath&gt;</code><br/>
@@ -146,12 +147,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad4f352dce9eeb1aca333bf6c37b12a15"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::iTransformInputs</b> (<a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_io, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;a_ptMiddle)</td></tr>
-<tr class="memdesc:ad4f352dce9eeb1aca333bf6c37b12a15"><td class="mdescLeft">&#160;</td><td class="mdescRight">finds the bounds of the input polygons and computes the middle. Then the input points are translated by subtracting the middle. This can save precision when working in projected coordinates (UTM).  <a href="#ad4f352dce9eeb1aca333bf6c37b12a15">More...</a><br/></td></tr>
-<tr class="separator:ad4f352dce9eeb1aca333bf6c37b12a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22eaa3fb655b535b217719abb0a5e611"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::iTranslateOutputs</b> (const <a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_tmpIo, const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;a_ptMiddle, bool a_transform, <a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_io)</td></tr>
-<tr class="memdesc:a22eaa3fb655b535b217719abb0a5e611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates the output points from the poly mesher based on a_ptMiddle. See iTransformInputs.  <a href="#a22eaa3fb655b535b217719abb0a5e611">More...</a><br/></td></tr>
-<tr class="separator:a22eaa3fb655b535b217719abb0a5e611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c6044f41a3892159d4374c3bb66406"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::iSortCellsForTesting</b> (<a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html">MeMultiPolyMesherIo</a> &amp;a_io)</td></tr>
+<tr class="memdesc:a84c6044f41a3892159d4374c3bb66406"><td class="mdescLeft">&#160;</td><td class="mdescRight">sorts the cells based so that the node with the smallest number will be first and then the cells are sorted.  <a href="#a84c6044f41a3892159d4374c3bb66406">More...</a><br/></td></tr>
+<tr class="separator:a84c6044f41a3892159d4374c3bb66406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
@@ -163,7 +161,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_multi_poly_to2dm_8cpp.html">MeMultiPolyTo2dm.cpp</a></li>
-    <li class="footer">Generated on Wed Jul 25 2018 22:23:43 for xmsmesh by
+    <li class="footer">Generated on Thu Jul 26 2018 15:27:38 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
