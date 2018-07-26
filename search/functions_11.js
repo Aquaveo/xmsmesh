@@ -14,6 +14,7 @@ var searchData=
   ['test_5fexample_5fsizefuncfromdepth',['test_Example_SizeFuncFromDepth',['../class_tut_meshing_intermediate_tests.html#a18ecf6b96514984d40f296590550b4c2',1,'TutMeshingIntermediateTests']]],
   ['test_5fexample_5fsmoothsizefunc',['test_Example_SmoothSizeFunc',['../class_tut_meshing_intermediate_tests.html#ad2f8db20610932f74a4c721016ad8539',1,'TutMeshingIntermediateTests']]],
   ['test_5fstr2int',['test_str2int',['https://aquaveo.github.io/xmscore/class_string_util_unit_tests.html#a093a7705670697ea101194b9bceca947',1,'StringUtilUnitTests']]],
+  ['test_5fstrstd',['test_STRstd',['https://aquaveo.github.io/xmscore/class_string_util_unit_tests.html#ac5d9c9fbf42bb87556251525787c6449',1,'StringUtilUnitTests']]],
   ['test_5fxm_5fassert',['test_XM_ASSERT',['https://aquaveo.github.io/xmscore/class_xm_error_unit_tests.html#a120631a18381195cf7299b00abe0d0d1',1,'XmErrorUnitTests']]],
   ['testall',['testAll',['https://aquaveo.github.io/xmscore/class_xm_log_unit_tests.html#a92ef67747d37641518e792375178fdb7',1,'XmLogUnitTests']]],
   ['testbox0',['testBox0',['../class_me_poly_offsetter_unit_tests.html#a221515d0d85b35959db680261dcface4',1,'MePolyOffsetterUnitTests']]],
