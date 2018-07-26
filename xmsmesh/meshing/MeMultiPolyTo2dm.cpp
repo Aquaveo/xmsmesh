@@ -687,7 +687,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
   {
     std::string outFile = path + "CasePatch6_out.2dm";
     std::fstream os(outFile.c_str(), std::fstream::out);
-    imp.Generate2dm(input, os);
+    imp.Generate2dm(input, os, 10);
     os.close();
     std::string baseFile = path + "CasePatch6_base.2dm";
     TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
@@ -697,7 +697,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
     std::string outFile = path + "CasePatch6a_out.2dm";
     std::fstream os(outFile.c_str(), std::fstream::out);
     input.m_polys[1].m_polyCorners[0] = 5;
-    imp.Generate2dm(input, os);
+    imp.Generate2dm(input, os, 10);
     os.close();
     std::string baseFile = path + "CasePatch6a_base.2dm";
     TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
@@ -707,7 +707,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
     std::string outFile = path + "CasePatch6b_out.2dm";
     std::fstream os(outFile.c_str(), std::fstream::out);
     input.m_polys[1].m_polyCorners[1] = 10;
-    imp.Generate2dm(input, os);
+    imp.Generate2dm(input, os, 10);
     os.close();
     std::string baseFile = path + "CasePatch6b_base.2dm";
     TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
