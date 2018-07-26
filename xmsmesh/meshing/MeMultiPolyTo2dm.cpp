@@ -322,7 +322,8 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os,
 /// \brief
 /// \param a_fileBase: Base of filename (prefix) of the polygon file.
 //------------------------------------------------------------------------------
-static void iTestFromPolyFile(std::string a_fileBase)
+static void iTestFromPolyFile(std::string a_fileBase,
+                              int a_precision)
 {
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
   // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
@@ -334,7 +335,7 @@ static void iTestFromPolyFile(std::string a_fileBase)
   {
     std::fstream os;
     os.open(outFile.c_str(), std::fstream::out);
-    iReadPolysAndCreate2dm(path + a_fileBase + ".txt", os, 10);
+    iReadPolysAndCreate2dm(path + a_fileBase + ".txt", os, a_precision);
   }
   TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
   // ugExportVtkUGridAndCompare(ug, path, a_fileBase);
@@ -613,7 +614,7 @@ const CxxTest::TestGroup& MeMultiPolyTo2dmIntermediateTests::group()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCase2()
 {
-  iTestFromPolyFile("case2");
+  iTestFromPolyFile("case2", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testCase2
 //------------------------------------------------------------------------------
 /// \brief tests meshing a square with a "c" shaped hole in it
@@ -621,7 +622,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCase2()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCase100()
 {
-  iTestFromPolyFile("case100");
+  iTestFromPolyFile("case100", 7);
 } // MeMultiPolyTo2dmIntermediateTests::testCase100
 //------------------------------------------------------------------------------
 /// \brief tests meshing a square with a "c" shaped hole in it
@@ -629,7 +630,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCase100()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCase101()
 {
-  iTestFromPolyFile("case101");
+  iTestFromPolyFile("case101", 7);
 } // MeMultiPolyTo2dmIntermediateTests::testCase101
 //------------------------------------------------------------------------------
 /// \brief tests meshing a square with a "c" shaped hole in it
@@ -638,7 +639,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCase101()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCase102()
 {
-  iTestFromPolyFile("case102");
+  iTestFromPolyFile("case102", 7);
 } // MeMultiPolyTo2dmIntermediateTests::testCase102
 //------------------------------------------------------------------------------
 /// \brief tests meshing a square with a "c" shaped hole in it
@@ -647,21 +648,21 @@ void MeMultiPolyTo2dmIntermediateTests::testCase102()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCase103()
 {
-  iTestFromPolyFile("case103");
+  iTestFromPolyFile("case103", 7);
 } // MeMultiPolyTo2dmIntermediateTests::testCase103
 //------------------------------------------------------------------------------
 /// \brief Test a paving bug.
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveGeo()
 {
-  iTestFromPolyFile("CasePaveGeo");
+  iTestFromPolyFile("CasePaveGeo", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testCasePaveGeo
 //------------------------------------------------------------------------------
 /// \brief Test San Diego bay
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
 {
-  iTestFromPolyFile("CasePaveSanDiego");
+  iTestFromPolyFile("CasePaveSanDiego", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego
 //------------------------------------------------------------------------------
 /// \brief Tests two patched polys next to each other, and one paved poly next
