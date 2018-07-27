@@ -36,6 +36,8 @@ void initMeMultiPolyMesher(py::module &m) {
         .def("set_observer", [](xms::MeMultiPolyMesher &self,
                                 boost::shared_ptr<xms::PublicObserver> obs) {
             self.SetObserver(obs);
-        })
+        },"Creates a triangle mesh from the input polygons. The polygons can not overlap.",
+          py::arg("mesh_io")
+        )
         ;
 }

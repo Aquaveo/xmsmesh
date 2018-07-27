@@ -43,7 +43,10 @@ void initMeMeshUtils(py::module &m) {
           }
           return tuple_ret;
         }
-    })
+    },"Creates a size at each point based on the depth at the point and the min and max sizes"
+      " the equation is  min_depth + ( (depth - min_depth) / (max_depth - min_depth) ) *"
+      " (max_size - min_size)",py::arg("depths"),py::arg("min_size"),py::arg("max_size")
+    )
     .def("smooth_size_function", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
                                     double size_ratio, double min_size, int anchor_type,
                                     py::iterable pts_flag) -> py::iterable {
@@ -76,7 +79,11 @@ void initMeMeshUtils(py::module &m) {
           }
           return tuple_ret;
         }
-    })
+    },"Smooths a size function. Ensures that the size function transitions over a sufficient"
+      " distance so that the area change of adjacent elements meets the size ratio passed in.",
+      py::arg("tin"),py::arg("sizes"),py::arg("size_ratio"),py::arg("min_size"),
+      py::arg("anchor_type"),py::arg("pts_flag")  
+    )
     .def("smooth_elev_by_slope", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
                                     double max_size, int anchor_type,
                                     py::iterable pts_flag) -> py::iterable {
@@ -109,6 +116,9 @@ void initMeMeshUtils(py::module &m) {
           }
           return tuple_ret;
         }
-    })
+    },"Smooths a elevations based on max specified slope (a_maxSlope) preserving either the min"
+      " or max based on a_anchorType",
+      py::arg("tin"),py::arg("sizes"),py::arg("max_size"),py::arg("anchor_type"),py::arg("pts_flag")
+    )
     ;
 }

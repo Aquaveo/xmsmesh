@@ -41,11 +41,15 @@ void initMePolyMesher(py::module &m) {
             py::array ret_tris(vec_tris.size(), vec_tris.data());
             py::array ret_cell(vec_cell.size(), vec_cell.data());
             return py::make_tuple(result, ret_points, ret_tris, ret_cell);
-        })
+        },"Perform MESH_PAVE, MESH_SPAVE, MESH_PATCH meshing on a polygon.",
+            py::arg("mesh_io"),py::arg("poly_idx")
+        )
         .def("set_observer", [](xms::MePolyMesher &self,
                                 boost::shared_ptr<xms::PublicObserver> obs) {
             self.SetObserver(obs);
-        })
+        },"sets the observer class to get feedback on the meshing process",
+            py::arg("obs")
+        )
         .def("get_processed_refine_pts", [](xms::MePolyMesher &self) -> py::iterable {
             xms::VecPt3d vec_pts;
 
@@ -61,6 +65,8 @@ void initMePolyMesher(py::module &m) {
             }
 
             return ret_points;
-        })
+        },"Gets the refine points that were inside the polygon, both points that are"
+            " included in the meshing process and those that were not."
+        )
         ;
 }

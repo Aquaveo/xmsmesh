@@ -24,8 +24,12 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 void initMeMultiPolyMesherIo(py::module &m) {
     py::class_<xms::MeMultiPolyMesherIo, boost::shared_ptr<xms::MeMultiPolyMesherIo>>(m, "MeMultiPolyMesherIo")
         .def(py::init<>())
-        .def_readwrite("check_topology", &xms::MeMultiPolyMesherIo::m_checkTopology)
-        .def_readwrite("return_cell_polygons", &xms::MeMultiPolyMesherIo::m_returnCellPolygons)
+        .def_readwrite("check_topology", &xms::MeMultiPolyMesherIo::m_checkTopology,
+            "Optional. If true, checks polygon input topology for errors."
+        )
+        .def_readwrite("return_cell_polygons", &xms::MeMultiPolyMesherIo::m_returnCellPolygons,
+            " If true, returns the polygon index of each cell."
+        )
         .def_property("points",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
                 xms::VecPt3d &vec_pts = self.m_points;
@@ -284,12 +288,24 @@ void initMePolyInput(py::module &m) {
                  }
             }
         )
-        .def_readwrite("bias", &xms::MePolyInput::m_bias)
-        .def_readwrite("size_function", &xms::MePolyInput::m_sizeFunction)
-        .def_readwrite("elev_function", &xms::MePolyInput::m_elevFunction)
-        .def_readwrite("const_size_function", &xms::MePolyInput::m_constSizeFunction)
-        .def_readwrite("const_size_bias", &xms::MePolyInput::m_constSizeBias)
-        .def_readwrite("remove_internal_four_triangle_pts", &xms::MePolyInput::m_removeInternalFourTrianglePts)
+        .def_readwrite("bias", &xms::MePolyInput::m_bias," Optional. Factor for transitioning between areas of"
+            " high refinement to less refinement."
+        )
+        .def_readwrite("size_function", &xms::MePolyInput::m_sizeFunction,
+            "Optional. Size function for scalar paving."
+        )
+        .def_readwrite("elev_function", &xms::MePolyInput::m_elevFunction,
+            "Optional. Elevation function for interpolating z coordinate of mesh points."
+        )
+        .def_readwrite("const_size_function", &xms::MePolyInput::m_constSizeFunction,
+            "Optional. Transition factor for constant size function."
+        )
+        .def_readwrite("const_size_bias", &xms::MePolyInput::m_constSizeBias,
+            "Optional. Transition factor for constant size function."
+        )
+        .def_readwrite("remove_internal_four_triangle_pts", &xms::MePolyInput::m_removeInternalFourTrianglePts,
+            "Optional. Remove internal points that are only connected to 4 cells. Used by the ugAutoCorrectCells class"
+        )
         .def("__str__", [](xms::MePolyInput &self) {
              std::string szf = self.m_sizeFunction == nullptr ? "none" : self.m_sizeFunction->ToString();
              std::string elevf = self.m_elevFunction == nullptr ? "none" : self.m_elevFunction->ToString();
@@ -302,7 +318,7 @@ void initMePolyInput(py::module &m) {
                     "outside_poly size: " << self.m_outPoly.size() << std::endl <<
                     "inside_polys size: " << self.m_insidePolys.size() << std::endl;
              return ss.str();
-        })
+        },"outputs contents as string")
     ;
 }
 
@@ -328,7 +344,8 @@ void initMeRefinePoint(py::module &m) {
             }
           }
          )
-        .def_readwrite("size", &xms::MeRefinePoint::m_size)
+        .def_readwrite("size", &xms::MeRefinePoint::m_size,"  /// Element size at the refine point."
+            " A negative value indicates a hard point.")
         .def_readwrite("create_mesh_point", &xms::MeRefinePoint::m_createMeshPoint)
         .def("__str__", [](xms::MeRefinePoint &self) {
             std::stringstream ss;
@@ -336,6 +353,6 @@ void initMeRefinePoint(py::module &m) {
                    "size: " << self.m_size <<  std::endl <<
                    "create_mesh_point: " << self.m_createMeshPoint << std::endl;
             return ss.str();
-        })
+        }, "Returns contents as string")
         ;
 }

@@ -34,10 +34,12 @@ void initMeMultiPolyTo2dm(py::module &m) {
 
           }
           return py::make_tuple(self.Generate2dm(mesh_io, fname), "");
-        })
+        },"Creates a 2dm file from polygons",py::arg("mesh_io"),py::arg("fname"))
         .def("set_observer", [](xms::MeMultiPolyTo2dm &self,
                                 boost::shared_ptr<xms::PublicObserver> obs) {
             self.SetObserver(obs);
-        })
+        }," sets the observer class to give feedback on the grid generation process",
+          py::arg("obs")
+        )
         ;
 }

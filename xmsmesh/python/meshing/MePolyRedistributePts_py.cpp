@@ -27,7 +27,8 @@ void initMePolyRedistributePts(py::module &m) {
         boost::shared_ptr<xms::InterpBase> interp)
         {
             self.SetSizeFunc(interp);
-        })
+        },"Sets the size function interpolator",py::arg("interp")
+        )
         .def("set_size_func_from_poly", [](xms::MePolyRedistributePts &self,
                                            py::iterable out_poly,
                                            py::iterable inside_polys,
@@ -69,9 +70,15 @@ void initMePolyRedistributePts(py::module &m) {
                 vec_inside_polys.at(i) = vec_poly;
             }
             self.SetSizeFuncFromPoly(vec_out_poly, vec_inside_polys, size_bias);
-        })
-        .def("set_constant_size_func", &xms::MePolyRedistributePts::SetConstantSizeFunc)
-        .def("set_constant_size_bias", &xms::MePolyRedistributePts::SetConstantSizeBias)
+        },"Creates an interpolator that uses the spacing on the input polygon as its scalar",
+          py::arg("out_poly"),py::arg("inside_polys"),py::arg("size_bias")
+        )
+        .def("set_constant_size_func", &xms::MePolyRedistributePts::SetConstantSizeFunc,
+          "Sets the size function to a constant value",py::arg("size")
+        )
+        .def("set_constant_size_bias", &xms::MePolyRedistributePts::SetConstantSizeBias,
+          "Sets the bias for constant value size function",py::arg("size_bias")
+        )
         .def("redistribute", [](xms::MePolyRedistributePts &self,
                                 py::iterable poly_line) -> py::iterable {
            xms::VecPt3d vec_poly_line;
@@ -99,6 +106,9 @@ void initMePolyRedistributePts(py::module &m) {
               r(i, 2) = vec_pts[i].z;
             }
             return ret_points;
-        })
+        },"Redistributes points on closed loop polylines. The length of edges in the"
+          " redistribution comes from a size function that is interpolated to the"
+          " points that make up the polylines. By default this size function comes from"
+          " the edge lengths in the original polygon.",py::arg("poly_line"))
         ;
 }
