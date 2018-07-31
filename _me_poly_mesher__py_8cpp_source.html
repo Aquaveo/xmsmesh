@@ -146,29 +146,35 @@ $(document).ready(function(){initNavTree('_me_poly_mesher__py_8cpp_source.html',
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            py::array ret_tris(vec_tris.size(), vec_tris.data());</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            py::array ret_cell(vec_cell.size(), vec_cell.data());</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">return</span> py::make_tuple(result, ret_points, ret_tris, ret_cell);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        })</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        .def(<span class="stringliteral">&quot;set_observer&quot;</span>, [](<a class="code" href="classxms_1_1_me_poly_mesher.html">xms::MePolyMesher</a> &amp;<span class="keyword">self</span>,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                boost::shared_ptr&lt;xms::PublicObserver&gt; obs) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keyword">self</span>.SetObserver(obs);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        })</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        .def(<span class="stringliteral">&quot;get_processed_refine_pts&quot;</span>, [](<a class="code" href="classxms_1_1_me_poly_mesher.html">xms::MePolyMesher</a> &amp;<span class="keyword">self</span>) -&gt; py::iterable {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a0dc29604ee813731d584232b63f54922">xms::VecPt3d</a> vec_pts;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keyword">self</span>.GetProcessedRefinePts(vec_pts);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            py::array_t&lt;double, py::array::c_style&gt; ret_points({(int)vec_pts.size(), 3});</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keyword">auto</span> r = ret_points.mutable_unchecked&lt;2&gt;();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">for</span> (ssize_t i = 0; i &lt; r.shape(0); i++) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;              r(i, 0) = vec_pts[i].x;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;              r(i, 1) = vec_pts[i].y;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;              r(i, 2) = vec_pts[i].z;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">return</span> ret_points;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        })</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        ;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        },<span class="stringliteral">&quot;Perform MESH_PAVE, MESH_SPAVE, MESH_PATCH meshing on a polygon.&quot;</span>,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            py::arg(<span class="stringliteral">&quot;mesh_io&quot;</span>),py::arg(<span class="stringliteral">&quot;poly_idx&quot;</span>)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        )</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        .def(<span class="stringliteral">&quot;set_observer&quot;</span>, [](<a class="code" href="classxms_1_1_me_poly_mesher.html">xms::MePolyMesher</a> &amp;<span class="keyword">self</span>,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                boost::shared_ptr&lt;xms::PublicObserver&gt; obs) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">self</span>.SetObserver(obs);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        },<span class="stringliteral">&quot;sets the observer class to get feedback on the meshing process&quot;</span>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            py::arg(<span class="stringliteral">&quot;obs&quot;</span>)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        )</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        .def(<span class="stringliteral">&quot;get_processed_refine_pts&quot;</span>, [](<a class="code" href="classxms_1_1_me_poly_mesher.html">xms::MePolyMesher</a> &amp;<span class="keyword">self</span>) -&gt; py::iterable {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a0dc29604ee813731d584232b63f54922">xms::VecPt3d</a> vec_pts;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keyword">self</span>.GetProcessedRefinePts(vec_pts);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            py::array_t&lt;double, py::array::c_style&gt; ret_points({(int)vec_pts.size(), 3});</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keyword">auto</span> r = ret_points.mutable_unchecked&lt;2&gt;();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">for</span> (ssize_t i = 0; i &lt; r.shape(0); i++) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;              r(i, 0) = vec_pts[i].x;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;              r(i, 1) = vec_pts[i].y;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;              r(i, 2) = vec_pts[i].z;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">return</span> ret_points;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        },<span class="stringliteral">&quot;Gets the refine points that were inside the polygon, both points that are&quot;</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="stringliteral">&quot; included in the meshing process and those that were not.&quot;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        )</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        ;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="ttc" id="classxms_1_1_me_poly_mesher_html"><div class="ttname"><a href="classxms_1_1_me_poly_mesher.html">xms::MePolyMesher</a></div><div class="ttdoc">Fills a polygon with a mesh (points and cells). Honors the polygon boundary. </div><div class="ttdef"><b>Definition:</b> <a href="_me_poly_mesher_8h_source.html#l00041">MePolyMesher.h:41</a></div></div>
 <div class="ttc" id="_public_observer_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/_public_observer_8h.html">PublicObserver.h</a></div></div>
 <div class="ttc" id="namespacexms_html_ad81e1ef6499bc0e65df973717a1e2fbb"><div class="ttname"><a href="https://aquaveo.github.io/xmscore/namespacexms.html#ad81e1ef6499bc0e65df973717a1e2fbb">xms::VecInt</a></div><div class="ttdeci">std::vector&lt; int &gt; VecInt</div></div>
@@ -183,7 +189,7 @@ $(document).ready(function(){initNavTree('_me_poly_mesher__py_8cpp_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_9a3232e58b7cd746197860c82c97c362.html">python</a></li><li class="navelem"><a class="el" href="dir_b733b5162124708acba02f9106a93503.html">meshing</a></li><li class="navelem"><a class="el" href="_me_poly_mesher__py_8cpp.html">MePolyMesher_py.cpp</a></li>
-    <li class="footer">Generated on Thu Jul 26 2018 18:39:14 for xmsmesh by
+    <li class="footer">Generated on Tue Jul 31 2018 21:27:18 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
