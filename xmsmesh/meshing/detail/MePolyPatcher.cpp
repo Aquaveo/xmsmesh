@@ -26,6 +26,7 @@
 #include <xmscore/misc/xmstype.h>
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsinterp/geometry/GmPtSearch.h>
+#include <xmsmesh/meshing/MeMeshUtils.h>
 
 // 6. Non-shared code headers
 
@@ -64,11 +65,13 @@ public:
   , m_np_side(0)
   , m_ptSearch(GmPtSearch::New(true))
   , m_meshPts(new VecPt3d())
+  , m_polyId(-1)
   {
     m_ptSearch->VectorThatGrowsToSearch(m_meshPts);
   }
 
-  virtual bool MeshIt(const VecPt3d& a_outPoly,
+  virtual bool MeshIt(int a_polyId,
+                      const VecPt3d& a_outPoly,
                       const VecInt& a_polyCorners,
                       double a_xytol,
                       VecPt3d& a_points,
@@ -139,6 +142,7 @@ public:
     m_ptCellIdx,               ///< index into cell adjacency array for each point
     m_ptAdjCells,              ///< adjacent cells for each point
     m_cellIdx;                 ///< location of each cell in m_meshCells
+  int m_polyId;                ///< id of the polygon
 };
 
 //------------------------------------------------------------------------------
@@ -153,6 +157,7 @@ BSHP<MePolyPatcher> MePolyPatcher::New()
 //------------------------------------------------------------------------------
 /// \brief Perform MESH_PATCH meshing on a polygon. Return the
 ///        mesh points through a_points and a_cells (mix of quad/tri).
+/// \param[in]  a_polyId:      Id of the polygon or -1
 /// \param[in]  a_outPoly:     Array of points defining the polygon
 /// \param[in]  a_polyCorners: Indices of corner points in a_outPoly
 /// \param[in]  a_xytol:       Tolerance for geometric comparisons.
@@ -160,12 +165,14 @@ BSHP<MePolyPatcher> MePolyPatcher::New()
 /// \param[out] a_cells:       Computed mesh cells, a mix of quads and tris.
 /// \return true on success.
 //------------------------------------------------------------------------------
-bool MePolyPatcherImpl::MeshIt(const VecPt3d& a_outPoly,
+bool MePolyPatcherImpl::MeshIt(int a_polyId,
+                               const VecPt3d& a_outPoly,
                                const VecInt& a_polyCorners,
                                double a_xytol,
                                VecPt3d& a_points,
                                VecInt& a_cells)
 {
+  m_polyId = a_polyId;
   m_xytol = a_xytol;
   size_t nCorner = a_polyCorners.size();
   // if all corner indices are the same we have a problem
@@ -182,7 +189,9 @@ bool MePolyPatcherImpl::MeshIt(const VecPt3d& a_outPoly,
     QuadPatch(a_outPoly, a_polyCorners);
   else
   {
-    XM_LOG(xmlog::error, "Polygon corners incorrectly specified. Aborting patch mesh generation.");
+    std::string msg = "Polygon corners incorrectly specified. Aborting patch mesh generation.";
+    meModifyMessageWithPolygonId(m_polyId, msg);
+    XM_LOG(xmlog::error, msg);
     return false;
   }
 
@@ -387,7 +396,9 @@ bool MePolyPatcherImpl::QuadPatchErrors(const VecPt3d& a_outPoly, const VecInt& 
       continue; // skip when we have a merged node
     if (c[i] - 1 < 0)
     {
-      XM_LOG(xmlog::error, "Invalid corner detected in polygon. Aborting patch.");
+      std::string msg = "Invalid corner detected in polygon. Aborting patch.";
+      meModifyMessageWithPolygonId(m_polyId, msg);
+      XM_LOG(xmlog::error, msg);
       return true;
     }
     p0 = a_outPoly[c[i] - 1];
@@ -403,7 +414,9 @@ bool MePolyPatcherImpl::QuadPatchErrors(const VecPt3d& a_outPoly, const VecInt& 
 
   if (err)
   {
-    XM_LOG(xmlog::error, "Non-convex corner detected in polygon. Aborting patch.");
+    std::string msg = "Non-convex corner detected in polygon. Aborting patch.";
+    meModifyMessageWithPolygonId(m_polyId, msg);
+    XM_LOG(xmlog::error, msg);
     return true;
   }
   // Check number of sides. There should be 3 or 4. If there are 3 we treat
@@ -516,7 +529,9 @@ bool MePolyPatcherImpl::AdjustNodesInCol3a(VecInt& a_nodesincol, int a_flag)
     }
     else if (changes < -1)
     {
-      XM_LOG(xmlog::debug, "Error in polygon to patch algorithm");
+      std::string msg = "Error in polygon to patch algorithm.";
+      meModifyMessageWithPolygonId(m_polyId, msg);
+      XM_LOG(xmlog::debug, msg);
       return false;
     }
   }
@@ -1052,14 +1067,18 @@ bool MePolyPatcherImpl::CellOverlapsAdj(int a_cellIdx, DynBitset& a_cellFlags)
       // see if centroid of a_cellIdx is inside of neigh
       if (gmPointInPolygon2D(&adjacentPoints[0], adjacentPoints.size(), cellCenter) > -1)
       {
-        XM_LOG(xmlog::error, "Invalid patch. Centroid of base cell inside of adjacent cell.");
+        std::string msg = "Invalid patch. Centroid of base cell inside of adjacent cell.";
+        meModifyMessageWithPolygonId(m_polyId, msg);
+        XM_LOG(xmlog::error, msg);
         return true;
       }
 
       // see if centroid of neigh is inside of a_cellIdx
       if (gmPointInPolygon2D(&cellPoints[0], cellPoints.size(), adjCellCenter) > -1)
       {
-        XM_LOG(xmlog::error, "Invalid patch. Centroid of adjacent cell inside of base cell.");
+        std::string msg = "Invalid patch. Centroid of adjacent cell inside of base cell.";
+        meModifyMessageWithPolygonId(m_polyId, msg);
+        XM_LOG(xmlog::error, msg);
         return true;
       }
 
@@ -1076,7 +1095,9 @@ bool MePolyPatcherImpl::CellOverlapsAdj(int a_cellIdx, DynBitset& a_cellFlags)
         const Pt3d &p2(mp[j0]), &p3(mp[j1]);
         if (gmLinesIntersect(p0, p1, p2, p3))
         {
-          XM_LOG(xmlog::error, "Invalid patch. Edges of adjacent cells overlap.");
+          std::string msg = "Invalid patch. Edges of adjacent cells overlap.";
+          meModifyMessageWithPolygonId(m_polyId, msg);
+          XM_LOG(xmlog::error, msg);
           return true;
         }
       }
@@ -1085,9 +1106,9 @@ bool MePolyPatcherImpl::CellOverlapsAdj(int a_cellIdx, DynBitset& a_cellFlags)
   a_cellFlags[a_cellIdx] = true;
   return false;
 } // MePolyPatcherImpl::CellOverlapsAdj
-  //------------------------------------------------------------------------------
-  /// \brief Creates arrays with cell adjacency information
-  //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+/// \brief Creates arrays with cell adjacency information
+//------------------------------------------------------------------------------
 void MePolyPatcherImpl::CreateCellAdjacencyInfo()
 {
   m_ptCellCnt.assign(m_meshPts->size(), 0);
@@ -1125,13 +1146,13 @@ void MePolyPatcherImpl::CreateCellAdjacencyInfo()
     i += (m_meshCells[i + 1] + 1);
   }
 } // MePolyPatcherImpl::CreateCellAdjacencyInfo
-  //------------------------------------------------------------------------------
-  /// \brief Gets the points that make up the cell and points from adjacent cells
-  /// \param[in] a_cellIdx index to the cell
-  /// \param[out] a_ptIdxs the point indexes for the points that make up this cell
-  /// \param[out] a_adjCellIdx the indexes to the adjacent cells
-  /// \param[out] a_adjPts the point indexes from adjacent cells
-  //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+/// \brief Gets the points that make up the cell and points from adjacent cells
+/// \param[in] a_cellIdx index to the cell
+/// \param[out] a_ptIdxs the point indexes for the points that make up this cell
+/// \param[out] a_adjCellIdx the indexes to the adjacent cells
+/// \param[out] a_adjPts the point indexes from adjacent cells
+//------------------------------------------------------------------------------
 void MePolyPatcherImpl::GetCellPtInfo(int a_cellIdx,
                                       VecInt& a_ptIdxs,
                                       VecInt& a_adjCellIdx,
@@ -1290,7 +1311,7 @@ void MePolyPatcherUnitTests::testPatch00()
   xms::MePolyPatcherImpl p;
   xms::VecPt3d mPts;
   xms::VecInt mCells;
-  p.MeshIt(pts, corner, 1e-9, mPts, mCells);
+  p.MeshIt(-1, pts, corner, 1e-9, mPts, mCells);
 } // MePolyPatcherUnitTests::testPatch00
 //------------------------------------------------------------------------------
 /// \brief tests error detection in polygon for quad patch
@@ -1332,7 +1353,7 @@ void MePolyPatcherUnitTests::testBug9226()
   xms::MePolyPatcherImpl p;
   xms::VecPt3d mpts;
   xms::VecInt mcells;
-  TS_ASSERT_EQUALS(true, p.MeshIt(pts, corner, 1e-9, mpts, mcells));
+  TS_ASSERT_EQUALS(true, p.MeshIt(-1, pts, corner, 1e-9, mpts, mcells));
   xms::VecPt3d basePts = {{-15, 38}, {-12, 26}, {95, 40}, {92, 27},
                           {17, 47},  {18, 33},  {52, 50}, {51, 35}};
   TS_ASSERT_EQUALS_VEC(basePts, mpts);

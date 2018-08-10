@@ -325,10 +325,13 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os,
 static void iTestFromPolyFile(std::string a_fileBase,
                               int a_precision)
 {
+#ifdef XMSMESH_TEST_PATH
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+#else
   // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
   // in xmscore.
-  //const std::string path(ttGetXmsngTestPath() + "meshing/");
+  const std::string path(ttGetXmsngTestPath() + "meshing/");
+#endif
   std::string outFile;
   std::string baseFile;
   ttGetTestFilePaths(path, a_fileBase, ".2dm", baseFile, outFile);
@@ -670,7 +673,13 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 {
+#ifdef XMSMESH_TEST_PATH
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+#else
+  // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
+  // in xmscore.
+  const std::string path(ttGetXmsngTestPath() + "meshing/");
+#endif
   const std::string fname(path + "CasePatch6.txt");
   std::string fbase("CasePatch6");
   std::vector<std::vector<std::vector<Pt3d>>> inside;
@@ -719,7 +728,13 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
 {
+#ifdef XMSMESH_TEST_PATH
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+#else
+  // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
+  // in xmscore.
+  const std::string path(ttGetXmsngTestPath() + "meshing/");
+#endif
   std::string fbase("CaseTransitionToConstSize");
   std::string fname(path + "CaseTransitionToConstSize.txt");
   std::string inPolyFile(fname);
@@ -730,9 +745,11 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
   MePolyInput& pp(ip.m_polys.back());
   VecPt3d2d outPoly;
   VecPt3d3d inPolys;
-  if (!tutReadPolygons(inPolyFile, outPoly, inPolys))
+  tutReadPolygons(inPolyFile, outPoly, inPolys);
+  TS_ASSERT_EQUALS(false, pp.m_outPoly.empty());
+  if (outPoly.empty() || inPolys.empty())
   {
-    TS_ASSERT(std::string(fname + " does not exist.").empty());
+    TS_FAIL("");
     return;
   }
   pp.m_outPoly = outPoly[0];

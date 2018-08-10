@@ -25,6 +25,7 @@
 #include <xmsinterp/geometry/GmPolygon.h>
 #include <xmsinterp/geometry/GmPtSearch.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
+#include <xmsmesh/meshing/MeMeshUtils.h>
 #include <xmscore/misc/XmLog.h>
 
 // 6. Non-shared code headers
@@ -51,6 +52,7 @@ public:
   , m_SqrtThree(1.7320508075688772935274463415059)
   , m_SqrtThreeOverTwo(0.86602540378443864676372317075294)
   , m_xyTol(1e-9)
+  , m_polyId(-1)
   {
   }
 
@@ -65,7 +67,8 @@ public:
     m_xyTol = a_tol;
   }
 
-  virtual void RefPtsAsPolys(const std::vector<Pt3d>& a_outPoly,
+  virtual void RefPtsAsPolys(int a_polyId,
+                             const std::vector<Pt3d>& a_outPoly,
                              const std::vector<std::vector<Pt3d>>& a_inPolys,
                              std::vector<std::vector<Pt3d>>& a_newInPolys,
                              std::vector<Pt3d>& a_refMeshPts,
@@ -89,6 +92,7 @@ public:
   std::vector<MeRefinePoint> m_pts;    ///< the refine points
   std::vector<size_t> m_ptsInsidePoly; ///< indexes to the refine point that are inside of the
                                        ///< current polygon being considered
+  int m_polyId;                        ///< id of the polygon
 };
 //------------------------------------------------------------------------------
 /// \brief Creates a new instance of this class
@@ -119,6 +123,7 @@ MeRefinePtsToPolys::~MeRefinePtsToPolys()
 //------------------------------------------------------------------------------
 /// \brief Creates new inside polygons from refine points that are inside of
 /// the polygon being considered
+/// \param[in] a_polyId The id of the polygon
 /// \param[in] a_outPoly The points making up the outside polygon
 /// \param[in] a_inPolys Inner boundaries for the a_outPoly
 /// \param[out] a_newInPolys New inside polygons created from refine points
@@ -127,12 +132,14 @@ MeRefinePtsToPolys::~MeRefinePtsToPolys()
 /// \param[out] a_refPtsProcessed Locations of other refine points that are not
 /// also mesh nodes.
 //------------------------------------------------------------------------------
-void MeRefinePtsToPolysImpl::RefPtsAsPolys(const std::vector<Pt3d>& a_outPoly,
+void MeRefinePtsToPolysImpl::RefPtsAsPolys(int a_polyId,
+                                           const std::vector<Pt3d>& a_outPoly,
                                            const std::vector<std::vector<Pt3d>>& a_inPolys,
                                            std::vector<std::vector<Pt3d>>& a_newInPolys,
                                            std::vector<Pt3d>& a_refMeshPts,
                                            std::vector<Pt3d>& a_refPtsProcessed)
 {
+  m_polyId = a_polyId;
   m_ptsInsidePoly.resize(0);
   a_newInPolys.resize(0);
   a_refMeshPts.resize(0);
@@ -173,7 +180,9 @@ void MeRefinePtsToPolysImpl::FindPtsInsidePolygon(const std::vector<Pt3d>& a_out
            << ". The point was not inserted by the meshing process. Specify a "
               "size smaller than "
            << dist << " for the point to be included by the meshing process.";
-        XM_LOG(xmlog::error, ss.str());
+        std::string msg = ss.str();
+        meModifyMessageWithPolygonId(m_polyId, msg);
+        XM_LOG(xmlog::error, msg);
         a_refPtsProcessed.push_back(m_pts[i].m_pt);
       }
       else
@@ -228,7 +237,9 @@ void MeRefinePtsToPolysImpl::CheckRefPtsTooCloseToOtherRefPts(
            << " is too close to another refine point. The point was not "
               "inserted by the meshing process. Specify a size smaller than "
            << target << " for the point to be included by the meshing process.";
-        XM_LOG(xmlog::error, ss.str());
+        std::string msg = ss.str();
+        meModifyMessageWithPolygonId(m_polyId, msg);
+        XM_LOG(xmlog::error, msg);
         a_refPtsProcessed.push_back(pj);
       }
     }
@@ -427,7 +438,7 @@ void MeRefinePtsToPolysUnitTests::testRefPtsAsPolys()
   std::vector<Pt3d> outPoly = {{0, 0, 0}, {0, 10, 0}, {10, 10, 0}, {10, 0, 0}};
   std::vector<Pt3d> refMeshPts, tooClose;
   std::vector<std::vector<Pt3d>> inPolys, newInPolys;
-  p.RefPtsAsPolys(outPoly, inPolys, newInPolys, refMeshPts, tooClose);
+  p.RefPtsAsPolys(-1, outPoly, inPolys, newInPolys, refMeshPts, tooClose);
   TS_ASSERT_EQUALS(1, refMeshPts.size());
   TS_ASSERT_EQUALS(2, newInPolys.size());
   if (2 != newInPolys.size())
@@ -457,7 +468,7 @@ void MeRefinePtsToPolysUnitTests::testRefinePtsTooCloseToBoundary()
   std::vector<Pt3d> outPoly = {{0, 0, 0}, {0, 10, 0}, {10, 10, 0}, {10, 0, 0}};
   std::vector<Pt3d> refMeshPts, tooClose;
   std::vector<std::vector<Pt3d>> inPolys, newInPolys;
-  p.RefPtsAsPolys(outPoly, inPolys, newInPolys, refMeshPts, tooClose);
+  p.RefPtsAsPolys(-1, outPoly, inPolys, newInPolys, refMeshPts, tooClose);
   TS_ASSERT_EQUALS(0, newInPolys.size());
   TS_ASSERT_EQUALS(2, XmLog::Instance().ErrCount());
   TS_ASSERT_STACKED_ERRORS(

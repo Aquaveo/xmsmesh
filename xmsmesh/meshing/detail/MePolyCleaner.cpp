@@ -60,6 +60,7 @@ public:
                                     const std::vector<Pt3d>& a_pts);
 };
 //----- Internal functions -----------------------------------------------------
+#if 0
 //------------------------------------------------------------------------------
 /// \brief Dumps the output loops and points to std::out for ease in debugging failed tests.
 //------------------------------------------------------------------------------
@@ -84,6 +85,7 @@ static void iDumpOutput(const MePolyOffsetterOutput& a_output)
       }
     }
 }
+#endif
 
 //----- Class / Function definitions -------------------------------------------
 

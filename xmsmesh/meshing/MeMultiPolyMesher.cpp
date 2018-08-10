@@ -153,18 +153,17 @@ bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
   {
     pts.resize(0);
     tris.resize(0);
-    if (!pm->MeshIt(a_io, i, pts, tris, cells))
+    if (pm->MeshIt(a_io, i, pts, tris, cells))
     {
-      return false;
-    }
-    pm->GetProcessedRefinePts(tmpPts);
-    refinePts.insert(refinePts.end(), tmpPts.begin(), tmpPts.end());
-    AppendMesh(pts, tris, cells);
+      pm->GetProcessedRefinePts(tmpPts);
+      refinePts.insert(refinePts.end(), tmpPts.begin(), tmpPts.end());
+      AppendMesh(pts, tris, cells);
 
-    // Assign cell polygons
-    if (a_io.m_returnCellPolygons)
-    {
-      cellPolygons.resize(m_cellCount, (int)i);
+      // Assign cell polygons
+      if (a_io.m_returnCellPolygons)
+      {
+        cellPolygons.resize(m_cellCount, (int)i);
+      }
     }
 
     // Update progress
@@ -208,18 +207,27 @@ bool MeMultiPolyMesherImpl::ValidateInput(const MeMultiPolyMesherIo& a_io)
     for (size_t i = 0; i < a_io.m_polys.size(); ++i)
     {
       const MePolyInput& polyInput = a_io.m_polys[i];
+      std::string id;
+      {
+        std::stringstream ss;
+        if (polyInput.m_polyId > -1)
+          ss << "id " << polyInput.m_polyId;
+        else
+          ss << "index " << i;
+        id = ss.str();
+      }
 
       // Check outer polygon size
       if (polyInput.m_outPoly.empty())
       {
         std::stringstream ss;
-        ss << "Error: Outer polygon " << i << " is empty.\n";
+        ss << "Error: Outer polygon " << id << " is empty.\n";
         errors += ss.str();
       }
       else if (polyInput.m_outPoly.front() == polyInput.m_outPoly.back())
       {
         std::stringstream ss;
-        ss << "Error: Outer polygon " << i << " has the first point the same"
+        ss << "Error: Outer polygon " << id << " has the first point the same"
            << " as the last. The first point should not be repeated.\n";
         errors += ss.str();
       }
@@ -230,13 +238,13 @@ bool MeMultiPolyMesherImpl::ValidateInput(const MeMultiPolyMesherIo& a_io)
         if (polyInput.m_insidePolys[j].empty())
         {
           std::stringstream ss;
-          ss << "Error: Inner polygon " << j << " of outer polygon " << i << " is empty.\n";
+          ss << "Error: Inner polygon " << j << " of outer polygon " << id << " is empty.\n";
           errors += ss.str();
         }
         else if (polyInput.m_insidePolys[j].front() == polyInput.m_insidePolys[j].back())
         {
           std::stringstream ss;
-          ss << "Error: Inner polygon " << j << " of outer polygon " << i
+          ss << "Error: Inner polygon " << j << " of outer polygon " << id
              << " has the first point the same as the last. The first point"
              << " should not be repeated.\n";
           errors += ss.str();
@@ -247,7 +255,7 @@ bool MeMultiPolyMesherImpl::ValidateInput(const MeMultiPolyMesherIo& a_io)
       if (polyInput.m_polyCorners.size() != 0 && polyInput.m_polyCorners.size() != 3)
       {
         std::stringstream ss;
-        ss << "Error: Polygon patch corners for polygon " << i << " is size "
+        ss << "Error: Polygon patch corners for polygon " << id << " is size "
            << polyInput.m_polyCorners.size() << ". It must be size 0 or 3.\n";
         errors += ss.str();
       }

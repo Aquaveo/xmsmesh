@@ -58,6 +58,7 @@ public:
   , m_polyCorners(a_polyCorners)
   , m_elevFunction(a_elevFunction)
   , m_removeInternalFourTrianglePts(false)
+  , m_polyId(-1)
   {
   }
 
@@ -93,6 +94,10 @@ public:
   /// Optional. Remove internal points that are only connected to 4 cells.
   /// Used by the ugAutoCorrectCells class
   bool m_removeInternalFourTrianglePts;
+
+  /// Optional. Polygon id. Useful for reporting errors if calling software stores
+  /// ids for polygons and would like to report those back to the user.
+  int m_polyId;
 }; // MePolyInput
 
 ////////////////////////////////////////////////////////////////////////////////

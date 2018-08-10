@@ -32,7 +32,8 @@ public:
 
   /// \cond
   virtual void SetRefinePoints(const std::vector<MeRefinePoint>& a_pts, double a_tol) = 0;
-  virtual void RefPtsAsPolys(const std::vector<Pt3d>& a_outPoly,
+  virtual void RefPtsAsPolys(int a_polyId,
+                             const std::vector<Pt3d>& a_outPoly,
                              const std::vector<std::vector<Pt3d>>& a_inPolys,
                              std::vector<std::vector<Pt3d>>& a_newInPolys,
                              std::vector<Pt3d>& a_refMeshPts,

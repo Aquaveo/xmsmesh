@@ -31,7 +31,8 @@ public:
   static BSHP<MePolyPatcher> New();
 
   /// \cond
-  virtual bool MeshIt(const VecPt3d& a_outPoly,
+  virtual bool MeshIt(int a_polyId,
+                      const VecPt3d& a_outPoly,
                       const VecInt& a_polyCorners,
                       double a_xytol,
                       VecPt3d& a_points,

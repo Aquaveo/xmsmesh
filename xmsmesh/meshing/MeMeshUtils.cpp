@@ -16,6 +16,7 @@
 
 // 3. Standard library headers
 #include <map>
+#include <sstream>
 
 // 4. External library headers
 
@@ -370,6 +371,20 @@ void meSmoothElevBySlope(BSHP<TrTin> a_tin,
 
   meiDoSmooth(io);
 } // meSmoothSizeFunction
+//------------------------------------------------------------------------------
+/// \brief Prepends the polygon id as part of an error messge
+/// \param[in] a_polyId The id of the polygon
+/// \param[in,out] a_msg The error message
+//------------------------------------------------------------------------------
+void meModifyMessageWithPolygonId(int a_polyId, std::string& a_msg)
+{
+  if (a_polyId > -1)
+  {
+    std::stringstream ss;
+    ss << "Error meshing polygon id: " << a_polyId << ". ";
+    a_msg = ss.str() + a_msg;
+  }
+} // meModifyMessageWithPolygonId
 
 } // namespace xms
 

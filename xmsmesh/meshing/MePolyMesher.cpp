@@ -26,26 +26,27 @@
 #pragma warning(pop)
 
 // 5. Shared code headers
+#include <xmscore/math/math.h>
+#include <xmscore/misc/XmConst.h>
+#include <xmscore/misc/XmError.h>
+#include <xmscore/misc/boost_defines.h> // BSHP
+#include <xmscore/misc/Observer.h>
+#include <xmscore/misc/XmLog.h>
 #include <xmscore/stl/set.h>
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsinterp/interpolate/InterpBase.h>
-#include <xmscore/math/math.h>
-#include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
-#include <xmsmesh/meshing/detail/MePolyPaverToMeshPts.h>
-#include <xmsmesh/meshing/detail/MePolyPatcher.h>
-#include <xmsmesh/meshing/detail/MeRefinePtsToPolys.h>
-#include <xmsmesh/meshing/detail/MeRelaxer.h>
-#include <xmsmesh/meshing/MePolyRedistributePts.h>
-#include <xmscore/misc/Observer.h>
-#include <xmscore/misc/XmError.h>
-#include <xmscore/misc/XmLog.h>
-#include <xmscore/misc/boost_defines.h> // BSHP
 #include <xmsinterp/triangulate/detail/TrAutoFixFourTrianglePts.h>
 #include <xmsinterp/triangulate/detail/TrOuterTriangleDeleter.h>
 #include <xmsinterp/triangulate/TrTriangulatorPoints.h>
 #include <xmsinterp/triangulate/TrBreaklineAdder.h>
 #include <xmsinterp/triangulate/TrTin.h>
-#include <xmscore/misc/XmConst.h>
+#include <xmsmesh/meshing/detail/MePolyPaverToMeshPts.h>
+#include <xmsmesh/meshing/detail/MePolyPatcher.h>
+#include <xmsmesh/meshing/detail/MeRefinePtsToPolys.h>
+#include <xmsmesh/meshing/detail/MeRelaxer.h>
+#include <xmsmesh/meshing/MeMeshUtils.h>
+#include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
+#include <xmsmesh/meshing/MePolyRedistributePts.h>
 
 // 6. Non-shared code headers
 
@@ -146,6 +147,7 @@ private:
   Pt3d m_max;                ///< max xy bound
   PtHash m_ptHash;           ///< hash for point locations
   BSHP<InterpBase> m_elev;   ///< interpolator to assign elevations to mesh points
+  int m_polyId;              ///< id of the polygon
   VecPt3d m_boundPtsToRemove; ///< boundary points to remove after the paving process is complete
   bool m_removeInternalFourTrianglePts =
     false; ///< flag to indicate the removal of internal pts connected to 4 triangles will occur
@@ -204,6 +206,7 @@ MePolyMesherImpl::MePolyMesherImpl()
 , m_xyTol(1e-9)
 , m_testing(false)
 , m_observer()
+, m_polyId(-1)
 {
 } // MePolyMesherImpl::MePolyMesherImpl
 //------------------------------------------------------------------------------
@@ -237,6 +240,7 @@ bool MePolyMesherImpl::MeshIt(const MeMultiPolyMesherIo& a_input,
   // outer polygons
   const MePolyInput& polyInput = a_input.m_polys[a_polyIdx];
 
+  m_polyId = polyInput.m_polyId;
   m_outPoly = polyInput.m_outPoly;
   ComputeTolerance();
 
@@ -246,7 +250,7 @@ bool MePolyMesherImpl::MeshIt(const MeMultiPolyMesherIo& a_input,
   m_bias = polyInput.m_bias;
   // refine pts
   m_refineToPolys->SetRefinePoints(a_input.m_refPts, m_xyTol);
-  m_refineToPolys->RefPtsAsPolys(m_outPoly, m_inPolys, m_refPtPolys, m_refMeshPts,
+  m_refineToPolys->RefPtsAsPolys(polyInput.m_polyId, m_outPoly, m_inPolys, m_refPtPolys, m_refMeshPts,
                                  m_refPtsTooClose);
   // size function
   if (!polyInput.m_sizeFunction)
@@ -384,7 +388,9 @@ bool MePolyMesherImpl::MeshFromInputs(VecPt3d& a_points, VecInt& a_triangles, Ve
   }
   catch (std::exception& e)
   {
-    XM_LOG(xmlog::error, e.what());
+    std::string msg = e.what();
+    meModifyMessageWithPolygonId(m_polyId, msg);
+    XM_LOG(xmlog::error, msg);
     return false;
   }
   return true;
@@ -465,7 +471,7 @@ void MePolyMesherImpl::GenerateMeshPts()
   if (!m_polyCorners.empty())
   {
     BSHP<MePolyPatcher> patcher(MePolyPatcher::New());
-    patcher->MeshIt(m_outPoly, m_polyCorners, m_xyTol, *m_points, m_cells);
+    patcher->MeshIt(m_polyId, m_outPoly, m_polyCorners, m_xyTol, *m_points, m_cells);
   }
   else
   {
@@ -705,8 +711,6 @@ void MePolyMesherImpl::FindPolyPointIdxs(const VecPt3d& a_poly, VecInt& a_polyPt
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <xmsmesh/meshing/MePolyMesher.t.h>
-
-#include <boost/assign.hpp>
 
 #include <xmscore/testing/TestTools.h>
 

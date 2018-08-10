@@ -548,8 +548,6 @@ MeRelaxer::~MeRelaxer()
 
 #include <xmsmesh/meshing/detail/MeRelaxer.t.h>
 
-#include <boost/assign.hpp>
-
 #include <xmscore/testing/TestTools.h>
 #include <xmsinterp/triangulate/TrTriangulatorPoints.h>
 
