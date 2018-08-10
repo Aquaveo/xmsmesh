@@ -41,6 +41,7 @@ var classxms_1_1_me_poly_mesher_impl =
     [ "m_outPolyPtIdxs", "classxms_1_1_me_poly_mesher_impl.html#a3b8e7478df0cd42e488744a2a788f4d7", null ],
     [ "m_points", "classxms_1_1_me_poly_mesher_impl.html#a3b524e8866885c585e45a5a04d632b28", null ],
     [ "m_polyCorners", "classxms_1_1_me_poly_mesher_impl.html#a5448b1f290d30739dce077897273ea3a", null ],
+    [ "m_polyId", "classxms_1_1_me_poly_mesher_impl.html#af9cfecfe660eeda377c58b55744a69f4", null ],
     [ "m_polyPaver", "classxms_1_1_me_poly_mesher_impl.html#a1d24271858e850fcaa42ab4c80c47fb5", null ],
     [ "m_ptHash", "classxms_1_1_me_poly_mesher_impl.html#acc189da8a7bd099a5a925e79e030f1de", null ],
     [ "m_redist", "classxms_1_1_me_poly_mesher_impl.html#a3f17593d30ef0b6231aa97fc10af9f99", null ],

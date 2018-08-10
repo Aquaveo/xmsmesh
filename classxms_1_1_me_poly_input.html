@@ -159,6 +159,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:a976eaa518215734aabbd425432bc8598"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5161e8344982fef43b2dbb9cc634b82e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_poly_input.html#a5161e8344982fef43b2dbb9cc634b82e">m_removeInternalFourTrianglePts</a></td></tr>
 <tr class="separator:a5161e8344982fef43b2dbb9cc634b82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab585d9db0685593ff0b72fb26480e0ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_poly_input.html#ab585d9db0685593ff0b72fb26480e0ab">m_polyId</a></td></tr>
+<tr class="separator:ab585d9db0685593ff0b72fb26480e0ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Meshing inputs for one polygon. </p>
@@ -250,9 +252,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div><div class="memdoc">
 <p>Optional. Factor for transitioning between areas of high refinement to less refinement. </p>
 
-<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00072">72</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
+<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00073">73</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00224">xms::MePolyMesherImpl::MeshIt()</a>, and <a class="el" href="_me_multi_poly_to2dm_8cpp_source.html#l00434">MeMultiPolyTo2dmUnitTests::testCase4()</a>.</p>
+<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00227">xms::MePolyMesherImpl::MeshIt()</a>, and <a class="el" href="_me_multi_poly_to2dm_8cpp_source.html#l00437">MeMultiPolyTo2dmUnitTests::testCase4()</a>.</p>
 
 </div>
 </div>
@@ -267,9 +269,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div><div class="memdoc">
 <p>Optional. Outer boundary locations to remove after the paving process. Used by the ugAutoCorrectCells class </p>
 
-<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00091">91</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
+<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00092">92</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00224">xms::MePolyMesherImpl::MeshIt()</a>.</p>
+<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00227">xms::MePolyMesherImpl::MeshIt()</a>.</p>
 
 </div>
 </div>
@@ -284,9 +286,26 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div><div class="memdoc">
 <p>Optional. Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). </p>
 
-<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00084">84</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
+<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00085">85</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00224">xms::MePolyMesherImpl::MeshIt()</a>, <a class="el" href="_tut_meshing_8cpp_source.html#l00544">TutMeshingIntermediateTests::test_Example_Patch()</a>, and <a class="el" href="_me_multi_poly_mesher_8cpp_source.html#l00199">xms::MeMultiPolyMesherImpl::ValidateInput()</a>.</p>
+<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00227">xms::MePolyMesherImpl::MeshIt()</a>, <a class="el" href="_tut_meshing_8cpp_source.html#l00544">TutMeshingIntermediateTests::test_Example_Patch()</a>, and <a class="el" href="_me_multi_poly_mesher_8cpp_source.html#l00198">xms::MeMultiPolyMesherImpl::ValidateInput()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab585d9db0685593ff0b72fb26480e0ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int xms::MePolyInput::m_polyId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Optional. Polygon id. Useful for reporting errors if calling software stores ids for polygons and would like to report those back to the user. </p>
+
+<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00100">100</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
+
+<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00227">xms::MePolyMesherImpl::MeshIt()</a>, and <a class="el" href="_me_multi_poly_mesher_8cpp_source.html#l00198">xms::MeMultiPolyMesherImpl::ValidateInput()</a>.</p>
 
 </div>
 </div>
@@ -301,9 +320,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </div><div class="memdoc">
 <p>Optional. Remove internal points that are only connected to 4 cells. Used by the ugAutoCorrectCells class </p>
 
-<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00095">95</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
+<p>Definition at line <a class="el" href="_me_multi_poly_mesher_io_8h_source.html#l00096">96</a> of file <a class="el" href="_me_multi_poly_mesher_io_8h_source.html">MeMultiPolyMesherIo.h</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00224">xms::MePolyMesherImpl::MeshIt()</a>.</p>
+<p>Referenced by <a class="el" href="_me_poly_mesher_8cpp_source.html#l00227">xms::MePolyMesherImpl::MeshIt()</a>.</p>
 
 </div>
 </div>
@@ -316,7 +335,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacexms.html">xms</a></li><li class="navelem"><a class="el" href="classxms_1_1_me_poly_input.html">MePolyInput</a></li>
-    <li class="footer">Generated on Tue Jul 31 2018 21:27:18 for xmsmesh by
+    <li class="footer">Generated on Fri Aug 10 2018 16:39:05 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

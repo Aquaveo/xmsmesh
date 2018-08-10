@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"class_me_poly_cleaner_unit_tests.html#ac1eada42c4765331a5b8dc2111e0a5c8":[4,0,7,21],
 "class_me_poly_cleaner_unit_tests.html#ac422896cd79745fa68bcb71a05ecbe8a":[4,0,7,31],
 "class_me_poly_cleaner_unit_tests.html#ac4c85ecfd1617db6bb958965bf850219":[4,0,7,23],
 "class_me_poly_cleaner_unit_tests.html#ac8fada9ab3806bea2a8511b1d78c382d":[4,0,7,2],
@@ -232,11 +233,12 @@ var NAVTREEINDEX1 =
 "classxms_1_1_me_poly_cleaner_impl.html#a9699fa49812c5c89680d18d318eaf708":[4,0,1,1,4],
 "classxms_1_1_me_poly_input.html":[4,0,1,18],
 "classxms_1_1_me_poly_input.html#a2f60aa5e32e96d7c978603e221222a04":[4,0,1,18,5],
-"classxms_1_1_me_poly_input.html#a5161e8344982fef43b2dbb9cc634b82e":[4,0,1,18,9],
+"classxms_1_1_me_poly_input.html#a5161e8344982fef43b2dbb9cc634b82e":[4,0,1,18,10],
 "classxms_1_1_me_poly_input.html#a8f7fbf25af31e2750c0790d54e5293c6":[4,0,1,18,4],
 "classxms_1_1_me_poly_input.html#a976eaa518215734aabbd425432bc8598":[4,0,1,18,2],
 "classxms_1_1_me_poly_input.html#aa2de4705ffd1120b852ce6f997fe2974":[4,0,1,18,0],
-"classxms_1_1_me_poly_input.html#aa30944b8fb5e3e176c595ca812781290":[4,0,1,18,10],
+"classxms_1_1_me_poly_input.html#aa30944b8fb5e3e176c595ca812781290":[4,0,1,18,11],
+"classxms_1_1_me_poly_input.html#ab585d9db0685593ff0b72fb26480e0ab":[4,0,1,18,9],
 "classxms_1_1_me_poly_input.html#ab827e115dee885a10b769b8e43b474aa":[4,0,1,18,1],
 "classxms_1_1_me_poly_input.html#aca43fb2091a846525c1ce79551e63b54":[4,0,1,18,3],
 "classxms_1_1_me_poly_input.html#ad85860ecd7ab18a60f29ceb9a2fc99fc":[4,0,1,18,7],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classxms_1_1_me_poly_mesher.html#a55f927c865f21214a3ddf83d555a81be":[4,0,1,24,2],
 "classxms_1_1_me_poly_mesher.html#a5dc2541f0308964ab8cbbd7904838385":[4,0,1,24,0],
 "classxms_1_1_me_poly_mesher_impl.html":[4,0,1,23],
-"classxms_1_1_me_poly_mesher_impl.html#a00fb4dc1014d53393112779603450986":[4,0,1,23,44],
-"classxms_1_1_me_poly_mesher_impl.html#a1034ebceca22bdb7585ab828f79b9891":[4,0,1,23,42],
-"classxms_1_1_me_poly_mesher_impl.html#a1d24271858e850fcaa42ab4c80c47fb5":[4,0,1,23,35]
+"classxms_1_1_me_poly_mesher_impl.html#a00fb4dc1014d53393112779603450986":[4,0,1,23,45]
 };

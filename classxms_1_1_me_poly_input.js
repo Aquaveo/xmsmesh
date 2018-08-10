@@ -9,6 +9,7 @@ var classxms_1_1_me_poly_input =
     [ "m_insidePolys", "classxms_1_1_me_poly_input.html#ada6e1927f7a333e15f487e89fd8551f9", null ],
     [ "m_outPoly", "classxms_1_1_me_poly_input.html#ad85860ecd7ab18a60f29ceb9a2fc99fc", null ],
     [ "m_polyCorners", "classxms_1_1_me_poly_input.html#af922303af2f65d7f64958fd06279f913", null ],
+    [ "m_polyId", "classxms_1_1_me_poly_input.html#ab585d9db0685593ff0b72fb26480e0ab", null ],
     [ "m_removeInternalFourTrianglePts", "classxms_1_1_me_poly_input.html#a5161e8344982fef43b2dbb9cc634b82e", null ],
     [ "m_sizeFunction", "classxms_1_1_me_poly_input.html#aa30944b8fb5e3e176c595ca812781290", null ]
 ];

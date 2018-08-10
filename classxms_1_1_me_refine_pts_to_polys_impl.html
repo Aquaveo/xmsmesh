@@ -131,9 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ebd744350f79118d86961a00031edb6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html#a3ebd744350f79118d86961a00031edb6">SetRefinePoints</a> (const std::vector&lt; <a class="el" href="classxms_1_1_me_refine_point.html">MeRefinePoint</a> &gt; &amp;a_pts, double a_tol) override</td></tr>
 <tr class="memdesc:a3ebd744350f79118d86961a00031edb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the refine points.  <a href="#a3ebd744350f79118d86961a00031edb6">More...</a><br/></td></tr>
 <tr class="separator:a3ebd744350f79118d86961a00031edb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef93c7eb7b798c61e314ee2f9df8c938"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html#aef93c7eb7b798c61e314ee2f9df8c938">RefPtsAsPolys</a> (const std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt;&gt; &amp;a_inPolys, std::vector&lt; std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt;&gt; &amp;a_newInPolys, std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_refMeshPts, std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_refPtsTooClose) override</td></tr>
-<tr class="memdesc:aef93c7eb7b798c61e314ee2f9df8c938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates new inside polygons from refine points that are inside of the polygon being considered.  <a href="#aef93c7eb7b798c61e314ee2f9df8c938">More...</a><br/></td></tr>
-<tr class="separator:aef93c7eb7b798c61e314ee2f9df8c938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22004c2b89bce9e49f318c03693209ea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html#a22004c2b89bce9e49f318c03693209ea">RefPtsAsPolys</a> (int a_polyId, const std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt;&gt; &amp;a_inPolys, std::vector&lt; std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt;&gt; &amp;a_newInPolys, std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_refMeshPts, std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_refPtsTooClose) override</td></tr>
+<tr class="memdesc:a22004c2b89bce9e49f318c03693209ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates new inside polygons from refine points that are inside of the polygon being considered.  <a href="#a22004c2b89bce9e49f318c03693209ea">More...</a><br/></td></tr>
+<tr class="separator:a22004c2b89bce9e49f318c03693209ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6b8e2f86737505245b21bd43b8ee414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html#af6b8e2f86737505245b21bd43b8ee414">FindPtsInsidePolygon</a> (const std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt;&gt; &amp;a_inPolys, std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;a_refPtsTooClose)</td></tr>
 <tr class="memdesc:af6b8e2f86737505245b21bd43b8ee414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the refine points that are inside of the polygon.  <a href="#af6b8e2f86737505245b21bd43b8ee414">More...</a><br/></td></tr>
 <tr class="separator:af6b8e2f86737505245b21bd43b8ee414"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,6 +174,10 @@ std::vector&lt; <a class="el" href="classxms_1_1_me_refine_point.html">MeRefineP
 <tr class="separator:a67884459688fe3ad4be73029990f4da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e4256c399b93fdbe7aeb32b8e5a3f52"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html#a5e4256c399b93fdbe7aeb32b8e5a3f52">m_ptsInsidePoly</a></td></tr>
 <tr class="separator:a5e4256c399b93fdbe7aeb32b8e5a3f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab6fda79e1e2df304eaf025f2c3eb58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ab6fda79e1e2df304eaf025f2c3eb58"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html#a9ab6fda79e1e2df304eaf025f2c3eb58">m_polyId</a></td></tr>
+<tr class="memdesc:a9ab6fda79e1e2df304eaf025f2c3eb58"><td class="mdescLeft">&#160;</td><td class="mdescRight">id of the polygon <br/></td></tr>
+<tr class="separator:a9ab6fda79e1e2df304eaf025f2c3eb58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -185,7 +189,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Creates polygons from refine point input. </p>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00046">46</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00047">47</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="abc512c4669a097b5dafc8cdaf8ee8f3a"></a>
 <div class="memitem">
@@ -220,11 +224,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00196">196</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00205">205</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1">xmlog::error</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00089">m_pts</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00090">m_ptsInsidePoly</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a98aa9ce14bd15da1a7bf8967c9fe7859">xms::Mdist()</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a>, and <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
+<p>References <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1">xmlog::error</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00095">m_polyId</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00092">m_pts</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00093">m_ptsInsidePoly</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a98aa9ce14bd15da1a7bf8967c9fe7859">xms::Mdist()</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a>, and <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00152">FindPtsInsidePolygon()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00159">FindPtsInsidePolygon()</a>.</p>
 
 </div>
 </div>
@@ -268,11 +272,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00247">247</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00258">258</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00321">HexPolyAtPoint()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00089">m_pts</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00090">m_ptsInsidePoly</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00088">m_xyTol</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00280">TriPolyAtPoint()</a>.</p>
+<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00332">HexPolyAtPoint()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00092">m_pts</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00093">m_ptsInsidePoly</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00091">m_xyTol</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00291">TriPolyAtPoint()</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00130">RefPtsAsPolys()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00135">RefPtsAsPolys()</a>.</p>
 
 </div>
 </div>
@@ -316,11 +320,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00152">152</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00159">159</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00196">CheckRefPtsTooCloseToOtherRefPts()</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1">xmlog::error</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00089">m_pts</a>, and <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a>.</p>
+<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00205">CheckRefPtsTooCloseToOtherRefPts()</a>, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1">xmlog::error</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00095">m_polyId</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00092">m_pts</a>, and <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00130">RefPtsAsPolys()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00135">RefPtsAsPolys()</a>.</p>
 
 </div>
 </div>
@@ -358,15 +362,15 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A polygon for a_pt refine point. </dd></dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00321">321</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00332">332</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00087">m_SqrtThreeOverTwo</a>.</p>
+<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00090">m_SqrtThreeOverTwo</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00247">CreateNewInsidePolygons()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00405">MeRefinePtsToPolysUnitTests::testHexPolyAtPoint()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00258">CreateNewInsidePolygons()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00416">MeRefinePtsToPolysUnitTests::testHexPolyAtPoint()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aef93c7eb7b798c61e314ee2f9df8c938"></a>
+<a class="anchor" id="a22004c2b89bce9e49f318c03693209ea"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -376,6 +380,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void xms::MeRefinePtsToPolysImpl::RefPtsAsPolys </td>
           <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a_polyId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const std::vector&lt; <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>a_outPoly</em>, </td>
         </tr>
@@ -419,6 +429,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Creates new inside polygons from refine points that are inside of the polygon being considered. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a_polyId</td><td>The id of the polygon </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a_outPoly</td><td>The points making up the outside polygon </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">a_inPolys</td><td>Inner boundaries for the a_outPoly </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">a_newInPolys</td><td>New inside polygons created from refine points </td></tr>
@@ -428,11 +439,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00130">130</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00135">135</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00247">CreateNewInsidePolygons()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00152">FindPtsInsidePolygon()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00090">m_ptsInsidePoly</a>.</p>
+<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00258">CreateNewInsidePolygons()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00159">FindPtsInsidePolygon()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00095">m_polyId</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00093">m_ptsInsidePoly</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00450">MeRefinePtsToPolysUnitTests::testRefinePtsTooCloseToBoundary()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00421">MeRefinePtsToPolysUnitTests::testRefPtsAsPolys()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00461">MeRefinePtsToPolysUnitTests::testRefinePtsTooCloseToBoundary()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00432">MeRefinePtsToPolysUnitTests::testRefPtsAsPolys()</a>.</p>
 
 </div>
 </div>
@@ -477,11 +488,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00062">62</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00064">64</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00089">m_pts</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00088">m_xyTol</a>.</p>
+<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00092">m_pts</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00091">m_xyTol</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00450">MeRefinePtsToPolysUnitTests::testRefinePtsTooCloseToBoundary()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00421">MeRefinePtsToPolysUnitTests::testRefPtsAsPolys()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00461">MeRefinePtsToPolysUnitTests::testRefinePtsTooCloseToBoundary()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00432">MeRefinePtsToPolysUnitTests::testRefPtsAsPolys()</a>.</p>
 
 </div>
 </div>
@@ -519,11 +530,11 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A polygon for a_pt refine point. </dd></dl>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00280">280</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00291">291</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00086">m_SqrtThree</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00085">m_TwoTimesSqrtThree</a>.</p>
+<p>References <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00089">m_SqrtThree</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00088">m_TwoTimesSqrtThree</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00247">CreateNewInsidePolygons()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00394">MeRefinePtsToPolysUnitTests::testTriPolyAtPoint()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00258">CreateNewInsidePolygons()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00405">MeRefinePtsToPolysUnitTests::testTriPolyAtPoint()</a>.</p>
 
 </div>
 </div>
@@ -539,9 +550,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>indexes to the refine point that are inside of the current polygon being considered </p>
 
-<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00090">90</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00093">93</a> of file <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html">MeRefinePtsToPolys.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00196">CheckRefPtsTooCloseToOtherRefPts()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00247">CreateNewInsidePolygons()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00130">RefPtsAsPolys()</a>.</p>
+<p>Referenced by <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00205">CheckRefPtsTooCloseToOtherRefPts()</a>, <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00258">CreateNewInsidePolygons()</a>, and <a class="el" href="_me_refine_pts_to_polys_8cpp_source.html#l00135">RefPtsAsPolys()</a>.</p>
 
 </div>
 </div>
@@ -554,7 +565,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacexms.html">xms</a></li><li class="navelem"><a class="el" href="classxms_1_1_me_refine_pts_to_polys_impl.html">MeRefinePtsToPolysImpl</a></li>
-    <li class="footer">Generated on Tue Jul 31 2018 21:27:18 for xmsmesh by
+    <li class="footer">Generated on Fri Aug 10 2018 16:39:05 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

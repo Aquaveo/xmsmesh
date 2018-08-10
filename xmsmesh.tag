@@ -135,6 +135,7 @@
     <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_patcher_8cpp</filename>
     <includes id="_me_poly_patcher_8h" name="MePolyPatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPatcher.h</includes>
+    <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
     <includes id="_me_poly_patcher_8t_8h" name="MePolyPatcher.t.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPatcher.t.h</includes>
     <class kind="class">xms::MePolyPatcherImpl</class>
   </compound>
@@ -200,6 +201,7 @@
     <filename>_me_refine_pts_to_polys_8cpp</filename>
     <includes id="_me_refine_pts_to_polys_8h" name="MeRefinePtsToPolys.h" local="no" imported="no">xmsmesh/meshing/detail/MeRefinePtsToPolys.h</includes>
     <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
+    <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
     <includes id="_me_refine_pts_to_polys_8t_8h" name="MeRefinePtsToPolys.t.h" local="no" imported="no">xmsmesh/meshing/detail/MeRefinePtsToPolys.t.h</includes>
     <class kind="class">xms::MeRefinePtsToPolysImpl</class>
   </compound>
@@ -314,11 +316,12 @@
     <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
     <filename>_me_poly_mesher_8cpp</filename>
     <includes id="_me_poly_mesher_8h" name="MePolyMesher.h" local="no" imported="no">xmsmesh/meshing/MePolyMesher.h</includes>
-    <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
     <includes id="_me_poly_paver_to_mesh_pts_8h" name="MePolyPaverToMeshPts.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPaverToMeshPts.h</includes>
     <includes id="_me_poly_patcher_8h" name="MePolyPatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPatcher.h</includes>
     <includes id="_me_refine_pts_to_polys_8h" name="MeRefinePtsToPolys.h" local="no" imported="no">xmsmesh/meshing/detail/MeRefinePtsToPolys.h</includes>
     <includes id="_me_relaxer_8h" name="MeRelaxer.h" local="no" imported="no">xmsmesh/meshing/detail/MeRelaxer.h</includes>
+    <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
+    <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
     <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
     <includes id="_me_poly_mesher_8t_8h" name="MePolyMesher.t.h" local="no" imported="no">xmsmesh/meshing/MePolyMesher.t.h</includes>
     <class kind="class">xms::MePolyMesherImpl</class>
@@ -1931,8 +1934,8 @@
       <type>virtual bool</type>
       <name>MeshIt</name>
       <anchorfile>classxms_1_1_me_poly_patcher_impl.html</anchorfile>
-      <anchor>a4f25546604e5d638966a7b7464a31088</anchor>
-      <arglist>(const VecPt3d &amp;a_outPoly, const VecInt &amp;a_polyCorners, double a_xytol, VecPt3d &amp;a_points, VecInt &amp;a_cells) override</arglist>
+      <anchor>a44b428c67309231cc0c5c6706a75683b</anchor>
+      <arglist>(int a_polyId, const VecPt3d &amp;a_outPoly, const VecInt &amp;a_polyCorners, double a_xytol, VecPt3d &amp;a_points, VecInt &amp;a_cells) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2305,6 +2308,13 @@
       <anchor>acd9e2e2fa0fa597b3b07c2bdd7479e3b</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_poly_patcher_impl.html</anchorfile>
+      <anchor>ab6ab0ac386537c3d7249578df5f59fb0</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>friend</type>
       <name>MePolyPatcherUnitTests</name>
@@ -2499,8 +2509,8 @@
       <type>virtual void</type>
       <name>RefPtsAsPolys</name>
       <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>aef93c7eb7b798c61e314ee2f9df8c938</anchor>
-      <arglist>(const std::vector&lt; Pt3d &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_inPolys, std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_newInPolys, std::vector&lt; Pt3d &gt; &amp;a_refMeshPts, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose) override</arglist>
+      <anchor>a22004c2b89bce9e49f318c03693209ea</anchor>
+      <arglist>(int a_polyId, const std::vector&lt; Pt3d &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_inPolys, std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_newInPolys, std::vector&lt; Pt3d &gt; &amp;a_refMeshPts, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2577,6 +2587,13 @@
       <name>m_ptsInsidePoly</name>
       <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
       <anchor>a5e4256c399b93fdbe7aeb32b8e5a3f52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a9ab6fda79e1e2df304eaf025f2c3eb58</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
@@ -3075,6 +3092,13 @@
       <anchor>a5161e8344982fef43b2dbb9cc634b82e</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>ab585d9db0685593ff0b72fb26480e0ab</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>xms::MeRefinePoint</name>
@@ -3536,6 +3560,13 @@
       <name>m_elev</name>
       <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
       <anchor>a50c3ceba3a654ba328160b6c3b28f67d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>af9cfecfe660eeda377c58b55744a69f4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
