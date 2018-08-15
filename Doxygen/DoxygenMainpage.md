@@ -25,6 +25,9 @@ Features {#XmsmeshFeatures}
 --------
 The library supports meshing.
 
+The following tutorials are available:
+* [Meshing tutorial](Meshing_Tutorial.md)
+
 Testing {#XmsmeshTesting}
 -------
 
