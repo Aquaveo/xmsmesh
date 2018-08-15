@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('_me_mesh_utils_8cpp.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,7 +106,6 @@ $(document).ready(function(){initNavTree('_me_mesh_utils_8cpp.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">MeMeshUtils.cpp File Reference</div>  </div>
@@ -118,12 +117,12 @@ $(document).ready(function(){initNavTree('_me_mesh_utils_8cpp.html','');});
 <div class="textblock"><code>#include &lt;<a class="el" href="_me_mesh_utils_8h_source.html">xmsmesh/meshing/MeMeshUtils.h</a>&gt;</code><br/>
 <code>#include &lt;map&gt;</code><br/>
 <code>#include &lt;sstream&gt;</code><br/>
-<code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/math_8h.html">xmscore/math/math.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_xm_error_8h.html">xmscore/misc/XmError.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_dyn_bitset_8h.html">xmscore/misc/DynBitset.h</a>&gt;</code><br/>
+<code>#include &lt;xmscore/math/math.h&gt;</code><br/>
+<code>#include &lt;xmscore/misc/XmError.h&gt;</code><br/>
+<code>#include &lt;xmscore/misc/DynBitset.h&gt;</code><br/>
 <code>#include &lt;xmsinterp/triangulate/TrTin.h&gt;</code><br/>
 <code>#include &lt;<a class="el" href="_me_mesh_utils_8t_8h_source.html">xmsmesh/meshing/MeMeshUtils.t.h</a>&gt;</code><br/>
-<code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html">xmscore/testing/TestTools.h</a>&gt;</code><br/>
+<code>#include &lt;xmscore/testing/TestTools.h&gt;</code><br/>
 <code>#include &lt;xmsinterp/triangulate/TrTriangulatorPoints.h&gt;</code><br/>
 </div>
 <p><a href="_me_mesh_utils_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -134,23 +133,18 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper class for size function smoothing.  <a href="classxms_1_1_smooth_io.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacexms"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html">xms</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5a11233d4ecb6d24e3a14455b5ae07a3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meiDoSmooth</b> (SmoothIo &amp;a_)</td></tr>
 <tr class="memdesc:a5a11233d4ecb6d24e3a14455b5ae07a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooths a size function. Ensures that the size function transitions over a sufficient distance so that the area change of adjacent elements does not exceed the size maximum passed in.  <a href="#a5a11233d4ecb6d24e3a14455b5ae07a3">More...</a><br/></td></tr>
 <tr class="separator:a5a11233d4ecb6d24e3a14455b5ae07a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29eec2a008fa0ec0239a63d043cecde3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meSizeFunctionFromDepth</b> (const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a5de59c68ff16d81cb2a429173f3a2fa5">VecDbl</a> &amp;a_depths, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a5de59c68ff16d81cb2a429173f3a2fa5">VecDbl</a> &amp;a_size, double a_minSize, double a_maxSize)</td></tr>
+<tr class="memitem:a29eec2a008fa0ec0239a63d043cecde3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meSizeFunctionFromDepth</b> (const VecDbl &amp;a_depths, VecDbl &amp;a_size, double a_minSize, double a_maxSize)</td></tr>
 <tr class="memdesc:a29eec2a008fa0ec0239a63d043cecde3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a size at each point based on the depth at the point and the min and max sizes the equation is min_depth + ( (depth - min_depth) / (max_depth - min_depth) ) * (max_size - min_size)  <a href="#a29eec2a008fa0ec0239a63d043cecde3">More...</a><br/></td></tr>
 <tr class="separator:a29eec2a008fa0ec0239a63d043cecde3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb4b34e0e4cbae7cce74281e4af03d74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meSmoothSizeFunction</b> (<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/boost__defines_8h.html#a37efc6913312f9271e2ea37f1acbc2dc">BSHP</a>&lt; TrTin &gt; a_tin, const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a> &amp;a_sizes, double a_sizeRatio, double a_minSize, int a_anchorType, const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a> &amp;a_ptsFlag, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a> &amp;a_smoothSize)</td></tr>
+<tr class="memitem:abb4b34e0e4cbae7cce74281e4af03d74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meSmoothSizeFunction</b> (BSHP&lt; TrTin &gt; a_tin, const VecFlt &amp;a_sizes, double a_sizeRatio, double a_minSize, int a_anchorType, const DynBitset &amp;a_ptsFlag, VecFlt &amp;a_smoothSize)</td></tr>
 <tr class="memdesc:abb4b34e0e4cbae7cce74281e4af03d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooths a size function. Ensures that the size function transitions over a sufficient distance so that the area change of adjacent elements meets the size ratio passed in.  <a href="#abb4b34e0e4cbae7cce74281e4af03d74">More...</a><br/></td></tr>
 <tr class="separator:abb4b34e0e4cbae7cce74281e4af03d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad261cbc87abd581d39387ae1b3faf678"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meSmoothElevBySlope</b> (<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/boost__defines_8h.html#a37efc6913312f9271e2ea37f1acbc2dc">BSHP</a>&lt; TrTin &gt; a_tin, const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a> &amp;a_elevs, double a_maxSlope, int a_anchorType, const <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a> &amp;a_ptsFlag, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a386622729e9b0e733d6eaac4e0e711c7">VecFlt</a> &amp;a_smoothElevs)</td></tr>
+<tr class="memitem:ad261cbc87abd581d39387ae1b3faf678"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meSmoothElevBySlope</b> (BSHP&lt; TrTin &gt; a_tin, const VecFlt &amp;a_elevs, double a_maxSlope, int a_anchorType, const DynBitset &amp;a_ptsFlag, VecFlt &amp;a_smoothElevs)</td></tr>
 <tr class="memdesc:ad261cbc87abd581d39387ae1b3faf678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smooths a elevations based on max specified slope (a_maxSlope) preserving either the min or max based on a_anchorType.  <a href="#ad261cbc87abd581d39387ae1b3faf678">More...</a><br/></td></tr>
 <tr class="separator:ad261cbc87abd581d39387ae1b3faf678"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32ac433275a1bc19bfa83969dc3f1623"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>xms::meModifyMessageWithPolygonId</b> (int a_polyId, std::string &amp;a_msg)</td></tr>
@@ -168,7 +162,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_mesh_utils_8cpp.html">MeMeshUtils.cpp</a></li>
-    <li class="footer">Generated on Wed Aug 15 2018 21:45:01 for xmsmesh by
+    <li class="footer">Generated on Wed Aug 15 2018 21:48:52 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

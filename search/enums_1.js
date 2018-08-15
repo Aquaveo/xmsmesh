@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messagetypeenum',['MessageTypeEnum',['https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588',1,'xmlog']]]
+  ['polytype',['polytype',['../classxms_1_1_me_poly_offsetter.html#a8bf5344ac6518b6b18f0d6ee6bbeb9f5',1,'xms::MePolyOffsetter']]]
 ];

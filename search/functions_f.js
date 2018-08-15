@@ -10,6 +10,5 @@ var searchData=
   ['relaxonboundary',['RelaxOnBoundary',['../classxms_1_1_me_relaxer_impl.html#a4326c3d586ca14c0616391573ec6d79d',1,'xms::MeRelaxerImpl']]],
   ['removebackwardloopsforcleanpolyoffset',['RemoveBackwardLoopsForCleanPolyOffset',['../classxms_1_1_me_poly_pts.html#ad2fadc7df692502323ecccc7938889e4',1,'xms::MePolyPts']]],
   ['renumbernewmesh',['RenumberNewMesh',['../classxms_1_1_me_multi_poly_mesher_impl.html#a17a9e80fa7bff3ba20f517369afd1de2',1,'xms::MeMultiPolyMesherImpl']]],
-  ['reportunusedrefinepts',['ReportUnusedRefinePts',['../classxms_1_1_me_multi_poly_mesher_impl.html#ad0770e4b31a9a5eb7820892f913f7935',1,'xms::MeMultiPolyMesherImpl']]],
-  ['round',['Round',['https://aquaveo.github.io/xmscore/namespacexms.html#adfc1700dbd9064558f9fc863ebf041eb',1,'xms']]]
+  ['reportunusedrefinepts',['ReportUnusedRefinePts',['../classxms_1_1_me_multi_poly_mesher_impl.html#ad0770e4b31a9a5eb7820892f913f7935',1,'xms::MeMultiPolyMesherImpl']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y',['y',['https://aquaveo.github.io/xmscore/classxms_1_1_pt2.html#a18572826ae6b934a324b196f0b58de88',1,'xms::Pt2::y()'],['https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290',1,'xms::Pt3::y()'],['https://aquaveo.github.io/xmscore/classxms_1_1_pt4.html#abf1e472e85eee6a9b9767e0bbfe1b141',1,'xms::Pt4::y()']]]
+  ['_7emeintersectpolys',['~MeIntersectPolys',['../classxms_1_1_me_intersect_polys.html#af126d19ebee8065433a9363c452d900c',1,'xms::MeIntersectPolys']]],
+  ['_7emerelaxer',['~MeRelaxer',['../classxms_1_1_me_relaxer.html#a1c06d7b2b73945aaf9a38482afec01d6',1,'xms::MeRelaxer']]]
 ];
