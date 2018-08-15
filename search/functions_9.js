@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['localindex',['LocalIndex',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#ac60ab20aba505a86b7eaca1a6935f540',1,'xms::TrTinImpl']]],
   ['log',['Log',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a82db042ede308de7f85b0b55b8eb3587',1,'xms::XmLog']]],
   ['logfilename',['LogFilename',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a8a9ac073794a7d8919c088de774811d5',1,'xms::XmLog']]],
   ['logfilenamecallback',['LogFilenameCallback',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#ab3d175834a2ed9bff301cbf304f89f47',1,'xms::XmLog']]],

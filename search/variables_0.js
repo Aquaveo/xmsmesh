@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fg_5flogfilenamecallback',['fg_logFilenameCallback',['https://aquaveo.github.io/xmscore/namespacexms.html#aff8502089eb5f522e683cb52ea0a93ae',1,'xms']]]
+  ['coef',['coef',['https://aquaveo.github.io/xmsinterp/structxms_1_1_barycentric_vals.html#aebed3bc5a1c410ee503863972249b13b',1,'xms::BarycentricVals']]]
 ];
