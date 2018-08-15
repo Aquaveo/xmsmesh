@@ -131,7 +131,7 @@ Example - Simple Polygon</h2>
 <p>This is the "hello world" example for using the meshing library.</p>
 <p>This first example shows how to mesh a single polygon. The testing code for this example is TutMeshingTests::test_Example_SimplePolygon. A picture of the example is shown below. Notice that the polygon is a simple square from (0,0) to (100,100). Also notice that the point spacing along the boundary is a constant value of 10.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_SimplePolygon_Input.png"  alt="Simple Polygon with boundary spacing = 10.0"/>
+<img src="images/tutMesh_SimplePolygon_Input.png"  alt="Simple Polygon with boundary spacing = 10.0"/>
 </div>
 <p>The basic steps to generate a mesh from a polygon are:</p>
 <ol type="1">
@@ -168,13 +168,13 @@ Example - Simple Polygon</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_SimplePolygon</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this mesh can be found at test_files/Tutorial_Meshing/Example_SimplePolygon_base.2dm.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_SimplePolygon_Output.png"  alt="2d mesh generated from simple polygon with boundary spacing = 10.0"/>
+<img src="images/tutMesh_SimplePolygon_Output.png"  alt="2d mesh generated from simple polygon with boundary spacing = 10.0"/>
 </div>
 <h2><a class="anchor" id="Example_Complex_Polygon"></a>
 Example - Complex Polygon</h2>
 <p>This is another example of how to mesh a single polygon. The testing code for this example is TutMeshingTests::test_Example_ComplexPolygon. A picture of the example is shown below. Notice that the polygon is more complex than the first case. Similar to example 0, the point spacing along the boundary is a constant value of 10.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_ComplexPolygon_Input.png"  alt="Complex Polygon with boundary spacing = 10.0"/>
+<img src="images/tutMesh_ComplexPolygon_Input.png"  alt="Complex Polygon with boundary spacing = 10.0"/>
 </div>
 <p>The same basic steps used with the simple polygon are followed for this example.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#aca21ece58a116cc6e905cecded135763">TutMeshingIntermediateTests::test_Example_ComplexPolygon</a>()</div>
@@ -217,13 +217,13 @@ Example - Complex Polygon</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_ComplexPolygon</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_ComplexPolygon_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_ComplexPolygon_Output.png"  alt="2d mesh generated from complex polygon with boundary spacing = 10.0"/>
+<img src="images/tutMesh_ComplexPolygon_Output.png"  alt="2d mesh generated from complex polygon with boundary spacing = 10.0"/>
 </div>
 <h2><a class="anchor" id="Example_Complex_Polygon_Hole"></a>
 Example - Simple Polygon with a hole</h2>
 <p>This is another example of how to mesh a single polygon, but this polygon contains a hole. The testing code for this example is TutMeshingTests::test_Example_SimplePolygonWithHole. A picture of the example is shown below. This example still uses a constant point spacing of 10 along the boundary.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_SimplePolygonWithHole_Input.png"  alt="Simple Polygon with a hole and boundary spacing = 10.0"/>
+<img src="images/tutMesh_SimplePolygonWithHole_Input.png"  alt="Simple Polygon with a hole and boundary spacing = 10.0"/>
 </div>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#a97aefc16612ebf834d3b306fc9d6b702">TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole</a>()</div>
 <div class="line">{</div>
@@ -259,13 +259,13 @@ Example - Simple Polygon with a hole</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_SimplePolygonWithHole_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_SimplePolygonWithHole_Output.png"  alt="2d mesh generated from simple polygon with a hole and boundary spacing = 10.0"/>
+<img src="images/tutMesh_SimplePolygonWithHole_Output.png"  alt="2d mesh generated from simple polygon with a hole and boundary spacing = 10.0"/>
 </div>
 <h2><a class="anchor" id="Example_Breaklines"></a>
 Example - Breaklines</h2>
 <p>The next example has a polygon as well as a breakline. A breakline is a mulitsegment line within a polygon. The breakline may begin at one of the polygon points or it may be completely contained within the polygon. The edges of elements in the resulting mesh must conform to the segments of the breakline. The testing code for this example is TutMeshingTests::test_Example_Breakline. A picture of the example is shown below.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_Breakline_Input.png"  alt="Simple Polygon with a breakline and boundary spacing = 10.0"/>
+<img src="images/tutMesh_Breakline_Input.png"  alt="Simple Polygon with a breakline and boundary spacing = 10.0"/>
 </div>
 <p>Breaklines can be specified as an internal polygon with a width of 0.0. The points that make up the line are pushed into a vector from the beginning point in order to the endpoint and then back in order to the point just before the beginning point (see the definition of the inner polygon in the following example).</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#a766687c31cf21266280eee287b99e1ec">TutMeshingIntermediateTests::test_Example_Breakline</a>()</div>
@@ -301,13 +301,13 @@ Example - Breaklines</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_Breakline</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_Breakline_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_Breakline_Output.png"  alt="2d mesh generated from simple polygon with a hole and boundary spacing = 10.0"/>
+<img src="images/tutMesh_Breakline_Output.png"  alt="2d mesh generated from simple polygon with a hole and boundary spacing = 10.0"/>
 </div>
 <h2><a class="anchor" id="Example_RefinePoints"></a>
 Example - Refine Points</h2>
 <p>A refine point is a location in the mesh where the user can specify a desired element edge size. The generated mesh will have elements with the specified size surrounding the refine point. Refine points can be located at a mesh node/point (corner of a cell/element). Refine points can also be located at the center of a cell/element. A desired element edge size can also be specified with each refine point. If the size is not specified then the refine point becomes a "hard point" that is inserted as a node into the mesh. The following example includes all 3 types of refine points. The testing code for this example is TutMeshingTests::test_Example_RefinePoints. A picture of the example is shown below.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_RefinePoints_Input.png"  alt="Simple Polygon with 3 refine points and boundary spacing = 10.0"/>
+<img src="images/tutMesh_RefinePoints_Input.png"  alt="Simple Polygon with 3 refine points and boundary spacing = 10.0"/>
 </div>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#a242ca8d4ebf60cbaa22d5ef2fb75ccc7">TutMeshingIntermediateTests::test_Example_RefinePoints</a>()</div>
 <div class="line">{</div>
@@ -358,13 +358,13 @@ Example - Refine Points</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_RefinePoints</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_RefinePoints_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_RefinePoints_Output.png"  alt="2d mesh generated from simple polygon with 3 refine points and boundary spacing = 10.0"/>
+<img src="images/tutMesh_RefinePoints_Output.png"  alt="2d mesh generated from simple polygon with 3 refine points and boundary spacing = 10.0"/>
 </div>
 <h2><a class="anchor" id="Example_MultiPolygon"></a>
 Example - Multiple Polygons with variable spacing, holes, breaklines, and refine points</h2>
 <p>The next example has multiple polygons with variable spacing along the boundary, holes in the polygons, breaklines and refine points. The testing code for this example is TutMeshingTests::test_Example_MultiplePolygons. A picture of the example is shown below.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_MultiPolygon_Input.png"  alt="Multiple polygons with variable spacing, holes, breaklines, and refine points"/>
+<img src="images/tutMesh_MultiPolygon_Input.png"  alt="Multiple polygons with variable spacing, holes, breaklines, and refine points"/>
 </div>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#a73fe21b1441eef9c225046b073627f65">TutMeshingIntermediateTests::test_Example_MultiplePolygons</a>()</div>
 <div class="line">{</div>
@@ -393,13 +393,13 @@ Example - Multiple Polygons with variable spacing, holes, breaklines, and refine
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_MultiplePolygons</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_MultiPolygon_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_MultiPolygon_Output.png"  alt="2d mesh generated from multiple polygons"/>
+<img src="images/tutMesh_MultiPolygon_Output.png"  alt="2d mesh generated from multiple polygons"/>
 </div>
 <h2><a class="anchor" id="Example_ScalarPaving"></a>
 Example - Scalar Paving</h2>
 <p>This example illustrates how to influence the size of elements in the generated 2d mesh by specifying a size function. This process is referred to as scalar paving. The size function is specified using xms::InterpBase. The InterpBase class performs spatial interpolation from points and triangles. This example uses a simple polygon with a set of 5 points and 4 triangles to define a linear size function. The testing code for this example is TutMeshingTests::test_Example_ScalarPaving. A picture of the example is shown below.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_ScalarPaving_Input.png"  alt="Simple polygon with linear size function"/>
+<img src="images/tutMesh_ScalarPaving_Input.png"  alt="Simple polygon with linear size function"/>
 </div>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#af9d6182b721b7950d8ec2f46ba9160ba">TutMeshingIntermediateTests::test_Example_ScalarPaving</a>()</div>
 <div class="line">{</div>
@@ -448,13 +448,13 @@ Example - Scalar Paving</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_ScalarPaving</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_ScalarPaving_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_ScalarPaving_Output.png"  alt="2d mesh generated from simple polygon with size function"/>
+<img src="images/tutMesh_ScalarPaving_Output.png"  alt="2d mesh generated from simple polygon with size function"/>
 </div>
 <h2><a class="anchor" id="Example_Patch"></a>
 Example - Patch Mesh Generation</h2>
 <p>An adaptive coons patch methodology is implemented in xmsmesh for generating triangular and quad cells. In general, a patch can be generated for a polygon with 4 sides. You can specify the four sides by indicating the indices of the points that make up the polygon corners in the <a class="el" href="classxms_1_1_me_poly_input.html" title="Meshing inputs for one polygon. ">xms::MePolyInput</a> class (m_polyCorners). Below is a picture of the input for this example. Notice that the number of segments is different on each side of the polygon. The testing code for this example is TutMeshingTests::test_Example_Patch.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_Patch_Input.png"  alt="Input polygon for patch mesh generation"/>
+<img src="images/tutMesh_Patch_Input.png"  alt="Input polygon for patch mesh generation"/>
 </div>
 <p>The following code shows how to setup the polygon corners. Note that the first point listed in the polygons is assumed to be a corner and not included in the list of corners. Thus, m_polyCorners should always be either size 0 or 3.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#a4cc20f4b834919dd705b4a6724abb1f9">TutMeshingIntermediateTests::test_Example_Patch</a>()</div>
@@ -489,7 +489,7 @@ Example - Patch Mesh Generation</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_Patch</span></div>
 </div><!-- fragment --><p> An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_Patch_base.2dm</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_Patch_Output.png"  alt="2d mesh generated using the patch algorithm"/>
+<img src="images/tutMesh_Patch_Output.png"  alt="2d mesh generated using the patch algorithm"/>
 </div>
 <h2><a class="anchor" id="Example_PolyLineRedist"></a>
 Example - Polyline point redistribution</h2>
@@ -520,7 +520,7 @@ Checking Meshing Input for Errors</h2>
 Example - Smooth transition for constant size function</h2>
 <p>This example shows how to specify a constant size function on a polygon that will smoothly transition from the spacing of points along the boundary to the specified constant size. This is specified in the <a class="el" href="classxms_1_1_me_poly_input.html" title="Meshing inputs for one polygon. ">xms::MePolyInput</a> class. The size is specified in the m_constSizeFunction variable and a bias is specified in the m_constSizeBias member. To transition as fast as possible between boundary spacing and the m_constSizeFunction set the bias to 1.0 to transition as slowly as possible set the bias to 0.0. The testing code for this example is in TutMeshingTests::test_Example_ConstantSmooth. The input polygon is shown below.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_SimplePolygon_Input.png"  alt="Simple Polygon with boundary spacing = 10.0"/>
+<img src="images/tutMesh_SimplePolygon_Input.png"  alt="Simple Polygon with boundary spacing = 10.0"/>
 </div>
 <p>The test shows having the size transition from the boundary spacing of 10.0 to a size of 1.0 and then a second example where the size transitions to 50.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_tut_meshing_intermediate_tests.html#ab3096f420b245110a335ec3929416400">TutMeshingIntermediateTests::test_Example_ConstantSmooth</a>()</div>
@@ -562,7 +562,7 @@ Example - Smooth transition for constant size function</h2>
 <div class="line">} <span class="comment">// TutMeshingIntermediateTests::test_Example_ConstantSmooth</span></div>
 </div><!-- fragment --><p> An image of the two 2d meshs is shown below. The *.2dm file for the output 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_ConstantSmooth_base.2dm and Example_ConstantSmooth1_base.2dm.</p>
 <div class="image">
-<img src="Doxygen/images/tutMesh_ConstantSmooth_Output.png"  alt="2d meshs generated by transitioning from boundary spacing to constant size"/>
+<img src="images/tutMesh_ConstantSmooth_Output.png"  alt="2d meshs generated by transitioning from boundary spacing to constant size"/>
 </div>
 <h2><a class="anchor" id="Example_SizeFromDepth"></a>
 Example - Generate size function from depth</h2>
@@ -640,7 +640,7 @@ Example - Smooth a size function</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Aug 15 2018 21:11:49 for xmsmesh by
+    <li class="footer">Generated on Wed Aug 15 2018 21:20:14 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
