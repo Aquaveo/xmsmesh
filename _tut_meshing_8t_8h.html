@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('_tut_meshing_8t_8h.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,13 +106,14 @@ $(document).ready(function(){initNavTree('_tut_meshing_8t_8h.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">TutMeshing.t.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;cxxtest/TestSuite.h&gt;</code><br/>
-<code>#include &lt;xmscore/stl/vector.h&gt;</code><br/>
+<code>#include &lt;<a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/vector_8h.html">xmscore/stl/vector.h</a>&gt;</code><br/>
 </div>
 <p><a href="_tut_meshing_8t_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -122,12 +123,17 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for testing meshing functionality.  <a href="class_tut_meshing_intermediate_tests.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacexms"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html">xms</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a134d4b470054fdcc8e9d032a5a1a83e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><b>xms::tutReadMeshIoFromFile</b> (const std::string &amp;a_fname, MeMultiPolyMesherIo &amp;a_io)</td></tr>
 <tr class="memdesc:a134d4b470054fdcc8e9d032a5a1a83e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper function to read <a class="el" href="classxms_1_1_me_multi_poly_mesher_io.html" title="Provides the input to meshing multiple polygons and holds the output. ">MeMultiPolyMesherIo</a>  <a href="#a134d4b470054fdcc8e9d032a5a1a83e3">More...</a><br/></td></tr>
 <tr class="separator:a134d4b470054fdcc8e9d032a5a1a83e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a628745f5e25428ed1e435e712ae741c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><b>xms::tutReadPolygons</b> (const std::string &amp;a_fname, VecPt3d2d &amp;a_outside, VecPt3d3d &amp;a_inside)</td></tr>
+<tr class="memitem:a628745f5e25428ed1e435e712ae741c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><b>xms::tutReadPolygons</b> (const std::string &amp;a_fname, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a1b0ce86e91b176c54f0f122476873c75">VecPt3d2d</a> &amp;a_outside, <a class="elRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a3baed22b50d99fef3f3bc78c99eaf26f">VecPt3d3d</a> &amp;a_inside)</td></tr>
 <tr class="memdesc:a628745f5e25428ed1e435e712ae741c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper function to read polygons from a text file  <a href="#a628745f5e25428ed1e435e712ae741c1">More...</a><br/></td></tr>
 <tr class="separator:a628745f5e25428ed1e435e712ae741c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -141,7 +147,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_c33d3f6376854b697a65b7cbb3236d1f.html">tutorial</a></li><li class="navelem"><a class="el" href="_tut_meshing_8t_8h.html">TutMeshing.t.h</a></li>
-    <li class="footer">Generated on Wed Aug 15 2018 21:48:52 for xmsmesh by
+    <li class="footer">Generated on Wed Aug 15 2018 21:57:24 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

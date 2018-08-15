@@ -8,7 +8,8 @@ var annotated =
         [ "MeMultiPolyTo2dm_pyt", "namespacepython_1_1meshing_1_1_me_multi_poly_to2dm__pyt.html", "namespacepython_1_1meshing_1_1_me_multi_poly_to2dm__pyt" ],
         [ "MePolyMesher_pyt", "namespacepython_1_1meshing_1_1_me_poly_mesher__pyt.html", "namespacepython_1_1meshing_1_1_me_poly_mesher__pyt" ],
         [ "MePolyRedistributePts_pyt", "namespacepython_1_1meshing_1_1_me_poly_redistribute_pts__pyt.html", "namespacepython_1_1meshing_1_1_me_poly_redistribute_pts__pyt" ]
-      ] ]
+      ] ],
+      [ "misc", null, null ]
     ] ],
     [ "xms", null, [
       [ "MeIntersectPolys", "classxms_1_1_me_intersect_polys.html", "classxms_1_1_me_intersect_polys" ],

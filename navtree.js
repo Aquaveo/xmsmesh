@@ -12,6 +12,7 @@ var NAVTREE =
       ] ],
       [ "\"xmsmesh\" Name ", "index.html#xmsmeshName", null ]
     ] ],
+    [ "index", "https://aquaveo.github.io/xmscore/index.html", null ],
     [ "Meshing_Tutorial", "md__meshing__tutorial.html", [
       [ "Meshing Tutorial", "md__meshing__tutorial.html#Meshing_Tutorial", [
         [ "Introduction", "md__meshing__tutorial.html#Intro_Meshing", null ],
@@ -57,9 +58,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"class_me_poly_cleaner_unit_tests.html#ac4c85ecfd1617db6bb958965bf850219",
-"classxms_1_1_me_poly_mesher_impl.html#a1e5750f6033d2115c6308692749b5a5a",
-"classxms_1_1_me_relaxer_impl.html#af1298d486ffc3ed280e4f83580091ad5aa165cd34cbf044f2d3faa6a623e117e0"
+"class_me_poly_cleaner_unit_tests.html#ac1eada42c4765331a5b8dc2111e0a5c8",
+"classxms_1_1_me_poly_mesher_impl.html#a1034ebceca22bdb7585ab828f79b9891",
+"classxms_1_1_me_relaxer_impl.html#af1298d486ffc3ed280e4f83580091ad5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
