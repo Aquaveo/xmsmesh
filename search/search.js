@@ -17,7 +17,7 @@ var indexSectionsWithContent =
   7: "bmprx",
   8: "deisw",
   9: "fpst",
-  10: "t"
+  10: "mt"
 };
 
 var indexSectionNames =

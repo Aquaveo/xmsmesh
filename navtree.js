@@ -13,6 +13,24 @@ var NAVTREE =
       [ "\"xmsmesh\" Name ", "index.html#xmsmeshName", null ]
     ] ],
     [ "index", "https://aquaveo.github.io/xmscore/index.html", null ],
+    [ "Meshing_Tutorial", "md__meshing__tutorial.html", [
+      [ "Meshing Tutorial", "md__meshing__tutorial.html#Meshing_Tutorial", [
+        [ "Introduction", "md__meshing__tutorial.html#Intro_Meshing", null ],
+        [ "Example - Simple Polygon", "md__meshing__tutorial.html#Example_Simple_Polygon", null ],
+        [ "Example - Complex Polygon", "md__meshing__tutorial.html#Example_Complex_Polygon", null ],
+        [ "Example - Simple Polygon with a hole", "md__meshing__tutorial.html#Example_Complex_Polygon_Hole", null ],
+        [ "Example - Breaklines", "md__meshing__tutorial.html#Example_Breaklines", null ],
+        [ "Example - Refine Points", "md__meshing__tutorial.html#Example_RefinePoints", null ],
+        [ "Example - Multiple Polygons with variable spacing, holes, breaklines, and refine points", "md__meshing__tutorial.html#Example_MultiPolygon", null ],
+        [ "Example - Scalar Paving", "md__meshing__tutorial.html#Example_ScalarPaving", null ],
+        [ "Example - Patch Mesh Generation", "md__meshing__tutorial.html#Example_Patch", null ],
+        [ "Example - Polyline point redistribution", "md__meshing__tutorial.html#Example_PolyLineRedist", null ],
+        [ "Checking Meshing Input for Errors", "md__meshing__tutorial.html#Check_Input", null ],
+        [ "Example - Smooth transition for constant size function", "md__meshing__tutorial.html#Example_ConstantSmooth", null ],
+        [ "Example - Generate size function from depth", "md__meshing__tutorial.html#Example_SizeFromDepth", null ],
+        [ "Example - Smooth a size function", "md__meshing__tutorial.html#Example_SmoothSizeFunc", null ]
+      ] ]
+    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ]
