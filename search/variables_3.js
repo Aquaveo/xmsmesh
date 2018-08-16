@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['singleton_3c_20xmlog_20_3e',['Singleton&lt; XmLog &gt;',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a7fb5edb11e589948eb870d1b327fa401',1,'xms::XmLog']]],
-  ['st_5fwhitespace',['ST_WHITESPACE',['https://aquaveo.github.io/xmscore/namespacexms.html#adacac03ecb8d5f770a21dfe70ec3dc9f',1,'xms']]]
+  ['intersection',['intersection',['https://aquaveo.github.io/xmsinterp/structxms_1_1edgerecord.html#a34b4f43309c69d116fad70ebe6cf0dfb',1,'xms::edgerecord']]]
 ];

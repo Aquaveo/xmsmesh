@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['relaxflagenum',['RelaxFlagEnum',['../classxms_1_1_me_relaxer_impl.html#af1298d486ffc3ed280e4f83580091ad5',1,'xms::MeRelaxerImpl']]],
-  ['relaxtypeenum',['RelaxTypeEnum',['../classxms_1_1_me_relaxer_impl.html#af43d0da0546dc99c61e90c220074f367',1,'xms::MeRelaxerImpl']]]
+  ['polytype',['polytype',['../classxms_1_1_me_poly_offsetter.html#a8bf5344ac6518b6b18f0d6ee6bbeb9f5',1,'xms::MePolyOffsetter']]],
+  ['precflags',['PrecFlags',['https://aquaveo.github.io/xmscore/namespacexms.html#a150c15c1d0a88f50f4d712f9d9be3008',1,'xms']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['valfromweights',['ValFromWeights',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_idw_impl.html#a6146dab4afc15a9cae681bf1ca3f5c67',1,'xms::InterpIdwImpl']]],
   ['validateinput',['ValidateInput',['../classxms_1_1_me_multi_poly_mesher_impl.html#acc44cac7bfb802e5d545371c527d3e13',1,'xms::MeMultiPolyMesherImpl']]],
   ['validatemeshcells',['ValidateMeshCells',['../classxms_1_1_me_poly_patcher_impl.html#ac2066142e730ea97d98e03a84bad62bf',1,'xms::MePolyPatcherImpl']]],
   ['value_5ftype',['value_type',['https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#af2484d57712d9ac194506cec5538b241',1,'xms::Pt3']]],
@@ -43,8 +44,10 @@ var searchData=
   ['vecstr3d',['VecStr3d',['https://aquaveo.github.io/xmscore/namespacexms.html#a13ddd673c4b345fffc41cd95807d429a',1,'xms']]],
   ['vector_2ecpp',['vector.cpp',['https://aquaveo.github.io/xmscore/vector_8cpp.html',1,'']]],
   ['vector_2eh',['vector.h',['https://aquaveo.github.io/xmscore/vector_8h.html',1,'']]],
+  ['vectorthatgrowstosearch',['VectorThatGrowsToSearch',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_pt_search_impl.html#a518e25e6fc9eae3649a68b17f0e513c3',1,'xms::GmPtSearchImpl']]],
   ['vectostream',['VecToStream',['https://aquaveo.github.io/xmscore/namespacexms.html#a9be33abf1221de1679a4ff237b549efb',1,'xms']]],
   ['vecuchar',['VecUchar',['https://aquaveo.github.io/xmscore/namespacexms.html#a929375fccc7c71c456bc6e1ef22909b2',1,'xms']]],
   ['vecuint',['VecUint',['https://aquaveo.github.io/xmscore/namespacexms.html#a90633b22271b64f73e832ef9a023c282',1,'xms']]],
-  ['vecvoid',['VecVoid',['https://aquaveo.github.io/xmscore/namespacexms.html#a63374baf974e2f7d75033f9866214ea4',1,'xms']]]
+  ['vecvoid',['VecVoid',['https://aquaveo.github.io/xmscore/namespacexms.html#a63374baf974e2f7d75033f9866214ea4',1,'xms']]],
+  ['verticesareadjacent',['VerticesAreAdjacent',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#a70f4eb6dd87eb85eaca86e34f11da4fc',1,'xms::TrTinImpl']]]
 ];
