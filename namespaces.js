@@ -1,7 +1,6 @@
 var namespaces =
 [
     [ "python", null, [
-      [ "interpolate", null, null ],
       [ "meshing", null, [
         [ "MeMeshUtils_pyt", "namespacepython_1_1meshing_1_1_me_mesh_utils__pyt.html", null ],
         [ "MeMultiPolyMesher_pyt", "namespacepython_1_1meshing_1_1_me_multi_poly_mesher__pyt.html", null ],

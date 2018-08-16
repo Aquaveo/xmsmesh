@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fg_5flogfilenamecallback',['fg_logFilenameCallback',['https://aquaveo.github.io/xmscore/namespacexms.html#aff8502089eb5f522e683cb52ea0a93ae',1,'xms']]]
+  ['observert',['ObserverT',['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a9014ba5c372ca8fd9b02170ce3636408',1,'xms::Observer']]]
 ];

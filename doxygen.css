@@ -18,8 +18,8 @@ h1.groupheader {
 }
 
 h2.groupheader {
-	border-bottom: 1px solid #CBB487;
-	color: #7B6435;
+	border-bottom: 1px solid #CB9E87;
+	color: #7B4C35;
 	font-size: 150%;
 	font-weight: normal;
 	margin-top: 1.75em;
@@ -93,8 +93,8 @@ h3.version {
 }
 
 div.qindex, div.navtab{
-	background-color: #F6F3EB;
-	border: 1px solid #D7C6A3;
+	background-color: #F6EFEB;
+	border: 1px solid #D7B4A3;
 	text-align: center;
 }
 
@@ -110,13 +110,13 @@ div.navtab {
 /* @group Link Styling */
 
 a {
-	color: #8C723D;
+	color: #8C573D;
 	font-weight: normal;
 	text-decoration: none;
 }
 
 .contents a:visited {
-	color: #A28346;
+	color: #A26546;
 }
 
 a:hover {
@@ -129,9 +129,9 @@ a.qindex {
 
 a.qindexHL {
 	font-weight: bold;
-	background-color: #D4C19C;
+	background-color: #D4AF9C;
 	color: #ffffff;
-	border: 1px double #CAB386;
+	border: 1px double #CA9D86;
 }
 
 .contents a.qindexHL:visited {
@@ -176,7 +176,7 @@ div.fragment {
         padding: 4px 6px;
         margin: 4px 8px 4px 2px;
 	background-color: #FDFCFB;
-	border: 1px solid #E5DAC4;
+	border: 1px solid #E5CFC4;
 }
 
 div.line {
@@ -269,9 +269,9 @@ div.contents {
 }
 
 td.indexkey {
-	background-color: #F6F3EB;
+	background-color: #F6EFEB;
 	font-weight: bold;
-	border: 1px solid #E5DAC4;
+	border: 1px solid #E5CFC4;
 	margin: 2px 0px 2px 0;
 	padding: 2px 10px;
         white-space: nowrap;
@@ -279,14 +279,14 @@ td.indexkey {
 }
 
 td.indexvalue {
-	background-color: #F6F3EB;
-	border: 1px solid #E5DAC4;
+	background-color: #F6EFEB;
+	border: 1px solid #E5CFC4;
 	padding: 2px 10px;
 	margin: 2px 0px;
 }
 
 tr.memlist {
-	background-color: #F7F4EE;
+	background-color: #F7F1EE;
 }
 
 p.formulaDsp {
@@ -369,8 +369,8 @@ span.vhdllogic {
 }
 
 blockquote {
-        background-color: #FBFAF7;
-        border-left: 2px solid #D4C19C;
+        background-color: #FBF8F7;
+        border-left: 2px solid #D4AF9C;
         margin: 0 24px 0 4px;
         padding: 0 12px 0 16px;
 }
@@ -403,18 +403,18 @@ td.tiny {
 .dirtab {
 	padding: 4px;
 	border-collapse: collapse;
-	border: 1px solid #D7C6A3;
+	border: 1px solid #D7B4A3;
 }
 
 th.dirtab {
-	background: #F6F3EB;
+	background: #F6EFEB;
 	font-weight: bold;
 }
 
 hr {
 	height: 0px;
 	border: none;
-	border-top: 1px solid #AA8A4A;
+	border-top: 1px solid #AA6A4A;
 }
 
 hr.footer {
@@ -449,7 +449,7 @@ table.memberdecls {
 .mdescLeft, .mdescRight,
 .memItemLeft, .memItemRight,
 .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
-	background-color: #FCFBF9;
+	background-color: #FCFAF9;
 	border: none;
 	margin: 4px;
 	padding: 1px 0 0 8px;
@@ -476,7 +476,7 @@ table.memberdecls {
 }
 
 .memTemplParams {
-	color: #A28346;
+	color: #A26546;
         white-space: nowrap;
 	font-size: 80%;
 }
@@ -489,14 +489,14 @@ table.memberdecls {
 
 .memtemplate {
 	font-size: 80%;
-	color: #A28346;
+	color: #A26546;
 	font-weight: normal;
 	margin-left: 9px;
 }
 
 .memnav {
-	background-color: #F6F3EB;
-	border: 1px solid #D7C6A3;
+	background-color: #F6EFEB;
+	border: 1px solid #D7B4A3;
 	text-align: center;
 	margin: 2px;
 	margin-right: 15px;
@@ -534,16 +534,16 @@ table.memberdecls {
 }
 
 .memproto, dl.reflist dt {
-        border-top: 1px solid #D9C9A8;
-        border-left: 1px solid #D9C9A8;
-        border-right: 1px solid #D9C9A8;
+        border-top: 1px solid #D9B8A8;
+        border-left: 1px solid #D9B8A8;
+        border-right: 1px solid #D9B8A8;
         padding: 6px 0px 6px 0px;
-        color: #554525;
+        color: #553525;
         font-weight: bold;
         text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9);
         background-image:url('nav_f.png');
         background-repeat:repeat-x;
-        background-color: #F2EDE2;
+        background-color: #F2E8E2;
         /* opera specific markup */
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
         border-top-right-radius: 4px;
@@ -560,9 +560,9 @@ table.memberdecls {
 }
 
 .memdoc, dl.reflist dd {
-        border-bottom: 1px solid #D9C9A8;      
-        border-left: 1px solid #D9C9A8;      
-        border-right: 1px solid #D9C9A8; 
+        border-bottom: 1px solid #D9B8A8;      
+        border-left: 1px solid #D9B8A8;      
+        border-right: 1px solid #D9B8A8; 
         padding: 6px 10px 2px 10px;
         background-color: #FDFCFB;
         border-top-width: 0;
@@ -651,11 +651,11 @@ span.mlabels {
 }
 
 span.mlabel {
-        background-color: #C1A772;
-        border-top:1px solid #B49453;
-        border-left:1px solid #B49453;
-        border-right:1px solid #E5DAC4;
-        border-bottom:1px solid #E5DAC4;
+        background-color: #C18D72;
+        border-top:1px solid #B47353;
+        border-left:1px solid #B47353;
+        border-right:1px solid #E5CFC4;
+        border-bottom:1px solid #E5CFC4;
 	text-shadow: none;
 	color: white;
 	margin-right: 4px;
@@ -713,7 +713,7 @@ div.directory {
 
 .directory tr.even {
 	padding-left: 6px;
-	background-color: #FBFAF7;
+	background-color: #FBF8F7;
 }
 
 .directory img {
@@ -731,7 +731,7 @@ div.directory {
         cursor: pointer;
         padding-left: 2px;
         padding-right: 2px;
-	color: #8C723D;
+	color: #8C573D;
 }
 
 div.dynheader {
@@ -746,7 +746,7 @@ div.dynheader {
 
 address {
 	font-style: normal;
-	color: #614F2A;
+	color: #613D2A;
 }
 
 table.doxtable {
@@ -756,12 +756,12 @@ table.doxtable {
 }
 
 table.doxtable td, table.doxtable th {
-	border: 1px solid #68542D;
+	border: 1px solid #68402D;
 	padding: 3px 7px 2px;
 }
 
 table.doxtable th {
-	background-color: #7F6737;
+	background-color: #7F4F37;
 	color: #FFFFFF;
 	font-size: 110%;
 	padding-bottom: 4px;
@@ -771,7 +771,7 @@ table.doxtable th {
 table.fieldtable {
         /*width: 100%;*/
         margin-bottom: 10px;
-        border: 1px solid #D9C9A8;
+        border: 1px solid #D9B8A8;
         border-spacing: 0px;
         -moz-border-radius: 4px;
         -webkit-border-radius: 4px;
@@ -787,8 +787,8 @@ table.fieldtable {
 
 .fieldtable td.fieldtype, .fieldtable td.fieldname {
         white-space: nowrap;
-        border-right: 1px solid #D9C9A8;
-        border-bottom: 1px solid #D9C9A8;
+        border-right: 1px solid #D9B8A8;
+        border-bottom: 1px solid #D9B8A8;
         vertical-align: top;
 }
 
@@ -797,7 +797,7 @@ table.fieldtable {
 }
 
 .fieldtable td.fielddoc {
-        border-bottom: 1px solid #D9C9A8;
+        border-bottom: 1px solid #D9B8A8;
         /*width: 100%;*/
 }
 
@@ -816,9 +816,9 @@ table.fieldtable {
 .fieldtable th {
         background-image:url('nav_f.png');
         background-repeat:repeat-x;
-        background-color: #F2EDE2;
+        background-color: #F2E8E2;
         font-size: 90%;
-        color: #554525;
+        color: #553525;
         padding-bottom: 4px;
         padding-top: 5px;
         text-align:left;
@@ -828,7 +828,7 @@ table.fieldtable {
         -webkit-border-top-right-radius: 4px;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        border-bottom: 1px solid #D9C9A8;
+        border-bottom: 1px solid #D9B8A8;
 }
 
 
@@ -850,8 +850,8 @@ table.fieldtable {
 	background-position: 0 -5px;
 	height:30px;
 	line-height:30px;
-	color:#CCB68A;
-	border:solid 1px #E4D9C2;
+	color:#CCA08A;
+	border:solid 1px #E4CDC2;
 	overflow:hidden;
 	margin:0px;
 	padding:0px;
@@ -866,7 +866,7 @@ table.fieldtable {
 	background-image:url('bc_s.png');
 	background-repeat:no-repeat;
 	background-position:right;
-	color:#7C6536;
+	color:#7C4D36;
 }
 
 .navpath li.navelem a
@@ -875,7 +875,7 @@ table.fieldtable {
 	display:block;
 	text-decoration: none;
 	outline: none;
-	color: #5D4B28;
+	color: #5D3A28;
 	font-family: 'Lucida Grande',Geneva,Helvetica,Arial,sans-serif;
 	text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9);
 	text-decoration: none;        
@@ -883,7 +883,7 @@ table.fieldtable {
 
 .navpath li.navelem a:hover
 {
-	color:#BDA168;
+	color:#BD8468;
 }
 
 .navpath li.footer
@@ -895,7 +895,7 @@ table.fieldtable {
         background-image:none;
         background-repeat:no-repeat;
         background-position:right;
-        color:#7C6536;
+        color:#7C4D36;
         font-size: 8pt;
 }
 
@@ -930,9 +930,9 @@ div.header
 {
         background-image:url('nav_h.png');
         background-repeat:repeat-x;
-	background-color: #FCFBF9;
+	background-color: #FCFAF9;
 	margin:  0px;
-	border-bottom: 1px solid #E5DAC4;
+	border-bottom: 1px solid #E5CFC4;
 }
 
 div.headertitle
@@ -1051,7 +1051,7 @@ dl.section dd {
 	padding: 0px;
 	margin: 0px;
 	width: 100%;
-	border-bottom: 1px solid #B49453;
+	border-bottom: 1px solid #B47353;
 }
 
 .image
@@ -1081,7 +1081,7 @@ dl.section dd {
 
 div.zoom
 {
-	border: 1px solid #CEBA90;
+	border: 1px solid #CEA590;
 }
 
 dl.citelist {
@@ -1089,7 +1089,7 @@ dl.citelist {
 }
 
 dl.citelist dt {
-        color:#755F33;
+        color:#754933;
         float:left;
         font-weight:bold;
         margin-right:10px;
@@ -1103,8 +1103,8 @@ dl.citelist dd {
 
 div.toc {
         padding: 14px 25px;
-        background-color: #FAF8F4;
-        border: 1px solid #EEE7D8;
+        background-color: #FAF6F4;
+        border: 1px solid #EEDFD8;
         border-radius: 7px 7px 7px 7px;
         float: right;
         height: auto;
@@ -1122,7 +1122,7 @@ div.toc li {
 
 div.toc h3 {
         font: bold 12px/1.2 Arial,FreeSans,sans-serif;
-	color: #A28346;
+	color: #A26546;
         border-bottom: 0 none;
         margin: 0;
 }

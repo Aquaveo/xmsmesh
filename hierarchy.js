@@ -1,7 +1,7 @@
 var hierarchy =
 [
-    [ "xms::MePolyPts::impl", "classxms_1_1_me_poly_pts_1_1impl.html", null ],
     [ "xms::MeIntersectPolys::impl", "classxms_1_1_me_intersect_polys_1_1impl.html", null ],
+    [ "xms::MePolyPts::impl", "classxms_1_1_me_poly_pts_1_1impl.html", null ],
     [ "xms::MeIntersectPolys", "classxms_1_1_me_intersect_polys.html", null ],
     [ "xms::MeMultiPolyMesher", "classxms_1_1_me_multi_poly_mesher.html", [
       [ "xms::MeMultiPolyMesherImpl", "classxms_1_1_me_multi_poly_mesher_impl.html", null ]

@@ -3,7 +3,6 @@ var searchData=
   ['mapdbldbl',['MapDblDbl',['https://aquaveo.github.io/xmscore/namespacexms.html#a96319792209e6107cd0c7fb2405e838d',1,'xms']]],
   ['mapdblint',['MapDblInt',['https://aquaveo.github.io/xmscore/namespacexms.html#a760083c970c1c8999eba9c675e18fe0f',1,'xms']]],
   ['mapdblstr',['MapDblStr',['https://aquaveo.github.io/xmscore/namespacexms.html#adcebdd9d2d0a5791feee0022ed6615e5',1,'xms']]],
-  ['mapedges',['MapEdges',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#a1e9f040080051c5ff390579d0b127308',1,'xms::InterpNatNeighImpl']]],
   ['mapintbool',['MapIntBool',['https://aquaveo.github.io/xmscore/namespacexms.html#a8873858f58439ef2542640d460f2f2ff',1,'xms']]],
   ['mapintdbl',['MapIntDbl',['https://aquaveo.github.io/xmscore/namespacexms.html#a320d3c4b7bd375eb56ba1a48eb9531aa',1,'xms']]],
   ['mapintflt',['MapIntFlt',['https://aquaveo.github.io/xmscore/namespacexms.html#a5a8fd93dc68064b65820a0673f8c470d',1,'xms']]],
