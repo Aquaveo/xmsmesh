@@ -746,7 +746,7 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
   VecPt3d2d outPoly;
   VecPt3d3d inPolys;
   tutReadPolygons(inPolyFile, outPoly, inPolys);
-  TS_ASSERT_EQUALS(false, pp.m_outPoly.empty());
+  TS_ASSERT_EQUALS(false, outPoly.empty());
   if (outPoly.empty() || inPolys.empty())
   {
     TS_FAIL("");

@@ -76,6 +76,7 @@ class XmsinterpConan(ConanFile):
         # sucess) rebuild the library without tests.
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
         cmake.definitions["BUILD_TESTING"] = self.options.testing
+        cmake.definitions["XMSMESH_TEST_PATH"] = "test_files/"
         cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.6")
         cmake.configure(source_folder=".")
         cmake.build()

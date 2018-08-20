@@ -13,7 +13,7 @@ set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 set(CONDA_PREFIX "" CACHE PATH "Path to the conda environment used to build.")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Set this if you want to build the python bindings.")
-set(XMSMESH_TEST_PATH "test_files/" CACHE PATH "Path to test files for testing")
+set(XMSMESH_TEST_PATH "../test_files/" CACHE PATH "Path to test files for testing")
 set(PYTHON_TARGET_VERSION 3.6 CACHE STRING "Version of python to link to for python wrapping.")
 
 project(xmsmesh C CXX)
