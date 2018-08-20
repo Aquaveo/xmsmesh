@@ -30,7 +30,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
         .def_readwrite("return_cell_polygons", &xms::MeMultiPolyMesherIo::m_returnCellPolygons,
             " If true, returns the polygon index of each cell."
         )
-        .def_property("poly_id", &xms::MeMultiPolyMesherIo::m_polyId,
+        .def_readwrite("poly_id", &xms::MeMultiPolyMesherIo::m_polyId,
             "The poly ID"
         )
         .def_property("points",
