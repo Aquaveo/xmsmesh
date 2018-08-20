@@ -1886,7 +1886,7 @@ void MePolyCleanerUnitTests::testCleanIn9()
 
   if (2 != o1.m_loops.size())
   {
-    iDumpOutput(o1);
+    // iDumpOutput(o1);
     return;
   }
   std::vector<Pt3d> basePts = {{6, 2, 0}, {6, 4, 0}, {0, 4, 0}, {0, 2, 0}, {7, 5, 0}, {3, 5, 0},
@@ -1955,7 +1955,7 @@ void MePolyCleanerUnitTests::testCleanIn10()
   TS_ASSERT_EQUALS(2, o1.m_loops.size());
   if (2 != o1.m_loops.size())
   {
-    iDumpOutput(o1);
+    // iDumpOutput(o1);
     return;
   }
   std::vector<Pt3d> basePts = {{7, 7, 0}, {0, 7, 0}, {0, 2, 0}, {3, 2, 0}, {3, 0, 0}, {7, 0, 0},
