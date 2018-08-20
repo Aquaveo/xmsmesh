@@ -30,9 +30,6 @@ void initMeMultiPolyMesherIo(py::module &m) {
         .def_readwrite("return_cell_polygons", &xms::MeMultiPolyMesherIo::m_returnCellPolygons,
             " If true, returns the polygon index of each cell."
         )
-        .def_readwrite("poly_id", &xms::MeMultiPolyMesherIo::m_polyId,
-            "The poly ID"
-        )
         .def_property("points",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
                 xms::VecPt3d &vec_pts = self.m_points;
@@ -308,6 +305,9 @@ void initMePolyInput(py::module &m) {
         )
         .def_readwrite("remove_internal_four_triangle_pts", &xms::MePolyInput::m_removeInternalFourTrianglePts,
             "Optional. Remove internal points that are only connected to 4 cells. Used by the ugAutoCorrectCells class"
+        )
+        .def_readwrite("poly_id", &xms::MePolyInput::m_polyId,
+            "Optional. Set when needed. Can be useful for classes who need an ID."
         )
         .def("__str__", [](xms::MePolyInput &self) {
              std::string szf = self.m_sizeFunction == nullptr ? "none" : self.m_sizeFunction->ToString();
