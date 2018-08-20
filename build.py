@@ -10,11 +10,13 @@ if __name__ == "__main__":
     updated_builds = []
     # Add environment variables to build definitions
     xms_version = os.environ.get('XMS_VERSION', None)
+    python_target_version = os.environ.get('PYTHON_TARGET_VERSION', "3.6")
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         env_vars.update({
             'XMS_VERSION': xms_version,
             'VERBOSE': 1
+            'PYTHON_TARGET_VERSION': python_target_version
         })
 
         # Require c++11 compatibility
@@ -40,7 +42,9 @@ if __name__ == "__main__":
     xms_updated_builds = []
     for settings, options, env_vars, build_requires, reference in builder.items:
         # xms option
-        if settings['compiler'] == 'Visual Studio' and 'MD' in settings['compiler.runtime']:
+        if settings['compiler'] == 'Visual Studio' \
+                and 'MD' in settings['compiler.runtime'] \
+                and int(settings['compiler.version']) < 13:
             xms_options = dict(options)
             xms_options.update({'xmsmesh:xms': True})
             xms_updated_builds.append([settings, xms_options, env_vars, build_requires])

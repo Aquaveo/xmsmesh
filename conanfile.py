@@ -38,11 +38,6 @@ class XmsinterpConan(ConanFile):
         self.options['xmsinterp'].pybind = self.options.pybind
         self.options['xmsinterp'].testing = self.options.testing
 
-        if s_compiler != "Visual Studio" and s_compiler != "apple-clang":
-            self.options['boost'].fPIC = True
-        elif s_compiler == "apple-clang":
-            self.options['boost'].fPIC = False
-
         if s_compiler == "apple-clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
@@ -81,6 +76,7 @@ class XmsinterpConan(ConanFile):
         # sucess) rebuild the library without tests.
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
         cmake.definitions["BUILD_TESTING"] = self.options.testing
+        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.6")
         cmake.configure(source_folder=".")
         cmake.build()
 

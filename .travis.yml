@@ -11,12 +11,14 @@ env:
    - GH_REPO_NAME: xmsmesh
    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
    - GH_REPO_REF: github.com/Aquaveo/xmsmesh.git
+   - PYTHON_TARGET_VERSION: 2.7
 
 linux: &linux
    os: linux
    sudo: required
    language: python
-   python: "3.6"
+   python:
+     - 2.7
    services:
      - docker
 osx: &osx
@@ -52,6 +54,7 @@ jobs:
    include:
       # --- TEST STAGE ------------------------------------------------------------------------------------------------
       - stage: test
+        if: branch = master
         addons:
           apt:
             packages:
