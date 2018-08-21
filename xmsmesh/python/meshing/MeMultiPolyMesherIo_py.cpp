@@ -13,7 +13,6 @@
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
 
-#include <xmscore/python/misc/PyUtils.h>
 #include <xmsinterp/interpolate/InterpLinear.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 
@@ -311,16 +310,51 @@ void initMePolyInput(py::module &m) {
         .def_readwrite("poly_id", &xms::MePolyInput::m_polyId,
             "Optional. Set when needed. Can be useful for classes who need an ID."
         )
+        
+        
+        
+        
+        
+        
+        
         .def_property("seed_points",
             [](xms::MePolyInput &self) -> py::iterable {
-                return xms::PyIterFromVecPt3d(self.m_seedPoints);
+                xms::VecPt3d &vec_pts = self.m_seedPoints;
+                py::array_t<double, py::array::c_style> ret_points({(int)vec_pts.size(), 3});
+                auto r = ret_points.mutable_unchecked<2>();
+                int i = 0;
+                for (ssize_t i = 0; i < r.shape(0); i++) {
+                  r(i, 0) = vec_pts[i].x;
+                  r(i, 1) = vec_pts[i].y;
+                  r(i, 2) = vec_pts[i].z;
+                }
+                return ret_points;
             },
             [](xms::MePolyInput &self, py::iterable seed_points) {
-                self.m_seedPoints = *xms::VecPt3dFromPyIter(seed_points);
+             self.m_seedPoints.clear();
+             self.m_seedPoints.reserve(py::len(seed_points));
+             for (auto item : seed_points) {
+               if(!py::isinstance<py::iterable>(item)) {
+                 throw py::type_error("First arg must be a n-tuple of 3-tuples");
+               }
+               py::tuple tuple = item.cast<py::tuple>();
+               if (py::len(tuple) != 3) {
+                 throw py::type_error("Input points must be 3-tuples");
+               } else {
+                 xms::Pt3d point(tuple[0].cast<double>(), tuple[1].cast<double>(), tuple[2].cast<double>());
+                 self.m_seedPoints.push_back(point);
+               }
             }, "Optional array of seed points. If the user has some methodology for creating points inside the polygon"
             " then those points can be specified here. If these points are specified then the paving is not performed."
             " These points will not be used if the meshing option is patch."
         )
+        
+        
+        
+        
+        
+        
+        
         .def("__str__", [](xms::MePolyInput &self) {
              std::string szf = self.m_sizeFunction == nullptr ? "none" : self.m_sizeFunction->ToString();
              std::string elevf = self.m_elevFunction == nullptr ? "none" : self.m_elevFunction->ToString();
