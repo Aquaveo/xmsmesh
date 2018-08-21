@@ -188,6 +188,16 @@ bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
         a_io.m_refPts.push_back(rpt);
       }
     }
+    else if ("SEED_POINTS" == card)
+    {
+      os >> numpts;
+      VecPt3d& pts = p->m_seedPoints;
+      pts.assign(numpts, Pt3d());
+      for (int i = 0; i < numpts; ++i)
+      {
+        os >> pts[i].x >> pts[i].y;
+      }
+    }
     card = "";
   }
   return true;
