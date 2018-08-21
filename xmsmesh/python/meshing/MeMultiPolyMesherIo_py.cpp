@@ -12,6 +12,8 @@
 #include <sstream>
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
+
+#include <xmscore/python/misc/PyUtils.h>
 #include <xmsinterp/interpolate/InterpLinear.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 
@@ -308,6 +310,16 @@ void initMePolyInput(py::module &m) {
         )
         .def_readwrite("poly_id", &xms::MePolyInput::m_polyId,
             "Optional. Set when needed. Can be useful for classes who need an ID."
+        )
+        .def_property("seed_points",
+            [](xms::MePolyInput &self) -> py::iterable {
+                return xms::PyIterFromVecPt3d(self.m_seedPts);
+            },
+            [](xms::MePolyInput &self, py::iterable seed_points) {
+                self.m_seedPts = *xms::VecPt3dFromPyIter(seed_points);
+            }, "Optional array of seed points. If the user has some methodology for creating points inside the polygon"
+            " then those points can be specified here. If these points are specified then the paving is not performed."
+            " These points will not be used if the meshing option is patch."
         )
         .def("__str__", [](xms::MePolyInput &self) {
              std::string szf = self.m_sizeFunction == nullptr ? "none" : self.m_sizeFunction->ToString();

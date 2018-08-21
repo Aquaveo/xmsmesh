@@ -134,6 +134,7 @@ class TestMePolyInput(unittest.TestCase):
         poly_corners = (0, 1, 2, 3)
         size_func = InterpLinear()
         elev_func = InterpIdw()
+        seed_points = ((3, 3, 0), (4, 3, 0), (4, 8, 0), (3, 8, 0))
 
         self.assertEqual(0, len(pi.outside_poly))
         pi.outside_poly = outside_poly
@@ -170,6 +171,10 @@ class TestMePolyInput(unittest.TestCase):
         self.assertEqual(False, pi.remove_internal_four_triangle_pts)
         pi.remove_internal_four_triangle_pts = True
         self.assertEqual(True, pi.remove_internal_four_triangle_pts)
+
+        self.assertEqual(0, len(pi.seed_points))
+        pi.seed_points = seed_points
+        self.assertArraysEqual(seed_points, pi.seed_points)
 
 class TestMeRefinePoint(unittest.TestCase):
     """Test MeRefinePoint functions."""
