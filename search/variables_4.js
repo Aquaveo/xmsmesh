@@ -187,6 +187,8 @@ var searchData=
   ['m_5fscalarto',['m_scalarTo',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_idw_impl_1_1_interp_thread.html#ad89ee8ab61bc305b07ed6d0d4c344ad2',1,'xms::InterpIdwImpl::InterpThread']]],
   ['m_5fscalefactor',['m_scaleFactor',['../classxms_1_1_smooth_io.html#aed8725a00285c702912031ee3af2597e',1,'xms::SmoothIo']]],
   ['m_5fsearcher',['m_searcher',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_breakline_adder_impl.html#ae928c362b7672a133aee9b3babf50637',1,'xms::TrBreaklineAdderImpl']]],
+  ['m_5fseedpoints',['m_seedPoints',['../classxms_1_1_me_poly_input.html#af7a4b3af4535c9872aac233b8fd9e82a',1,'xms::MePolyInput']]],
+  ['m_5fseedpts',['m_seedPts',['../classxms_1_1_me_poly_mesher_impl.html#a78a74e7005fc302d1b52d227974b8ad3',1,'xms::MePolyMesherImpl']]],
   ['m_5fsegcount',['m_segCount',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_breakline_adder_impl.html#ae4c7593836c2a616f2d329913ad77b45',1,'xms::TrBreaklineAdderImpl']]],
   ['m_5fsegcross',['m_segCross',['../classxms_1_1_me_poly_pts_1_1impl.html#ae9e1550ae892311e5ebeef5732218e85',1,'xms::MePolyPts::impl']]],
   ['m_5fsetoffsettozero',['m_setOffsetToZero',['../classxms_1_1_me_poly_offsetter_impl.html#a99b4e23ef606f46039a449e77e23f660',1,'xms::MePolyOffsetterImpl']]],

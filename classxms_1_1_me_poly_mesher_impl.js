@@ -52,6 +52,7 @@ var classxms_1_1_me_poly_mesher_impl =
     [ "m_refPtsTooClose", "classxms_1_1_me_poly_mesher_impl.html#a1034ebceca22bdb7585ab828f79b9891", null ],
     [ "m_relaxer", "classxms_1_1_me_poly_mesher_impl.html#a63c7147fd612276147b3c7b5c15eb943", null ],
     [ "m_removeInternalFourTrianglePts", "classxms_1_1_me_poly_mesher_impl.html#a00fb4dc1014d53393112779603450986", null ],
+    [ "m_seedPts", "classxms_1_1_me_poly_mesher_impl.html#a78a74e7005fc302d1b52d227974b8ad3", null ],
     [ "m_testing", "classxms_1_1_me_poly_mesher_impl.html#a3747126ec1d1c00af868c5a40407bdb6", null ],
     [ "m_tin", "classxms_1_1_me_poly_mesher_impl.html#a7ed3b98f58a876ed9063232c0366f04c", null ],
     [ "m_xyTol", "classxms_1_1_me_poly_mesher_impl.html#ad6d49768295e988176b3a4bc80328603", null ]

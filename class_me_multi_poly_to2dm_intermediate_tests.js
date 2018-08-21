@@ -9,5 +9,7 @@ var class_me_multi_poly_to2dm_intermediate_tests =
     [ "testCasePatch6", "class_me_multi_poly_to2dm_intermediate_tests.html#a84226b4982620e02a55dcc8a2a183dc3", null ],
     [ "testCasePaveConstSizeTransition", "class_me_multi_poly_to2dm_intermediate_tests.html#a6dafe689950322b86ab34ee1a81db31d", null ],
     [ "testCasePaveGeo", "class_me_multi_poly_to2dm_intermediate_tests.html#ac17f07874b30aa40a86e28fd7f7680d1", null ],
-    [ "testCasePaveSanDiego", "class_me_multi_poly_to2dm_intermediate_tests.html#a51c63bcaf0d65ee1469828506e7f7357", null ]
+    [ "testCasePaveSanDiego", "class_me_multi_poly_to2dm_intermediate_tests.html#a51c63bcaf0d65ee1469828506e7f7357", null ],
+    [ "testSeedPoints", "class_me_multi_poly_to2dm_intermediate_tests.html#a8a53ed50a016e51edf18554a8ed7e90f", null ],
+    [ "testSeedPoints_PolygonWithHole", "class_me_multi_poly_to2dm_intermediate_tests.html#a2b35e85216c3845865d581e41f6a458a", null ]
 ];

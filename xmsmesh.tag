@@ -620,6 +620,20 @@
       <anchor>a6dafe689950322b86ab34ee1a81db31d</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSeedPoints</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>a8a53ed50a016e51edf18554a8ed7e90f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSeedPoints_PolygonWithHole</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>a2b35e85216c3845865d581e41f6a458a</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>MeMultiPolyTo2dmUnitTests</name>
@@ -3119,6 +3133,13 @@
       <anchor>ab585d9db0685593ff0b72fb26480e0ab</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_seedPoints</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>af7a4b3af4535c9872aac233b8fd9e82a</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>xms::MeRefinePoint</name>
@@ -3587,6 +3608,13 @@
       <name>m_polyId</name>
       <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
       <anchor>af9cfecfe660eeda377c58b55744a69f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d</type>
+      <name>m_seedPts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a78a74e7005fc302d1b52d227974b8ad3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
