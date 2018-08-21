@@ -313,10 +313,10 @@ void initMePolyInput(py::module &m) {
         )
         .def_property("seed_points",
             [](xms::MePolyInput &self) -> py::iterable {
-                return xms::PyIterFromVecPt3d(self.m_seedPts);
+                return xms::PyIterFromVecPt3d(self.m_seedPoints);
             },
             [](xms::MePolyInput &self, py::iterable seed_points) {
-                self.m_seedPts = *xms::VecPt3dFromPyIter(seed_points);
+                self.m_seedPoints = *xms::VecPt3dFromPyIter(seed_points);
             }, "Optional array of seed points. If the user has some methodology for creating points inside the polygon"
             " then those points can be specified here. If these points are specified then the paving is not performed."
             " These points will not be used if the meshing option is patch."
