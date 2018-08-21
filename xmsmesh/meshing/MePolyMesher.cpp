@@ -148,6 +148,7 @@ private:
   PtHash m_ptHash;           ///< hash for point locations
   BSHP<InterpBase> m_elev;   ///< interpolator to assign elevations to mesh points
   int m_polyId;              ///< id of the polygon
+  VecPt3d m_seedPts;         ///< user generated seed points.
   VecPt3d m_boundPtsToRemove; ///< boundary points to remove after the paving process is complete
   bool m_removeInternalFourTrianglePts =
     false; ///< flag to indicate the removal of internal pts connected to 4 triangles will occur
@@ -207,6 +208,7 @@ MePolyMesherImpl::MePolyMesherImpl()
 , m_testing(false)
 , m_observer()
 , m_polyId(-1)
+, m_seedPts()
 {
 } // MePolyMesherImpl::MePolyMesherImpl
 //------------------------------------------------------------------------------
@@ -242,6 +244,7 @@ bool MePolyMesherImpl::MeshIt(const MeMultiPolyMesherIo& a_input,
 
   m_polyId = polyInput.m_polyId;
   m_outPoly = polyInput.m_outPoly;
+  m_seedPts = polyInput.m_seedPoints;
   ComputeTolerance();
 
   // holes inside the outer polygons
@@ -470,17 +473,35 @@ void MePolyMesherImpl::GenerateMeshPts()
     return;
   if (!m_polyCorners.empty())
   {
+    if (!m_seedPts.empty())
+    {
+      XM_LOG(xmlog::warning, "Seed points specified with \"Patch option.\" "
+                             "These points will be ignored.");
+    }
     BSHP<MePolyPatcher> patcher(MePolyPatcher::New());
     patcher->MeshIt(m_polyId, m_outPoly, m_polyCorners, m_xyTol, *m_points, m_cells);
   }
   else
   {
-    m_polyPaver->SetObserver(m_observer);
     // add the refine point polygons
     VecPt3d2d inPolys(m_inPolys);
     inPolys.insert(inPolys.end(), m_refPtPolys.begin(), m_refPtPolys.end());
-    // generate mesh points
-    m_polyPaver->PolyToMeshPts(m_outPoly, inPolys, m_bias, m_xyTol, *m_points);
+
+    // if the user provided the seed points then we don't need to pave
+    if (!m_seedPts.empty())
+    {
+      // add the outer poly and the inner poly points
+      *m_points = m_seedPts;
+      m_points->insert(m_points->end(), m_outPoly.begin(), m_outPoly.end());
+      for (auto& in : inPolys)
+        m_points->insert(m_points->end(), in.begin(), in.end());
+    }
+    else
+    {
+      m_polyPaver->SetObserver(m_observer);
+      // generate mesh points
+      m_polyPaver->PolyToMeshPts(m_outPoly, inPolys, m_bias, m_xyTol, *m_points);
+    }
 
     // add the mesh refine points
     m_points->insert(m_points->end(), m_refMeshPts.begin(), m_refMeshPts.end());
@@ -633,6 +654,10 @@ void MePolyMesherImpl::AutoFixFourTrianglePts()
 //------------------------------------------------------------------------------
 void MePolyMesherImpl::Relax()
 {
+  // if the user specified the seed points then do not relax
+  if (!m_seedPts.empty())
+    return;
+
   // Put polygons into one vector
   VecInt fixedPoints(m_outPolyPtIdxs.begin(), m_outPolyPtIdxs.end());
   for (size_t i = 0; i < m_inPolyPtIdxs.size(); ++i)

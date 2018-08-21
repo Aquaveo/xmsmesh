@@ -98,6 +98,12 @@ public:
   /// Optional. Polygon id. Useful for reporting errors if calling software stores
   /// ids for polygons and would like to report those back to the user.
   int m_polyId;
+
+  /// Optional. Seed points. If the user has some other methodology for creating
+  /// point inside the polygon then those points can be specified here. If these
+  /// points are specified then the paving is not performed. These points will
+  /// not be used if the meshing option is patch.
+  VecPt3d m_seedPoints;
 }; // MePolyInput
 
 ////////////////////////////////////////////////////////////////////////////////

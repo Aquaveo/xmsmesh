@@ -46,6 +46,8 @@ public:
   void testCasePaveSanDiego();
   void testCasePatch6();
   void testCasePaveConstSizeTransition();
+  void testSeedPoints();
+  void testSeedPoints_PolygonWithHole();
 };
 
 //} // namespace xms

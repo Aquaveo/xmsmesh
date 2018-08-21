@@ -764,5 +764,19 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
   p2g->Generate2dm(ip, outFile);
   TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
 } // MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition
+//------------------------------------------------------------------------------
+/// \brief Test providing seed points to the mesher
+//------------------------------------------------------------------------------
+void MeMultiPolyTo2dmIntermediateTests::testSeedPoints()
+{
+  iTestFromPolyFile("CaseTestSeedPoints", 10);
+} // MeMultiPolyTo2dmIntermediateTests::testSeedPoints
+//------------------------------------------------------------------------------
+/// \brief Test providing seed points to the mesher for a polygon with a hole
+//------------------------------------------------------------------------------
+void MeMultiPolyTo2dmIntermediateTests::testSeedPoints_PolygonWithHole()
+{
+  iTestFromPolyFile("CaseTestSeedPointsPolygonWithHole", 10);
+} // MeMultiPolyTo2dmIntermediateTests::testSeedPoints_PolygonWithHole
 
 #endif // CXX_TEST
