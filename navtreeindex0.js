@@ -57,7 +57,8 @@ var NAVTREEINDEX0 =
 "_me_multi_poly_mesher_io__py_8cpp.html":[8,0,0,1,0,5],
 "_me_multi_poly_mesher_io__py_8cpp.html#a906de3499cbb27627830db8e8944fda7":[8,0,0,1,0,5,0],
 "_me_multi_poly_mesher_io__py_8cpp.html#ab006948a9e89f12e829af7ac44420b2e":[8,0,0,1,0,5,1],
-"_me_multi_poly_mesher_io__py_8cpp.html#adfb353cf30718fe414849af327ec8d41":[8,0,0,1,0,5,2],
+"_me_multi_poly_mesher_io__py_8cpp.html#ac244abfc64f33b047a87d2c7ee078c4b":[8,0,0,1,0,5,2],
+"_me_multi_poly_mesher_io__py_8cpp.html#adfb353cf30718fe414849af327ec8d41":[8,0,0,1,0,5,3],
 "_me_multi_poly_mesher_io__py_8cpp_source.html":[8,0,0,1,0,5],
 "_me_multi_poly_mesher_io__pyt_8py_source.html":[8,0,0,1,0,6],
 "_me_multi_poly_to2dm_8cpp.html":[8,0,0,0,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_me_poly_cleaner_unit_tests.html#a9b1592dc44219af39da7e15898a30bc8":[7,0,7,12],
 "class_me_poly_cleaner_unit_tests.html#aa1e36c54184a63db757a0857c0230b8d":[7,0,7,29],
 "class_me_poly_cleaner_unit_tests.html#aa208928c32d42cc51dab99f1ac22bfe7":[7,0,7,14],
-"class_me_poly_cleaner_unit_tests.html#aafc73fdda374581d8c4f42f68360fd04":[7,0,7,42],
-"class_me_poly_cleaner_unit_tests.html#ab0ce66d33968eabfd7b3cc4dd1e36e4c":[7,0,7,27]
+"class_me_poly_cleaner_unit_tests.html#aafc73fdda374581d8c4f42f68360fd04":[7,0,7,42]
 };

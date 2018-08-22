@@ -415,101 +415,88 @@ $(document).ready(function(){initNavTree('_me_multi_poly_mesher_io__py_8cpp_sour
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        .def_readwrite(<span class="stringliteral">&quot;poly_id&quot;</span>, &amp;<a class="code" href="classxms_1_1_me_poly_input.html#ab585d9db0685593ff0b72fb26480e0ab">xms::MePolyInput::m_polyId</a>,</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="stringliteral">&quot;Optional. Set when needed. Can be useful for classes who need an ID.&quot;</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        )</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        </div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        </div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        </div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        </div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        </div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        .def_property(<span class="stringliteral">&quot;seed_points&quot;</span>,</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            [](<a class="code" href="classxms_1_1_me_poly_input.html">xms::MePolyInput</a> &amp;<span class="keyword">self</span>) -&gt; py::iterable {</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a0dc29604ee813731d584232b63f54922">xms::VecPt3d</a> &amp;vec_pts = <span class="keyword">self</span>.m_seedPoints;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                py::array_t&lt;double, py::array::c_style&gt; ret_points({(int)vec_pts.size(), 3});</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                <span class="keyword">auto</span> r = ret_points.mutable_unchecked&lt;2&gt;();</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                <span class="keywordflow">for</span> (ssize_t i = 0; i &lt; r.shape(0); i++) {</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                  r(i, 0) = vec_pts[i].x;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                  r(i, 1) = vec_pts[i].y;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                  r(i, 2) = vec_pts[i].z;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                <span class="keywordflow">return</span> ret_points;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            },</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            [](<a class="code" href="classxms_1_1_me_poly_input.html">xms::MePolyInput</a> &amp;<span class="keyword">self</span>, py::iterable seed_points) {</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;             <span class="keyword">self</span>.m_seedPoints.clear();</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;             <span class="keyword">self</span>.m_seedPoints.reserve(py::len(seed_points));</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;             <span class="keywordflow">for</span> (<span class="keyword">auto</span> item : seed_points) {</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;               <span class="keywordflow">if</span>(!py::isinstance&lt;py::iterable&gt;(item)) {</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                 <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;First arg must be a n-tuple of 3-tuples&quot;</span>);</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;               }</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;               py::tuple tuple = item.cast&lt;py::tuple&gt;();</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;               <span class="keywordflow">if</span> (py::len(tuple) != 3) {</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                 <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;Input points must be 3-tuples&quot;</span>);</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;               } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                 <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3d</a> point(tuple[0].cast&lt;double&gt;(), tuple[1].cast&lt;double&gt;(), tuple[2].cast&lt;double&gt;());</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                 <span class="keyword">self</span>.m_seedPoints.push_back(point);</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;               }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            }, <span class="stringliteral">&quot;Optional array of seed points. If the user has some methodology for creating points inside the polygon&quot;</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="stringliteral">&quot; then those points can be specified here. If these points are specified then the paving is not performed.&quot;</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            <span class="stringliteral">&quot; These points will not be used if the meshing option is patch.&quot;</span></div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        )</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        </div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        </div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        </div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        </div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        </div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        </div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        </div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        .def(<span class="stringliteral">&quot;__str__&quot;</span>, [](<a class="code" href="classxms_1_1_me_poly_input.html">xms::MePolyInput</a> &amp;<span class="keyword">self</span>) {</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;             std::string szf = <span class="keyword">self</span>.m_sizeFunction == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;none&quot;</span> : <span class="keyword">self</span>.m_sizeFunction-&gt;ToString();</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;             std::string elevf = <span class="keyword">self</span>.m_elevFunction == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;none&quot;</span> : <span class="keyword">self</span>.m_elevFunction-&gt;ToString();</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;             std::stringstream ss;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;             ss &lt;&lt;  <span class="stringliteral">&quot;bias: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_bias &lt;&lt; std::endl &lt;&lt;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                    <span class="stringliteral">&quot;size_func: &quot;</span> &lt;&lt; szf &lt;&lt; std::endl &lt;&lt;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                    <span class="stringliteral">&quot;elev_func: &quot;</span> &lt;&lt; elevf &lt;&lt; std::endl &lt;&lt;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                    <span class="stringliteral">&quot;const_size_function: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_constSizeFunction &lt;&lt; std::endl &lt;&lt;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                    <span class="stringliteral">&quot;const_size_bias: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_constSizeBias &lt;&lt; std::endl &lt;&lt;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                    <span class="stringliteral">&quot;outside_poly size: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_outPoly.size() &lt;&lt; std::endl &lt;&lt;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                    <span class="stringliteral">&quot;inside_polys size: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_insidePolys.size() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;             <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        },<span class="stringliteral">&quot;outputs contents as string&quot;</span>)</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    ;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;}</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="keywordtype">void</span> initMeRefinePoint(py::module &amp;m) {</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    py::class_&lt;xms::MeRefinePoint, boost::shared_ptr&lt;xms::MeRefinePoint&gt;&gt;(m, <span class="stringliteral">&quot;MeRefinePoint&quot;</span>)</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        .def(py::init&lt;&gt;([](py::tuple pt, <span class="keywordtype">double</span> size, <span class="keywordtype">bool</span> create_mesh_point) {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            <span class="keywordflow">if</span>(py::len(pt) != 3) {</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;Input point should be a 3-tuple&quot;</span>);</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            }</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3d</a> point(pt[0].cast&lt;double&gt;(), pt[1].cast&lt;double&gt;(), pt[2].cast&lt;double&gt;());</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a>(point, size, create_mesh_point);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        }))</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        .def_property(<span class="stringliteral">&quot;point&quot;</span>,</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;          [](<a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a> &amp;<span class="keyword">self</span>) -&gt; py::tuple {</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;            <span class="keywordflow">return</span> py::make_tuple(<span class="keyword">self</span>.m_pt.x, <span class="keyword">self</span>.m_pt.y, <span class="keyword">self</span>.m_pt.z);</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;          },</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;          [](<a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a> &amp;<span class="keyword">self</span>, py::tuple pt) {</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            <span class="keywordflow">if</span>(py::len(pt) != 3) {</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;              <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;Input point should be a 3-tuple&quot;</span>);</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;              <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3d</a> point(pt[0].cast&lt;double&gt;(), pt[1].cast&lt;double&gt;(), pt[2].cast&lt;double&gt;());</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;              <span class="keyword">self</span>.m_pt = point;</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            }</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;          }</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;         )</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        .def_readwrite(<span class="stringliteral">&quot;size&quot;</span>, &amp;<a class="code" href="classxms_1_1_me_refine_point.html#acdee8a50e9336087d658c40206c259d7">xms::MeRefinePoint::m_size</a>,<span class="stringliteral">&quot;  /// Element size at the refine point.&quot;</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <span class="stringliteral">&quot; A negative value indicates a hard point.&quot;</span>)</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        .def_readwrite(<span class="stringliteral">&quot;create_mesh_point&quot;</span>, &amp;<a class="code" href="classxms_1_1_me_refine_point.html#acd11cdc615e2287624860b153303f4a2">xms::MeRefinePoint::m_createMeshPoint</a>)</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        .def(<span class="stringliteral">&quot;__str__&quot;</span>, [](<a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a> &amp;<span class="keyword">self</span>) {</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            std::stringstream ss;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            ss &lt;&lt; <span class="stringliteral">&quot;point: (&quot;</span> &lt;&lt; <span class="keyword">self</span>.m_pt &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt;  std::endl &lt;&lt;</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                   <span class="stringliteral">&quot;size: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_size &lt;&lt;  std::endl &lt;&lt;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                   <span class="stringliteral">&quot;create_mesh_point: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_createMeshPoint &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        }, <span class="stringliteral">&quot;Returns contents as string&quot;</span>)</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        ;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;}</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        .def_property(<span class="stringliteral">&quot;seed_points&quot;</span>,</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            [](<a class="code" href="classxms_1_1_me_poly_input.html">xms::MePolyInput</a> &amp;<span class="keyword">self</span>) -&gt; py::iterable {</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/namespacexms.html#a0dc29604ee813731d584232b63f54922">xms::VecPt3d</a> &amp;vec_pts = <span class="keyword">self</span>.m_seedPoints;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                py::array_t&lt;double, py::array::c_style&gt; ret_points({(int)vec_pts.size(), 3});</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                <span class="keyword">auto</span> r = ret_points.mutable_unchecked&lt;2&gt;();</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                <span class="keywordflow">for</span> (ssize_t i = 0; i &lt; r.shape(0); i++) {</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                  r(i, 0) = vec_pts[i].x;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                  r(i, 1) = vec_pts[i].y;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                  r(i, 2) = vec_pts[i].z;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                <span class="keywordflow">return</span> ret_points;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            },</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            [](<a class="code" href="classxms_1_1_me_poly_input.html">xms::MePolyInput</a> &amp;<span class="keyword">self</span>, py::iterable seed_points) {</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                 <span class="keyword">self</span>.m_seedPoints.clear();</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                 <span class="keyword">self</span>.m_seedPoints.reserve(py::len(seed_points));</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                 <span class="keywordflow">for</span> (<span class="keyword">auto</span> item : seed_points) {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                   <span class="keywordflow">if</span>(!py::isinstance&lt;py::iterable&gt;(item)) {</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                     <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;First arg must be a n-tuple of 3-tuples&quot;</span>);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                   }</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                   py::tuple tuple = item.cast&lt;py::tuple&gt;();</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                   <span class="keywordflow">if</span> (py::len(tuple) != 3) {</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                     <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;Input points must be 3-tuples&quot;</span>);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                   } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                     <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3d</a> point(tuple[0].cast&lt;double&gt;(), tuple[1].cast&lt;double&gt;(), tuple[2].cast&lt;double&gt;());</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                     <span class="keyword">self</span>.m_seedPoints.push_back(point);</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                   }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                 }                </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            }, <span class="stringliteral">&quot;Optional array of seed points. If the user has some methodology for creating points inside the polygon&quot;</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            <span class="stringliteral">&quot; then those points can be specified here. If these points are specified then the paving is not performed.&quot;</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            <span class="stringliteral">&quot; These points will not be used if the meshing option is patch.&quot;</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        )</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        .def(<span class="stringliteral">&quot;__str__&quot;</span>, [](<a class="code" href="classxms_1_1_me_poly_input.html">xms::MePolyInput</a> &amp;<span class="keyword">self</span>) {</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;             std::string szf = <span class="keyword">self</span>.m_sizeFunction == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;none&quot;</span> : <span class="keyword">self</span>.m_sizeFunction-&gt;ToString();</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;             std::string elevf = <span class="keyword">self</span>.m_elevFunction == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;none&quot;</span> : <span class="keyword">self</span>.m_elevFunction-&gt;ToString();</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;             std::stringstream ss;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;             ss &lt;&lt;  <span class="stringliteral">&quot;bias: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_bias &lt;&lt; std::endl &lt;&lt;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                    <span class="stringliteral">&quot;size_func: &quot;</span> &lt;&lt; szf &lt;&lt; std::endl &lt;&lt;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                    <span class="stringliteral">&quot;elev_func: &quot;</span> &lt;&lt; elevf &lt;&lt; std::endl &lt;&lt;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                    <span class="stringliteral">&quot;const_size_function: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_constSizeFunction &lt;&lt; std::endl &lt;&lt;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                    <span class="stringliteral">&quot;const_size_bias: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_constSizeBias &lt;&lt; std::endl &lt;&lt;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                    <span class="stringliteral">&quot;outside_poly size: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_outPoly.size() &lt;&lt; std::endl &lt;&lt;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                    <span class="stringliteral">&quot;inside_polys size: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_insidePolys.size() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;             <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        },<span class="stringliteral">&quot;outputs contents as string&quot;</span>)</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    ;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;}</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="keywordtype">void</span> initMeRefinePoint(py::module &amp;m) {</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    py::class_&lt;xms::MeRefinePoint, boost::shared_ptr&lt;xms::MeRefinePoint&gt;&gt;(m, <span class="stringliteral">&quot;MeRefinePoint&quot;</span>)</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        .def(py::init&lt;&gt;([](py::tuple pt, <span class="keywordtype">double</span> size, <span class="keywordtype">bool</span> create_mesh_point) {</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            <span class="keywordflow">if</span>(py::len(pt) != 3) {</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;Input point should be a 3-tuple&quot;</span>);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            }</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3d</a> point(pt[0].cast&lt;double&gt;(), pt[1].cast&lt;double&gt;(), pt[2].cast&lt;double&gt;());</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a>(point, size, create_mesh_point);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        }))</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        .def_property(<span class="stringliteral">&quot;point&quot;</span>,</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;          [](<a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a> &amp;<span class="keyword">self</span>) -&gt; py::tuple {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            <span class="keywordflow">return</span> py::make_tuple(<span class="keyword">self</span>.m_pt.x, <span class="keyword">self</span>.m_pt.y, <span class="keyword">self</span>.m_pt.z);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;          },</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;          [](<a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a> &amp;<span class="keyword">self</span>, py::tuple pt) {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keywordflow">if</span>(py::len(pt) != 3) {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;              <span class="keywordflow">throw</span> py::type_error(<span class="stringliteral">&quot;Input point should be a 3-tuple&quot;</span>);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;              <a class="codeRef" doxygen="/home/travis/build/Aquaveo/xmsmesh/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore//" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html">xms::Pt3d</a> point(pt[0].cast&lt;double&gt;(), pt[1].cast&lt;double&gt;(), pt[2].cast&lt;double&gt;());</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;              <span class="keyword">self</span>.m_pt = point;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;          }</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;         )</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        .def_readwrite(<span class="stringliteral">&quot;size&quot;</span>, &amp;<a class="code" href="classxms_1_1_me_refine_point.html#acdee8a50e9336087d658c40206c259d7">xms::MeRefinePoint::m_size</a>,<span class="stringliteral">&quot;  /// Element size at the refine point.&quot;</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            <span class="stringliteral">&quot; A negative value indicates a hard point.&quot;</span>)</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        .def_readwrite(<span class="stringliteral">&quot;create_mesh_point&quot;</span>, &amp;<a class="code" href="classxms_1_1_me_refine_point.html#acd11cdc615e2287624860b153303f4a2">xms::MeRefinePoint::m_createMeshPoint</a>)</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        .def(<span class="stringliteral">&quot;__str__&quot;</span>, [](<a class="code" href="classxms_1_1_me_refine_point.html">xms::MeRefinePoint</a> &amp;<span class="keyword">self</span>) {</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            std::stringstream ss;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            ss &lt;&lt; <span class="stringliteral">&quot;point: (&quot;</span> &lt;&lt; <span class="keyword">self</span>.m_pt &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt;  std::endl &lt;&lt;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                   <span class="stringliteral">&quot;size: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_size &lt;&lt;  std::endl &lt;&lt;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                   <span class="stringliteral">&quot;create_mesh_point: &quot;</span> &lt;&lt; <span class="keyword">self</span>.m_createMeshPoint &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        }, <span class="stringliteral">&quot;Returns contents as string&quot;</span>)</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        ;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;}</div>
 <div class="ttc" id="classxms_1_1_me_poly_input_html_a5161e8344982fef43b2dbb9cc634b82e"><div class="ttname"><a href="classxms_1_1_me_poly_input.html#a5161e8344982fef43b2dbb9cc634b82e">xms::MePolyInput::m_removeInternalFourTrianglePts</a></div><div class="ttdeci">bool m_removeInternalFourTrianglePts</div><div class="ttdef"><b>Definition:</b> <a href="_me_multi_poly_mesher_io_8h_source.html#l00096">MeMultiPolyMesherIo.h:96</a></div></div>
 <div class="ttc" id="classxms_1_1_me_poly_input_html_aca43fb2091a846525c1ce79551e63b54"><div class="ttname"><a href="classxms_1_1_me_poly_input.html#aca43fb2091a846525c1ce79551e63b54">xms::MePolyInput::m_constSizeBias</a></div><div class="ttdeci">double m_constSizeBias</div><div class="ttdoc">Optional. Transition factor for constant size function. </div><div class="ttdef"><b>Definition:</b> <a href="_me_multi_poly_mesher_io_8h_source.html#l00080">MeMultiPolyMesherIo.h:80</a></div></div>
 <div class="ttc" id="_interp_linear_8h_html"><div class="ttname"><a href="https://aquaveo.github.io/xmsinterp/_interp_linear_8h.html">InterpLinear.h</a></div></div>
@@ -536,7 +523,7 @@ $(document).ready(function(){initNavTree('_me_multi_poly_mesher_io__py_8cpp_sour
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_9a3232e58b7cd746197860c82c97c362.html">python</a></li><li class="navelem"><a class="el" href="dir_b733b5162124708acba02f9106a93503.html">meshing</a></li><li class="navelem"><a class="el" href="_me_multi_poly_mesher_io__py_8cpp.html">MeMultiPolyMesherIo_py.cpp</a></li>
-    <li class="footer">Generated on Tue Aug 21 2018 21:13:27 for xmsmesh by
+    <li class="footer">Generated on Wed Aug 22 2018 04:24:27 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
