@@ -32,12 +32,13 @@ void initMeMultiPolyMesher(py::module &m) {
               std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
               return py::make_tuple(false, errors);
             }
-        })
+        },"Creates a triangle mesh from the input polygons. The polygons can not overlap.",
+          py::arg("mesh_io"))
         .def("set_observer", [](xms::MeMultiPolyMesher &self,
                                 boost::shared_ptr<xms::PublicObserver> obs) {
             self.SetObserver(obs);
-        },"Creates a triangle mesh from the input polygons. The polygons can not overlap.",
-          py::arg("mesh_io")
+        },"Set the observer to use for feedback while processing.",
+          py::arg("obs")
         )
         ;
 }

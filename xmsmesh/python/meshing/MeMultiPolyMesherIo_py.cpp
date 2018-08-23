@@ -29,7 +29,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
             "Optional. If true, checks polygon input topology for errors."
         )
         .def_readwrite("return_cell_polygons", &xms::MeMultiPolyMesherIo::m_returnCellPolygons,
-            " If true, returns the polygon index of each cell."
+            "If true, returns the polygon index of each cell."
         )
         .def_property("points",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
@@ -59,7 +59,8 @@ void initMeMultiPolyMesherIo(py::module &m) {
                      self.m_points.push_back(point);
                    }
                  }
-            }
+            },
+            "The points of the resulting mesh."
         )
         .def_property("cells",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
@@ -72,7 +73,8 @@ void initMeMultiPolyMesherIo(py::module &m) {
                  for (auto item : cells) {
                     vecInt.push_back(item.cast<int>());
                  }
-            }
+            },
+            "The cells of the resulting mesh, as a stream."
         )
         .def_property("cell_polygons",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
@@ -85,7 +87,8 @@ void initMeMultiPolyMesherIo(py::module &m) {
                  for (auto item : cell_polygons) {
                     vecInt.push_back(item.cast<int>());
                  }
-            }
+            },
+            "Polygon index of each cell."
         )
         .def_property("poly_inputs",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
@@ -102,7 +105,8 @@ void initMeMultiPolyMesherIo(py::module &m) {
                  for (auto item : polys) {
                     vecPolys.push_back(item.cast<xms::MePolyInput>());
                  }
-            }
+            },
+            "Required (but some data is optional). Inputs for each polygon."
         )
         .def_property("refine_points",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
@@ -119,7 +123,8 @@ void initMeMultiPolyMesherIo(py::module &m) {
                  for (auto item : refine_points) {
                     vecRefinePoints.push_back(item.cast<xms::MeRefinePoint>());
                  }
-            }
+            },
+            "Optional. Refine points."
         )
         ;
 }
@@ -204,7 +209,8 @@ void initMePolyInput(py::module &m) {
                      self.m_outPoly.push_back(point);
                    }
                  }
-            }
+            },
+            "Required. Outer polygons. Clockwise. 1st pt != last."
         )
         .def_property("inside_polys",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -246,7 +252,8 @@ void initMePolyInput(py::module &m) {
                     }
                     self.m_insidePolys.push_back(vec_poly);
                 }
-            }
+            },
+            "Optional. Inner polygons (holes). Counter clockwise. 1st pt != last."
         )
         .def_property("poly_corners",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -257,7 +264,10 @@ void initMePolyInput(py::module &m) {
                  for (auto item : poly_corners) {
                     self.m_polyCorners.push_back(item.cast<int>());
                  }
-            }
+            },
+            "Optional. Corner nodes for creating meshes using the patch algorithm. "
+             "3 per outer poly (not 4 - outer poly index point [0] is assumed to be "
+             "a corner)"
         )
         .def_property("bound_pts_to_remove",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -287,7 +297,9 @@ void initMePolyInput(py::module &m) {
                      self.m_boundPtsToRemove.push_back(point);
                    }
                  }
-            }
+            },
+            "Optional. Outer boundary locations to remove after the paving process. "
+            "Used by the ugAutoCorrectCells class"
         )
         .def_readwrite("bias", &xms::MePolyInput::m_bias," Optional. Factor for transitioning between areas of"
             " high refinement to less refinement."
@@ -378,11 +390,15 @@ void initMeRefinePoint(py::module &m) {
               xms::Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
               self.m_pt = point;
             }
-          }
+          },
+          "Location of refine point or hard points. Hard points "
+          "are points that must be included in the final mesh but have no user "
+          "specified size associated with them"
          )
-        .def_readwrite("size", &xms::MeRefinePoint::m_size,"  /// Element size at the refine point."
+        .def_readwrite("size", &xms::MeRefinePoint::m_size,"Element size at the refine point."
             " A negative value indicates a hard point.")
-        .def_readwrite("create_mesh_point", &xms::MeRefinePoint::m_createMeshPoint)
+        .def_readwrite("create_mesh_point", &xms::MeRefinePoint::m_createMeshPoint,
+            "Should a mesh node/point be created at the refine point.")
         .def("__str__", [](xms::MeRefinePoint &self) {
             std::stringstream ss;
             ss << "point: (" << self.m_pt << ")" <<  std::endl <<
