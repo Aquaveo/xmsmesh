@@ -49,6 +49,5 @@ void meSmoothElevBySlope(BSHP<TrTin> a_tin,
                          int a_anchorType,
                          const DynBitset& a_ptFlags,
                          VecFlt& a_smoothSize);
-void meModifyMessageWithPolygonId(int a_polyId,
-                                  std::string& a_msg);
+void meModifyMessageWithPolygonId(int a_polyId, std::string& a_msg);
 } // namespace xms

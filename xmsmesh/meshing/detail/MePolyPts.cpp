@@ -767,9 +767,7 @@ void MePolyPts::ClassifyLoopsFromInPolyAndRemoveInvalid(std::list<std::vector<si
   std::list<std::vector<size_t>>::iterator it(a_loops.begin()), next;
   for (; it != a_loops.end(); ++it, ++cnt_it)
   {
-    if (polyInsideOfPoly[cnt_it].empty())
-    {
-    }
+    if (polyInsideOfPoly[cnt_it].empty()) {}
     else if (!polyInsideOfPoly[cnt_it].empty())
     {
       if (validPoly[polyInsideOfPoly[cnt_it][0]])

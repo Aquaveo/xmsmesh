@@ -515,21 +515,23 @@ void MePolyOffsetterUnitTests::testCreateClass()
 //------------------------------------------------------------------------------
 void MePolyOffsetterUnitTests::testBox0()
 {
+  // clang-format off
   //   This is the input
   //
   // x=        0    4    8    12
   //
-  // y=12      2--- 3--- 4--- 5
+  // y=12     2--- 3--- 4--- 5
   //          |              |
   //          |              |
-  // y-8       1              6
+  // y-8      1              6
   //          |              |
   //          |              |
-  // y=4       0              7
+  // y=4      0              7
   //          |              |
   //          |              |
-  // y=0      11---10--- 9--- 8
+  // y=0     11---10--- 9--- 8
   //
+  // clang-format on
   MePolyOffsetter::polytype ptype = MePolyOffsetter::OUTSIDE_POLY;
   MePolyOffsetterImpl pl;
   pl.m_setOffsetToZero = true;
@@ -549,22 +551,24 @@ void MePolyOffsetterUnitTests::testBox0()
 //------------------------------------------------------------------------------
 void MePolyOffsetterUnitTests::testBox1()
 {
+  // clang-format off
   //   This is the input
   //
   // x=        0    4    8    12
   //
-  // y=12      2--- 3--- 4--- 5
+  // y=12     2--- 3--- 4--- 5
   //          |              |
   //          |              |
-  // y-8       1              6
+  // y-8      1              6
   //          |           /
   //          |         7
   //          |           \
   //y=4       0              8
   //          |              |
   //          |              |
-  // y=0      12---11---10--- 9
+  // y=0     12---11---10--- 9
   //
+  // clang-format on
   MePolyOffsetter::polytype ptype = MePolyOffsetter::OUTSIDE_POLY;
   MePolyOffsetterImpl pl;
   pl.m_setOffsetToZero = true;
@@ -584,9 +588,10 @@ void MePolyOffsetterUnitTests::testBox1()
 //------------------------------------------------------------------------------
 void MePolyOffsetterUnitTests::testBox1a()
 {
+  // clang-format off
   // x=        0    4    8    12
   //
-  // y=12     11---10--- 9--- 8
+  // y=12    11---10--- 9--- 8
   //          |              |
   //          |              |
   // y-8      12              7
@@ -596,8 +601,9 @@ void MePolyOffsetterUnitTests::testBox1a()
   //y=4       0              5
   //          |              |
   //          |              |
-  // y=0       1--- 2--- 3--- 4
+  // y=0      1--- 2--- 3--- 4
   //
+  // clang-format on
   MePolyOffsetter::polytype ptype = MePolyOffsetter::INSIDE_POLY;
   MePolyOffsetterImpl pl;
   pl.m_setOffsetToZero = true;
@@ -621,35 +627,37 @@ void MePolyOffsetterUnitTests::testBox1a()
 //------------------------------------------------------------------------------
 void MePolyOffsetterUnitTests::testCase1()
 {
+  // clang-format off
   // x=        0      4      8      12
   //
-  // y=12     18-----17-----16----- 15
+  // y=12    18-----17-----16----- 15
   //          |                    |
   //          |                    |
   //          |                    |
   //          |                    |
-  // y-8      19         11--12--13-14
+  // y-8     19         11--12--13-14
   //          |          |
   //          |         10
   //          |          |
   //          |          9
   //          |          |
-  // y=4       0          8---7--6--5
+  // y=4      0          8---7--6--5
   //          |                    |
   //          |                    |
   //          |                    |
   //          |                    |
-  // y=0       1----- 2----- 3----- 4
+  // y=0      1----- 2----- 3----- 4
   //
+  // clang-format on
   MePolyOffsetter::polytype ptype = MePolyOffsetter::INSIDE_POLY;
   MePolyOffsetterImpl pl;
   pl.m_setOffsetToZero = true;
-  std::vector<Pt3d> input{{0, 4, 0},    {0, 0, 0},    {4, 0, 0},  //2
-                          {8, 0, 0},    {12, 0, 0},   {12, 4, 0}, //5
-                          {10, 4, 0},   {8, 4, 0},    {6, 4, 0},  //8
-                          {6, 5.33, 0}, {6, 6.66, 0}, {6, 8, 0},  //11
-                          {8, 8, 0},    {10, 8, 0},   {12, 8, 0}, //14
-                          {12, 12, 0},  {8, 12, 0},   {4, 12, 0}, //17
+  std::vector<Pt3d> input{{0, 4, 0},    {0, 0, 0},    {4, 0, 0},  // 2
+                          {8, 0, 0},    {12, 0, 0},   {12, 4, 0}, // 5
+                          {10, 4, 0},   {8, 4, 0},    {6, 4, 0},  // 8
+                          {6, 5.33, 0}, {6, 6.66, 0}, {6, 8, 0},  // 11
+                          {8, 8, 0},    {10, 8, 0},   {12, 8, 0}, // 14
+                          {12, 12, 0},  {8, 12, 0},   {4, 12, 0}, // 17
                           {0, 12, 0},   {0, 8, 0}};
   std::vector<std::vector<Pt3d>> output;
   std::vector<MePolyOffsetter::polytype> outPolyTypes;
@@ -671,35 +679,37 @@ void MePolyOffsetterUnitTests::testCase1()
 //------------------------------------------------------------------------------
 void MePolyOffsetterUnitTests::testCase1a()
 {
+  // clang-format off
   // x=        0      4      8      12
   //
-  // y=12     18-----17-----16----- 15
+  // y=12    18-----17-----16----- 15
   //          |                    |
   //          |                    |
   //          |                    |
   //          |                    |
-  // y-8      19         11--12--13 |
+  // y-8     19         11--12--13 |
   //          |          |        \14
   //          |         10
   //          |          |
   //          |          9
   //          |          |         5
-  // y=4       0          8---7--6/ |
+  // y=4      0          8---7--6/ |
   //          |                    |
   //          |                    |
   //          |                    |
   //          |                    |
-  // y=0       1----- 2----- 3----- 4
+  // y=0      1----- 2----- 3----- 4
   //
+  // clang-format on
   MePolyOffsetter::polytype ptype = MePolyOffsetter::INSIDE_POLY;
   MePolyOffsetterImpl pl;
   pl.m_setOffsetToZero = true;
-  std::vector<Pt3d> input{{0, 4, 0},    {0, 0, 0},    {4, 0, 0},  //2
-                          {8, 0, 0},    {12, 0, 0},   {12, 5, 0}, //5
-                          {10, 4, 0},   {8, 4, 0},    {6, 4, 0},  //8
-                          {6, 5.33, 0}, {6, 6.66, 0}, {6, 8, 0},  //11
-                          {8, 8, 0},    {10, 8, 0},   {12, 7, 0}, //14
-                          {12, 12, 0},  {8, 12, 0},   {4, 12, 0}, //17
+  std::vector<Pt3d> input{{0, 4, 0},    {0, 0, 0},    {4, 0, 0},  // 2
+                          {8, 0, 0},    {12, 0, 0},   {12, 5, 0}, // 5
+                          {10, 4, 0},   {8, 4, 0},    {6, 4, 0},  // 8
+                          {6, 5.33, 0}, {6, 6.66, 0}, {6, 8, 0},  // 11
+                          {8, 8, 0},    {10, 8, 0},   {12, 7, 0}, // 14
+                          {12, 12, 0},  {8, 12, 0},   {4, 12, 0}, // 17
                           {0, 12, 0},   {0, 8, 0}};
   std::vector<std::vector<Pt3d>> output;
   std::vector<MePolyOffsetter::polytype> outPolyTypes;
@@ -727,35 +737,37 @@ void MePolyOffsetterUnitTests::testCase1a()
 //------------------------------------------------------------------------------
 void MePolyOffsetterUnitTests::testCase1b()
 {
+  // clang-format off
   // x=        0      4      8      12
   //
-  // y=12     18-----17-----16----- 15
+  // y=12    18-----17-----16----- 15
   //          |                    |
   //          |                    |
   //          |                    |
   //          |                    |
-  // y-8      19         11--12--13 |
+  // y-8     19         11--12--13 |
   //          |          |        \14
   //          |         10
   //          |          |
   //          |          9
   //          |          |         5
-  // y=4       0          8---7--6/ |
+  // y=4      0          8---7--6/ |
   //          |                    |
   //          |                    |
   //          |                    |
   //          |                    |
-  // y=0       1----- 2----- 3----- 4
+  // y=0      1----- 2----- 3----- 4
   //
+  // clang-format on
   MePolyOffsetter::polytype ptype = MePolyOffsetter::INSIDE_POLY;
   MePolyOffsetterImpl pl;
   pl.m_setOffsetToZero = true;
-  std::vector<Pt3d> input{{0, 4, 0},    {0, 0, 0},    {4, 0, 0},  //2
-                          {8, 0, 0},    {12, 0, 0},   {12, 5, 0}, //5
-                          {10, 4, 0},   {8, 4, 0},    {6, 4, 0},  //8
-                          {6, 5.33, 0}, {6, 6.66, 0}, {6, 8, 0},  //11
-                          {8, 8, 0},    {10, 8, 0},   {12, 7, 0}, //14
-                          {12, 12, 0},  {8, 12, 0},   {4, 12, 0}, //17
+  std::vector<Pt3d> input{{0, 4, 0},    {0, 0, 0},    {4, 0, 0},  // 2
+                          {8, 0, 0},    {12, 0, 0},   {12, 5, 0}, // 5
+                          {10, 4, 0},   {8, 4, 0},    {6, 4, 0},  // 8
+                          {6, 5.33, 0}, {6, 6.66, 0}, {6, 8, 0},  // 11
+                          {8, 8, 0},    {10, 8, 0},   {12, 7, 0}, // 14
+                          {12, 12, 0},  {8, 12, 0},   {4, 12, 0}, // 17
                           {0, 12, 0},   {0, 8, 0}};
   MePolyOffsetterOutput out;
   pl.Offset(input, ptype, out, 1e-9);

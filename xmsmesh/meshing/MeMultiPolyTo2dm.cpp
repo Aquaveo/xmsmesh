@@ -52,10 +52,10 @@ class MeMultiPolyTo2dmImpl : public MeMultiPolyTo2dm
 public:
   MeMultiPolyTo2dmImpl() {}
 
-  bool Generate2dm(MeMultiPolyMesherIo& a_input, const std::string& a_outFileName,
+  bool Generate2dm(MeMultiPolyMesherIo& a_input,
+                   const std::string& a_outFileName,
                    int a_precision = 15) override;
-  bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os,
-                   int a_precision = 15) override;
+  bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os, int a_precision = 15) override;
 
   void Write2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os, int a_precision);
 
@@ -89,12 +89,12 @@ static void iSortCellsForTesting(MeMultiPolyMesherIo& a_io)
   {
     std::array<int, 6> cell = {-1, -1, -1, -1, -1, -1};
     cell[4] = outCells[i];
-    int nPts = cell[5] = outCells[i+1];
-    int minIndex(outCells[i+2]);
+    int nPts = cell[5] = outCells[i + 1];
+    int minIndex(outCells[i + 2]);
     auto minItr = cell.begin();
-    for (int j=0; j<nPts; ++j)
+    for (int j = 0; j < nPts; ++j)
     {
-      int idx = outCells[i+2+j];
+      int idx = outCells[i + 2 + j];
       cell[j] = idx;
       if (idx < minIndex)
       {
@@ -103,7 +103,7 @@ static void iSortCellsForTesting(MeMultiPolyMesherIo& a_io)
       }
     }
     i += (size_t)nPts + 2;
-    
+
     // put minimum index point first
     std::rotate(cell.begin(), minItr, cell.begin() + nPts);
     sortableCells.push_back(cell);
@@ -151,7 +151,8 @@ BSHP<MeMultiPolyTo2dm> MeMultiPolyTo2dm::New()
 /// \param[in] a_precision: pinted digits of precision of points in file
 /// \return true if the mesh was generated.
 //------------------------------------------------------------------------------
-bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, const std::string& a_outFileName,
+bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io,
+                                       const std::string& a_outFileName,
                                        int a_precision)
 {
   std::fstream os(a_outFileName.c_str(), std::fstream::out);
@@ -166,7 +167,8 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, const std::str
 /// \param[in] a_precision: pinted digits of precision of points in file
 /// \return true if a mesh was created
 //------------------------------------------------------------------------------
-bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os,
+bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io,
+                                       std::ostream& a_os,
                                        int a_precision)
 {
   if (a_os.bad())
@@ -195,8 +197,7 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io, std::ostream& 
 /// \param[in] a_os: output stream to store the mesh
 /// \param[in] a_precision: pinted digits of precision of points in file
 //------------------------------------------------------------------------------
-void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os,
-                                    int a_precision)
+void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_os, int a_precision)
 {
   XM_ENSURE_TRUE_NO_ASSERT(a_io.m_points.size() && a_io.m_cells.size());
 
@@ -266,9 +267,8 @@ void MeMultiPolyTo2dmImpl::Write2dm(MeMultiPolyMesherIo& a_io, std::ostream& a_o
 #ifdef TEST_PRECISION
     test_precision = TEST_PRECISION;
 #endif
-    a_os << "ND " << tempStr << " "
-         << STRstd(p.x, test_precision, a_precision, STR_FULLWIDTH) << " "
-         << STRstd(p.y, test_precision, a_precision, STR_FULLWIDTH) << " "
+    a_os << "ND " << tempStr << " " << STRstd(p.x, test_precision, a_precision, STR_FULLWIDTH)
+         << " " << STRstd(p.y, test_precision, a_precision, STR_FULLWIDTH) << " "
          << STRstd(p.z, test_precision, a_precision, STR_FULLWIDTH) << "\n";
   }
 } //  MeMultiPolyTo2dmImpl::Write2dm
@@ -307,8 +307,7 @@ static VecPt3d iArrayToVecPt3d(double* a_array, int a_size)
 /// \param a_filename: Path and filename of the polygon file.
 /// \param a_precision: Precision used to write 2dm file points.
 //------------------------------------------------------------------------------
-static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os,
-                                   int a_precision)
+static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os, int a_precision)
 {
   std::string inPolyFile(a_filename);
   MeMultiPolyTo2dmImpl p2g;
@@ -322,8 +321,7 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os,
 /// \brief
 /// \param a_fileBase: Base of filename (prefix) of the polygon file.
 //------------------------------------------------------------------------------
-static void iTestFromPolyFile(std::string a_fileBase,
-                              int a_precision)
+static void iTestFromPolyFile(std::string a_fileBase, int a_precision)
 {
 #ifdef XMSMESH_TEST_PATH
   const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
@@ -404,7 +402,7 @@ static void iBuildTestCase4Polys(std::vector<VecPt3d>& a_outside,
   }
 } // iBuildTestCase4Polys
 
-} // namespace unnamed
+} // namespace
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MeMultiPolyTo2dmUnitTests

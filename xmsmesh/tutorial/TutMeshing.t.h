@@ -26,7 +26,7 @@ class MeMultiPolyMesherIo;
 
 bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io);
 bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d& a_inside);
-} // namspace xms
+} // namespace xms
 
 /// \brief Class for testing meshing functionality
 class TutMeshingIntermediateTests : public CxxTest::TestSuite

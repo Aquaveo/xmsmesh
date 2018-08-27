@@ -259,8 +259,8 @@ bool MePolyMesherImpl::MeshIt(const MeMultiPolyMesherIo& a_input,
   m_bias = polyInput.m_bias;
   // refine pts
   m_refineToPolys->SetRefinePoints(a_input.m_refPts, m_xyTol);
-  m_refineToPolys->RefPtsAsPolys(polyInput.m_polyId, m_outPoly, m_inPolys, m_refPtPolys, m_refMeshPts,
-                                 m_refPtsTooClose);
+  m_refineToPolys->RefPtsAsPolys(polyInput.m_polyId, m_outPoly, m_inPolys, m_refPtPolys,
+                                 m_refMeshPts, m_refPtsTooClose);
   // size function
   if (!polyInput.m_sizeFunction)
   {
@@ -484,8 +484,9 @@ void MePolyMesherImpl::GenerateMeshPts()
   {
     if (!m_seedPts.empty())
     {
-      XM_LOG(xmlog::warning, "Seed points specified with \"Patch option.\" "
-                             "These points will be ignored.");
+      XM_LOG(xmlog::warning,
+             "Seed points specified with \"Patch option.\" "
+             "These points will be ignored.");
     }
     BSHP<MePolyPatcher> patcher(MePolyPatcher::New());
     patcher->MeshIt(m_polyId, m_outPoly, m_polyCorners, m_xyTol, *m_points, m_cells);
@@ -769,7 +770,7 @@ static VecPt3d iArrayToVecPt3d(int* a_array, int a_size)
   return v;
 } // iArrayToVecPt3d
 
-} // namespace unnamed
+} // namespace
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MePolyMesherUnitTests
@@ -883,6 +884,6 @@ void MePolyMesherUnitTests::test1()
 
 } // MePolyMesherUnitTests::test1
 
-  //} // namespace xms
+//} // namespace xms
 
 #endif // CXX_TEST

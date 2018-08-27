@@ -31,6 +31,8 @@ public:
   void testSpringRelaxSinglePoint();
   void testSpringRelaxSinglePoint2();
   void testSpringRelaxSinglePoint3();
+  void testNewLocationIsValid();
+  void testAllTrianglesHavePositiveArea();
 };
 
 //} // namespace xms

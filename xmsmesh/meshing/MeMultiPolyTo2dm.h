@@ -45,9 +45,11 @@ public:
   static boost::shared_ptr<MeMultiPolyTo2dm> New();
 
   /// \cond
-  virtual bool Generate2dm(MeMultiPolyMesherIo& a_input, const std::string& a_outFileName,
+  virtual bool Generate2dm(MeMultiPolyMesherIo& a_input,
+                           const std::string& a_outFileName,
                            int a_precision = 15) = 0;
-  virtual bool Generate2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os,
+  virtual bool Generate2dm(MeMultiPolyMesherIo& a_input,
+                           std::ostream& a_os,
                            int a_precision = 15) = 0;
 
   virtual void SetObserver(BSHP<Observer> a_) = 0;

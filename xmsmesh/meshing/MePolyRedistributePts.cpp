@@ -321,7 +321,8 @@ double MePolyRedistributePtsImpl::SizeFromLocation(const Pt3d& a_location)
   VecPt3d pts(1, a_location);
   VecDbl lengths;
   InterpEdgeLengths(pts, lengths);
-  return lengths.front();;
+  return lengths.front();
+  ;
 } // MePolyRedistributePtsImpl::SizeFromLocation
 //------------------------------------------------------------------------------
 /// \brief Creates a vector of pts from indices into another vector of points

@@ -937,6 +937,6 @@ void MeMultiPolyMesherUnitTests::testCheckForIntersections5()
   TS_ASSERT_EQUALS(expected, errors);
 } // MeMultiPolyMesherUnitTests::testCheckForIntersections5
 
-  //} // namespace xms
+//} // namespace xms
 
 #endif // CXX_TEST
