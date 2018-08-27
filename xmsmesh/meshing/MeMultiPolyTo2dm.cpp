@@ -668,6 +668,13 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego()
   iTestFromPolyFile("CasePaveSanDiego", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego
 //------------------------------------------------------------------------------
+/// \brief Test San Diego bay with spring relaxation
+//------------------------------------------------------------------------------
+void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego_SpringRelaxation()
+{
+  iTestFromPolyFile("CasePaveSanDiegoSpringRelax", 10);
+} // MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego_SpringRelaxation
+//------------------------------------------------------------------------------
 /// \brief Tests two patched polys next to each other, and one paved poly next
 ///        to them.
 //------------------------------------------------------------------------------

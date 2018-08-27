@@ -19,17 +19,20 @@
 // 4. External library headers
 
 // 5. Shared code headers
+#include <xmscore/math/math.h>
+#include <xmscore/misc/Observer.h>
+#include <xmscore/misc/StringUtil.h>
+#include <xmscore/misc/XmConst.h>
+#include <xmscore/misc/XmError.h>
+#include <xmscore/misc/carray.h>
+#include <xmscore/misc/xmstype.h> // for XM_PI
 #include <xmscore/points/pt.h>
 #include <xmscore/stl/vector.h>
-#include <xmscore/math/math.h>
-#include <xmscore/misc/carray.h>
-#include <xmscore/misc/Observer.h>
-#include <xmscore/misc/XmError.h>
-#include <xmscore/misc/xmstype.h> // for XM_PI
-#include <xmscore/misc/XmConst.h>
 #include <xmsinterp/geometry/geoms.h>
+#include <xmsinterp/interpolate/InterpBase.h>
 #include <xmsinterp/triangulate/TrTin.h>
 #include <xmsinterp/triangulate/triangles.h>
+#include <xmsmesh/meshing/MePolyRedistributePts.h>
 
 // 6. Non-shared code headers
 
@@ -52,7 +55,11 @@ public:
   /// Point flags
   enum RelaxFlagEnum { RELAX_RELAX = 1, RELAX_MATSLIDE = 2, RELAX_BNDSLIDE = 8 };
   /// Types of relaxation, or the relaxation algorithms
-  enum RelaxTypeEnum { RELAXTYPE_AREA, RELAXTYPE_DENSITY, RELAXTYPE_ANGLE, RELAXTYPE_CIRCLE };
+  enum RelaxTypeEnum {
+    RELAXTYPE_AREA,
+    RELAXTYPE_ANGLE,
+    RELAXTYPE_SPRING
+  };
 
   MeRelaxerImpl();
   virtual ~MeRelaxerImpl();
@@ -60,10 +67,8 @@ public:
   // protected:
   //  MeRelaxerImpl(const MeRelaxerImpl&);
 
-private:
   XM_DISALLOW_COPY_AND_ASSIGN(MeRelaxerImpl)
 
-public:
   virtual void Relax(/*MeshPolyEnum a_meshPolyEnum,*/
                      const VecInt& a_fixedPoints,
                      BSHP<TrTin> a_tin) override;
@@ -72,23 +77,34 @@ public:
   /// \param a_: The observer.
   //------------------------------------------------------------------------------
   virtual void SetObserver(BSHP<Observer> a_) override { m_observer = a_; }
+  virtual bool SetRelaxationMethod(const std::string& a_relaxMethod) override;
+  //------------------------------------------------------------------------------
+  /// \brief Sets size function used by the spring relaxation method
+  /// \param a_sizer: The size function class
+  //------------------------------------------------------------------------------
+  virtual void SetPointSizer(BSHP<MePolyRedistributePts> a_sizer) override { m_sizer = a_sizer; }
 
-private:
   void ComputeCentroids();
   void RelaxMarkedPoints(RelaxTypeEnum a_relaxType, int a_iteration, int a_numiterations);
   bool AreaRelax(int a_point, Pt3d& a_newLocation);
   bool AngleRelax(int a_point, Pt3d& a_newLocation);
+  bool SpringRelaxSinglePoint(int a_point, Pt3d& a_newLocation);
   bool RelaxOnBoundary(int a_point, Pt3d& a_newLocation, int a_relaxType);
+  void SetupSpringRelax();
+  bool NewLocationIsValid(size_t a_idx, Pt3d& a_newLocation);
 
-private:
-  BSHP<TrTin> m_tin;           ///< triangles connecting points (mesh elements)
-  const VecInt* m_fixedPoints; ///< locations that may not be relaxed
-  VecPt3d m_centroids;         ///< The triangle centroids
-  double m_slideangle;         ///< Not sure how to document this one
-  VecInt m_flags;              ///< Flags for points of type RelaxFlagEnum
-  BSHP<Observer> m_observer;   ///< observer class to report progress
-
-}; // class MeRelaxerImpl
+  BSHP<TrTin> m_tin;                   ///< triangles connecting points (mesh elements)
+  const VecInt* m_fixedPoints;         ///< locations that may not be relaxed
+  VecPt3d m_centroids;                 ///< The triangle centroids
+  double m_slideangle;                 ///< Used on boundary relaxation. Not sure how to document this one
+  VecInt m_flags;                      ///< Flags for points of type RelaxFlagEnum
+  BSHP<Observer> m_observer;           ///< observer class to report progress
+  RelaxTypeEnum m_relaxType;           ///< the type of relaxation to perform. See RelaxTypeEnum
+  BSHP<MePolyRedistributePts> m_sizer; ///< size function used by the spring relax method
+  VecDbl m_pointSizes;                 ///< sizer size at each mesh point
+  VecInt2d m_pointNeighbors;           ///< neighbor points for spring relaxation
+  VecInt m_pointsToDelete;             ///< indexes of points that must be removed
+};                                     // class MeRelaxerImpl
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MeRelaxerImpl
@@ -105,6 +121,10 @@ MeRelaxerImpl::MeRelaxerImpl()
 , m_slideangle(5.0)
 , m_flags()
 , m_observer()
+, m_relaxType(RELAXTYPE_AREA)
+, m_sizer()
+, m_pointSizes()
+, m_pointsToDelete()
 {
 } // MeRelaxerImpl::MeRelaxerImpl
 //------------------------------------------------------------------------------
@@ -128,6 +148,7 @@ void MeRelaxerImpl::Relax(/*MeshPolyEnum a_meshPolyEnum,*/
                           BSHP<TrTin> a_tin)
 {
   XM_ENSURE_TRUE_VOID_NO_ASSERT(a_tin);
+  XM_ENSURE_TRUE_VOID(!a_tin->TrisAdjToPts().empty());
 
   // Set up member variables
   /// \todo Save the MeshPolyEnum
@@ -138,39 +159,27 @@ void MeRelaxerImpl::Relax(/*MeshPolyEnum a_meshPolyEnum,*/
   ComputeCentroids();
 
   // Set up iterations
-  int numiterations;
-  RelaxTypeEnum relaxtype;
-  /// \todo Different options for scalar paving
-  // if (m_meshPolyEnum == MESH_SPAVE) {
-  //  numiterations = 5; // 2 AREA, then 3 DENSITY
-  //  relaxtype = RELAXTYPE_DENSITY;
-  //}
-  // else {
-  numiterations = 3; // 3 AREA
-  relaxtype = RELAXTYPE_AREA;
-  //}
-
-  m_flags.assign(m_tin->Points().size(), 0);
-
-  // Make sure we have adjaceny info
-  if (m_tin->TrisAdjToPts().empty())
+  int numiterations(3); // default to 3 for area relaxation
+  RelaxTypeEnum relaxtype(m_relaxType);
+  if (relaxtype == RELAXTYPE_SPRING)
   {
-    m_tin->BuildTrisAdjToPts();
-  }
-
-  // Mark the points to be relaxed
-  for (size_t i = 0; i < m_flags.size(); ++i)
-  {
-    /// \todo don't relax on boundary
-    // Do we really need to check if it's on the boundary? Shouldn't that be
-    // included in a_fixedPoints?
-    if (/*elBoundaryNode(point) ||*/ m_tin->TrisAdjToPts()[i].empty())
-      m_flags[i] = 0;
+    if (!m_sizer)
+    {
+      std::string msg =
+        "No size function specified with spring relaxation "
+        "method. Relaxation method has been set to AREA "
+        "relaxation.";
+      XM_LOG(xmlog::warning, msg);
+      relaxtype = RELAXTYPE_AREA;
+    }
     else
-      m_flags[i] = RELAX_RELAX;
+    {
+      SetupSpringRelax();
+    }
   }
 
   // Mark fixed points to not be relaxed (breaklines)
+  m_flags.assign(m_tin->Points().size(), RELAX_RELAX);
   for (size_t i = 0; i < a_fixedPoints.size(); ++i)
   {
     XM_ASSERT(a_fixedPoints[i] >= 0 && a_fixedPoints[i] < (int)m_flags.size());
@@ -179,29 +188,57 @@ void MeRelaxerImpl::Relax(/*MeshPolyEnum a_meshPolyEnum,*/
 
   int iteration = 0;
 
-  // if (m_meshPolyEnum == MESH_SPAVE) {
-  /// \todo Do two more area relaxes for density meshing
-  //}
-
   // Perform relaxation and swap
-  for (int i = 0; i < 3; ++i)
+  for (int i = 0; i < numiterations; ++i)
   {
-    // Relax marked nodes
-    if (i < 2)
+    ++iteration;
+    RelaxMarkedPoints(relaxtype, iteration, numiterations);
+    // delete points and triangles
+    if (!m_pointsToDelete.empty())
     {
-      ++iteration;
-      RelaxMarkedPoints(relaxtype, iteration, numiterations);
+      m_tin->Triangles().clear();
+      m_tin->TrisAdjToPts().clear();
+      VecPt3d& pts(m_tin->Points());
+      for (auto it = m_pointsToDelete.rbegin(); it != m_pointsToDelete.rend(); ++it)
+      {
+        int idx = *it;
+        pts[idx] = pts.back();
+        pts.pop_back();
+      }
+      m_pointsToDelete.clear();
+      break;
     }
-    else
-    { // i == 2
-      ++iteration;
-      RelaxMarkedPoints(relaxtype, iteration, numiterations);
-    }
-
+    /// \todo tin->OptimizeTriangulation should return a value to tell if the triangulation changed
+    bool trianglesChanged(false);
+    VecInt &tinTris(m_tin->Triangles()), tris = tinTris;
     m_tin->OptimizeTriangulation();
+    //trianglesChanged = m_tin->OptimizeTriangulation();
+    trianglesChange = tinTris != tris;
+
+    if (trianglesChanged && RELAXTYPE_SPRING == relaxtype)
+    { // set up spring relax if the triangles have changed
+      SetupSpringRelax();
+    }
   }
 
 } // MeRelaxerImpl::Relax
+//------------------------------------------------------------------------------
+/// \brief Sets the relaxation method
+/// \param[in] a_relaxType: Case insensitive string that identifies the type of
+/// relaxation. Acceptable values include: "spring_relax" \return true if the
+/// relaxtype could be set
+//------------------------------------------------------------------------------
+bool MeRelaxerImpl::SetRelaxationMethod(const std::string& a_relaxType)
+{
+  bool rval(false);
+  std::string type = stToLowerCopy(a_relaxType);
+  if (type == "spring_relaxation")
+  {
+    m_relaxType = RELAXTYPE_SPRING;
+    rval = true;
+  }
+  return rval;
+} // MeRelaxerImpl::SetRelaxationMethod
 //------------------------------------------------------------------------------
 /// \brief Computes the centroids of each triangle.
 //------------------------------------------------------------------------------
@@ -225,8 +262,6 @@ void MeRelaxerImpl::RelaxMarkedPoints(RelaxTypeEnum a_relaxType,
                                       int a_numiterations)
 {
   XM_ASSERT(a_iteration > 0 && a_numiterations > 0 && a_iteration <= a_numiterations);
-
-  /// \todo  a_relaxType == RELAXTYPE_DENSITY or RELAXTYPE_CIRCLE
 
   // Progress
   double iterationPercent = a_iteration / (double)a_numiterations;
@@ -252,16 +287,11 @@ void MeRelaxerImpl::RelaxMarkedPoints(RelaxTypeEnum a_relaxType,
         case RELAXTYPE_AREA:
           ok = AreaRelax((int)p, newlocation);
           break;
-        case RELAXTYPE_DENSITY:
-          /// \todo DensityRelax
-          XM_ASSERT(false);
-          break;
         case RELAXTYPE_ANGLE:
           ok = AngleRelax((int)p, newlocation);
           break;
-        case RELAXTYPE_CIRCLE:
-          /// \todo CircleRelax
-          XM_ASSERT(false);
+        case RELAXTYPE_SPRING:
+          ok = SpringRelaxSinglePoint((int)p, newlocation);
           break;
         default:
           XM_ASSERT(false);
@@ -269,44 +299,34 @@ void MeRelaxerImpl::RelaxMarkedPoints(RelaxTypeEnum a_relaxType,
         }
       }
 
+      /// \todo: Is this called?
       // Allow nodes on material boundaries and on the mesh boundary to slide
       else if (m_flags[p] & RELAX_MATSLIDE || m_flags[p] & RELAX_BNDSLIDE)
       {
         ok = RelaxOnBoundary((int)p, newlocation, a_relaxType);
       }
 
-      // Update the z value of relaxed point
-      if (ok)
-      {
-        newlocation.z = points[p].z;
-      }
-
       // Change the points location and check for bad triangles
       if (ok)
       {
-        points[p] = newlocation;
-        if (a_relaxType != RELAXTYPE_CIRCLE)
-        {
-          const VecInt& adjTris = trisAdjToPts[p];
-          for (size_t i = 0; i < adjTris.size() && ok; ++i)
-          {
-            // Is triangle ill-formed? See that it has some area
-            ok = (GT_EPS(m_tin->TriangleArea(adjTris[i]), 0.0, FLT_EPSILON));
-          }
-        }
+        ok = NewLocationIsValid(p, newlocation);
       }
 
       if (!ok)
       {
         // Reset the point and elements
         points[p] = origlocation;
+        if (RELAXTYPE_SPRING == a_relaxType)
+        { // mark point for deletion
+          m_pointsToDelete.push_back(static_cast<int>(p));
+        }
+      }
+      else if (m_sizer)
+      { // point moved and we must update its target size when doing
+        // spring_relax
+        m_pointSizes[p] = m_sizer->SizeFromLocation(points[p]);
       }
 
-      if (ok && (a_relaxType == RELAXTYPE_CIRCLE || a_relaxType == RELAXTYPE_DENSITY))
-      {
-        /// \todo recalculate weight size for point since it was moved
-        XM_ASSERT(false);
-      }
     } // if (m_flags[p])
 
     // Update progress
@@ -430,6 +450,45 @@ bool MeRelaxerImpl::AngleRelax(int a_point, Pt3d& a_newLocation)
   return true;
 } // MeRelaxerImpl::AngleRelax
 //------------------------------------------------------------------------------
+/// \brief Relax a point using spring method
+/// \param[in] a_point: The point index to be relaxed.
+/// \param[out] a_newLocation: The location after point is relaxed (moved).
+/// \return true if there were no errors.
+//------------------------------------------------------------------------------
+bool MeRelaxerImpl::SpringRelaxSinglePoint(int a_point, Pt3d& a_newLocation)
+{
+  double fx(0.0);
+  double fy(0.0);
+
+  double springStiffness(1.0);
+  double stepSize(0.1);
+  VecPt3d& points = m_tin->Points();
+  VecInt& neighbors(m_pointNeighbors[a_point]);
+  double numPtsFactor(1.7 / (double)neighbors.size());
+  Pt3d& p0(points[a_point]);
+  double size0(m_pointSizes[a_point]);
+  for (size_t i = 0; i < neighbors.size(); ++i)
+  {
+    int neighborIdx = neighbors[i];
+    Pt3d& p1(points[neighborIdx]);
+    double size1(m_pointSizes[neighborIdx]);
+    Pt3d vec = gmCreateVector(p0, p1);
+    double dist = Mdist(p0.x, p0.y, p1.x, p1.y);
+    double targetDist = 0.5 * (size0 + size1); /// \todo: * this->get_adjust_factor(p0, p1)
+    double force(springStiffness * (dist - targetDist));
+    double _fx = force * vec.x / dist;
+    double _fy = force * vec.y / dist;
+    fx += _fx;
+    fy += _fy;
+  }
+  fx *= numPtsFactor;
+  fy *= numPtsFactor;
+  a_newLocation.x = p0.x + fx;
+  a_newLocation.y = p0.y + fy;
+  a_newLocation.z = p0.z;
+  return true;
+} // MeRelaxerImpl::SpringRelax
+//------------------------------------------------------------------------------
 /// \brief Relax along a material or outer boundary. Compare to
 ///        rliRelaxOnBoundary.
 /// \param[in] a_point: The point index to be relaxed.
@@ -481,11 +540,6 @@ bool MeRelaxerImpl::RelaxOnBoundary(int a_point, Pt3d& a_newLocation, int a_rela
     // size func based relax
     switch (a_relaxType)
     {
-    case RELAXTYPE_DENSITY:
-    case RELAXTYPE_CIRCLE:
-      /// \todo handle RELAXTYPE_DENSITY && RELAXTYPE_CIRCLE
-      XM_ASSERT(false);
-      break;
     case RELAXTYPE_AREA:
     case RELAXTYPE_ANGLE:
       if (dist1 > dist2)
@@ -510,6 +564,62 @@ bool MeRelaxerImpl::RelaxOnBoundary(int a_point, Pt3d& a_newLocation, int a_rela
 
   return true;
 } // MeRelaxerImpl::RelaxOnBoundary
+//------------------------------------------------------------------------------
+/// \brief Set up point sizes and neighbor point information to be used by the
+/// spring relax algorithm
+//------------------------------------------------------------------------------
+void MeRelaxerImpl::SetupSpringRelax()
+{
+  m_pointSizes.clear();
+  m_pointNeighbors.clear();
+  VecPt3d& points = m_tin->Points();
+  size_t nPts(points.size());
+  m_pointSizes.reserve(nPts);
+  m_pointNeighbors.reserve(nPts);
+  VecInt& tris = m_tin->Triangles();
+  VecInt2d& adjTris2d = m_tin->TrisAdjToPts();
+  for (size_t i = 0; i < points.size(); ++i)
+  {
+    // compute point sizes prior to relaxing below
+    Pt3d& p(m_tin->Points()[i]);
+    m_pointSizes.push_back(m_sizer->SizeFromLocation(p));
+
+    const VecInt& adjTris = adjTris2d[i];
+    size_t numTri = adjTris.size();
+    // find the other points that make up the edges that a_point is connected to
+    std::set<int> setPoints;
+    for (size_t j = 0; j < numTri; ++j)
+    {
+      int idx = adjTris[j] * 3;
+      for (int t = 0; t < 3; ++t)
+      {
+        int ptIdx = tris[idx + t];
+        XM_ASSERT(ptIdx < nPts);
+        setPoints.insert(tris[idx + t]);
+      }
+    }
+    setPoints.erase(static_cast<int>(i));
+    m_pointNeighbors.push_back(VecInt(setPoints.begin(), setPoints.end()));
+  }
+} // MeRelaxerImpl::SetupSpringRelax
+//------------------------------------------------------------------------------
+/// \brief Checks if a new relaxed location results in valid triangle (area is positive)
+/// \param[in] a_idx: the index to the point
+/// \param[in] a_newLocation: x,y,z new coordinates
+/// \return true if the new location will give valid triangles
+//------------------------------------------------------------------------------
+bool MeRelaxerImpl::NewLocationIsValid(size_t a_idx, Pt3d& a_newLocation)
+{
+  m_tin->Points()[a_idx] = a_newLocation;
+  const VecInt& adjTris = m_tin->TrisAdjToPts()[a_idx];
+  for (size_t i = 0; i < adjTris.size(); ++i)
+  {
+    // Is triangle ill-formed? See that it has some area
+    if (!GT_EPS(m_tin->TriangleArea(adjTris[i]), 0.0, FLT_EPSILON))
+      return false;
+  }
+  return true;
+} // MeRelaxerImpl::NewLocationIsValid
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MeRelaxer
@@ -523,7 +633,8 @@ bool MeRelaxerImpl::RelaxOnBoundary(int a_point, Pt3d& a_newLocation, int a_rela
 BSHP<MeRelaxer> MeRelaxer::New()
 {
   BSHP<MeRelaxer> polyMesher(new MeRelaxerImpl);
-  // MeRelaxerImpl->SetBSHP(polyMesher); // If MeRelaxerImpl needs ptr to MeRelaxer
+  // MeRelaxerImpl->SetBSHP(polyMesher); // If MeRelaxerImpl needs ptr to
+  // MeRelaxer
   return polyMesher;
 } // MeRelaxer::New
 //------------------------------------------------------------------------------
@@ -571,7 +682,7 @@ static VecPt3d iArrayToVecPt3d(double* a_array, int a_size)
   }
   return v;
 } // iArrayToVecPt3d
-} // namespace unnamed
+} // namespace
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MeRelaxerUnitTests
@@ -695,6 +806,244 @@ void MeRelaxerUnitTests::testRelaxWhileMeshing()
   TS_ASSERT_DELTA_VECPT3D(pointsAfter, tin->Points(), kDelta);
 
 } // MeRelaxerUnitTests::testRelaxWhileMeshing
+//------------------------------------------------------------------------------
+/// \brief Tests the spring relax setup. Uses the TIN below
+/// \code
+///
+///  x is a missing triangle
+///
+///  6-9--7----8
+///  | // |  / |
+///  3----4----5
+///  | /  |  \ |
+///  0----1----2
+///
+/// \endcode
+//------------------------------------------------------------------------------
+void MeRelaxerUnitTests::testSpringRelaxSetup()
+{
+  VecPt3d points = {{-10, -10, 0}, {0, -10, 0},  {10, -10, 0}, {-10, 0, 0}, {0, 0, 0},
+                    {10, 0, 0},    {-10, 10, 0}, {0, 10, 0},   {10, 10, 0}, {-5, 10, 0}};
+  VecInt tris = {0, 4, 3, 0, 1, 4, 1, 2, 4, 2, 5, 4, 3, 7, 9, 4, 8, 7, 4, 5, 8, 3, 9, 6, 3, 4, 7};
+  // create a test tin
+  BSHP<TrTin> tin = TrTin::New();
+  tin->Points() = points;
+  tin->Triangles() = tris;
+  tin->BuildTrisAdjToPts();
+  // create a sizer that returns a constant value
+  BSHP<MePolyRedistributePts> sizer = MePolyRedistributePts::New();
+  sizer->SetConstantSizeFunc(3.0);
+
+  MeRelaxerImpl r;
+  r.m_tin = tin;
+  r.m_sizer = sizer;
+  r.SetupSpringRelax();
+
+  VecDbl expectedPointSizes(points.size(), 3);
+  TS_ASSERT_EQUALS_VEC(expectedPointSizes, r.m_pointSizes);
+  VecInt2d expectedPointNeighbors = {
+    {1, 3, 4}, {0, 2, 4}, {1, 4, 5},    {0, 4, 6, 7, 9}, {0, 1, 2, 3, 5, 7, 8},
+    {2, 4, 8}, {3, 9},    {3, 4, 8, 9}, {4, 5, 7},       {3, 6, 7}};
+  TS_ASSERT_EQUALS_VEC2D(expectedPointNeighbors, r.m_pointNeighbors);
+} // MeRelaxerUnitTests::testSpringRelaxSetup
+//------------------------------------------------------------------------------
+/// \brief Tests the spring relax setup. Uses the TIN below. This tin has
+/// missing triangles compared to the previous example \code
+///
+///  x is a missing triangle
+///
+///  6-9  7----8
+///  |/x/x|  / |
+///  3----4----5
+///  | /  |  \ |
+///  0----1----2
+///
+/// \endcode
+//------------------------------------------------------------------------------
+void MeRelaxerUnitTests::testSpringRelaxSetup2()
+{
+  VecPt3d points = {{-10, -10, 0}, {0, -10, 0},  {10, -10, 0}, {-10, 0, 0}, {0, 0, 0},
+                    {10, 0, 0},    {-10, 10, 0}, {0, 10, 0},   {10, 10, 0}, {-5, 10, 0}};
+  VecInt tris = {0, 4, 3, 0, 1, 4, 1, 2, 4, 2, 5, 4, 4, 8, 7, 4, 5, 8, 3, 9, 6};
+  // create a test tin
+  BSHP<TrTin> tin = TrTin::New();
+  tin->Points() = points;
+  tin->Triangles() = tris;
+  tin->BuildTrisAdjToPts();
+  // create a sizer that returns a constant value
+  BSHP<MePolyRedistributePts> sizer = MePolyRedistributePts::New();
+  sizer->SetConstantSizeFunc(3.0);
+
+  MeRelaxerImpl r;
+  r.m_tin = tin;
+  r.m_sizer = sizer;
+  r.SetupSpringRelax();
+
+  VecDbl expectedPointSizes(points.size(), 3);
+  TS_ASSERT_EQUALS_VEC(expectedPointSizes, r.m_pointSizes);
+  VecInt2d expectedPointNeighbors = {
+    {1, 3, 4}, {0, 2, 4}, {1, 4, 5}, {0, 4, 6, 9}, {0, 1, 2, 3, 5, 7, 8},
+    {2, 4, 8}, {3, 9},    {4, 8},    {4, 5, 7},    {3, 6}};
+  TS_ASSERT_EQUALS_VEC2D(expectedPointNeighbors, r.m_pointNeighbors);
+} // MeRelaxerUnitTests::testSpringRelaxSetup
+//------------------------------------------------------------------------------
+/// \brief Tests the spring relax of a point. Uses the TIN below.
+/// \code
+///
+///  x is a missing triangle
+///
+///  6----7----8
+///  | \  |  / |
+///  3-------4-5
+///  | /  |  \ |
+///  0----1----2
+///
+/// \endcode
+//------------------------------------------------------------------------------
+void MeRelaxerUnitTests::testSpringRelaxSinglePoint()
+{
+  VecPt3d points = {{-10, -10, 0}, {0, -10, 0},  {10, -10, 0}, {-10, 0, 0}, {8, 7, 0},
+                    {10, 0, 0},    {-10, 10, 0}, {0, 10, 0},   {10, 10, 0}};
+  VecInt tris = {0, 4, 3, 0, 1, 4, 1, 2, 4, 2, 5, 4, 3, 4, 6, 4, 7, 6, 4, 5, 8, 4, 8, 7};
+  // create a test tin
+  BSHP<TrTin> tin = TrTin::New();
+  tin->Points() = points;
+  tin->Triangles() = tris;
+  tin->BuildTrisAdjToPts();
+  // create a sizer that returns a constant value
+  BSHP<MePolyRedistributePts> sizer = MePolyRedistributePts::New();
+  sizer->SetConstantSizeFunc(10.0);
+
+  MeRelaxerImpl r;
+  r.m_tin = tin;
+  r.m_sizer = sizer;
+  r.SetupSpringRelax();
+
+  Pt3d newloc, startPt(8, 7, 0), ptZero;
+  double startDist(Mdist(0.0, 0.0, startPt.x, startPt.y));
+  r.SpringRelaxSinglePoint(4, newloc);
+  double newDist(Mdist(0.0, 0.0, newloc.x, newloc.y));
+  TS_ASSERT(newDist < startDist);
+
+  Pt3d expectedNewLoc(0.905, 0.542, 0);
+  TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
+
+  tin->Points()[4] = newloc;
+  startDist = newDist;
+  r.SpringRelaxSinglePoint(4, newloc);
+  newDist = Mdist(0.0, 0.0, newloc.x, newloc.y);
+  TS_ASSERT(newDist < startDist);
+  expectedNewLoc = Pt3d(0.023, 0.016, 0);
+  TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
+
+  tin->Points()[4] = newloc;
+  startDist = newDist;
+  r.SpringRelaxSinglePoint(4, newloc);
+  newDist = Mdist(0.0, 0.0, newloc.x, newloc.y);
+  TS_ASSERT(newDist < startDist);
+  expectedNewLoc = Pt3d(0, 0, 0);
+  TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
+} // MeRelaxerUnitTests::testSpringRelaxSinglePoint
+//------------------------------------------------------------------------------
+/// \brief Tests the spring relax of a point. Uses the TIN below.
+/// \code
+///
+///  x is a missing triangle
+///
+///  6----7----8
+///  | \  |  /   \
+///  3-------4-----5
+///  | /  |  \   /
+///  0----1----2
+///
+/// \endcode
+//------------------------------------------------------------------------------
+void MeRelaxerUnitTests::testSpringRelaxSinglePoint2()
+{
+  VecPt3d points = {{-10, -10, 0}, {0, -10, 0},  {10, -10, 0}, {-10, 0, 0}, {8, 7, 0},
+                    {15, 0, 0},    {-10, 10, 0}, {0, 10, 0},   {10, 10, 0}};
+  VecInt tris = {0, 4, 3, 0, 1, 4, 1, 2, 4, 2, 5, 4, 3, 4, 6, 4, 7, 6, 4, 5, 8, 4, 8, 7};
+  // create a test tin
+  BSHP<TrTin> tin = TrTin::New();
+  tin->Points() = points;
+  tin->Triangles() = tris;
+  tin->BuildTrisAdjToPts();
+  // create a sizer that returns a constant value
+  BSHP<MePolyRedistributePts> sizer = MePolyRedistributePts::New();
+  sizer->SetConstantSizeFunc(10.0);
+
+  MeRelaxerImpl r;
+  r.m_tin = tin;
+  r.m_sizer = sizer;
+  r.SetupSpringRelax();
+  r.m_pointSizes[5] = 15;
+
+  Pt3d newloc, startPt(8, 7, 0), ptZero;
+  double startDist(Mdist(0.0, 0.0, startPt.x, startPt.y));
+  r.SpringRelaxSinglePoint(4, newloc);
+  double newDist(Mdist(0.0, 0.0, newloc.x, newloc.y));
+  TS_ASSERT(newDist < startDist);
+
+  Pt3d expectedNewLoc(0.673, 0.377, 0);
+  TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
+
+  tin->Points()[4] = newloc;
+  startDist = newDist;
+  r.SpringRelaxSinglePoint(4, newloc);
+  newDist = Mdist(0.0, 0.0, newloc.x, newloc.y);
+  TS_ASSERT(newDist < startDist);
+  expectedNewLoc = Pt3d(0.547, -0.005, 0);
+  TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
+
+  tin->Points()[4] = newloc;
+  startDist = newDist;
+  r.SpringRelaxSinglePoint(4, newloc);
+  newDist = Mdist(0.0, 0.0, newloc.x, newloc.y);
+  TS_ASSERT(newDist < startDist);
+  expectedNewLoc = Pt3d(0.545, 0, 0);
+  TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
+} // MeRelaxerUnitTests::testSpringRelaxSinglePoint2
+//------------------------------------------------------------------------------
+/// \brief Tests the spring relax of a point. Uses the TIN below. We are relaxing
+/// point 4 and it has 3 connections to the upper edge, 2 connection to the middle
+/// and 1 connection to the bottom edge. The result is that the points is "pulled"
+/// toward the upper edge. This is not desirable for pre quad mesh generation.
+/// \code
+///
+///  x is a missing triangle
+///
+///  6----7----8
+///  | \  | /  |
+///  3------4--5
+///  | \  |  / |
+///  0----1----2
+///
+/// \endcode
+//------------------------------------------------------------------------------
+void MeRelaxerUnitTests::testSpringRelaxSinglePoint3()
+{
+  VecPt3d points = {{-10, -10, 0}, {0, -10, 0},  {10, -10, 0}, {-10, 0, 0}, {8, 7, 0},
+                    {10, 0, 0},    {-10, 10, 0}, {0, 10, 0},   {10, 10, 0}};
+  VecInt tris = {0, 1, 3, 1, 4, 3, 1, 5, 4, 1, 2, 5, 3, 4, 6, 4, 7, 6, 4, 5, 8, 4, 8, 7};
+  // create a test tin
+  BSHP<TrTin> tin = TrTin::New();
+  tin->Points() = points;
+  tin->Triangles() = tris;
+  tin->BuildTrisAdjToPts();
+  // create a sizer that returns a constant value
+  BSHP<MePolyRedistributePts> sizer = MePolyRedistributePts::New();
+  sizer->SetConstantSizeFunc(100.0);
+
+  MeRelaxerImpl r;
+  r.m_tin = tin;
+  r.m_sizer = sizer;
+  r.SetupSpringRelax();
+
+  Pt3d newloc, startPt(8, 7, 0), ptZero;
+  double startDist(Mdist(0.0, 0.0, startPt.x, startPt.y));
+  r.SpringRelaxSinglePoint(4, newloc);
+  TS_ASSERT(!r.NewLocationIsValid(4, newloc));
+} // MeRelaxerUnitTests::testSpringRelaxSinglePoint3
 
 //} // namespace xms
 #endif // CXX_TEST

@@ -46,12 +46,12 @@
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsinterp/interpolate/InterpIdw.h>
 #include <xmsinterp/interpolate/InterpLinear.h>
+#include <xmsinterp/triangulate/TrTin.h>
+#include <xmsinterp/triangulate/TrTriangulatorPoints.h>
 #include <xmsmesh/meshing/MeMeshUtils.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MeMultiPolyTo2dm.h>
 #include <xmsmesh/meshing/MePolyRedistributePts.h>
-#include <xmsinterp/triangulate/TrTin.h>
-#include <xmsinterp/triangulate/TrTriangulatorPoints.h>
 
 namespace xms
 {
@@ -198,6 +198,12 @@ bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
         os >> pts[i].x >> pts[i].y;
       }
     }
+    else if ("RELAXATION_METHOD" == card)
+    {
+      std::string method;
+      os >> method;
+      p->m_relaxationMethod = method;
+    }
     card = "";
   }
   return true;
@@ -227,7 +233,8 @@ bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d
 //------------------------------------------------------------------------------
 /// \brief  helper function to generate 2dm file and compare to a baseline
 /// \param a_input poly mesher input
-/// \param a_baseFilenameWithPath base file name for output file and base line file
+/// \param a_baseFilenameWithPath base file name for output file and base line
+/// file
 //------------------------------------------------------------------------------
 void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_fileBase)
 {
@@ -360,7 +367,8 @@ void TutMeshingIntermediateTests::test_Example_SimplePolygonWithHole()
     {100, 50}, {100, 40}, {100, 30}, {100, 20},  {100, 10}, {100, 0},  {90, 0},   {80, 0},
     {70, 0},   {60, 0},   {50, 0},   {40, 0},    {30, 0},   {20, 0},   {10, 0},   {0, 0}};
 
-  // Inner polygons are in counter clockwise order. Do not repeat the first point.
+  // Inner polygons are in counter clockwise order. Do not repeat the first
+  // point.
   inputPoly.m_insidePolys.push_back(xms::VecPt3d());
   inputPoly.m_insidePolys[0] = {{40, 40}, {50, 40}, {60, 40}, {60, 50},
                                 {60, 60}, {50, 60}, {40, 60}, {40, 50}};
@@ -397,7 +405,8 @@ void TutMeshingIntermediateTests::test_Example_Breakline()
     {100, 50}, {100, 40}, {100, 30}, {100, 20},  {100, 10}, {100, 0},  {90, 0},   {80, 0},
     {70, 0},   {60, 0},   {50, 0},   {40, 0},    {30, 0},   {20, 0},   {10, 0},   {0, 0}};
 
-  // Inner polygons are in counter clockwise order. Do not repeat the first point.
+  // Inner polygons are in counter clockwise order. Do not repeat the first
+  // point.
   inputPoly.m_insidePolys.push_back(xms::VecPt3d());
   inputPoly.m_insidePolys[0] = {{50, 0}, {50, 10}, {50, 20}, {50, 10}};
 
@@ -755,5 +764,45 @@ void TutMeshingIntermediateTests::test_Example_SmoothSizeFunc()
   TS_ASSERT_DELTA_VEC(baseSmooth, vSmooth, .1);
 } // TutMeshingIntermediateTests::test_Example_SmoothSizeFunc
   //! [snip_test_Example_SmoothSizeFunc]
+//------------------------------------------------------------------------------
+/// \brief Example for meshing a simple polygon with a hole and using the
+/// spring relaxation method
+//------------------------------------------------------------------------------
+//! [snip_test_Example_SpringRelax]
+void TutMeshingIntermediateTests::test_Example_SpringRelax()
+{
+  // The MePolyInput class defines a single polygon to be meshed and which
+  // consists of one outer polygon and, optionally, inner polygons and some
+  // other options.
+  xms::MePolyInput inputPoly;
+
+  // Outer polygon points are in clockwise order. Do not repeat the first point.
+  inputPoly.m_outPoly = {
+    {0, 10},   {0, 20},   {0, 30},   {0, 40},    {0, 50},   {0, 60},   {0, 70},   {0, 80},
+    {0, 90},   {0, 100},  {10, 100}, {20, 100},  {30, 100}, {40, 100}, {50, 100}, {60, 100},
+    {70, 100}, {80, 100}, {90, 100}, {100, 100}, {100, 90}, {100, 80}, {100, 70}, {100, 60},
+    {100, 50}, {100, 40}, {100, 30}, {100, 20},  {100, 10}, {100, 0},  {90, 0},   {80, 0},
+    {70, 0},   {60, 0},   {50, 0},   {40, 0},    {30, 0},   {20, 0},   {10, 0},   {0, 0}};
+
+  // Inner polygons are in counter clockwise order. Do not repeat the first
+  // point.
+  inputPoly.m_insidePolys.push_back(xms::VecPt3d());
+  inputPoly.m_insidePolys[0] = {{40, 40}, {50, 40}, {60, 40}, {60, 50},
+                                {60, 60}, {50, 60}, {40, 60}, {40, 50}};
+  inputPoly.m_relaxationMethod = "spring_relaxation";
+
+  // The MeMultiPolyMesherIo class holds all the options for generating
+  // UGrids from polygon data
+  xms::MeMultiPolyMesherIo input;
+
+  // The m_polys vector holds the polygons that will be filled with a UGrid.
+  // This case has only 1 polygon.
+  input.m_polys.push_back(inputPoly);
+
+  // generate the mesh and check the base line
+  const std::string baseFile = "Example_SpringRelax";
+  tutGenerateAndCompare2dm(input, baseFile);
+} // TutMeshingIntermediateTests::test_Example_SpringRelax
+//! [snip_test_Example_SpringRelax]
 
 #endif

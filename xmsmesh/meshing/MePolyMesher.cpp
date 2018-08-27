@@ -242,6 +242,12 @@ bool MePolyMesherImpl::MeshIt(const MeMultiPolyMesherIo& a_input,
   // outer polygons
   const MePolyInput& polyInput = a_input.m_polys[a_polyIdx];
 
+  if (!polyInput.m_relaxationMethod.empty())
+  {
+    m_relaxer->SetRelaxationMethod(polyInput.m_relaxationMethod);
+    m_relaxer->SetPointSizer(m_redist);
+  }
+
   m_polyId = polyInput.m_polyId;
   m_outPoly = polyInput.m_outPoly;
   m_seedPts = polyInput.m_seedPoints;
@@ -364,13 +370,16 @@ bool MePolyMesherImpl::MeshFromInputs(VecPt3d& a_points, VecInt& a_triangles, Ve
     GenerateMeshPts();
     if (m_cells.empty())
     { // paving
-      ProcessBoundaryPtsFlaggedToRemove();
-      Triangulate();
-      FindAllPolyPointIdxs();
-      AutoFixFourTrianglePts();
-      AddBreaklines();
-      DeleteTrianglesOutsidePolys();
-      Relax();
+      while (m_tin->Triangles().empty())
+      {
+        ProcessBoundaryPtsFlaggedToRemove();
+        Triangulate();
+        FindAllPolyPointIdxs();
+        AutoFixFourTrianglePts();
+        AddBreaklines();
+        DeleteTrianglesOutsidePolys();
+        Relax();
+      }
       // Re-add breaklines and delete outer polys because relaxing can swap edges
       AddBreaklines();
       DeleteTrianglesOutsidePolys();

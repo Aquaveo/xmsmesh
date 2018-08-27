@@ -20,6 +20,7 @@
 #pragma warning(disable : 4512) // boost code: no assignment operator
 #pragma warning(disable : 4244) // boost code: possible loss of data
 #pragma warning(disable : 4127) // boost code: conditional expression is constant
+#pragma warning(disable : 4267) // boost code: size_t to const int
 #include <boost/geometry/geometry.hpp>
 #pragma warning(pop)
 #include <boost/unordered_set.hpp>

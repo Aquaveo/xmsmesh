@@ -26,6 +26,11 @@ class MeRelaxerUnitTests : public CxxTest::TestSuite
 {
 public:
   void testRelaxWhileMeshing();
+  void testSpringRelaxSetup();
+  void testSpringRelaxSetup2();
+  void testSpringRelaxSinglePoint();
+  void testSpringRelaxSinglePoint2();
+  void testSpringRelaxSinglePoint3();
 };
 
 //} // namespace xms

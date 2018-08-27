@@ -93,6 +93,7 @@ public:
                             MePolyOffsetterOutput& a_out,
                             int a_polyOffsetIter) override;
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) override;
+  virtual double SizeFromLocation(const Pt3d& a_location) override;
 
   VecPt3d LoopToVecPt3d(const VecSizet& a_idx, const VecPt3d& a_pts);
   void IntersectWithTris(VecPt3d& a_pts);
@@ -310,6 +311,18 @@ VecPt3d MePolyRedistributePtsImpl::Redistribute(const VecPt3d& a_polyLine)
   ret = RedistPts(pts, lengths);
   return ret;
 } // MePolyRedistributePtsImpl::Redistribute
+//------------------------------------------------------------------------------
+/// \brief returns a size based on the xy location
+/// \param[in] a_location: the location
+/// \return size function value for the desired edge length at the location
+//------------------------------------------------------------------------------
+double MePolyRedistributePtsImpl::SizeFromLocation(const Pt3d& a_location)
+{
+  VecPt3d pts(1, a_location);
+  VecDbl lengths;
+  InterpEdgeLengths(pts, lengths);
+  return lengths.front();;
+} // MePolyRedistributePtsImpl::SizeFromLocation
 //------------------------------------------------------------------------------
 /// \brief Creates a vector of pts from indices into another vector of points
 /// \param a_idx Vector of indices into the a_pts vector. Defines the closed

@@ -44,6 +44,7 @@ public:
   void testCase103();
   void testCasePaveGeo();
   void testCasePaveSanDiego();
+  void testCasePaveSanDiego_SpringRelaxation();
   void testCasePatch6();
   void testCasePaveConstSizeTransition();
   void testSeedPoints();

@@ -42,6 +42,7 @@ public:
                             MePolyOffsetterOutput& a_out,
                             int a_polyOffsetIter) = 0;
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) = 0;
+  virtual double SizeFromLocation(const Pt3d& a_location) = 0;
   virtual ~MePolyRedistributePts();
 
 private:

@@ -47,6 +47,7 @@ public:
   void test_Example_ConstantSmooth();
   void test_Example_SizeFuncFromDepth();
   void test_Example_SmoothSizeFunc();
+  void test_Example_SpringRelax();
 };
 
 #endif

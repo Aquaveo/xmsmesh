@@ -59,6 +59,7 @@ public:
   , m_elevFunction(a_elevFunction)
   , m_removeInternalFourTrianglePts(false)
   , m_polyId(-1)
+  , m_relaxationMethod()
   {
   }
 
@@ -104,6 +105,11 @@ public:
   /// points are specified then the paving is not performed. These points will
   /// not be used if the meshing option is patch.
   VecPt3d m_seedPoints;
+
+  /// Optional. Relaxation method. The default relaxation method is an area
+  /// relax. Set the value to "spring_relaxation". See MeRelaxer.cpp for
+  /// details on spring relaxation;
+  std::string m_relaxationMethod;
 }; // MePolyInput
 
 ////////////////////////////////////////////////////////////////////////////////

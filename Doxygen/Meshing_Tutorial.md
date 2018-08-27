@@ -140,3 +140,15 @@ This example shows how use use xms::meSizeFunctionFromDepth to generate a size f
 This example shows how to smooth a size function based on geometric proximity so that element creation from the size function will satisfy an element growth/reduction factor. For example, if a size function specifies a nodal spacing of 10 meter elements at one location and 100 meter elements at another location 20 meters away then these constraints conflict. The smoothing function can reduce the 100 or increase the 10 based on the parameters passed to the function. The testing code for this example is in TutMeshingTests::test_Example_SmoothSizeFunc.
 
 \snippet xmsmesh/tutorial/TutMeshing.cpp snip_test_Example_SmoothSizeFunc
+
+## Example - Spring relaxation {#Example_Spring_Relax}
+
+This is another example of how to mesh a single polygon with a hole, and in this example, we use the "spring relaxation" method for relaxing the mesh nodes after the initial point seeding is completed. The testing code for this example is TutMeshingIntermediateTests::test_Example_SpringRelax. A picture of the example is shown below. This example still uses a constant point spacing of 10 along the boundary.
+ 
+![Simple Polygon with a hole and boundary spacing = 10.0](tutMesh_SimplePolygonWithHole_Input.png)
+
+\snippet xmsmesh/tutorial/TutMeshing.cpp snip_test_Example_SpringRelax
+
+An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_SpringRelax_base.2dm.
+
+![2d mesh generated from simple polygon with a hole and boundary spacing = 10.0, using spring relaxation](tutMesh_SpringRelax_Output.png)
