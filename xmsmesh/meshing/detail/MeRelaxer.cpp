@@ -213,7 +213,7 @@ void MeRelaxerImpl::Relax(/*MeshPolyEnum a_meshPolyEnum,*/
     VecInt &tinTris(m_tin->Triangles()), tris = tinTris;
     m_tin->OptimizeTriangulation();
     //trianglesChanged = m_tin->OptimizeTriangulation();
-    trianglesChange = tinTris != tris;
+    trianglesChanged = tinTris != tris;
 
     if (trianglesChanged && RELAXTYPE_SPRING == relaxtype)
     { // set up spring relax if the triangles have changed
