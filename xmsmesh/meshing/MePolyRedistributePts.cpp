@@ -156,17 +156,17 @@ BSHP<MePolyRedistributePts> MePolyRedistributePts::New()
   return ret;
 } // MePolyRedistributePts::New
 //------------------------------------------------------------------------------
-/// \brief
-//------------------------------------------------------------------------------
-MePolyRedistributePts::MePolyRedistributePts()
-{
-}
-//------------------------------------------------------------------------------
-/// \brief
+/// \brief destructor
 //------------------------------------------------------------------------------
 MePolyRedistributePts::~MePolyRedistributePts()
 {
-}
+} // MePolyRedistributePts::~MePolyRedistributePts
+//------------------------------------------------------------------------------
+/// \brief constructor
+//------------------------------------------------------------------------------
+MePolyRedistributePts::MePolyRedistributePts()
+{
+} // MePolyRedistributePts::MePolyRedistributePts
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MePolyRedistributePtsImpl

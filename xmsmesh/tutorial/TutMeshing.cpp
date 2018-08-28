@@ -59,6 +59,7 @@ namespace xms
 /// \brief  helper function to read MeMultiPolyMesherIo
 /// \param a_fname File name where the polygon is stored
 /// \param a_io MeMultiPolyMesherIo class that is filled by this function
+/// \return true if the file was read with no errors
 //------------------------------------------------------------------------------
 bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io)
 {
@@ -214,6 +215,7 @@ bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
 /// \param a_outside Vector of locations for the definition of the outside of
 /// the polygon.
 /// \param a_inside 2d vector of locations to define multiple inside polygons
+/// \return true if the file was read without any errors
 //------------------------------------------------------------------------------
 bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d& a_inside)
 {
@@ -232,9 +234,8 @@ bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d
 } // tutReadPolygons
 //------------------------------------------------------------------------------
 /// \brief  helper function to generate 2dm file and compare to a baseline
-/// \param a_input poly mesher input
-/// \param a_baseFilenameWithPath base file name for output file and base line
-/// file
+/// \param a_io mesher input
+/// \param a_fileBase base file name for output file and base line file
 //------------------------------------------------------------------------------
 void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_fileBase)
 {

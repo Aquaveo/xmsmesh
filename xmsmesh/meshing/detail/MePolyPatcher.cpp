@@ -77,7 +77,7 @@ public:
                       VecPt3d& a_points,
                       VecInt& a_cells) override;
   //------------------------------------------------------------------------------
-  /// \briefsets the observer to report progress
+  /// \brief sets the observer to report progress
   /// \param a_: The observer.
   //------------------------------------------------------------------------------
   void SetObserver(BSHP<Observer> a_) override { m_prog = a_; }
