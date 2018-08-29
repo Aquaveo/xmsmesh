@@ -87,8 +87,8 @@ if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 if [ -d "html" ] && [ -f "html/index.html" ]; then
 
     # don't upload docs unless we are in "MASTER"
-    if [$TRAVIS_BRANCH -eq "master"] then
-
+    if [$TRAVIS_BRANCH -eq "master"]
+    then
         mv xmsmesh.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
         mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
         cd $TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME
