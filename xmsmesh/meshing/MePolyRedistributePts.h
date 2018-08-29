@@ -30,6 +30,7 @@ class MePolyRedistributePts
 {
 public:
   static BSHP<MePolyRedistributePts> New();
+  virtual ~MePolyRedistributePts();
 
   /// \cond
   virtual void SetSizeFunc(BSHP<InterpBase> a_interp) = 0;
@@ -50,7 +51,6 @@ private:
 
 protected:
   MePolyRedistributePts();
-  virtual ~MePolyRedistributePts();
 };
 //----- Function prototypes ----------------------------------------------------
 
