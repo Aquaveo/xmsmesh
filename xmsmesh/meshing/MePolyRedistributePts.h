@@ -39,9 +39,6 @@ public:
                                    double a_sizeBias) = 0;
   virtual void SetConstantSizeFunc(double a_size) = 0;
   virtual void SetConstantSizeBias(double a_sizeBias) = 0;
-  virtual void Redistribute(const MePolyOffsetterOutput& a_input,
-                            MePolyOffsetterOutput& a_out,
-                            int a_polyOffsetIter) = 0;
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) = 0;
   virtual double SizeFromLocation(const Pt3d& a_location) = 0;
 

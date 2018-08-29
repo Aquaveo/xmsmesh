@@ -89,9 +89,9 @@ public:
     m_biasConstSize = true;
   }
 
-  virtual void Redistribute(const MePolyOffsetterOutput& a_input,
-                            MePolyOffsetterOutput& a_out,
-                            int a_polyOffsetIter) override;
+  void Redistribute(const MePolyOffsetterOutput& a_input,
+                    MePolyOffsetterOutput& a_out,
+                    int a_polyOffsetIter);
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) override;
   virtual double SizeFromLocation(const Pt3d& a_location) override;
 
@@ -995,6 +995,23 @@ void MePolyRedistributePtsImpl::CreatePolyIntersector()
   m_polyIntersector = GmMultiPolyIntersector::New(*m_sizePts, m_polys, sorter);
 
 } // MePolyRedistributePtsImpl::CreatePolyIntersector
+//------------------------------------------------------------------------------
+/// \brief Free function access an implement method that needs to be hidden
+/// from the public interface
+/// \param[in] a_redist: a MePolyRedistributePts class
+/// \param a_input Input closed loop polylines
+/// \param a_out Redistributed closed loop polylines
+/// \param a_polyOffsetIter Number of iterations from the polygon boundary
+//------------------------------------------------------------------------------
+void mePolyPaverRedistribute(BSHP<MePolyRedistributePts> a_redist,
+                             const MePolyOffsetterOutput& a_input,
+                             MePolyOffsetterOutput& a_out,
+                             int a_polyOffsetIter)
+{
+  BSHP<MePolyRedistributePtsImpl> r = BDPC<MePolyRedistributePtsImpl>(a_redist);
+  XM_ENSURE_TRUE(r);
+  r->Redistribute(a_input, a_out, a_polyOffsetIter);
+} // mePolyPaverRedistribute
 
 } // namespace xms
 

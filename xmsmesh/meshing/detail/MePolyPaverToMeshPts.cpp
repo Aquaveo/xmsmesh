@@ -41,6 +41,15 @@
 //----- Namespace declaration --------------------------------------------------
 namespace xms
 {
+// function to access method on MePolyRedistributePtsImpl that we wanted
+// removed from the public interface. This makes it so MePolyOffsetterOutput
+// is not visible in the public interface and is only part of the "detail"
+// implementation.
+void mePolyPaverRedistribute(BSHP<MePolyRedistributePts> a_redist,
+                             const MePolyOffsetterOutput& a_input,
+                             MePolyOffsetterOutput& a_out,
+                             int a_polyOffsetIter);
+
 //----- Constants / Enumerations -----------------------------------------------
 
 //----- Classes / Structs ------------------------------------------------------
@@ -368,7 +377,7 @@ void MePolyPaverToMeshPtsImpl::RedistributePts()
   if (!m_redist)
     return;
   MePolyOffsetterOutput o;
-  m_redist->Redistribute(m_offsetOutputs[0], o, m_polyOffsetIter);
+  mePolyPaverRedistribute(m_redist, m_offsetOutputs[0], o, m_polyOffsetIter);
   m_offsetOutputs[0] = o;
 } // MePolyPaverToMeshPtsImpl::RedistributePts
 //------------------------------------------------------------------------------
