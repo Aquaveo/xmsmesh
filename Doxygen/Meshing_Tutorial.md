@@ -106,11 +106,6 @@ An image of the 2d mesh generated from this example is shown below. The *.2dm fi
 
 ![2d mesh generated using the patch algorithm](tutMesh_Patch_Output.png)
 
-## Example - Polyline point redistribution {#Example_PolyLineRedist}
-Polyline redistribution can be accomplished with the xms::MePolyRedistributePts class. This class can perform redistribution once a size function is created. The simplest size function is a constant value; thus, the class has a SetConstantSizeFunc method. An xms::InterpBase class can be set as the size function by calling SetSizeFunc method. Another way to create a size function is by giving a polygon definition with the SetSizeFuncFromPoly method. The testing code for this example is in TutMeshingTests::test_Example_PolyLineRedist.
-
-\snippet xmsmesh/tutorial/TutMeshing.cpp snip_test_Example_Redist
-
 ## Checking Meshing Input for Errors {#Check_Input}
 The input to the meshing algorithm is done using the xms::MeMultiPolyMesherInput class and the input must be specified in a certain way. For example,  vectors defining outer polygons must not be empty, the first point should not be repeated as the last point, and the number of patch corners should be 0 or 3. The function MeMultiPolyMesherImpl::ValidateInput always checks the input for these simple errors before the meshing is performed. If errors are found, the mesher asserts, writes the errors to a log file, and aborts.
 

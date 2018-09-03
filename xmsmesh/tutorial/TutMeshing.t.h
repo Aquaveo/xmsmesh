@@ -53,11 +53,9 @@ public:
 class TutRedistributionIntermediateTests : public CxxTest::TestSuite
 {
 public:
-#ifndef CXXTEST4
-  virtual const CxxTest::TestGroup& group();
-#endif
   void test_Example_SimplePolygon_Redistribute();
   void test_Example_Redistribute_SizeFunction();
   void test_Example_Redistribute_Curvature();
+  void test_Example_Redistribute_Polygon_Curvature();
 };
 #endif
