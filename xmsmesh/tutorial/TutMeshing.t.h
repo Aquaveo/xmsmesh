@@ -43,11 +43,21 @@ public:
   void test_Example_MultiplePolygons();
   void test_Example_ScalarPaving();
   void test_Example_Patch();
-  void test_Example_PolyLineRedist();
   void test_Example_ConstantSmooth();
   void test_Example_SizeFuncFromDepth();
   void test_Example_SmoothSizeFunc();
   void test_Example_SpringRelax();
 };
 
+/// \brief Class for testing polyline/polygon point redistribution
+class TutRedistributionIntermediateTests : public CxxTest::TestSuite
+{
+public:
+#ifndef CXXTEST4
+  virtual const CxxTest::TestGroup& group();
+#endif
+  void test_Example_SimplePolygon_Redistribute();
+  void test_Example_Redistribute_SizeFunction();
+  void test_Example_Redistribute_Curvature();
+};
 #endif

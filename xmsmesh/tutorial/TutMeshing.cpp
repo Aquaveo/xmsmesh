@@ -593,28 +593,6 @@ void TutMeshingIntermediateTests::test_Example_Patch()
 } // TutMeshingIntermediateTests::test_Example_Patch
 //! [snip_test_Example_Patch]
 //------------------------------------------------------------------------------
-/// \brief Example for redistributing points on a polyline
-//------------------------------------------------------------------------------
-//! [snip_test_Example_Redist]
-void TutMeshingIntermediateTests::test_Example_PolyLineRedist()
-{
-  // create a polyline
-  xms::VecPt3d pl = {{0, 0}, {100, 0}, {100, 100}, {0, 100}, {0, 0}};
-  // create a point redistributor class
-  BSHP<xms::MePolyRedistributePts> r = xms::MePolyRedistributePts::New();
-  // set a constant size function
-  r->SetConstantSizeFunc(25.0);
-
-  // redistribute the poly line
-  xms::VecPt3d p1 = r->Redistribute(pl);
-  // verify the output
-  xms::VecPt3d base = {{0, 0},    {25, 0},   {50, 0},    {75, 0},   {100, 0},  {100, 25},
-                       {100, 50}, {100, 75}, {100, 100}, {75, 100}, {50, 100}, {25, 100},
-                       {0, 100},  {0, 75},   {0, 50},    {0, 25},   {0, 0}};
-  TS_ASSERT_DELTA_VEC_MP3(base, p1, 1e-9);
-} // TutMeshingIntermediateTests::test_Example_PolyLineRedist
-//! [snip_test_Example_Redist]
-//------------------------------------------------------------------------------
 /// \brief Example for smooth transition with a constant size function
 //------------------------------------------------------------------------------
 //! [snip_test_Example_ConstantSmooth]
@@ -805,5 +783,153 @@ void TutMeshingIntermediateTests::test_Example_SpringRelax()
   tutGenerateAndCompare2dm(input, baseFile);
 } // TutMeshingIntermediateTests::test_Example_SpringRelax
 //! [snip_test_Example_SpringRelax]
+
+//------------------------------------------------------------------------------
+/// \brief Example for redistributing points on a polygon boundary to a constant
+/// spacing.
+//------------------------------------------------------------------------------
+//! [snip_test_example_SimplePolygon_Redistribute]
+void TutRedistributionIntermediateTests::test_Example_SimplePolygon_Redistribute()
+{
+  // Outer polygon points are in clockwise order
+  xms::VecPt3d polygon = {{0, 0},    {0, 10},   {0, 20},    {0, 30},   {0, 40},   {0, 50},
+                          {0, 60},   {0, 70},   {0, 80},    {0, 90},   {0, 100},  {10, 100},
+                          {20, 100}, {30, 100}, {40, 100},  {50, 100}, {60, 100}, {70, 100},
+                          {80, 100}, {90, 100}, {100, 100}, {100, 90}, {100, 80}, {100, 70},
+                          {100, 60}, {100, 50}, {100, 40},  {100, 30}, {100, 20}, {100, 10},
+                          {100, 0},  {90, 0},   {80, 0},    {70, 0},   {60, 0},   {50, 0},
+                          {40, 0},   {30, 0},   {20, 0},    {10, 0},   {0, 0}};
+  // create the redistribution class
+  BSHP<xms::MePolyRedistributePts> redist = xms::MePolyRedistributePts::New();
+  // set the redistribution class to use a constant spacing
+  redist->SetConstantSizeFunc(20.0);
+  // redistribute the points
+  xms::VecPt3d outPts = redist->Redistribute(polygon);
+  {
+    xms::VecPt3d expectedPts = {
+      {0, 0, 0},    {0, 20, 0},   {0, 40, 0},   {0, 60, 0},   {0, 80, 0},    {0, 100, 0},
+      {20, 100, 0}, {40, 100, 0}, {60, 100, 0}, {80, 100, 0}, {100, 100, 0}, {100, 80, 0},
+      {100, 60, 0}, {100, 40, 0}, {100, 20, 0}, {100, 0, 0},  {80, 0, 0},    {60, 0, 0},
+      {40, 0, 0},   {20, 0, 0},   {0, 0, 0}};
+    TS_ASSERT_DELTA_VECPT3D(expectedPts, outPts, 1e-3);
+  }
+} // TutRedistributionIntermediateTests::test_Example_SimplePolygon_Redistribute
+//! [snip_test_example_SimplePolygon_Redistribute]
+//------------------------------------------------------------------------------
+/// \brief Example for redistributing a polygon using scalar paving.
+//------------------------------------------------------------------------------
+//! [snip_test_Example_Redistribute_SizeFunction]
+void TutRedistributionIntermediateTests::test_Example_Redistribute_SizeFunction()
+{
+  // Outer polygon points are in clockwise order
+  xms::VecPt3d polygon = {{0, 0},    {0, 10},   {0, 20},    {0, 30},   {0, 40},   {0, 50},
+                          {0, 60},   {0, 70},   {0, 80},    {0, 90},   {0, 100},  {10, 100},
+                          {20, 100}, {30, 100}, {40, 100},  {50, 100}, {60, 100}, {70, 100},
+                          {80, 100}, {90, 100}, {100, 100}, {100, 90}, {100, 80}, {100, 70},
+                          {100, 60}, {100, 50}, {100, 40},  {100, 30}, {100, 20}, {100, 10},
+                          {100, 0},  {90, 0},   {80, 0},    {70, 0},   {60, 0},   {50, 0},
+                          {40, 0},   {30, 0},   {20, 0},    {10, 0},   {0, 0}};
+
+  // create a size function interpolator
+
+  // These are the interpolator point locations. The size is specified by the
+  // "z" component of the points.
+  BSHP<xms::VecPt3d> sPts(new xms::VecPt3d());
+  *sPts = {{-10, -10, 10}, {-10, 110, 10}, {110, 110, 1}, {110, -10, 10}, {60, 70, 1}};
+  // These are the interpolator triangles.
+  // Triangles are specified as point indexes in ccw order.  You can see the
+  // 4 triangles in the vector below.
+  BSHP<xms::VecInt> sTris(new xms::VecInt());
+  *sTris = {0, 4, 1, 1, 4, 2, 2, 4, 3, 3, 4, 0};
+  // create a linear interpolator for the size function
+  BSHP<xms::InterpBase> linear(xms::InterpLinear::New());
+  // sets the points and the triangles for the interpolator
+  linear->SetPtsTris(sPts, sTris);
+  // create the redistribution class
+  BSHP<xms::MePolyRedistributePts> redist = xms::MePolyRedistributePts::New();
+  // set the redistribution class to use a constant spacing
+  redist->SetSizeFunc(linear);
+  // redistribute the points
+  xms::VecPt3d outPts = redist->Redistribute(polygon);
+  {
+    xms::VecPt3d expectedPts = {
+      {0.000, 0.000, 0},    {0.000, 8.794, 0},    {0.000, 17.574, 0},   {0.000, 26.355, 0},
+      {0.000, 35.135, 0},   {0.000, 43.916, 0},   {0.000, 52.697, 0},   {0.000, 61.477, 0},
+      {0.000, 70.258, 0},   {0.000, 79.038, 0},   {0.000, 87.819, 0},   {0.000, 96.599, 0},
+      {5.230, 100.000, 0},  {13.015, 100.000, 0}, {20.214, 100.000, 0}, {26.898, 100.000, 0},
+      {33.102, 100.000, 0}, {38.864, 100.000, 0}, {44.212, 100.000, 0}, {49.181, 100.000, 0},
+      {53.794, 100.000, 0}, {58.079, 100.000, 0}, {62.059, 100.000, 0}, {65.757, 100.000, 0},
+      {69.192, 100.000, 0}, {72.382, 100.000, 0}, {75.348, 100.000, 0}, {78.104, 100.000, 0},
+      {80.666, 100.000, 0}, {83.046, 100.000, 0}, {85.260, 100.000, 0}, {87.319, 100.000, 0},
+      {89.234, 100.000, 0}, {91.015, 100.000, 0}, {92.672, 100.000, 0}, {94.214, 100.000, 0},
+      {95.649, 100.000, 0}, {96.986, 100.000, 0}, {98.230, 100.000, 0}, {99.390, 100.000, 0},
+      {100.000, 99.523, 0}, {100.000, 98.406, 0}, {100.000, 97.223, 0}, {100.000, 95.963, 0},
+      {100.000, 94.609, 0}, {100.000, 93.156, 0}, {100.000, 91.594, 0}, {100.000, 89.915, 0},
+      {100.000, 88.111, 0}, {100.000, 86.172, 0}, {100.000, 84.087, 0}, {100.000, 81.844, 0},
+      {100.000, 79.431, 0}, {100.000, 76.836, 0}, {100.000, 74.044, 0}, {100.000, 71.040, 0},
+      {100.000, 67.806, 0}, {100.000, 64.327, 0}, {100.000, 60.580, 0}, {100.000, 56.547, 0},
+      {100.000, 52.206, 0}, {100.000, 47.530, 0}, {100.000, 42.497, 0}, {100.000, 37.076, 0},
+      {100.000, 31.239, 0}, {100.000, 24.951, 0}, {100.000, 18.178, 0}, {100.000, 10.884, 0},
+      {100.000, 3.028, 0},  {94.462, 0.000, 0},   {85.520, 0.000, 0},   {76.579, 0.000, 0},
+      {67.638, 0.000, 0},   {58.696, 0.000, 0},   {49.755, 0.000, 0},   {40.814, 0.000, 0},
+      {31.873, 0.000, 0},   {22.931, 0.000, 0},   {13.990, 0.000, 0},   {5.049, 0.000, 0},
+      {0.000, 0.000, 0}};
+    TS_ASSERT_DELTA_VECPT3D(expectedPts, outPts, 1e-3);
+  }
+
+} // TutMeshingIntermediateTests::test_Example_ScalarPaving
+//! [snip_test_Example_Redistribute_SizeFunction]
+//------------------------------------------------------------------------------
+/// \brief Example for redistributing a polyline using curvature.
+/// \code
+///
+///
+///          2       4
+///        /   \   /   \
+///      1       3      \
+///    /                 \
+///  0                    5
+///
+/// \endcode
+//------------------------------------------------------------------------------
+//! [test_Example_Redistribute_Curvature]
+void TutRedistributionIntermediateTests::test_Example_Redistribute_Curvature()
+{
+  xms::VecPt3d polyline = {{0, 0, 0},   {5, 5, 0},   {10, 10, 0}, {15, 5, 0},
+                           {20, 10, 0}, {21, 10, 0}, {25, 0, 0}};
+  // create the redistribution class
+  BSHP<xms::MePolyRedistributePts> redist = xms::MePolyRedistributePts::New();
+  // set the redistribution class to curvature
+  double featureSize(3.0), meanSpacing(0.5), minimumCurvature(.0001);
+  bool smooth(false);
+  redist->SetUseCurvatureRedistribution(featureSize, meanSpacing, minimumCurvature, smooth);
+  // redistribute the points
+  xms::VecPt3d outPts = redist->Redistribute(polyline);
+  {
+    xms::VecPt3d expectedPts = {
+      {0.000, 0.000, 0},   {9.526, 9.526, 0},   {9.582, 9.582, 0},   {9.639, 9.639, 0},
+      {9.695, 9.695, 0},   {9.751, 9.751, 0},   {9.808, 9.808, 0},   {9.864, 9.864, 0},
+      {9.921, 9.921, 0},   {9.977, 9.977, 0},   {10.034, 9.966, 0},  {10.090, 9.910, 0},
+      {10.146, 9.854, 0},  {10.203, 9.797, 0},  {10.259, 9.741, 0},  {10.316, 9.684, 0},
+      {10.372, 9.628, 0},  {10.429, 9.571, 0},  {10.485, 9.515, 0},  {14.481, 5.519, 0},
+      {14.537, 5.463, 0},  {14.594, 5.406, 0},  {14.650, 5.350, 0},  {14.707, 5.293, 0},
+      {14.763, 5.237, 0},  {14.819, 5.181, 0},  {14.876, 5.124, 0},  {14.932, 5.068, 0},
+      {14.989, 5.011, 0},  {15.045, 5.045, 0},  {15.102, 5.102, 0},  {15.158, 5.158, 0},
+      {15.215, 5.215, 0},  {15.271, 5.271, 0},  {15.327, 5.327, 0},  {15.384, 5.384, 0},
+      {15.440, 5.440, 0},  {15.497, 5.497, 0},  {19.484, 9.484, 0},  {19.518, 9.518, 0},
+      {19.552, 9.552, 0},  {19.587, 9.587, 0},  {19.621, 9.621, 0},  {19.655, 9.655, 0},
+      {19.690, 9.690, 0},  {19.724, 9.724, 0},  {19.759, 9.759, 0},  {19.793, 9.793, 0},
+      {19.827, 9.827, 0},  {19.862, 9.862, 0},  {19.896, 9.896, 0},  {19.930, 9.930, 0},
+      {19.965, 9.965, 0},  {19.999, 9.999, 0},  {20.047, 10.000, 0}, {20.096, 10.000, 0},
+      {20.144, 10.000, 0}, {20.193, 10.000, 0}, {20.242, 10.000, 0}, {20.790, 10.000, 0},
+      {20.838, 10.000, 0}, {20.886, 10.000, 0}, {20.934, 10.000, 0}, {20.982, 10.000, 0},
+      {21.011, 9.972, 0},  {21.029, 9.928, 0},  {21.047, 9.883, 0},  {21.065, 9.839, 0},
+      {21.082, 9.794, 0},  {21.100, 9.749, 0},  {21.118, 9.705, 0},  {21.136, 9.660, 0},
+      {21.154, 9.616, 0},  {21.172, 9.571, 0},  {21.189, 9.527, 0},  {21.207, 9.482, 0},
+      {21.225, 9.437, 0},  {21.243, 9.393, 0},  {21.261, 9.348, 0},  {25.000, 0.000, 0}};
+    TS_ASSERT_DELTA_VECPT3D(expectedPts, outPts, 1e-3);
+  }
+} // TutRedistributionIntermediateTests::test_Example_Redistribute_Curvature
+//! [test_Example_Redistribute_Curvature]
 
 #endif

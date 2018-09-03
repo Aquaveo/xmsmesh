@@ -29,6 +29,7 @@
 #include <xmsinterp/geometry/GmMultiPolyIntersectionSorterTerse.h>
 #include <xmsinterp/interpolate/InterpBase.h>
 #include <xmsmesh/meshing/detail/MePolyOffsetter.h>
+#include <xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h>
 #include <xmscore/misc/xmstype.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/XmLog.h>
@@ -65,6 +66,11 @@ public:
   , m_distSqTol(0)
   , m_biasConstSize(false)
   , m_polyOffsetIter(0)
+  , m_featureSizeCurvature(0)
+  , m_meanSpacingCurvature(0)
+  , m_minimumCurvature(0.001)
+  , m_smoothCurvature(false)
+  , m_curvatureRedist()
   {
   }
 
@@ -77,7 +83,11 @@ public:
   /// \brief Sets the size function to a constant value
   /// \param a_size The element edge size.
   //------------------------------------------------------------------------------
-  virtual void SetConstantSizeFunc(double a_size) override { m_constSize = a_size; }
+  virtual void SetConstantSizeFunc(double a_size) override
+  {
+    m_constSize = a_size;
+    m_curvatureRedist.reset(); // remove curvature redistribution
+  }                            // SetConstantSizeFunc
 
   //------------------------------------------------------------------------------
   /// \brief Sets the bias for constant value size function
@@ -87,7 +97,13 @@ public:
   {
     m_sizeBias = a_sizeBias;
     m_biasConstSize = true;
-  }
+    m_curvatureRedist.reset(); // remove curvature redistribution
+  }                            // SetConstantSizeBias
+
+  void SetUseCurvatureRedistribution(double a_featureSize,
+                                     double a_meanSpacing,
+                                     double a_minimumCurvature,
+                                     bool a_smooth) override;
 
   void Redistribute(const MePolyOffsetterOutput& a_input,
                     MePolyOffsetterOutput& a_out,
@@ -144,6 +160,20 @@ public:
   double m_distSqTol;    ///< tolerance used to speed up interpolation
   bool m_biasConstSize;  ///< flag to indicate transitioning to constant size function
   int m_polyOffsetIter;  ///< number of iterations from the polygon boundary
+  /// Used by curvature redistribution. The size of the smallest feature in the polyline to be
+  /// detected. Large values will generate point distributions that follow coarser curvatures.
+  double m_featureSizeCurvature;
+  /// Used by curvature redistribution. The mean spacing between the distributed points.
+  double m_meanSpacingCurvature;
+  /// Used by curvature redistribution. The value of the curvature to be used instead of 0 in
+  /// staight lines. It limits the maximum spacing between points. If not included, the default
+  /// is 0.001.
+  double m_minimumCurvature;
+  /// Used by curvature redistribution. Detemines if the curvatures are to be averaged by a
+  /// rolling 0.25-0.5-0.25 weighted rolling average.
+  bool m_smoothCurvature;
+  /// Point redistributor that uses curvature
+  BSHP<MePolyRedistributePtsCurvature> m_curvatureRedist;
 };
 
 //------------------------------------------------------------------------------
@@ -178,6 +208,7 @@ MePolyRedistributePts::MePolyRedistributePts()
 //------------------------------------------------------------------------------
 void MePolyRedistributePtsImpl::SetSizeFunc(BSHP<InterpBase> a_interp)
 {
+  m_curvatureRedist.reset(); // remove curvature redistribution
   m_interp = a_interp;
   m_intersectWithTris = true;
   // make sure we have triangles
@@ -210,6 +241,7 @@ void MePolyRedistributePtsImpl::SetSizeFuncFromPoly(const VecPt3d& a_outPoly,
                                                     const VecPt3d2d& a_inPolys,
                                                     double a_sizeBias)
 {
+  m_curvatureRedist.reset(); // remove curvature redistribution
   m_sizeBias = a_sizeBias;
   // calculate the lengths of the segments
   SizeFromPolyCalcAveEdgeLengthAtPts(a_outPoly, a_inPolys);
@@ -255,6 +287,27 @@ void MePolyRedistributePtsImpl::SetSizeFuncFromPoly(const VecPt3d& a_outPoly,
   }
 } // MePolyRedistributePtsImpl::SetSizeFuncFromPoly
 //------------------------------------------------------------------------------
+/// \brief Specifies that curvature redistribution will be used
+/// \param[in] a_featureSize: The size of the smallest feature in the polyline to be detected.
+///   Large values will generate point distributions that follow coarser curvatures.
+/// \param[in] a_meanSpacing: The mean spacing between the distributed points.
+/// \param[in] a_minimumCurvature: The value of the curvature to be used instead of 0 in staight
+///   lines. It limits the maximum spacing between points. If not included, the default is 0.001.
+/// \param[in] a_smooth: Detemines if the curvatures are to be averaged by a rolling 0.25-0.5-0.25
+///   weighted rolling average.
+//------------------------------------------------------------------------------
+void MePolyRedistributePtsImpl::SetUseCurvatureRedistribution(double a_featureSize,
+                                                              double a_meanSpacing,
+                                                              double a_minimumCurvature,
+                                                              bool a_smooth)
+{
+  m_featureSizeCurvature = a_featureSize;
+  m_meanSpacingCurvature = a_meanSpacing;
+  m_minimumCurvature = a_minimumCurvature;
+  m_smoothCurvature = a_smooth;
+  m_curvatureRedist = MePolyRedistributePtsCurvature::New();
+} // MePolyRedistributePtsImpl::SetUseCurvatureRedistribution
+//------------------------------------------------------------------------------
 /// \brief Redistributes points on closed loop polylines. The length of edges
 /// in the redistribution comes from a size function that is interpolated to
 /// the points that make up the polylines. By default this size function comes
@@ -299,6 +352,12 @@ void MePolyRedistributePtsImpl::Redistribute(const MePolyOffsetterOutput& a_inpu
 //------------------------------------------------------------------------------
 VecPt3d MePolyRedistributePtsImpl::Redistribute(const VecPt3d& a_polyLine)
 {
+  if (m_curvatureRedist)
+  {
+    return m_curvatureRedist->Redistribute(a_polyLine, m_featureSizeCurvature,
+                                           m_meanSpacingCurvature, m_minimumCurvature,
+                                           m_smoothCurvature);
+  }
   VecPt3d pts(a_polyLine), ret;
   VecDbl lengths;
   if (m_intersectWithTris)
@@ -318,11 +377,21 @@ VecPt3d MePolyRedistributePtsImpl::Redistribute(const VecPt3d& a_polyLine)
 //------------------------------------------------------------------------------
 double MePolyRedistributePtsImpl::SizeFromLocation(const Pt3d& a_location)
 {
+  if (m_curvatureRedist)
+  {
+    std::string msg = "MePolyRedistributePts set to use curvature redistribution; "
+      "MePolyRedistributePtsImpl::SizeFromLocation can not be call with these "
+      "settings. XM_NODATA will be returned.";
+    boost::mutex mtx;
+    mtx.lock();
+    XM_LOG(xmlog::error, msg);
+    mtx.unlock();
+    return XM_NODATA;
+  }
   VecPt3d pts(1, a_location);
   VecDbl lengths;
   InterpEdgeLengths(pts, lengths);
   return lengths.front();
-  ;
 } // MePolyRedistributePtsImpl::SizeFromLocation
 //------------------------------------------------------------------------------
 /// \brief Creates a vector of pts from indices into another vector of points

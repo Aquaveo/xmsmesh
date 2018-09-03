@@ -39,6 +39,10 @@ public:
                                    double a_sizeBias) = 0;
   virtual void SetConstantSizeFunc(double a_size) = 0;
   virtual void SetConstantSizeBias(double a_sizeBias) = 0;
+  virtual void SetUseCurvatureRedistribution(double a_featureSize,
+                                             double a_meanSpacing,
+                                             double a_minimumCurvature,
+                                             bool a_smooth) = 0;
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) = 0;
   virtual double SizeFromLocation(const Pt3d& a_location) = 0;
 

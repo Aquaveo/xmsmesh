@@ -56,9 +56,10 @@ set(xmsmesh_sources
   xmsmesh/meshing/detail/MePolyOffsetter.cpp
   xmsmesh/meshing/detail/MePolyPaverToMeshPts.cpp
   xmsmesh/meshing/detail/MePolyCleaner.cpp
-  xmsmesh/meshing/detail/MeRelaxer.cpp
   xmsmesh/meshing/detail/MePolyPts.cpp
+  xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.cpp
   xmsmesh/meshing/detail/MeRefinePtsToPolys.cpp
+  xmsmesh/meshing/detail/MeRelaxer.cpp
   xmsmesh/meshing/MePolyMesher.cpp
   xmsmesh/meshing/MePolyRedistributePts.cpp
   xmsmesh/tutorial/TutMeshing.cpp
@@ -72,13 +73,14 @@ set(xmsmesh_headers
   xmsmesh/meshing/MeMultiPolyTo2dm.h
   xmsmesh/meshing/MePolyRedistributePts.h
   xmsmesh/meshing/detail/MePolyCleaner.h
-  xmsmesh/meshing/detail/MeRefinePtsToPolys.h
   xmsmesh/meshing/detail/MePolyOffsetter.h
   xmsmesh/meshing/detail/MePolyPts.h
   xmsmesh/meshing/detail/MePolyPatcher.h
   xmsmesh/meshing/detail/MeIntersectPolys.h
-  xmsmesh/meshing/detail/MeRelaxer.h
   xmsmesh/meshing/detail/MePolyPaverToMeshPts.h
+  xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h
+  xmsmesh/meshing/detail/MeRefinePtsToPolys.h
+  xmsmesh/meshing/detail/MeRelaxer.h
 )
 
 # Pybind11 sources
@@ -105,10 +107,11 @@ if (BUILD_TESTING)
     xmsmesh/meshing/detail/MePolyPaverToMeshPts.t.h
     xmsmesh/meshing/detail/MeIntersectPolys.t.h
     xmsmesh/meshing/detail/MePolyPatcher.t.h
-    xmsmesh/meshing/detail/MeRelaxer.t.h
-    xmsmesh/meshing/detail/MeRefinePtsToPolys.t.h
     xmsmesh/meshing/detail/MePolyOffsetter.t.h
     xmsmesh/meshing/detail/MePolyCleaner.t.h
+    xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.t.h
+    xmsmesh/meshing/detail/MeRefinePtsToPolys.t.h
+    xmsmesh/meshing/detail/MeRelaxer.t.h
     xmsmesh/meshing/MeMeshUtils.t.h
     xmsmesh/meshing/MeMultiPolyTo2dm.t.h
     xmsmesh/meshing/MePolyMesher.t.h
