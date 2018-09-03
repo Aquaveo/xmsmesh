@@ -222,7 +222,7 @@ void MePolyRedistributePtsCurvatureImpl::CalculateCurvature(double a_featureSize
       start = 0;
       curv = GetCurvatureFromParamater(m_parametricDistance[i], interval, start);
       // This puts a minimum limit to the curvature
-      curv = std::max(a_minimumCurvature, abs(curv));
+      curv = std::max(a_minimumCurvature, fabs(curv));
       m_curvature[i] = curv;
     }
   }
