@@ -189,7 +189,7 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io,
   // write the 2dm
   Write2dm(a_io, a_os, a_precision);
   return true;
-} // MeMultiPolyTo2dmImpl::GenerateUGrid
+} // MeMultiPolyTo2dmImpl::Generate2dm
 //------------------------------------------------------------------------------
 /// \brief Writes 2dm data from a point and cell stream from the
 /// MeMultiPolyMesherIo class.

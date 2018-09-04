@@ -38,8 +38,16 @@ public:
   void testShiftAndAggregateClosed();
   void testDoSmoothing();
   void testNewPointsFromParamCurvs();
-
 };
+
+/// \brief Class for testing MePolyRedistributePtsCurvature
+class MePolyRedistributePtsCurvatureIntermediateTests : public CxxTest::TestSuite
+{
+public:
+  void testCoastline();
+  void testIsland();
+};
+
 //----- Function prototypes ----------------------------------------------------
 
 //} // namespace xms

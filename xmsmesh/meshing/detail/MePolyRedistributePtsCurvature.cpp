@@ -14,28 +14,15 @@
 #include <xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h>
 
 // 3. Standard library headers
-#include <cfloat>
-#include <limits>
 
 // 4. External library headers
-#include <boost/make_shared.hpp>
-#include <boost/thread/mutex.hpp>
 
 // 5. Shared code headers
-#include <xmscore/points/pt.h>
 #include <xmscore/math/math.h>
+#include <xmscore/misc/XmError.h>
+#include <xmscore/points/pt.h>
 #include <xmscore/stl/vector.h>
 #include <xmsinterp/geometry/geoms.h>
-#include <xmsinterp/geometry/GmMultiPolyIntersector.h>
-#include <xmsinterp/geometry/GmMultiPolyIntersectionSorter.h>
-#include <xmsinterp/geometry/GmMultiPolyIntersectionSorterTerse.h>
-#include <xmsinterp/interpolate/InterpBase.h>
-#include <xmsmesh/meshing/detail/MePolyOffsetter.h>
-#include <xmscore/misc/xmstype.h>
-#include <xmscore/misc/XmError.h>
-#include <xmscore/misc/XmLog.h>
-#include <xmsinterp/triangulate/TrTriangulatorPoints.h>
-#include <xmscore/misc/XmConst.h>
 
 // 6. Non-shared code headers
 
@@ -171,8 +158,9 @@ void MePolyRedistributePtsCurvatureImpl::Setup(const VecPt3d& a_points)
 } // MePolyRedistributePtsCurvatureImpl::SetUp
 //------------------------------------------------------------------------------
 /// \brief Redistribute points according to curvature
-/// \param[in] a_featureSize: The size of the smallest feature in the polyline to be detected.
-///   Large values will generate point distributions that follow coarser curvatures.
+/// \param[in] a_featureSize: The maximum distance around each point when computing curvature
+/// at that point. In the future we may want to change the algorithm to use this distance
+/// around each point instead of just using it as a maximum.
 /// \param[in] a_numPoints: The number of points to be distributed along the polyline.
 /// \param[in] a_minimumCurvature: The value of the curvature to be used instead of 0 in staight
 ///   lines. It limits the maximum spacing between points. If not included, the default is 0.001.
@@ -296,7 +284,7 @@ double MePolyRedistributePtsCurvatureImpl::GetCurvatureFromParamater(double a_pa
   return 1 / r;
 } // MePolyRedistributePtsCurvatureImpl::GetCurvatureFromParamater
 //------------------------------------------------------------------------------
-/// \brief Get location based on parametric value a_param 
+/// \brief Get location based on parametric value a_param
 /// \param[in] a_param: The parameterized position between [0, 1] along the curve.
 /// \param[in,out] a_start: The segment from which to start searching.  Use NoneStart to perform
 ///  a binary search to find the starting segment.
@@ -567,6 +555,9 @@ size_t MePolyRedistributePtsCurvatureImpl::BinarySearch(double a_distance)
 
 #include <xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.t.h>
 
+#include <fstream>
+
+#include <xmscore/misc/StringUtil.h>
 #include <xmscore/testing/TestTools.h>
 #include <xmsinterp/geometry/geoms.h>
 
@@ -900,5 +891,72 @@ void MePolyRedistributePtsCurvatureUnitTests::testNewPointsFromParamCurvs()
     TS_ASSERT_DELTA_VECPT3D(expectedPoints, outPts, 1e-3);
   }
 } // MePolyRedistributePtsCurvatureUnitTests::testNewPointsFromParamCurvs
+//------------------------------------------------------------------------------
+/// \brief Tests redistribution along a coastline
+//------------------------------------------------------------------------------
+void MePolyRedistributePtsCurvatureIntermediateTests::testCoastline()
+{
+  std::string path(std::string(XMSMESH_TEST_PATH) + "redistribution/");
+  std::string infile(path + "Coastline.txt"), outFile(path + "Coastline_out.txt"),
+    baseFile(path + "Coastline_base.txt");
+  std::fstream is;
+  is.open(infile, std::fstream::in);
+  VecPt3d pts;
+  while (is.good())
+  {
+    Pt3d p;
+    is >> p.x >> p.y >> p.z;
+    if (is.good())
+      pts.push_back(p);
+  }
 
+  MePolyRedistributePtsCurvatureImpl r;
+  double featureSize(200.0), meanSpacing(50.0), minimumCurvature(.001);
+  bool smoothCurvature(true);
+  pts = r.Redistribute(pts, featureSize, meanSpacing, minimumCurvature, smoothCurvature);
+  {
+    int flag = STR_FULLWIDTH;
+    int width = 9;
+    std::fstream os(outFile, std::fstream::out);
+    for (auto& p : pts)
+    {
+      os << STRstd(p.x, -1, width, flag) << " " << STRstd(p.y, -1, width, flag) << "\n";
+    }
+  }
+  TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
+} // MePolyRedistributePtsCurvatureIntermediateTests::testCoastline
+//------------------------------------------------------------------------------
+/// \brief Tests redistribution along an island
+//------------------------------------------------------------------------------
+void MePolyRedistributePtsCurvatureIntermediateTests::testIsland()
+{
+  std::string path(std::string(XMSMESH_TEST_PATH) + "redistribution/");
+  std::string infile(path + "Island.txt"), outFile(path + "Island_out.txt"),
+    baseFile(path + "Island_base.txt");
+  std::fstream is;
+  is.open(infile, std::fstream::in);
+  VecPt3d pts;
+  while (is.good())
+  {
+    Pt3d p;
+    is >> p.x >> p.y >> p.z;
+    if (is.good())
+      pts.push_back(p);
+  }
+
+  MePolyRedistributePtsCurvatureImpl r;
+  double featureSize(200.0), meanSpacing(50.0), minimumCurvature(.001);
+  bool smoothCurvature(true);
+  pts = r.Redistribute(pts, featureSize, meanSpacing, minimumCurvature, smoothCurvature);
+  {
+    int flag = STR_FULLWIDTH;
+    int width = 9;
+    std::fstream os(outFile, std::fstream::out);
+    for (auto& p : pts)
+    {
+      os << STRstd(p.x, -1, width, flag) << " " << STRstd(p.y, -1, width, flag) << "\n";
+    }
+  }
+  TS_ASSERT_TXT_FILES_EQUAL(baseFile, outFile);
+} // MePolyRedistributePtsCurvatureIntermediateTests::testCoastline
 #endif
