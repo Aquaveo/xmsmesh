@@ -14,6 +14,7 @@
 #include <xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h>
 
 // 3. Standard library headers
+#include <map>
 
 // 4. External library headers
 
@@ -59,14 +60,13 @@ public:
                       bool a_smooth);
   void GetSignificantPoints(double a_featureSize);
   void CalculateCurvature(double a_featureSize, double a_minimumCurvature);
-  double GetCurvatureFromParamater(double a_param, double a_interval, size_t& a_start);
-  Pt3d GetPointFromParameter(double a_param, size_t& a_start);
+  double GetCurvatureFromParameter(double a_param, double a_interval);
+  Pt3d GetPointFromParameter(double a_param);
   void GetParameterIFM(double a_param, double a_interval, double& a_ti, double& a_tm, double& a_tf);
   void ShiftAndAggregateOpen();
   void ShiftAndAggregateClosed();
   void DoSmoothing(bool a_smooth);
   VecPt3d NewPointsFromParamCurvs(int a_numPoints);
-  size_t BinarySearch(double a_distance);
 
   VecPt3d m_points;                   ///< locations defining polyline/polygon
   VecDbl m_segmentLengths;            ///< length of each segment
@@ -76,6 +76,7 @@ public:
   double m_length = 0.0;              ///< total length
   bool m_open = false;                ///< false means polygon, true mean polyline
   double m_tol = 1e-6;                ///< tolerance used for geometric calculations
+  std::map<double, int> m_distMap;    ///< map of distances and indices
 };
 //------------------------------------------------------------------------------
 /// \brief Creates an instance of this class
@@ -200,15 +201,21 @@ VecPt3d MePolyRedistributePtsCurvatureImpl::PlacePoints(double a_featureSize,
 void MePolyRedistributePtsCurvatureImpl::CalculateCurvature(double a_featureSize,
                                                             double a_minimumCurvature)
 {
+  m_distMap.clear();
+  int i(0);
+  for (const auto& d : m_accumulatedSegmentLengths)
+  {
+    m_distMap.insert(std::make_pair(d, i));
+    i++;
+  }
+
   double interval = a_featureSize / m_length;
-  size_t start = 0;
   for (size_t i = 0; i < m_parametricDistance.size(); ++i)
   {
     double curv(0.0);
     if (m_curvature[i] < 0) // Not calculated yet  .isnan()
     {
-      start = 0;
-      curv = GetCurvatureFromParamater(m_parametricDistance[i], interval, start);
+      curv = GetCurvatureFromParameter(m_parametricDistance[i], interval);
       // This puts a minimum limit to the curvature
       curv = std::max(a_minimumCurvature, fabs(curv));
       m_curvature[i] = curv;
@@ -257,81 +264,56 @@ void MePolyRedistributePtsCurvatureImpl::GetSignificantPoints(double a_featureSi
 ///   calculated.
 /// \param[in] a_interval: Parameterized form of the feature_size. Determines the two other points
 /// used to calculate the curvature at tc
-/// \param[in,out] a_start : Segment from which the
-/// calculations will be started (and out where to start the next calculation).
 /// \return The computed curvature.
 //------------------------------------------------------------------------------
-double MePolyRedistributePtsCurvatureImpl::GetCurvatureFromParamater(double a_param,
-                                                                     double a_interval,
-                                                                     size_t& a_start)
+double MePolyRedistributePtsCurvatureImpl::GetCurvatureFromParameter(double a_param,
+                                                                     double a_interval)
 {
   double ti, tm, tf;
   GetParameterIFM(a_param, a_interval, ti, tm, tf);
-  Pt3d pi, pf;
-  a_start = 0;
-  pi = GetPointFromParameter(ti, a_start);
-
-  a_start = 0;
-  Pt3d pm = GetPointFromParameter(tm, a_start);
-
-  a_start = 0;
-  pf = GetPointFromParameter(tf, a_start);
+  Pt3d pi = GetPointFromParameter(ti);
+  Pt3d pm = GetPointFromParameter(tm);
+  Pt3d pf = GetPointFromParameter(tf);
 
   // get curvature
   double xc, yc, r2;
   gmCircumcircleWithTol(&pi, &pm, &pf, &xc, &yc, &r2, m_tol);
   double r = sqrt(r2);
   return 1 / r;
-} // MePolyRedistributePtsCurvatureImpl::GetCurvatureFromParamater
+} // MePolyRedistributePtsCurvatureImpl::GetCurvatureFromParameter
 //------------------------------------------------------------------------------
 /// \brief Get location based on parametric value a_param
 /// \param[in] a_param: The parameterized position between [0, 1] along the curve.
-/// \param[in,out] a_start: The segment from which to start searching.  Use NoneStart to perform
-///  a binary search to find the starting segment.
 /// \return The point for the paramater.
 //------------------------------------------------------------------------------
-Pt3d MePolyRedistributePtsCurvatureImpl::GetPointFromParameter(double a_param, size_t& a_start)
+Pt3d MePolyRedistributePtsCurvatureImpl::GetPointFromParameter(double a_param)
 {
+  int idx(-1);
   double t = std::min(1.0, std::max(0.0, a_param));
   double station = t * m_length;
-
-  size_t start = a_start;
-
-  size_t nAccumSegLengths = m_accumulatedSegmentLengths.size();
-  size_t i = start;
-  while (0 <= i && i < nAccumSegLengths)
+  auto it = m_distMap.lower_bound(station);
+  if (it != m_distMap.begin())
+    it--;
+  if (it != m_distMap.end())
   {
-    double d0 = m_accumulatedSegmentLengths[i];
-    double d1 = d0 + m_segmentLengths[i];
+    idx = it->second;
+  }
+
+  if (idx > -1)
+  {
+    double d0 = m_accumulatedSegmentLengths[idx];
+    double d1 = d0 + m_segmentLengths[idx];
     if (d0 <= station && station <= d1)
     {
       double fraction = (station - d0) / (d1 - d0);
-      Pt3d& p0 = m_points[i];
-      Pt3d& p1 = m_points[i + 1];
+      Pt3d& p0 = m_points[idx];
+      Pt3d& p1 = m_points[idx + 1];
       Pt3d pt;
       pt.x = p0.x + fraction * (p1.x - p0.x);
       pt.y = p0.y + fraction * (p1.y - p0.y);
-      a_start = i;
       return pt;
     }
-    if (station < d0 && !m_open)
-    {
-      if (--i < 0)
-      {
-        i = nAccumSegLengths - 1;
-      }
-    }
-    else
-    {
-      ++i;
-    }
   }
-  if (i < 0)
-  {
-    a_start = 0;
-    return m_points[0];
-  }
-  a_start = m_points.size() - 1;
   return m_points.back();
 } // MePolyRedistributePtsCurvatureImpl::GetPointFromParameter
 //------------------------------------------------------------------------------
@@ -492,7 +474,6 @@ VecPt3d MePolyRedistributePtsCurvatureImpl::NewPointsFromParamCurvs(int a_numPoi
   double threshold(0.0);
 
   VecPt3d result;
-  size_t start = 0;
   // size_t n = a_paramCurvs.size() - 1;
   size_t n = m_parametricDistance.size() - 1;
   for (size_t i = 0; i < n; ++i)
@@ -511,7 +492,7 @@ VecPt3d MePolyRedistributePtsCurvatureImpl::NewPointsFromParamCurvs(int a_numPoi
     {
       double t = (threshold - c0) / (c1 - c0);
       double p = p0 + t * (p1 - p0);
-      Pt3d pt = GetPointFromParameter(p, start);
+      Pt3d pt = GetPointFromParameter(p);
       result.push_back(pt);
       threshold += delta_threshold;
     }
@@ -519,34 +500,6 @@ VecPt3d MePolyRedistributePtsCurvatureImpl::NewPointsFromParamCurvs(int a_numPoi
   result.push_back(m_points.back());
   return result;
 } // MePolyRedistributePtsCurvatureImpl::NewPointsFromParamCurvs
-//------------------------------------------------------------------------------
-/// \brief Performs a binary search to find the position of a_param in m_accumulatedSegmentLengths.
-/// \param[in] a_distance: A distance along the polyline >= m_accumulatedSegmentLengths[i].
-/// \return index i such that a_distance >= m_accumulatedSegmentLengths[i].
-//------------------------------------------------------------------------------
-size_t MePolyRedistributePtsCurvatureImpl::BinarySearch(double a_distance)
-{
-  size_t first = 0;
-  size_t last = m_accumulatedSegmentLengths.size() - 1;
-
-  while (first <= last)
-  {
-    size_t i = (first + last) / 2;
-    if (m_accumulatedSegmentLengths[i] == a_distance)
-    {
-      return i;
-    }
-    if (m_accumulatedSegmentLengths[i] > a_distance)
-    {
-      last = i - 1;
-    }
-    else
-    {
-      first = i + 1;
-    }
-  }
-  return last;
-} // MePolyRedistributePtsCurvatureImpl::BinarySearch
 
 } // namespace xms
 
