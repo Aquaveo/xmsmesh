@@ -79,6 +79,10 @@ void initMePolyRedistributePts(py::module &m) {
         .def("set_constant_size_bias", &xms::MePolyRedistributePts::SetConstantSizeBias,
           "Sets the bias for constant value size function",py::arg("size_bias")
         )
+        .def("set_use_curvature_redistribution", &xms::MePolyRedistributePts::SetUseCurvatureRedistribution,
+          "Specifies that curvature redistribution will be used.",py::arg("feature_size"),
+          py::arg("mean_spacing"),py::arg("minimum_curvature"),py::arg("smooth")
+        )
         .def("redistribute", [](xms::MePolyRedistributePts &self,
                                 py::iterable poly_line) -> py::iterable {
            xms::VecPt3d vec_poly_line;

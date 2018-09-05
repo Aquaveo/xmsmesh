@@ -565,7 +565,7 @@ void MePolyRedistributePtsCurvatureUnitTests::testSetup()
     TS_ASSERT_DELTA_VEC(expectedSegmentLengths, r.m_segmentLengths, tol);
 
     double expectTolerance(2.6925824035672520e-008);
-    TS_ASSERT_DELTA(expectTolerance, r.m_tol, FLT_EPSILON);
+    TS_ASSERT_DELTA(expectTolerance, r.m_tol, 1e-7);
   }
 
   pts.push_back(pts.front());
@@ -588,7 +588,7 @@ void MePolyRedistributePtsCurvatureUnitTests::testSetup()
     TS_ASSERT_DELTA_VEC(expectedSegmentLengths, r.m_segmentLengths, tol);
 
     double expectTolerance(2.6925824035672520e-008);
-    TS_ASSERT_DELTA(expectTolerance, r.m_tol, FLT_EPSILON);
+    TS_ASSERT_DELTA(expectTolerance, r.m_tol, 1e-7);
   }
 
 } // MePolyRedistributePtsCurvatureUnitTests::testSetup

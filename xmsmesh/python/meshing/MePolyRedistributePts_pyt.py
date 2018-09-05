@@ -71,6 +71,18 @@ class TestMePolyRedistributePts(unittest.TestCase):
     #     new_poly_line = r.redistrubte(poly_line)
     #     base_poly_line = []  # Haven't gotten a base yet
     #     np.testing.assert_array_equal(base_poly_line, new_poly_line)
+   
+    def test_set_use_curvature_redistribution(self):
+        r = MePolyRedistributePts()
+        r.set_use_curvature_redistribution(3.0, 4.0, 0.001, False)
+        poly_line = ((0, 0, 0), (5, 5, 0), (10, 10, 0), (15, 5, 0),
+                     (20, 10, 0), (21, 10, 0), (25, 0, 0))
+        new_poly_line = r.redistribute(poly_line)
+        base_poly_line = ((0, 0, 0), (9.961, 9.961, 0), (10.457, 9.543, 0),
+                          (14.892, 5.108, 0), (15.388, 5.388, 0),  (19.685, 9.685, 0),
+                          (19.987, 9.987, 0), (20.906, 10.000, 0), (21.122, 9.695, 0),
+                          (25.000, 0.000, 0))
+        np.testing.assert_array_almost_equal(base_poly_line, new_poly_line, decimal=2)
 
     def test_redistribute(self):
         r = MePolyRedistributePts()
