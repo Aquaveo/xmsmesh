@@ -28,10 +28,9 @@ if __name__ == "__main__":
     pybind_updated_builds = []
     for settings, options, env_vars, build_requires, reference in builder.items:
         # pybind option
-        if not settings['compiler'] == "apple-clang" \
-                and ((not settings['compiler'] == "Visual Studio" \
-                or int(settings['compiler.version']) > 12) \
-                and settings['arch'] == "x86_64"):
+        if (not settings['compiler'] == "Visual Studio" \
+                     or int(settings['compiler.version']) > 12) \
+                and settings['arch'] == "x86_64" and settings['build_type'] != 'Debug':
             pybind_options = dict(options)
             pybind_options.update({'xmsmesh:pybind': True})
             pybind_updated_builds.append([settings, pybind_options, env_vars, build_requires])
