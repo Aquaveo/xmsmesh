@@ -21,15 +21,38 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMePolyRedistributePts(py::module &m) {
-    py::class_<xms::MePolyRedistributePts, boost::shared_ptr<xms::MePolyRedistributePts>>(m, "MePolyRedistributePts")
-        .def(py::init(&xms::MePolyRedistributePts::New))
-        .def("set_size_func", [](xms::MePolyRedistributePts &self,
+    py::class_<xms::MePolyRedistributePts, boost::shared_ptr<xms::MePolyRedistributePts>> polyRedistribute(m, "MePolyRedistributePts");
+
+
+    polyRedistribute.def(py::init(&xms::MePolyRedistributePts::New));
+    // -------------------------------------------------------------------------
+    // function: set_size_func
+    // -------------------------------------------------------------------------
+    const char* set_size_func_doc = R"pydoc(
+        Sets the size function interpolator
+
+        Args:
+            interp (InterpBase): Size function interpolator class
+    )pydoc";
+    polyRedistribute.def("set_size_func", [](xms::MePolyRedistributePts &self,
         boost::shared_ptr<xms::InterpBase> interp)
         {
             self.SetSizeFunc(interp);
-        },"Sets the size function interpolator",py::arg("interp")
-        )
-        .def("set_size_func_from_poly", [](xms::MePolyRedistributePts &self,
+        },set_size_func_doc,py::arg("interp"));
+    // -------------------------------------------------------------------------
+    // function: set_size_func_from_poly
+    // -------------------------------------------------------------------------
+    const char* set_size_func_from_poly_doc = R"pydoc(
+        Creates an interpolator that uses the spacing on the input polygon as 
+        its scalar
+
+        Args:
+            out_poly (iterable): The outside polygon
+            inside_polys (iterable): Inside polygons that are inside of 
+              a_outPoly
+            size_bias (float): A factor used in transitioning the size
+    )pydoc";
+    polyRedistribute.def("set_size_func_from_poly", [](xms::MePolyRedistributePts &self,
                                            py::iterable out_poly,
                                            py::iterable inside_polys,
                                            double size_bias) {
@@ -70,20 +93,68 @@ void initMePolyRedistributePts(py::module &m) {
                 vec_inside_polys.at(i) = vec_poly;
             }
             self.SetSizeFuncFromPoly(vec_out_poly, vec_inside_polys, size_bias);
-        },"Creates an interpolator that uses the spacing on the input polygon as its scalar",
-          py::arg("out_poly"),py::arg("inside_polys"),py::arg("size_bias")
-        )
-        .def("set_constant_size_func", &xms::MePolyRedistributePts::SetConstantSizeFunc,
-          "Sets the size function to a constant value",py::arg("size")
-        )
-        .def("set_constant_size_bias", &xms::MePolyRedistributePts::SetConstantSizeBias,
-          "Sets the bias for constant value size function",py::arg("size_bias")
-        )
-        .def("set_use_curvature_redistribution", &xms::MePolyRedistributePts::SetUseCurvatureRedistribution,
-          "Specifies that curvature redistribution will be used.",py::arg("feature_size"),
+        },set_size_func_from_poly_doc, py::arg("out_poly"),
+          py::arg("inside_polys"),py::arg("size_bias"));
+    // -------------------------------------------------------------------------
+    // function: set_constant_size_func
+    // -------------------------------------------------------------------------
+    const char* set_constant_size_func_doc = R"pydoc(
+        Sets the size function to a constant value
+
+        Args:
+            size (float): The element edge size.
+    )pydoc";
+    polyRedistribute.def("set_constant_size_func", &xms::MePolyRedistributePts::SetConstantSizeFunc,
+          set_constant_size_func_doc,py::arg("size"));
+    // -------------------------------------------------------------------------
+    // function: set_constant_size_bias
+    // -------------------------------------------------------------------------
+    const char* set_constant_size_bias_doc = R"pydoc(
+        Sets the bias for constant value size function
+
+        Args:
+            size_bias (float): Transition rate for size function
+    )pydoc";
+    polyRedistribute.def("set_constant_size_bias", &xms::MePolyRedistributePts::SetConstantSizeBias,
+          set_constant_size_bias_doc,py::arg("size_bias"));
+    // -------------------------------------------------------------------------
+    // function: set_use_curvature_redistribution
+    // -------------------------------------------------------------------------
+    const char* set_use_curvature_redistribution_doc = R"pydoc(
+        Specifies that curvature redistribution will be used.
+
+        Args:
+            feature_size (float): The size of the smallest feature in the 
+              polyline to be detected.
+            mean_spacing (float): The mean spacing between the distributed 
+              points.
+            minimum_curvature (float): The value of the curvature to be used 
+              instead of 0 in staight lines. It limits the maximum spacing 
+              between points. If not included, the default is 0.001.
+            smooth (bool): Detemines if the curvatures are to be averaged by a 
+              rolling 0.25-0.5-0.25 weighted rolling average.
+    )pydoc";
+    polyRedistribute.def("set_use_curvature_redistribution", &xms::MePolyRedistributePts::SetUseCurvatureRedistribution,
+          set_use_curvature_redistribution_doc,py::arg("feature_size"),
           py::arg("mean_spacing"),py::arg("minimum_curvature"),py::arg("smooth")
-        )
-        .def("redistribute", [](xms::MePolyRedistributePts &self,
+        );
+    // -------------------------------------------------------------------------
+    // function: redistribute
+    // -------------------------------------------------------------------------
+    const char* redistribute_doc = R"pydoc(
+        Redistributes points on closed loop polylines. The length of edges in 
+        the redistribution comes from a size function that is interpolated to 
+        the points that make up the polylines. By default this size function 
+        comes from the edge lengths in the original polygon.
+
+        Args:
+            poly_line (iterable): Input closed loop polylines
+
+        Returns:
+          iterable: Redistributed closed loop polylines, Number of iterations 
+            from the polygon boundary
+    )pydoc";
+    polyRedistribute.def("redistribute", [](xms::MePolyRedistributePts &self,
                                 py::iterable poly_line) -> py::iterable {
            xms::VecPt3d vec_poly_line;
             for (auto item : poly_line) {
@@ -110,9 +181,5 @@ void initMePolyRedistributePts(py::module &m) {
               r(i, 2) = vec_pts[i].z;
             }
             return ret_points;
-        },"Redistributes points on closed loop polylines. The length of edges in the"
-          " redistribution comes from a size function that is interpolated to the"
-          " points that make up the polylines. By default this size function comes from"
-          " the edge lengths in the original polygon.",py::arg("poly_line"))
-        ;
+        },redistribute_doc,py::arg("poly_line"));
 }

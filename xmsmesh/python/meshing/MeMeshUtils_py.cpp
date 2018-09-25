@@ -22,8 +22,23 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeMeshUtils(py::module &m) {
 
-    py::module modMeshUtils = m.def_submodule("MeMeshUtils")
-    .def("size_function_from_depth", [](py::iterable depths, double min_size,
+    py::module modMeshUtils = m.def_submodule("MeMeshUtils");
+
+
+  // ---------------------------------------------------------------------------
+  // function: size_function_from_depth
+  // ---------------------------------------------------------------------------
+  const char* size_function_from_depth_doc = R"pydoc(
+      Creates a size at each point based on the depth at the point and the min 
+      and max sizes the equation is  min_depth + ( (depth - min_depth) / 
+      (max_depth - min_depth) ) * (max_size - min_size)
+
+      Args:
+          depths (iterable): The measured depths at point locations
+          min_size (float): The minimum element edge size
+          max_size (float): The maximum element edge size
+  )pydoc";
+    modMeshUtils.def("size_function_from_depth", [](py::iterable depths, double min_size,
                                          double max_size) -> py::iterable {
 
         xms::VecDbl vec_depths, vec_size;
@@ -43,11 +58,32 @@ void initMeMeshUtils(py::module &m) {
           }
           return tuple_ret;
         }
-    },"Creates a size at each point based on the depth at the point and the min and max sizes"
-      " the equation is  min_depth + ( (depth - min_depth) / (max_depth - min_depth) ) *"
-      " (max_size - min_size)",py::arg("depths"),py::arg("min_size"),py::arg("max_size")
-    )
-    .def("smooth_size_function", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
+    },size_function_from_depth_doc,py::arg("depths"),py::arg("min_size"),
+    py::arg("max_size"));
+  // ---------------------------------------------------------------------------
+  // function: smooth_size_function
+  // ---------------------------------------------------------------------------
+  const char* smooth_size_function_doc = R"pydoc(
+      Smooths a size function. Ensures that the size function transitions over a
+      sufficient distance so that the area change of adjacent elements meets the
+      size ratio passed in.
+
+      Args:
+          tin (boost::shared_ptr<xms::TrTin>): Points and triangles defining the
+            connectivity of the size function.
+          sizes (iterable): Array of the current sizes
+          size_ratio (float): Allowable size difference between adjacent 
+            elements
+          min_size (float): Minimum specified element size
+          anchor_type (int): The minimum element edge size
+          pts_flag (iterable): Flag to indicate if the value at the point should
+            be adjusted (a value of true will skip the point). Leave the bitset 
+            empty to process all points.
+
+      Returns:
+        iterable: Array of smoothed sizes
+  )pydoc";
+    modMeshUtils.def("smooth_size_function", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
                                     double size_ratio, double min_size, int anchor_type,
                                     py::iterable pts_flag) -> py::iterable {
         xms::VecFlt vec_sizes, vec_smooth_sizes;
@@ -79,13 +115,32 @@ void initMeMeshUtils(py::module &m) {
           }
           return tuple_ret;
         }
-    },"Smooths a size function. Ensures that the size function transitions over a sufficient"
-      " distance so that the area change of adjacent elements meets the size ratio passed in.",
-      py::arg("tin"),py::arg("sizes"),py::arg("size_ratio"),py::arg("min_size"),
-      py::arg("anchor_type"),py::arg("pts_flag")  
-    )
-    .def("smooth_elev_by_slope", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
-                                    double max_size, int anchor_type,
+    },smooth_size_function_doc, py::arg("tin"),py::arg("sizes"),
+      py::arg("size_ratio"),py::arg("min_size"), py::arg("anchor_type"),
+      py::arg("pts_flag")  
+    );
+  // ---------------------------------------------------------------------------
+  // function: smooth_elev_by_slope
+  // ---------------------------------------------------------------------------
+  const char* smooth_elev_by_slope_doc = R"pydoc(
+      Smooths a elevations based on max specified slope (a_maxSlope) preserving 
+      either the min or max based on a_anchorType
+
+      Args:
+          tin (boost::shared_ptr<xms::TrTin>): Points and triangles defining the
+            connectivity of the size function.
+          sizes (iterable): Array of the current sizes
+          max_slope (float): Maximum allowable slope
+          anchor_type (int): The minimum element edge size
+          pts_flag (iterable): Flag to indicate if the value at the point should
+            be adjusted (a value of true will skip the point). Leave the bitset 
+            empty to process all points.
+
+      Returns:
+        iterable: Array of smoothed elevations
+  )pydoc";
+    modMeshUtils.def("smooth_elev_by_slope", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
+                                    double max_slope, int anchor_type,
                                     py::iterable pts_flag) -> py::iterable {
         xms::VecFlt vec_sizes, vec_smooth_sizes;
         for (auto item : sizes) {
@@ -103,7 +158,7 @@ void initMeMeshUtils(py::module &m) {
         }
         xms::VecBooleanToDynBitset(bitvals, bitset);
 
-        xms::meSmoothElevBySlope(tin, vec_sizes, max_size, anchor_type, bitset, vec_smooth_sizes);
+        xms::meSmoothElevBySlope(tin, vec_sizes, max_slope, anchor_type, bitset, vec_smooth_sizes);
 
         if (py::isinstance<py::array>(sizes)) {
           // NOTE: This is a copy operation
@@ -116,9 +171,6 @@ void initMeMeshUtils(py::module &m) {
           }
           return tuple_ret;
         }
-    },"Smooths a elevations based on max specified slope (a_maxSlope) preserving either the min"
-      " or max based on a_anchorType",
-      py::arg("tin"),py::arg("sizes"),py::arg("max_size"),py::arg("anchor_type"),py::arg("pts_flag")
-    )
-    ;
+    },smooth_elev_by_slope_doc, py::arg("tin"),py::arg("sizes"),
+    py::arg("max_slope"),py::arg("anchor_type"),py::arg("pts_flag"));
 }

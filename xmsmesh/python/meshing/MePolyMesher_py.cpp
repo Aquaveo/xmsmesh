@@ -21,9 +21,26 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMePolyMesher(py::module &m) {
-    py::class_<xms::MePolyMesher, boost::shared_ptr<xms::MePolyMesher>>(m, "MePolyMesher")
-        .def(py::init(&xms::MePolyMesher::New))
-        .def("mesh_it", [](xms::MePolyMesher &self,
+    py::class_<xms::MePolyMesher, boost::shared_ptr<xms::MePolyMesher>> polyMesher(m, "MePolyMesher");
+
+
+    polyMesher.def(py::init(&xms::MePolyMesher::New));
+    // -------------------------------------------------------------------------
+    // function: mesh_it
+    // -------------------------------------------------------------------------
+    const char* mesh_it_doc = R"pydoc(
+        Perform MESH_PAVE, MESH_SPAVE, MESH_PATCH meshing on a polygon.
+
+        Args:
+          mesh_io (MeMultiPolyMesherIo):Meshing input: polygons and optional
+            inputs
+          poly_idx (int): Index to the polygon in a_input to mesh
+        
+        Returns:
+          tuple: True if no errors encountered, computed mesh points, computed 
+            mesh triangles from paving, computed mesh cells from patch.
+    )pydoc";
+    polyMesher.def("mesh_it", [](xms::MePolyMesher &self,
                            xms::MeMultiPolyMesherIo &mesh_io,
                            size_t polyIdx) -> py::tuple {
             xms::VecPt3d vec_pts;
@@ -41,16 +58,31 @@ void initMePolyMesher(py::module &m) {
             py::array ret_tris(vec_tris.size(), vec_tris.data());
             py::array ret_cell(vec_cell.size(), vec_cell.data());
             return py::make_tuple(result, ret_points, ret_tris, ret_cell);
-        },"Perform MESH_PAVE, MESH_SPAVE, MESH_PATCH meshing on a polygon.",
-            py::arg("mesh_io"),py::arg("poly_idx")
-        )
-        .def("set_observer", [](xms::MePolyMesher &self,
+        },mesh_it_doc,py::arg("mesh_io"),py::arg("poly_idx"));
+    // -------------------------------------------------------------------------
+    // function: set_observer
+    // -------------------------------------------------------------------------
+    const char* set_observer_doc = R"pydoc(
+        sets the observer class to get feedback on the meshing process
+
+        Args:
+          obs (Observer): The obersever
+    )pydoc";
+    polyMesher.def("set_observer", [](xms::MePolyMesher &self,
                                 boost::shared_ptr<xms::PublicObserver> obs) {
             self.SetObserver(obs);
-        },"sets the observer class to get feedback on the meshing process",
-            py::arg("obs")
-        )
-        .def("get_processed_refine_pts", [](xms::MePolyMesher &self) -> py::iterable {
+        },set_observer_doc, py::arg("obs"));
+    // -------------------------------------------------------------------------
+    // function: get_processed_refine_pts
+    // -------------------------------------------------------------------------
+    const char* get_processed_refine_pts_doc = R"pydoc(
+        Gets the refine points that were inside the polygon, both points that 
+        are included in the meshing process and those that were not.
+
+        Returns:
+            iterable: Locations of refine points used inside of this polygon.
+    )pydoc";
+    polyMesher.def("get_processed_refine_pts", [](xms::MePolyMesher &self) -> py::iterable {
             xms::VecPt3d vec_pts;
 
             self.GetProcessedRefinePts(vec_pts);
@@ -65,8 +97,5 @@ void initMePolyMesher(py::module &m) {
             }
 
             return ret_points;
-        },"Gets the refine points that were inside the polygon, both points that are"
-            " included in the meshing process and those that were not."
-        )
-        ;
+        },get_processed_refine_pts_doc);
 }

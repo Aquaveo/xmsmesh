@@ -22,9 +22,23 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeMultiPolyTo2dm(py::module &m) {
-    py::class_<xms::MeMultiPolyTo2dm, boost::shared_ptr<xms::MeMultiPolyTo2dm>>(m, "MeMultiPolyTo2dm")
-        .def(py::init(&xms::MeMultiPolyTo2dm::New))
-        .def("generate_2dm", [](xms::MeMultiPolyTo2dm &self,
+    py::class_<xms::MeMultiPolyTo2dm, boost::shared_ptr<xms::MeMultiPolyTo2dm>> poly2dm(m, "MeMultiPolyTo2dm");
+    poly2dm.def(py::init(&xms::MeMultiPolyTo2dm::New));
+    // -------------------------------------------------------------------------
+    // function: generate_2dm
+    // -------------------------------------------------------------------------
+    const char* generate_2dm_doc = R"pydoc(
+        Creates a 2dm file from polygons
+
+        Args:
+          mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options 
+            for generating a mesh.
+          fname (str): output filename
+        
+        Returns:
+          tuple: true if the mesh was generated., and resultant filename
+    )pydoc";
+    poly2dm.def("generate_2dm", [](xms::MeMultiPolyTo2dm &self,
                            xms::MeMultiPolyMesherIo &mesh_io,
                            std::string fname) -> py::tuple {
           if (fname.empty()) {
@@ -34,12 +48,18 @@ void initMeMultiPolyTo2dm(py::module &m) {
 
           }
           return py::make_tuple(self.Generate2dm(mesh_io, fname), "");
-        },"Creates a 2dm file from polygons",py::arg("mesh_io"),py::arg("fname"))
-        .def("set_observer", [](xms::MeMultiPolyTo2dm &self,
+        },generate_2dm_doc,py::arg("mesh_io"),py::arg("fname"));
+    // -------------------------------------------------------------------------
+    // function: set_observer
+    // -------------------------------------------------------------------------
+    const char* set_observer_doc = R"pydoc(
+        sets the observer class to give feedback on the grid generation process
+
+        Args:
+          obs (Observer): The observer.
+    )pydoc";
+    poly2dm.def("set_observer", [](xms::MeMultiPolyTo2dm &self,
                                 boost::shared_ptr<xms::PublicObserver> obs) {
             self.SetObserver(obs);
-        }," sets the observer class to give feedback on the grid generation process",
-          py::arg("obs")
-        )
-        ;
+        },set_observer_doc, py::arg("obs"));
 }
