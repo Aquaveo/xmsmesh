@@ -69,7 +69,7 @@ void initMeMeshUtils(py::module &m) {
       size ratio passed in.
 
       Args:
-          tin (boost::shared_ptr<xms::TrTin>): Points and triangles defining the
+          tin (TrTin): Points and triangles defining the
             connectivity of the size function.
           sizes (iterable): Array of the current sizes
           size_ratio (float): Allowable size difference between adjacent 
@@ -127,7 +127,7 @@ void initMeMeshUtils(py::module &m) {
       either the min or max based on a_anchorType
 
       Args:
-          tin (boost::shared_ptr<xms::TrTin>): Points and triangles defining the
+          tin (TrTin): Points and triangles defining the
             connectivity of the size function.
           sizes (iterable): Array of the current sizes
           max_slope (float): Maximum allowable slope
