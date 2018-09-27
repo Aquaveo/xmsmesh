@@ -34,21 +34,22 @@ void initMeMultiPolyTo2dm(py::module &m) {
           mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options 
             for generating a mesh.
           fname (str): output filename
+          precision (:obj:`int`, optional) decimal point precision
         
         Returns:
           tuple: true if the mesh was generated., and resultant filename
     )pydoc";
     poly2dm.def("generate_2dm", [](xms::MeMultiPolyTo2dm &self,
                            xms::MeMultiPolyMesherIo &mesh_io,
-                           std::string fname) -> py::tuple {
+                           std::string fname, int precision) -> py::tuple {
           if (fname.empty()) {
             std::stringstream ss;
-            bool result = self.Generate2dm(mesh_io, ss);
+            bool result = self.Generate2dm(mesh_io, ss, precision);
             return py::make_tuple(result, ss.str());
 
           }
           return py::make_tuple(self.Generate2dm(mesh_io, fname), "");
-        },generate_2dm_doc,py::arg("mesh_io"),py::arg("fname"));
+        },generate_2dm_doc,py::arg("mesh_io"),py::arg("fname"),py::arg("precision")=15);
     // -------------------------------------------------------------------------
     // function: set_observer
     // -------------------------------------------------------------------------
