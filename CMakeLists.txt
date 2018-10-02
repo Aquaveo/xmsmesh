@@ -9,14 +9,14 @@ else()
   set(CMAKE_POSITION_INDEPENDENT_CODE True)
 endif()
 
+project(xmsmesh C CXX)
+
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 set(CONDA_PREFIX "" CACHE PATH "Path to the conda environment used to build.")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Set this if you want to build the python bindings.")
-set(XMSMESH_TEST_PATH "../test_files/" CACHE PATH "Path to test files for testing")
+set(XMSMESH_TEST_PATH ${PROJECT_SOURCE_DIR}/test_files/ CACHE PATH "Path to test files for testing")
 set(PYTHON_TARGET_VERSION 3.6 CACHE STRING "Version of python to link to for python wrapping.")
-
-project(xmsmesh C CXX)
 
 if(WIN32)
     if(XMS_BUILD)
@@ -79,9 +79,11 @@ link_directories(${EXT_LIB_DIRS})
 
 # Static library sources
 set(xmsmesh_sources
+  xmsmesh/meshing/MeBadQuadRemover.cpp
   xmsmesh/meshing/MeMeshUtils.cpp
   xmsmesh/meshing/MeMultiPolyTo2dm.cpp
   xmsmesh/meshing/MeMultiPolyMesher.cpp
+  xmsmesh/meshing/MeQuadBlossom.cpp
   xmsmesh/meshing/detail/MeIntersectPolys.cpp
   xmsmesh/meshing/detail/MePolyPatcher.cpp
   xmsmesh/meshing/detail/MePolyOffsetter.cpp
@@ -91,18 +93,21 @@ set(xmsmesh_sources
   xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.cpp
   xmsmesh/meshing/detail/MeRefinePtsToPolys.cpp
   xmsmesh/meshing/detail/MeRelaxer.cpp
+  xmsmesh/meshing/detail/MeWeightMatcher.cpp
   xmsmesh/meshing/MePolyMesher.cpp
   xmsmesh/meshing/MePolyRedistributePts.cpp
   xmsmesh/tutorial/TutMeshing.cpp
 )
 
 set(xmsmesh_headers
+  xmsmesh/meshing/MeBadQuadRemover.h
   xmsmesh/meshing/MeMeshUtils.h
   xmsmesh/meshing/MePolyMesher.h
   xmsmesh/meshing/MeMultiPolyMesher.h
   xmsmesh/meshing/MeMultiPolyMesherIo.h
   xmsmesh/meshing/MeMultiPolyTo2dm.h
   xmsmesh/meshing/MePolyRedistributePts.h
+  xmsmesh/meshing/MeQuadBlossom.h
   xmsmesh/meshing/detail/MePolyCleaner.h
   xmsmesh/meshing/detail/MePolyOffsetter.h
   xmsmesh/meshing/detail/MePolyPts.h
@@ -112,6 +117,7 @@ set(xmsmesh_headers
   xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h
   xmsmesh/meshing/detail/MeRefinePtsToPolys.h
   xmsmesh/meshing/detail/MeRelaxer.h
+  xmsmesh/meshing/detail/MeWeightMatcher.h
 )
 
 # Pybind11 sources
@@ -121,20 +127,29 @@ set(xmsmesh_py_source
   # Meshing
   xmsmesh/python/meshing/meshing_py.h
   xmsmesh/python/meshing/meshing_py.cpp
+  xmsmesh/python/meshing/MeBadQuadRemover_py.cpp
   xmsmesh/python/meshing/MeMeshUtils_py.cpp
   xmsmesh/python/meshing/MeMultiPolyMesher_py.cpp
   xmsmesh/python/meshing/MeMultiPolyMesherIo_py.cpp
-  xmsmesh/python/meshing/MePolyMesher_py.cpp
   xmsmesh/python/meshing/MeMultiPolyTo2dm_py.cpp
+  xmsmesh/python/meshing/MePolyMesher_py.cpp
   xmsmesh/python/meshing/MePolyRedistributePts_py.cpp
+  xmsmesh/python/meshing/MeQuadBlossom_py.cpp
 )
 
 # Tests
 if (BUILD_TESTING)
- add_definitions(-DXMSMESH_TEST_PATH="${XMSMESH_TEST_PATH}/")
- add_definitions(-DCXX_TEST -DCXXTEST4)
+  add_definitions(-DXMSMESH_TEST_PATH="${XMSMESH_TEST_PATH}/")
+  add_definitions(-DCXX_TEST -DCXXTEST4)
 
- list(APPEND xmsmesh_sources
+  list(APPEND xmsmesh_sources
+    xmsmesh/meshing/MeBadQuadRemover.t.h
+    xmsmesh/meshing/MeMeshUtils.t.h
+    xmsmesh/meshing/MeMultiPolyTo2dm.t.h
+    xmsmesh/meshing/MePolyMesher.t.h
+    xmsmesh/meshing/MeMultiPolyMesher.t.h
+    xmsmesh/meshing/MePolyRedistributePts.t.h
+    xmsmesh/meshing/MeQuadBlossom.t.h
     xmsmesh/meshing/detail/MePolyPaverToMeshPts.t.h
     xmsmesh/meshing/detail/MeIntersectPolys.t.h
     xmsmesh/meshing/detail/MePolyPatcher.t.h
@@ -143,26 +158,22 @@ if (BUILD_TESTING)
     xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.t.h
     xmsmesh/meshing/detail/MeRefinePtsToPolys.t.h
     xmsmesh/meshing/detail/MeRelaxer.t.h
-    xmsmesh/meshing/MeMeshUtils.t.h
-    xmsmesh/meshing/MeMultiPolyTo2dm.t.h
-    xmsmesh/meshing/MePolyMesher.t.h
-    xmsmesh/meshing/MeMultiPolyMesher.t.h
-    xmsmesh/meshing/MePolyRedistributePts.t.h
+    xmsmesh/meshing/detail/MeWeightMatcher.t.h
     xmsmesh/tutorial/TutMeshing.t.h
- )
+  )
 
- find_package(CxxTest)
- if(CXXTEST_FOUND)
-   include_directories(${CXXTEST_INCLUDE_DIRS})
-   enable_testing()
+  find_package(CxxTest)
+  if(CXXTEST_FOUND)
+    include_directories(${CXXTEST_INCLUDE_DIRS})
+    enable_testing()
 
-   set(CXXTEST_TESTGEN_ARGS --xunit-printer --have-eh)
-   file(GLOB_RECURSE test_headers ${CMAKE_CURRENT_LIST_DIR}/xmsmesh/*.t.h)
-   CXXTEST_ADD_TEST(
-     runner runner.cpp ${test_headers}
-   )
-   target_link_libraries(runner ${PROJECT_NAME})
- endif()
+    set(CXXTEST_TESTGEN_ARGS --xunit-printer --have-eh)
+    file(GLOB_RECURSE test_headers ${CMAKE_CURRENT_LIST_DIR}/xmsmesh/*.t.h)
+    CXXTEST_ADD_TEST(
+      runner runner.cpp ${test_headers}
+    )
+    target_link_libraries(runner ${PROJECT_NAME})
+  endif()
 endif ()
 
 # Static library
@@ -228,7 +239,3 @@ foreach (header IN LISTS xmsmesh_headers)
     DESTINATION "include/${subdir}"
   )
 endforeach ()
-
-
-
-

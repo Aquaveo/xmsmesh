@@ -1,11 +1,13 @@
 set(EXT_INCLUDE_DIRS
   "${CMAKE_INSTALL_PREFIX}/include/xmscore"
   "${CMAKE_INSTALL_PREFIX}/include/xmsinterp"
+  "${CMAKE_INSTALL_PREFIX}/include/xmsgrid"
 )
 set(EXT_LIB_DIRS "${CMAKE_INSTALL_PREFIX}/lib")
 set(EXT_LIBS
   xmscore
   xmsinterp
+  xmsgrid
 )
 
 set(Boost_USE_STATIC_LIBS TRUE)

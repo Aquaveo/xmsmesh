@@ -147,3 +147,25 @@ This is another example of how to mesh a single polygon with a hole, and in this
 An image of the 2d mesh generated from this example is shown below. The *.2dm file for this 2d mesh can be found at files_xmsmesh/Test/Tutorial_Meshing/Example_SpringRelax_base.2dm.
 
 ![2d mesh generated from simple polygon with a hole and boundary spacing = 10.0, using spring relaxation](tutMesh_SpringRelax_Output.png)
+
+## Example - Triangular to quad mesh using Quad Blossom and Bad Quad Remover {#Example_Quad_Blossom}
+
+This example shows how to convert a triangular mesh to a quad mesh using the Quad Blossom algorithm. Then the xms::MeBadQuadRemover class is used to remove narrow, ill-formed quads while still preserving the basic sizes of cells. 
+
+There are two arguments to MeQuadBlossom::MakeQuads().  The first is a bool: splitVertices.  If this is false, the algorithm will not attempt to match triangles on the boundary that share a boundary point but not an edge; that is, there is at least one other triangle between them that also shares that boundary point. So by setting this argument to false, you may be left with more than one triangle in the mesh, even if the number of boundary edges is even.  If this argument is true, it will match such triangles and then turn them into quads by adding a new point on the interior of the mesh and an edge between that point and the boundary point. The two matching boundary triangles will add and share that edge, thus becoming quads.  If the number of triangles incident to the boundary point to be split is odd, the new point is placed at the centroid of the middle triangle; if even, it is at the mid-point of the middle edge.  The other cells incident to the boundary point will swap to use the new split point instead.  So with this argument set to true, you may see some added points in the output ugrid.  Internally, the algorithm weights the match on such adjacent boundary triangles lower than any interior edges, so the interior edges will get matched and eliminated before splitting any boundary points to form new edges. If set to false, the output quad cells will just be the result of removing prior interior edges so that pairs of triangles become quads.   
+
+The second argument is also a bool: useAngle.  There are two internal methods used to associate a weight for each interior edge (between adjacent triangles). Both methods are based on the quad that would be formed by eliminating that edge.  If useAngle is true, the weight is based on the interior angles of the quad (and in particular the one farthest from being a right angle.  If false, the weight is based on the ratio of the sum of the squares of the lengths of each pair of adjacent sides to the length of their corresponding diagonal squared.  Again, it ends up being based on the angle with the maximum deviation from 90 degrees. In both cases, we multiply the floating point weight (that is between 0 and 1) by 1,000 to get an integer weight between 0 and 1,000.  (The weights between boundary triangles that might be split are all set to -10.)  In general, the closer the quad is to rectangular, the closer the weight is to the maximum, and as the aspect ratio gets larger, the closer the weight gets to zero.  They produce slightly different results, but we don't have enough experience yet to recommend one over the other.
+
+Also, note that the algorithm is O(N^3) with respect to the number of points in the mesh.  Hence, we provide a function to estimate the runtime.  In general, if your mesh has over a 2,000 points, you should split it at convenient boundaries to get below that limit and then run the algorithm on each submesh. You should get no triangles in the result if the sum of all of the boundary edges is an even number and you set splitVertices to true.  The main purpose of PreMakeQuads() is to find the edges and return the number of boundary edges, so you can check that it is even.  This is demonstrated in the example below. 
+
+![Triangular mesh input to Quad Blossom algorithm](tutMesh_QuadBlossom_Input.png)
+
+\snippet xmsmesh/tutorial/TutMeshing.cpp snip_test_Example_QuadBlossom_BadQuadRemover
+
+![Output mesh input after running Quad Blossom algorithm](tutMesh_QuadBlossom_Output.png)
+
+![Output mesh input after running Quad Blossom and Bad Quad Remover first time](tutMesh_QuadBlossom_BadQuadRemover_Output.png)
+
+![Output mesh input after running Bad Quad Remover second time](tutMesh_QuadBlossom_BadQuadRemover_Output2.png)
+
+Running an angle relaxer should improve the mesh even more.  As shown, you can remove bad quads several times, but each time will result in larger quads.  It isn't clear that several such runs significantly improves the mesh.

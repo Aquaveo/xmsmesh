@@ -47,6 +47,7 @@ public:
   void test_Example_SizeFuncFromDepth();
   void test_Example_SmoothSizeFunc();
   void test_Example_SpringRelax();
+  void test_Example_QuadBlossom_BadQuadRemover();
 };
 
 /// \brief Class for testing polyline/polygon point redistribution

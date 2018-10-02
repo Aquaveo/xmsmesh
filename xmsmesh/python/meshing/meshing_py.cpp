@@ -16,6 +16,7 @@ namespace py = pybind11;
 //----- Python Interface -------------------------------------------------------
 
 void initMeshing(py::module &m) {
+    initMeBadQuadRemover(m);
     initMeMeshUtils(m);
     initMeMultiPolyMesher(m);
     initMePolyInput(m);
@@ -24,4 +25,5 @@ void initMeshing(py::module &m) {
     initMeMultiPolyTo2dm(m);
     initMePolyMesher(m);
     initMePolyRedistributePts(m);
+    initMeQuadBlossom(m);
 }

@@ -38,6 +38,10 @@ class XmsinterpConan(ConanFile):
         self.options['xmsinterp'].pybind = self.options.pybind
         self.options['xmsinterp'].testing = self.options.testing
 
+        self.options['xmsgrid'].xms = self.options.xms
+        self.options['xmsgrid'].pybind = self.options.pybind
+        self.options['xmsgrid'].testing = self.options.testing
+
         if s_compiler == "apple-clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
@@ -62,6 +66,7 @@ class XmsinterpConan(ConanFile):
 
         self.requires("xmscore/[>=1.0.33]@aquaveo/stable")
         self.requires("xmsinterp/[>1.0.7]@aquaveo/stable")
+        self.requires("xmsgrid/[>=1.0.10]@aquaveo/stable")
 
     def build(self):
         cmake = CMake(self)

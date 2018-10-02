@@ -46,3 +46,14 @@ doc/_build
 *.exe
 *.out
 *.app
+
+# Doxygen
+Doxygen/*.tag
+Doxygen/html/*.css
+Doxygen/html/*.html
+Doxygen/html/*.js
+Doxygen/html/*.png
+Doxygen/html/search
+
+# Testing files
+*_out.2dm

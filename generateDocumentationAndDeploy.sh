@@ -74,6 +74,7 @@ echo 'Generating Doxygen code documentation...'
 cd $(dirname $DOXYFILE)
 wget https://raw.githubusercontent.com/Aquaveo/xmscore/gh-pages/xmscore.tag
 wget https://raw.githubusercontent.com/Aquaveo/xmsinterp/gh-pages/xmsinterp.tag
+wget https://raw.githubusercontent.com/Aquaveo/xmsgrid/gh-pages/xmsgrid.tag
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 # ensure that we do not have doxygen warnings
 if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
@@ -87,7 +88,7 @@ if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 if [ -d "html" ] && [ -f "html/index.html" ]; then
 
     # don't upload docs unless we are in "MASTER"
-    if [$TRAVIS_BRANCH -eq "master"]
+    if [ $TRAVIS_BRANCH -eq "master" ]
     then
         mv xmsmesh.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
         mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
