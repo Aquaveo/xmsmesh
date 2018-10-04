@@ -454,8 +454,8 @@ void initMePolyInput(py::module &m) {
         relax. Set the value to "spring_relaxation". See MeRelaxer.cpp for
         details on spring relaxation.
     )pydoc";
-    polyMesherIo.def_readwrite("relaxation_method",
-      &xms::MeMultiPolyMesherIo::m_relaxationMethod,relaxation_method_doc);
+    polyInput.def_readwrite("relaxation_method",
+      &xms::MePolyInput::m_relaxationMethod,relaxation_method_doc);
     // -------------------------------------------------------------------------
     // function: __str__
     // -------------------------------------------------------------------------
