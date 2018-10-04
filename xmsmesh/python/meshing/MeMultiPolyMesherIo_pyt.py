@@ -135,6 +135,7 @@ class TestMePolyInput(unittest.TestCase):
         size_func = InterpLinear()
         elev_func = InterpIdw()
         seed_points = ((3, 3, 0), (4, 3, 0), (4, 8, 0), (3, 8, 0))
+        relaxation_method = "spring_relaxation"
 
         self.assertEqual(0, len(pi.outside_poly))
         pi.outside_poly = outside_poly
@@ -175,6 +176,10 @@ class TestMePolyInput(unittest.TestCase):
         self.assertEqual(0, len(pi.seed_points))
         pi.seed_points = seed_points
         self.assertArraysEqual(seed_points, pi.seed_points)
+
+        self.assertEqual("", pi.relaxation_method)
+        pi.relaxation_method = relaxation_method
+        self.assertEqual(relaxation_method, pi.relaxation_method)
 
 class TestMeRefinePoint(unittest.TestCase):
     """Test MeRefinePoint functions."""

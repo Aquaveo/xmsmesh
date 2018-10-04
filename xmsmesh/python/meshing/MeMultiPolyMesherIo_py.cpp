@@ -446,6 +446,16 @@ void initMePolyInput(py::module &m) {
                    }
                  }                
             }, seed_points_doc);
+    // ---------------------------------------------------------------------------
+    // property: relaxation_method
+    // ---------------------------------------------------------------------------
+    const char* relaxation_method_doc = R"pydoc(
+        Optional. Relaxation method. The default relaxation method is an area
+        relax. Set the value to "spring_relaxation". See MeRelaxer.cpp for
+        details on spring relaxation.
+    )pydoc";
+    polyMesherIo.def_readwrite("relaxation_method",
+      &xms::MeMultiPolyMesherIo::m_relaxationMethod,relaxation_method_doc);
     // -------------------------------------------------------------------------
     // function: __str__
     // -------------------------------------------------------------------------
