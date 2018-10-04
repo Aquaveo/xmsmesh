@@ -21,5 +21,5 @@ Documentation
 -------------
 
 C++: [xmsmesh](https://aquaveo.github.io/xmsmesh/)
-Python:[xmsmesh python](https://xmsmesh.readthedocs.io)
+Python:[xmsmesh python](https://aquaveo.github.io/xmsmesh/pydocs)
 
