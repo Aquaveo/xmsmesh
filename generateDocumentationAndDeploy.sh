@@ -89,10 +89,10 @@ if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 # Back out if this is not a tag so we don't post - We can only build python docs
 # on tags because we won't have a python package until it is tagged with a 
 # specific version.
-if [ -z "${TRAVIS_TAG}" ]; then
-  echo "Build not tagged. No Documentation will be uploaded"
-  exit 0
-fi
+# if [ -z "${TRAVIS_TAG}" ]; then
+#   echo "Build not tagged. No Documentation will be uploaded"
+#   exit 0
+# fi
 
 ################################################################################
 ##### Generate the Python documentation.                                   #####
