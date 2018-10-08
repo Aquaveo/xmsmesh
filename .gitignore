@@ -54,6 +54,7 @@ Doxygen/html/*.html
 Doxygen/html/*.js
 Doxygen/html/*.png
 Doxygen/html/search
+Doxygen/html/pydocs/*
 
 # Testing files
 *_out.2dm
