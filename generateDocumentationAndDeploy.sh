@@ -89,10 +89,10 @@ if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 # Back out if this is not a tag so we don't post - We can only build python docs
 # on tags because we won't have a python package until it is tagged with a 
 # specific version.
-# if [ -z "${TRAVIS_TAG}" ]; then
-#   echo "Build not tagged. No Documentation will be uploaded"
-#   exit 0
-# fi
+if [ -z "${TRAVIS_TAG}" ]; then
+  echo "Build not tagged. No Documentation will be uploaded"
+  exit 0
+fi
 
 ################################################################################
 ##### Generate the Python documentation.                                   #####
@@ -107,8 +107,7 @@ cd $(dirname $SPHINX_CONF)
 # make a directory to get the conan package
 mkdir ./conan
 # get the conan package
-# conan install -o xmsmesh:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmsmesh/${TRAVIS_TAG}@aquaveo/stable
-conan install -o xmsmesh:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmsmesh/1.0.1@aquaveo/stable 
+conan install -o xmsmesh:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmsmesh/${TRAVIS_TAG}@aquaveo/stable
 # get the path to the conan package
 export PATH_TO_PYTHON_PACKAGE=$(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmsmesh | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # copy package into build directory
