@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'XmsInterp Library'
+project = 'XmsMesh Library'
 copyright = '2018, aquaveo'
 author = 'aquaveo'
 
@@ -105,7 +105,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'xmsinterpdoc'
+htmlhelp_basename = 'xmsmeshdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -132,7 +132,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'xmsinterp.tex', 'xmsinterp Documentation',
+    (master_doc, 'xmsmesh.tex', 'xmsmesh Documentation',
      'aquaveo', 'manual'),
 ]
 
@@ -142,7 +142,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'xmsinterp', 'xmsinterp Documentation',
+    (master_doc, 'xmsmesh', 'xmsmesh Documentation',
      [author], 1)
 ]
 
@@ -153,8 +153,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'xmsinterp', 'xmsinterp Documentation',
-     author, 'xmsinterp', 'Interpolation library used by aquaveo libraries.',
+    (master_doc, 'xmsmesh', 'xmsmesh Documentation',
+     author, 'xmsmesh', 'Interpolation library used by aquaveo libraries.',
      'Miscellaneous'),
 ]
 
