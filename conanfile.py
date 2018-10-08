@@ -23,7 +23,7 @@ class XmsinterpConan(ConanFile):
 
     def configure(self):
         # Set verion dynamically using XMS_VERSION env variable.
-        self.version = self.env.get('XMS_VERSION', 'master')
+        self.version = self.env.get('XMS_VERSION', '99.99.99')
 
         # Raise ConanExceptions for Unsupported Versions
         s_os = self.settings.os
@@ -79,6 +79,7 @@ class XmsinterpConan(ConanFile):
         # have tests in release code. Thus, if we want to run tests, we will
         # build a test version (without python), run the tests, and then (on
         # sucess) rebuild the library without tests.
+        cmake.definitions["XMS_VERSION"] = '{}'.format(self.version)
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
         cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.definitions["XMSMESH_TEST_PATH"] = "test_files/"
