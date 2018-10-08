@@ -218,12 +218,8 @@ void MeRelaxerImpl::Relax(/*MeshPolyEnum a_meshPolyEnum,*/
       m_pointsToDelete.clear();
       break;
     }
-    /// \todo tin->OptimizeTriangulation should return a value to tell if the triangulation changed
     bool trianglesChanged(false);
-    VecInt &tinTris(m_tin->Triangles()), tris = tinTris;
-    m_tin->OptimizeTriangulation();
-    // trianglesChanged = m_tin->OptimizeTriangulation();
-    trianglesChanged = tinTris != tris;
+    trianglesChanged = m_tin->OptimizeTriangulation();
 
     if (trianglesChanged && RELAXTYPE_SPRING == relaxtype)
     { // set up spring relax if the triangles have changed
