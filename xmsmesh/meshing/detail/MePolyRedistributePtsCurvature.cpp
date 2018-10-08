@@ -849,7 +849,7 @@ void MePolyRedistributePtsCurvatureUnitTests::testNewPointsFromParamCurvs()
 //------------------------------------------------------------------------------
 void MePolyRedistributePtsCurvatureIntermediateTests::testCoastline()
 {
-  std::string path(std::string(XMSMESH_TEST_PATH) + "redistribution/");
+  std::string path(std::string(XMS_TEST_PATH) + "redistribution/");
   std::string infile(path + "Coastline.txt"), outFile(path + "Coastline_out.txt"),
     baseFile(path + "Coastline_base.txt");
   std::fstream is;
@@ -883,7 +883,7 @@ void MePolyRedistributePtsCurvatureIntermediateTests::testCoastline()
 //------------------------------------------------------------------------------
 void MePolyRedistributePtsCurvatureIntermediateTests::testIsland()
 {
-  std::string path(std::string(XMSMESH_TEST_PATH) + "redistribution/");
+  std::string path(std::string(XMS_TEST_PATH) + "redistribution/");
   std::string infile(path + "Island.txt"), outFile(path + "Island_out.txt"),
     baseFile(path + "Island_base.txt");
   std::fstream is;

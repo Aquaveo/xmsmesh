@@ -323,12 +323,12 @@ static void iReadPolysAndCreate2dm(std::string a_filename, std::ostream& a_os, i
 //------------------------------------------------------------------------------
 static void iTestFromPolyFile(std::string a_fileBase, int a_precision)
 {
-#ifdef XMSMESH_TEST_PATH
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+#ifdef XMS_TEST_PATH
+  const std::string path(std::string(XMS_TEST_PATH) + "meshing/");
 #else
-  // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
+  // not using ttGetXmsngTestPath() because the XMSNG_TEST_PATH is not defined
   // in xmscore.
-  const std::string path(ttGetXmsngTestPath() + "meshing/");
+  const std::string path("test_files/meshing/");
 #endif
   std::string outFile;
   std::string baseFile;
@@ -678,12 +678,10 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePaveSanDiego_SpringRelaxation()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 {
-#ifdef XMSMESH_TEST_PATH
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+#ifdef XMS_TEST_PATH
+  const std::string path(std::string(XMS_TEST_PATH) + "meshing/");
 #else
-  // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
-  // in xmscore.
-  const std::string path(ttGetXmsngTestPath() + "meshing/");
+  const std::string path("test_files/meshing/");
 #endif
   const std::string fname(path + "CasePatch6.txt");
   std::string fbase("CasePatch6");
@@ -733,12 +731,10 @@ void MeMultiPolyTo2dmIntermediateTests::testCasePatch6()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testCasePaveConstSizeTransition()
 {
-#ifdef XMSMESH_TEST_PATH
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "meshing/");
+#ifdef XMS_TEST_PATH
+  const std::string path(std::string(XMS_TEST_PATH) + "meshing/");
 #else
-  // not using ttGetXmsngTestPath() because the XMSMESH_TEST_PATH is not defined
-  // in xmscore.
-  const std::string path(ttGetXmsngTestPath() + "meshing/");
+  const std::string path("test_files/meshing/");
 #endif
   std::string fbase("CaseTransitionToConstSize");
   std::string fname(path + "CaseTransitionToConstSize.txt");

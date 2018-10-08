@@ -239,7 +239,7 @@ bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d
 //------------------------------------------------------------------------------
 void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_fileBase)
 {
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
+  const std::string path(std::string(XMS_TEST_PATH) + "Tutorial_Meshing/");
   std::string outFile;
   std::string baseFile;
   ttGetTestFilePaths(path, a_fileBase, ".2dm", baseFile, outFile);
@@ -483,7 +483,7 @@ void TutMeshingIntermediateTests::test_Example_RefinePoints()
 //! [snip_test_Example_MultiPolygon]
 void TutMeshingIntermediateTests::test_Example_MultiplePolygons()
 {
-  const std::string path(std::string(XMSMESH_TEST_PATH) + "Tutorial_Meshing/");
+  const std::string path(std::string(XMS_TEST_PATH) + "Tutorial_Meshing/");
   const std::string fname(path + "Example_MultiPolys.txt");
   xms::VecPt3d3d inside;
   xms::VecPt3d2d outside;
@@ -991,7 +991,7 @@ void TutRedistributionIntermediateTests::test_Example_Redistribute_Polygon_Curva
 void TutMeshingIntermediateTests::test_Example_QuadBlossom_BadQuadRemover()
 {
   // read a UGrid from a file.
-  const std::string path(std::string(XMSMESH_TEST_PATH) + 
+  const std::string path(std::string(XMS_TEST_PATH) + 
                          "Tutorial_Meshing/");
   const std::string inputFilePath = path + "Example_QuadBlossom_triangleUGridInput.txt";
   BSHP<xms::XmUGrid> ugrid = xms::XmReadUGridFromAsciiFile(inputFilePath); // read from file.
