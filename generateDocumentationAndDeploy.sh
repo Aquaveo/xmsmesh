@@ -107,7 +107,8 @@ cd $(dirname $SPHINX_CONF)
 # make a directory to get the conan package
 mkdir ./conan
 # get the conan package
-conan install -o xmsmesh:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmsmesh/${TRAVIS_TAG}@aquaveo/stable 
+# conan install -o xmsmesh:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmsmesh/${TRAVIS_TAG}@aquaveo/stable
+conan install -o xmsmesh:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmsmesh/1.0.1@aquaveo/stable 
 # get the path to the conan package
 export PATH_TO_PYTHON_PACKAGE=$(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmsmesh | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # copy package into build directory
