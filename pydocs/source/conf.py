@@ -154,7 +154,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'xmsmesh', 'xmsmesh Documentation',
-     author, 'xmsmesh', 'Interpolation library used by aquaveo libraries.',
+     author, 'xmsmesh', 'GridTrace library used by aquaveo libraries.',
      'Miscellaneous'),
 ]
 
