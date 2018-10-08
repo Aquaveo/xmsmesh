@@ -55,6 +55,11 @@ Doxygen/html/*.js
 Doxygen/html/*.png
 Doxygen/html/search
 Doxygen/html/pydocs/*
+doxy_warn.log
+
+# Sphinx
+pydocs/build
+sphinx_warnings.log
 
 # Testing files
 *_out.2dm
