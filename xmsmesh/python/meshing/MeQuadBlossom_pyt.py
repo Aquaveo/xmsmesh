@@ -54,9 +54,9 @@ class TestMeQuadBlossom(unittest.TestCase):
         split_boundary_points = False
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
-        new_points = new_ugrid.get_points()
-        expected_points = points
+        cells = new_ugrid.get_cellstream()
+        new_locations = new_ugrid.get_locations()
+        expected_locations = points
         expected_cells = [
             9, 4, 1, 5, 4, 0,   # 0
             9, 4, 2, 6, 5, 1,   # 1
@@ -65,16 +65,16 @@ class TestMeQuadBlossom(unittest.TestCase):
             5, 3, 5, 6, 8,      # 4
             5, 3, 7, 8, 9]      # 5
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, new_points, atol=1.0e-4)
+        np.testing.assert_allclose(expected_locations, new_locations, atol=1.0e-4)
 
         blossom = MeQuadBlossom(ugrid)
         split_boundary_points = True
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
-        new_points = new_ugrid.get_points()
-        expected_points = points
-        expected_points.append([50.0/3.0, 20.0/3.0, 0.0])
+        cells = new_ugrid.get_cellstream()
+        new_locations = new_ugrid.get_locations()
+        expected_locations = points
+        expected_locations.append([50.0/3.0, 20.0/3.0, 0.0])
         expected_cells = (
             9, 4, 1, 5, 4, 0,
             9, 4, 2, 10, 5, 1,
@@ -83,7 +83,7 @@ class TestMeQuadBlossom(unittest.TestCase):
             9, 4, 6, 8, 5, 10,
             5, 3, 7, 8, 9)
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, new_points, atol=1.0e-4)
+        np.testing.assert_allclose(expected_locations, new_locations, atol=1.0e-4)
 
     def test_simple_quad(self):
         points = [
@@ -102,8 +102,8 @@ class TestMeQuadBlossom(unittest.TestCase):
         split_boundary_points = False
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
-        actual_points = new_ugrid.get_points()
+        cells = new_ugrid.get_cellstream()
+        actual_locations = new_ugrid.get_locations()
         expected_cells = [
           9, 4, 1, 5, 4, 0,     # 0
           9, 4, 2, 6, 5, 1,     # 1
@@ -115,17 +115,17 @@ class TestMeQuadBlossom(unittest.TestCase):
           9, 4, 10, 14, 13, 9,  # 7
           9, 4, 11, 15, 14, 10 # 8
         ]
-        expected_points = points
+        expected_locations = points
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
 
         blossom = MeQuadBlossom(ugrid)
         spilt_boundary_points = True
         use_angle = False
         new_ugrid = blossom.make_quads(spilt_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
-        actual_points = new_ugrid.get_points()
+        cells = new_ugrid.get_cellstream()
+        actual_locations = new_ugrid.get_locations()
     
         expected_cells = [
           9, 4, 1, 5, 4, 0,     # 0
@@ -138,9 +138,9 @@ class TestMeQuadBlossom(unittest.TestCase):
           9, 4, 10, 14, 13, 9,  # 7
           9, 4, 11, 15, 14, 10, # 8
         ]
-        expected_points = points
+        expected_locations = points
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
     def test_complex_quad(self):
         points = [
@@ -162,7 +162,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         spilt_boundary_points = False
         use_angle = False
         new_ugrid = blossom.make_quads(spilt_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
+        cells = new_ugrid.get_cellstream()
         expected_cells = [
             9, 4, 0, 1, 4, 3,     #  0
             9, 4, 1, 2, 5, 4,     #  1
@@ -181,10 +181,10 @@ class TestMeQuadBlossom(unittest.TestCase):
             9, 4, 15, 10, 16, 23, # 14
             9, 4, 17, 24, 23, 16  # 15
         ]
-        actual_points = new_ugrid.get_points()
-        expected_points = points
+        actual_locations = new_ugrid.get_locations()
+        expected_locations = points
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
         blossom = MeQuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
@@ -192,7 +192,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         spilt_boundary_points = False
         use_angle = True
         new_ugrid = blossom.make_quads(spilt_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
+        cells = new_ugrid.get_cellstream()
         expected_cells = [
             5, 3, 0, 4, 3,        #  0
             9, 4, 1, 5, 4, 0,     #  1
@@ -213,10 +213,10 @@ class TestMeQuadBlossom(unittest.TestCase):
             9, 4, 15, 16, 23, 22, # 16
             9, 4, 17, 24, 23, 16  # 17
         ]
-        actual_points = new_ugrid.get_points()
-        expected_points = points
+        actual_locations = new_ugrid.get_locations()
+        expected_locations = points
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
         blossom = MeQuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
@@ -224,7 +224,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         spilt_boundary_points = True
         use_angle = True
         new_ugrid = blossom.make_quads(spilt_boundary_points, use_angle)
-        cells = new_ugrid.get_cell_stream()
+        cells = new_ugrid.get_cellstream()
         expected_cells = (
             9, 4, 3, 0, 4, 25,
             9, 4, 1, 5, 4, 0,
@@ -244,12 +244,12 @@ class TestMeQuadBlossom(unittest.TestCase):
             9, 4, 15, 22, 21, 14,
             9, 4, 15, 16, 23, 22,
             9, 4, 17, 24, 23, 16)
-        actual_points = new_ugrid.get_points()
-        expected_points = points
-        expected_points.append([-10, 13.33333, 0.0])
-        expected_points.append([-20.0, 33.33333, 0.0])
+        actual_locations = new_ugrid.get_locations()
+        expected_locations = points
+        expected_locations.append([-10, 13.33333, 0.0])
+        expected_locations.append([-20.0, 33.33333, 0.0])
         self.assertArraysEqual(expected_cells, cells)
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
     def test_pre_make_quads(self):
         # single triangle
@@ -270,10 +270,10 @@ class TestMeQuadBlossom(unittest.TestCase):
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
         expected_cells = [5, 3, 0, 1, 2]
-        expected_points = points
-        actual_points = new_ugrid.get_points()
-        self.assertArraysEqual(expected_cells, new_ugrid.get_cell_stream())
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        expected_locations = points
+        actual_locations = new_ugrid.get_locations()
+        self.assertArraysEqual(expected_cells, new_ugrid.get_cellstream())
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
         # two adjacent
         #  2-----3
@@ -292,10 +292,10 @@ class TestMeQuadBlossom(unittest.TestCase):
 
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
         expected_cells = [9, 4, 0, 1, 3, 2]
-        expected_points = points
-        actual_points = new_ugrid.get_points()
-        self.assertArraysEqual(expected_cells, new_ugrid.get_cell_stream())
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        expected_locations = points
+        actual_locations = new_ugrid.get_locations()
+        self.assertArraysEqual(expected_cells, new_ugrid.get_cellstream())
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
         # three adjacent
         triangles = [[2, 9, 6], [9, 4, 6], [9, 3, 4]]
@@ -314,10 +314,10 @@ class TestMeQuadBlossom(unittest.TestCase):
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
         expected_cells = [5, 3, 2, 9, 6, 9, 4, 4, 6, 9, 3]
-        expected_points = points
-        actual_points = new_ugrid.get_points()
-        self.assertArraysEqual(expected_cells, new_ugrid.get_cell_stream())
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        expected_locations = points
+        actual_locations = new_ugrid.get_locations()
+        self.assertArraysEqual(expected_cells, new_ugrid.get_cellstream())
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
     def test_estimated_run_time(self):
       self.assertAlmostEqual(0.0085, MeQuadBlossom.estimated_run_time_in_minutes(500), places=3)
@@ -354,10 +354,10 @@ class TestMeQuadBlossom(unittest.TestCase):
         ugrid = XmUGrid(points, cells)
         # blossom = MeQuadBlossom(ugrid)
         new_ugrid = MeQuadBlossom.split_to_quads(ugrid)
-        actual_points = new_ugrid.get_points()
-        actual_cells = new_ugrid.get_cell_stream()
+        actual_locations = new_ugrid.get_locations()
+        actual_cells = new_ugrid.get_cellstream()
        
-        expected_points = [
+        expected_locations = [
             [ 0.0, 0.0, 0.0 ], [ 10.0, 0.0, 0.0 ], [ 20.0, 0.0, 0.0 ], [ 30.0, 0.0, 0.0 ],
             [0.0, 10.0, 0.0],  [10.0, 10.0, 0.0], [20.0, 10.0, 0.0], [30.0, 10.0, 0.0],
             [0.0, 20.0, 0.0], [10.0, 20.0, 0.0], [20.0, 20.0, 0.0], [30.0, 20.0, 0.0],
@@ -406,7 +406,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         ]
   
         self.assertArraysEqual(expected_cells, actual_cells)
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-5)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
 
 

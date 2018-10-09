@@ -86,7 +86,7 @@ class TestMeBadQuadRemover(unittest.TestCase):
 
         remover = MeBadQuadRemover(make_XmUGrid(points, faces))
         collapsed_ugrid = remover.remove_bad_quads(0.7)
-        expected_points = [
+        expected_locations = [
             # top row (0-9)
             [0, 20, 0],
             [10, 20, 0],
@@ -132,9 +132,9 @@ class TestMeBadQuadRemover(unittest.TestCase):
             [76, -4, 0],
             [77, -7, 0],
             [74, -6, 0]]
-        actual_points = collapsed_ugrid.get_points()
+        actual_locations = collapsed_ugrid.get_locations()
         import numpy as np
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-4)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-4)
 
         expected_cells = [
         9, 4, 10, 11, 1,  0,  9, 4, 32, 12, 2,  1,  9, 4, 11, 12, 32, 1,  9, 4, 12, 13, 3,  2,
@@ -144,7 +144,7 @@ class TestMeBadQuadRemover(unittest.TestCase):
         9, 4, 25, 26, 17, 16, 9, 4, 26, 27, 29, 17, 9, 4, 27, 28, 31, 29, 9, 4, 31, 18, 30, 29,
         9, 4, 30, 18, 33, 9,  9, 4, 31, 28, 33, 18, 9, 4, 36, 37, 27, 26, 9, 4, 37, 38, 35, 27,
         9, 4, 38, 39, 34, 35, 9, 4, 34, 39, 36, 26, 9, 4, 39, 38, 37, 36]
-        actual_cells = collapsed_ugrid.get_cell_stream()
+        actual_cells = collapsed_ugrid.get_cellstream()
         self.assertArraysEqual(expected_cells, actual_cells)
 
     def testCollapseQuadTri(self):
@@ -162,13 +162,13 @@ class TestMeBadQuadRemover(unittest.TestCase):
 
         remover = MeBadQuadRemover(make_XmUGrid(points, faces))
         collapsed_ugrid = remover.remove_bad_quads(0.7)
-        expected_points = [[-10, 0, 0], [10, 0, 0], [0, 20, 0]]
+        expected_locations = [[-10, 0, 0], [10, 0, 0], [0, 20, 0]]
 
-        actual_points = collapsed_ugrid.get_points()
+        actual_locations = collapsed_ugrid.get_locations()
         import numpy as np
-        np.testing.assert_allclose(expected_points, actual_points, atol=1.0e-4)
+        np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-4)
 
         expected_cells = [5, 3, 0, 1, 2]
 
-        actual_cells = collapsed_ugrid.get_cell_stream()
+        actual_cells = collapsed_ugrid.get_cellstream()
         self.assertArraysEqual(expected_cells, actual_cells)
