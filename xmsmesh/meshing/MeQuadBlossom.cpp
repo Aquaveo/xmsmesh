@@ -22,6 +22,7 @@
 // 5. Shared code headers
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/xmstype.h>
+#include <xmsgrid/ugrid/XmEdge.h>
 #include <xmsgrid/ugrid/XmUGrid.h>
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsmesh/meshing/detail/MeWeightMatcher.h>
@@ -107,7 +108,7 @@ public:
   virtual BSHP<XmUGrid> _MakeQuads(bool a_splitBoundaryPoints = true,
                                    bool a_useAngle = false,
                                    int cost = -10);
-  const VecPt3d& GetPoints() const;
+  const VecPt3d& GetLocations() const;
 
   void PrepareForMatch(int a_cost,
                        bool a_useAngle);
@@ -170,14 +171,14 @@ typedef std::vector<VecAdjPointMidpoint> VecVecAdjPointMidpoint;
 //------------------------------------------------------------------------------
 VecInt2d UGrid2dToVecInt2d(BSHP<XmUGrid> a_ugrid)
 {
-  int numCells = a_ugrid->GetNumberOfCells();
+  int numCells = a_ugrid->GetCellCount();
   VecInt2d cells(numCells, VecInt());
   for (int cellIdx = 0; cellIdx < numCells; ++cellIdx)
   {
     VecInt& cell = cells[cellIdx];
-    if (a_ugrid->GetCellDimension(cellIdx) == 2 && a_ugrid->GetNumberOfCellEdges(cellIdx) == 3)
+    if (a_ugrid->GetCellDimension(cellIdx) == 2 && a_ugrid->GetCellEdgeCount(cellIdx) == 3)
     {
-      VecInt cellPoints = a_ugrid->GetPointsOfCell(cellIdx);
+      VecInt cellPoints = a_ugrid->GetCellPoints(cellIdx);
       for (auto pointIdx : cellPoints)
       {
         cell.push_back(pointIdx);
@@ -324,23 +325,23 @@ void GetPointIdxsAttachedByEdge(BSHP<XmUGrid> a_ugrid, int a_pointIdx, VecInt& a
 {
   // TODO: Use new UGrid code in xmsgrid
   a_edgePoints.clear();
-  VecInt associatedCells = a_ugrid->GetPointCells(a_pointIdx);
+  VecInt associatedCells = a_ugrid->GetPointAdjacentCells(a_pointIdx);
   if (associatedCells.size() == 0)
   {
     return;
   }
   for (int i = 0; i < associatedCells.size(); ++i)
   {
-    for (int j = 0; j < a_ugrid->GetNumberOfCellEdges(associatedCells[i]); ++j)
+    for (int j = 0; j < a_ugrid->GetCellEdgeCount(associatedCells[i]); ++j)
     {
-      std::pair<int, int> temp = a_ugrid->GetCellEdgeFromEdgeIndex(associatedCells[i], j);
-      if (temp.first == a_pointIdx)
+      XmEdge temp = a_ugrid->GetCellEdge(associatedCells[i], j);
+      if (temp.GetFirst() == a_pointIdx)
       {
-        a_edgePoints.push_back(temp.second);
+        a_edgePoints.push_back(temp.GetSecond());
       }
-      else if (temp.second == a_pointIdx)
+      else if (temp.GetSecond() == a_pointIdx)
       {
-        a_edgePoints.push_back(temp.first);
+        a_edgePoints.push_back(temp.GetFirst());
       }
     }
   }
@@ -924,7 +925,7 @@ Edge MeQuadBlossomImpl::GetBoundaryEdges(int a_p,
 //------------------------------------------------------------------------------
 BSHP<MeQuadBlossom> MeQuadBlossom::New(BSHP<XmUGrid> a_ugrid)
 {
-  const VecPt3d& points = a_ugrid->GetPoints();
+  const VecPt3d& points = a_ugrid->GetLocations();
   VecInt2d triangles = UGrid2dToVecInt2d(a_ugrid);
   BSHP<MeQuadBlossom> wm(new MeQuadBlossomImpl(points, triangles));
   return wm;
@@ -959,10 +960,10 @@ double MeQuadBlossom::EstimatedRunTimeInMinutes(int a_numPoints)
 //------------------------------------------------------------------------------
 BSHP<XmUGrid> MeQuadBlossom::SplitToQuads(BSHP<XmUGrid> a_ugrid)
 {
-  VecPt3d points = a_ugrid->GetPoints();
+  VecPt3d points = a_ugrid->GetLocations();
   VecInt cells;
 
-  int numPoints = a_ugrid->GetNumberOfPoints();
+  int numPoints = a_ugrid->PointCount();
   VecVecAdjPointMidpoint edgeMidsides(numPoints);
   for (int pointIdx = 0; pointIdx < numPoints; ++pointIdx)
   {
@@ -988,12 +989,12 @@ BSHP<XmUGrid> MeQuadBlossom::SplitToQuads(BSHP<XmUGrid> a_ugrid)
 
   // also get centroids and add to new points
   // track start of new centroid starts
-  int numCells = a_ugrid->GetNumberOfCells();
+  int numCells = a_ugrid->GetCellCount();
   for (int cellIdx = 0; cellIdx < numCells; ++cellIdx)
   {
     // TODO: Use new UGrid centroid code in xmsgrid
-    VecInt cellPointIdxs = a_ugrid->GetPointsOfCell(cellIdx);
-    VecPt3d cellPoints = a_ugrid->GetPointsFromPointIdxs(cellPointIdxs);
+    VecInt cellPointIdxs = a_ugrid->GetCellPoints(cellIdx);
+    VecPt3d cellPoints = a_ugrid->GetPointsLocations(cellPointIdxs);
     Pt3d centroid = gmComputeCentroid(cellPoints);
     int centroidIdx = (int)points.size();
     points.push_back(centroid);
@@ -1704,7 +1705,7 @@ void MeQuadBlossomUnitTests::testSimpleTriangle()
       XMU_TRIANGLE, 3, 7, 8, 9  // 5
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     TS_ASSERT_DELTA_VECPT3D(points, actualPoints, 1.0e-5);
   }
 
@@ -1724,7 +1725,7 @@ void MeQuadBlossomUnitTests::testSimpleTriangle()
       XMU_TRIANGLE, 3, 7, 8, 9  // 5
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     VecPt3d expectedPoints = points;
     expectedPoints.push_back(Pt3d(50.0/3.0, 20.0/3.0, 0.0));
     TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-5);
@@ -1748,7 +1749,7 @@ void MeQuadBlossomUnitTests::testSimpleTriangle()
       XMU_QUAD, 4, 3, 6, 4, 5   // 2
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     VecPt3d expectedPoints = points;
     expectedPoints.push_back(Pt3d(0, 14.14 / 3, 0));
     TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-5);
@@ -1790,7 +1791,7 @@ void MeQuadBlossomUnitTests::testSimpleQuad()
       XMU_QUAD, 4, 11, 15, 14, 10, // 8
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     VecPt3d expectedPoints = points;
     TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-5);
   }
@@ -1814,7 +1815,7 @@ void MeQuadBlossomUnitTests::testSimpleQuad()
       XMU_QUAD, 4, 11, 15, 14, 10, // 8
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     VecPt3d expectedPoints = points;
     TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-5);
   }
@@ -1868,7 +1869,7 @@ void MeQuadBlossomUnitTests::testComplexQuad()
       XMU_QUAD, 4, 17, 24, 23, 16  // 17
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     VecPt3d expectedPoints = points;
     TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-5);
   }
@@ -1901,7 +1902,7 @@ void MeQuadBlossomUnitTests::testComplexQuad()
       XMU_QUAD, 4, 17, 24, 23, 16, // 17
     };
     TS_ASSERT_EQUALS(expectedCells, cells);
-    const VecPt3d& actualPoints = ugrid->GetPoints();
+    const VecPt3d& actualPoints = ugrid->GetLocations();
     VecPt3d expectedPoints = points;
     expectedPoints.push_back({-10, 13.3333, 0.0});
     expectedPoints.push_back({-20.0, 33.3333, 0.0});
@@ -1941,7 +1942,7 @@ void MeQuadBlossomUnitTests::testSplitToQuads()
 
   BSHP<XmUGrid> quadUGrid = MeQuadBlossom::SplitToQuads(ugrid);
 
-  VecPt3d quadPoints = quadUGrid->GetPoints();
+  VecPt3d quadPoints = quadUGrid->GetLocations();
   // clang-format off
   VecPt3d expectedQuadPoints = {
     { 0, 0, 0 }, { 10, 0, 0 }, { 20, 0, 0 }, { 30, 0, 0 },

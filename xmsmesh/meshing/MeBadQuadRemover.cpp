@@ -24,6 +24,7 @@
 #include <xmscore/misc/DynBitset.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/xmstype.h>
+#include <xmsgrid/ugrid/XmEdge.h>
 #include <xmsgrid/ugrid/XmUGrid.h>
 #include <xmsinterp/geometry/geoms.h>
 
@@ -143,23 +144,23 @@ void GetPointIdxsAttachedByEdge(BSHP<XmUGrid> a_ugrid, int a_pointIdx, VecInt& a
 {
   // TODO: Use new UGrid code in xmsgrid
   a_edgePoints.clear();
-  VecInt associatedCells = a_ugrid->GetPointCells(a_pointIdx);
+  VecInt associatedCells = a_ugrid->GetPointAdjacentCells(a_pointIdx);
   if (associatedCells.size() == 0)
   {
     return;
   }
   for (int i = 0; i < associatedCells.size(); ++i)
   {
-    for (int j = 0; j < a_ugrid->GetNumberOfCellEdges(associatedCells[i]); ++j)
+    for (int j = 0; j < a_ugrid->GetCellEdgeCount(associatedCells[i]); ++j)
     {
-      std::pair<int, int> temp = a_ugrid->GetCellEdgeFromEdgeIndex(associatedCells[i], j);
-      if (temp.first == a_pointIdx)
+      XmEdge temp = a_ugrid->GetCellEdge(associatedCells[i], j);
+      if (temp.GetFirst() == a_pointIdx)
       {
-        a_edgePoints.push_back(temp.second);
+        a_edgePoints.push_back(temp.GetSecond());
       }
-      else if (temp.second == a_pointIdx)
+      else if (temp.GetSecond() == a_pointIdx)
       {
-        a_edgePoints.push_back(temp.first);
+        a_edgePoints.push_back(temp.GetFirst());
       }
     }
   }
@@ -183,7 +184,7 @@ int GetAdjacentPointCount(BSHP<XmUGrid> a_ugrid, int a_pointIdx)
   VecInt adjacentCells;
   for (auto adjacentPtIdx : adjacentPoints)
   {
-    a_ugrid->GetAdjacentCellsFromGivenEdge(a_pointIdx, adjacentPtIdx, adjacentCells);
+    a_ugrid->GetPointsAdjacentCells(a_pointIdx, adjacentPtIdx, adjacentCells);
     if (adjacentCells.size() == 1)
     {
       isBoundary = true;
@@ -202,8 +203,8 @@ int GetAdjacentPointCount(BSHP<XmUGrid> a_ugrid, int a_pointIdx)
 //------------------------------------------------------------------------------
 VecInt GetAdjacentPointCounts(BSHP<XmUGrid> a_ugrid)
 {
-  VecInt counts(a_ugrid->GetNumberOfPoints());
-  int numPoints = a_ugrid->GetNumberOfPoints();
+  VecInt counts(a_ugrid->PointCount());
+  int numPoints = a_ugrid->PointCount();
   for (int pointIdx = 0; pointIdx < numPoints; ++pointIdx)
   {
     counts[pointIdx] = GetAdjacentPointCount(a_ugrid, pointIdx);
@@ -227,10 +228,10 @@ VecInt GetAdjacentPointCounts(BSHP<XmUGrid> a_ugrid)
 //------------------------------------------------------------------------------
 MeBadQuadRemoverImpl::MeBadQuadRemoverImpl(BSHP<XmUGrid> a_ugrid)
 : m_ugrid(a_ugrid)
-, m_pointIdxMap(a_ugrid->GetNumberOfPoints(), -1)
+, m_pointIdxMap(a_ugrid->PointCount(), -1)
 , m_adjPointCnts(GetAdjacentPointCounts(a_ugrid))
 {
-  int cellCount = a_ugrid->GetNumberOfCells();
+  int cellCount = a_ugrid->GetCellCount();
   m_cellsToDelete.resize(cellCount);
   m_cellsData.resize(cellCount);
 } // MeBadQuadRemoverImpl::MeBadQuadRemoverImpl
@@ -246,7 +247,7 @@ BSHP<XmUGrid> MeBadQuadRemoverImpl::RemoveBadQuads(double a_maxAspect)
     a_maxAspect *= a_maxAspect;
   }
 
-  int cellCnt = m_ugrid->GetNumberOfCells();
+  int cellCnt = m_ugrid->GetCellCount();
 
   for (int a_cellIdx = 0; a_cellIdx < cellCnt; ++a_cellIdx)
   {
@@ -330,14 +331,14 @@ void MeBadQuadRemoverImpl::DeleteCell(int a_cellIdx)
 //------------------------------------------------------------------------------
 BSHP<XmUGrid> MeBadQuadRemoverImpl::BuildUGridFromReplacedPoints()
 {
-  VecPt3d oldPoints = m_ugrid->GetPoints();
+  VecPt3d oldPoints = m_ugrid->GetLocations();
   for (auto& movedPoint : m_movedPoints)
   {
     oldPoints[movedPoint.first] = movedPoint.second;
   }
 
   VecPt3d newPoints;
-  int numPoints = (int)m_ugrid->GetNumberOfPoints();
+  int numPoints = (int)m_ugrid->PointCount();
   newPoints.reserve(numPoints);
   int currPtIdx = 0;
   VecInt newPointIdxLookupTable(numPoints, -1);
@@ -365,7 +366,7 @@ BSHP<XmUGrid> MeBadQuadRemoverImpl::BuildUGridFromReplacedPoints()
   // 0 * 3 * * * 1 newPointIdxLookupTable after second pass (* means unchanged)
   // 0 0 3 1 2 3 1 newPointIdxLookupTable after second pass
   VecInt cells;
-  int numCells = m_ugrid->GetNumberOfCells();
+  int numCells = m_ugrid->GetCellCount();
   cells.reserve(6 * numCells);
   for (int cellIdx = 0; cellIdx < numCells; ++cellIdx)
   {
@@ -374,8 +375,8 @@ BSHP<XmUGrid> MeBadQuadRemoverImpl::BuildUGridFromReplacedPoints()
       int cellType = m_ugrid->GetCellType(cellIdx);
       XM_ASSERT(m_ugrid->GetCellDimension(cellIdx) == 2);
       cells.push_back(cellType);
-      cells.push_back(m_ugrid->GetNumberOfCellEdges(cellIdx));
-      VecInt cellPoints = m_ugrid->GetPointsOfCell(cellIdx);
+      cells.push_back(m_ugrid->GetCellEdgeCount(cellIdx));
+      VecInt cellPoints = m_ugrid->GetCellPoints(cellIdx);
       for (auto pointIdx : cellPoints)
       {
         cells.push_back(newPointIdxLookupTable[pointIdx]);
@@ -396,7 +397,7 @@ void MeBadQuadRemoverImpl::CollapseFromPoint(int a_cellIdx,
                                              int a_pointIdx_w3,
                                              const VecInt& a_adjCells)
 {
-  VecInt pointIdxs = m_ugrid->GetPointsOfCell(a_cellIdx);
+  VecInt pointIdxs = m_ugrid->GetCellPoints(a_cellIdx);
   auto it = std::find(pointIdxs.begin(), pointIdxs.end(), a_pointIdx_w3);
   XM_ASSERT(it != pointIdxs.end());
   int position = int(it - pointIdxs.begin());
@@ -408,7 +409,7 @@ void MeBadQuadRemoverImpl::CollapseFromPoint(int a_cellIdx,
     XM_ASSERT(vCnt == 3);
     if (diagonalCnt > 0)
     {
-      const VecPt3d& points = m_ugrid->GetPoints();
+      const VecPt3d& points = m_ugrid->GetLocations();
       double sumWt = (double)(diagonalCnt + vCnt);
       double ptWt = double(vCnt) / sumWt;
       double diagonalPtWt = double(diagonalCnt) / sumWt;
@@ -436,8 +437,8 @@ void MeBadQuadRemoverImpl::CollapseFromPoint(int a_cellIdx,
 //------------------------------------------------------------------------------
 void MeBadQuadRemoverImpl::ComputeCellData(int a_cellIdx, double max_aspect)
 {
-  VecInt pointIdxs = m_ugrid->GetPointsOfCell(a_cellIdx);
-  VecPt3d points = m_ugrid->GetPointsFromPointIdxs(pointIdxs);
+  VecInt pointIdxs = m_ugrid->GetCellPoints(a_cellIdx);
+  VecPt3d points = m_ugrid->GetPointsLocations(pointIdxs);
   int adjPointCnt = (int)points.size();
 
   if (adjPointCnt != 4)
@@ -473,9 +474,9 @@ void MeBadQuadRemoverImpl::ComputeCellData(int a_cellIdx, double max_aspect)
     if (adjPointCnt == 2 && !on_boundary)
     {
       int opposingIdx = pointIdxs[(i + 2) % 4];
-      Pt3d opposingPt = m_ugrid->GetPoint(opposingIdx);
-      int adjCellIdx = m_ugrid->Get2dAdjacentCell(a_cellIdx, i);
-      VecInt adjPointIdxs = m_ugrid->GetPointsOfCell(adjCellIdx);
+      Pt3d opposingPt = m_ugrid->GetPointLocation(opposingIdx);
+      int adjCellIdx = m_ugrid->GetCell2dEdgeAdjacentCell(a_cellIdx, i);
+      VecInt adjPointIdxs = m_ugrid->GetCellPoints(adjCellIdx);
       if (adjPointIdxs.size() == 3)
       {
         // adjacent cell is a triangle
@@ -510,7 +511,7 @@ void MeBadQuadRemoverImpl::ComputeCellData(int a_cellIdx, double max_aspect)
         int position = int(it - adjPointIdxs.begin());
         int adjOpposingIdx = adjPointIdxs[(position + 2) % (int)adjPointIdxs.size()];
         // int adjOpposingIdx = pointIdxs[(position + 2) % (int)adjPointIdxs.size()];
-        Pt3d adjOpposingPt = m_ugrid->GetPoint(adjOpposingIdx);
+        Pt3d adjOpposingPt = m_ugrid->GetPointLocation(adjOpposingIdx);
         // Pt3d adjOpposingPt = m_ugrid->GetPoint(adjPointIdxs.at(adjOpposingIdx));
         double d0 = gmXyDistanceSquared(adjOpposingPt, opposingPt);
         double d1 = diagonals[(i + 1) & 0x1];
@@ -554,7 +555,7 @@ void MeBadQuadRemoverImpl::ComputeCellData(int a_cellIdx, double max_aspect)
   if (pointIdx_w3 != XM_NONE && threes == 2 &&
       (bits == BOOST_BINARY(0101) || bits == BOOST_BINARY(1010)))
   {
-    VecInt adjCells = m_ugrid->GetPointCells(pointIdx_w3);
+    VecInt adjCells = m_ugrid->GetPointAdjacentCells(pointIdx_w3);
     CollapseFromPoint(a_cellIdx, pointIdx_w3, adjCells);
     return;
   }
@@ -579,7 +580,7 @@ bool MeBadQuadRemoverImpl::CanCollapse(int a_cellIdx, int pointIdx_w3, VecInt& a
   adjPointCnt = std::abs(adjPointCnt);
   XM_ASSERT(adjPointCnt == 3 && !on_boundary);
 
-  a_adjCells = m_ugrid->GetPointCells(pointIdx_w3);
+  a_adjCells = m_ugrid->GetPointAdjacentCells(pointIdx_w3);
   for (auto adjCell : a_adjCells)
   {
     if (adjCell != a_cellIdx)
@@ -698,7 +699,7 @@ void MeBadQuadRemoverUnitTests::testReplacePoints()
 
     BSHP<XmUGrid> newUGrid = replacer.BuildUGridFromReplacedPoints();
 
-    TS_ASSERT_DELTA_VECPT3D(expectPoints, newUGrid->GetPoints(), 1.0e-5);
+    TS_ASSERT_DELTA_VECPT3D(expectPoints, newUGrid->GetLocations(), 1.0e-5);
 
     // 0 1 2 3 4 5 6 7  quad indices
     // x           x    flagged to delete
@@ -879,7 +880,7 @@ void MeBadQuadRemoverUnitTests::testCollapse()
                             {76, -4, 0},
                             {77, -7, 0},
                             {74, -6, 0}};
-  VecPt3d actualPoints = collapsedUGrid->GetPoints();
+  VecPt3d actualPoints = collapsedUGrid->GetLocations();
   TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-4);
 
   VecInt expectedCells = {
@@ -913,7 +914,7 @@ void MeBadQuadRemoverUnitTests::testCollapseQuadTri()
   BSHP<XmUGrid> collapsedUGrid = remover->RemoveBadQuads(0.7);
   VecPt3d expectedPoints = {{-10, 0, 0}, {10, 0, 0}, {0, 20, 0}};
 
-  VecPt3d actualPoints = collapsedUGrid->GetPoints();
+  VecPt3d actualPoints = collapsedUGrid->GetLocations();
   TS_ASSERT_DELTA_VECPT3D(expectedPoints, actualPoints, 1.0e-4);
 
   VecInt expectedCells = {XMU_TRIANGLE, 3, 0, 1, 2};

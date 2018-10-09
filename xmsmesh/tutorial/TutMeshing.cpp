@@ -1004,7 +1004,7 @@ void TutMeshingIntermediateTests::test_Example_QuadBlossom_BadQuadRemover()
 
   // The MeQuadBlossom basic algorithm is O(N^3). Check the estimated minutes.  If too large,
   // Then split the mesh into smaller sub-UGrids, then call MakeQuads on each one.
-  double minutes = xms::MeQuadBlossom::EstimatedRunTimeInMinutes(ugrid->GetNumberOfPoints());
+  double minutes = xms::MeQuadBlossom::EstimatedRunTimeInMinutes(ugrid->PointCount());
   TS_ASSERT(minutes < 2.0);
 
   bool splitVertices = true;
