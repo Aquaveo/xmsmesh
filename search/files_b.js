@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['observer_2ecpp',['Observer.cpp',['https://aquaveo.github.io/xmscore/_observer_8cpp.html',1,'']]],
-  ['observer_2eh',['Observer.h',['https://aquaveo.github.io/xmscore/_observer_8h.html',1,'']]],
-  ['observer_2et_2eh',['Observer.t.h',['https://aquaveo.github.io/xmscore/_observer_8t_8h.html',1,'']]],
-  ['observer_5fpy_2ecpp',['observer_py.cpp',['https://aquaveo.github.io/xmscore/observer__py_8cpp.html',1,'']]]
+  ['nodalfunc_2ecpp',['NodalFunc.cpp',['https://aquaveo.github.io/xmsinterp/_nodal_func_8cpp.html',1,'']]],
+  ['nodalfunc_2eh',['NodalFunc.h',['https://aquaveo.github.io/xmsinterp/_nodal_func_8h.html',1,'']]],
+  ['nodalfunc_2et_2eh',['NodalFunc.t.h',['https://aquaveo.github.io/xmsinterp/_nodal_func_8t_8h.html',1,'']]]
 ];

@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['halennaddouteredge',['HaleNnAddOuterEdge',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#a6db34b8c69e7eb48db1a8f86a7c922d6',1,'xms::InterpNatNeighImpl']]],
-  ['halenninterp',['HaleNnInterp',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#a3e849d6d8a92cbf2f072d36e30b81e19',1,'xms::InterpNatNeighImpl']]],
-  ['halennouteredgestoweights',['HaleNnOuterEdgesToWeights',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#aecf1952fc3d6a365f1195da8850229b2',1,'xms::InterpNatNeighImpl']]],
-  ['halennsortouteredges',['HaleNnSortOuterEdges',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#aa6d419c410a6f1528ff62fd00bb71709',1,'xms::InterpNatNeighImpl']]],
-  ['halennvisitneighbors',['HaleNnVisitNeighbors',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#abb51645e8c36e354d63075aa87aba47d',1,'xms::InterpNatNeighImpl']]],
-  ['hash_2eh',['hash.h',['https://aquaveo.github.io/xmscore/hash_8h.html',1,'']]],
-  ['hash_5fi_5fs',['HASH_I_S',['https://aquaveo.github.io/xmscore/namespacexms.html#acaab4614cdb61c53069a10e3e3900992',1,'xms']]],
-  ['hash_5fs_5fs',['HASH_S_S',['https://aquaveo.github.io/xmscore/namespacexms.html#a56e54e0912307d4de71a4d78d8d68278',1,'xms']]],
-  ['hashintstr',['HashIntStr',['https://aquaveo.github.io/xmscore/namespacexms.html#a70bd6170c9e2680843e379eb968b43c5',1,'xms']]],
-  ['hashpts',['HashPts',['../classxms_1_1_me_poly_pts.html#a2e0bee887677fe6a5dce10852bebd613',1,'xms::MePolyPts']]],
-  ['hashstrstr',['HashStrStr',['https://aquaveo.github.io/xmscore/namespacexms.html#aed890677ebeb23e366bf88d576a1fa8d',1,'xms']]],
-  ['hexpolyatpoint',['HexPolyAtPoint',['../classxms_1_1_me_refine_pts_to_polys_impl.html#a8ba232c7bc96711669bddbe199bc2f73',1,'xms::MeRefinePtsToPolysImpl']]]
+  ['edgeoppositept',['EdgeOppositePt',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_auto_fix_four_triangle_pts_impl.html#a68551fa49d119b1e7d6ed1a47b69ca9c',1,'xms::TrAutoFixFourTrianglePtsImpl']]],
+  ['edgerecord',['edgerecord',['https://aquaveo.github.io/xmsinterp/structxms_1_1edgerecord.html',1,'xms']]],
+  ['edgesfromtri',['EdgesFromTri',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#aad6c40b2274ba9a16d9aeb78b3034eff',1,'xms::InterpNatNeighImpl']]],
+  ['elapsedtimeinseconds',['ElapsedTimeInSeconds',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf',1,'xms::Observer::impl']]],
+  ['endoperation',['EndOperation',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2',1,'xms::Observer::impl::EndOperation()'],['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a6ab39e266617c93fb0720f23efa723e0',1,'xms::Observer::EndOperation()']]],
+  ['ensureendpointsrepresented',['EnsureEndPointsRepresented',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersector_impl.html#a0d3c6c5b4daa721d5fb2edec53d28dbb',1,'xms::GmMultiPolyIntersectorImpl']]],
+  ['environment_2eh',['environment.h',['https://aquaveo.github.io/xmscore/environment_8h.html',1,'']]],
+  ['errcount',['ErrCount',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a20ed692af6d8c0100c02f314c6395379',1,'xms::XmLog']]],
+  ['error',['error',['https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1',1,'xmlog']]],
+  ['errormessage',['ErrorMessage',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_breakline_adder_impl.html#aa4036d3ba5e6ab3e3b9eba71cae6dbc3',1,'xms::TrBreaklineAdderImpl']]],
+  ['estimatedruntimeinminutes',['EstimatedRunTimeInMinutes',['../classxms_1_1_me_quad_blossom.html#a2b7a90fb4e78a40f0b12336d4b1f8eda',1,'xms::MeQuadBlossom']]],
+  ['estimatedtimeremaininginsec',['EstimatedTimeRemainingInSec',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a4eaed90dc0e25cf1119fc449aea1fcf6',1,'xms::Observer::impl']]],
+  ['etestmessagingstate',['ETestMessagingState',['https://aquaveo.github.io/xmscore/classxms_1_1_e_test_messaging_state.html',1,'xms::ETestMessagingState'],['https://aquaveo.github.io/xmscore/classxms_1_1_e_test_messaging_state.html#a90828ce997911657701af863ffde668c',1,'xms::ETestMessagingState::ETestMessagingState()']]],
+  ['explicitlysetnumthreads',['ExplicitlySetNumThreads',['https://aquaveo.github.io/xmsinterp/classxms_1_1_thread_mgr.html#a2621c25b999c657c64082161eb36931e',1,'xms::ThreadMgr::ExplicitlySetNumThreads()'],['https://aquaveo.github.io/xmsinterp/classxms_1_1_thread_mgr_impl.html#a51734bab808fe6e5d8d3f69466e40a13',1,'xms::ThreadMgrImpl::ExplicitlySetNumThreads()']]],
+  ['exporttinfile',['ExportTinFile',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#a89fad78d3d1f79fbfff7684e9323cc0b',1,'xms::TrTinImpl']]],
+  ['exporttinfordebug',['ExportTinForDebug',['../classxms_1_1_me_poly_mesher_impl.html#a1e5750f6033d2115c6308692749b5a5a',1,'xms::MePolyMesherImpl']]],
+  ['extentsoverlap',['ExtentsOverlap',['../classxms_1_1_me_multi_poly_mesher_impl.html#a3f38d514f228adf8de7ad11d8ca0a19f',1,'xms::MeMultiPolyMesherImpl']]]
 ];

@@ -2,7 +2,7 @@
 <tagfile>
   <compound kind="file">
     <name>MeIntersectPolys.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_intersect_polys_8cpp</filename>
     <includes id="_me_intersect_polys_8h" name="MeIntersectPolys.h" local="no" imported="no">xmsmesh/meshing/detail/MeIntersectPolys.h</includes>
     <includes id="_me_poly_offsetter_8h" name="MePolyOffsetter.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyOffsetter.h</includes>
@@ -22,23 +22,44 @@
       <anchor>a30c17564229ec2e37dfea9c6c9ad643e</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static GmBstBox3d</type>
+      <name>iCalcPolyEnvelope</name>
+      <anchorfile>_me_intersect_polys_8cpp.html</anchorfile>
+      <anchor>a6de1f6282cdbee7ff543bd92f2bc9409</anchor>
+      <arglist>(const std::vector&lt; size_t &gt; &amp;a_loop, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>iEnvelopesOverlap</name>
+      <anchorfile>_me_intersect_polys_8cpp.html</anchorfile>
+      <anchor>a4faf707130212158ec5821667dabc083</anchor>
+      <arglist>(size_t a_i, size_t a_j, const std::vector&lt; GmBstBox3d &gt; &amp;a_iEnv, const std::vector&lt; GmBstBox3d &gt; &amp;a_jEnv)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>iEnvelopeInsideOfEnvelope</name>
+      <anchorfile>_me_intersect_polys_8cpp.html</anchorfile>
+      <anchor>a8e5d7c5c0474d02b81baa59bea49231e</anchor>
+      <arglist>(size_t a_i, size_t a_j, const std::vector&lt; GmBstBox3d &gt; &amp;a_envelopes)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MeIntersectPolys.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_intersect_polys_8h</filename>
     <includes id="_me_poly_pts_8h" name="MePolyPts.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPts.h</includes>
     <class kind="class">xms::MeIntersectPolys</class>
   </compound>
   <compound kind="file">
     <name>MeIntersectPolys.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_intersect_polys_8t_8h</filename>
     <class kind="class">MeIntersectPolysUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyCleaner.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_cleaner_8cpp</filename>
     <includes id="_me_poly_cleaner_8h" name="MePolyCleaner.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyCleaner.h</includes>
     <includes id="_me_poly_offsetter_8h" name="MePolyOffsetter.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyOffsetter.h</includes>
@@ -49,19 +70,19 @@
   </compound>
   <compound kind="file">
     <name>MePolyCleaner.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_cleaner_8h</filename>
     <class kind="class">xms::MePolyCleaner</class>
   </compound>
   <compound kind="file">
     <name>MePolyCleaner.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_cleaner_8t_8h</filename>
     <class kind="class">MePolyCleanerUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyOffsetter.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_offsetter_8cpp</filename>
     <includes id="_me_poly_offsetter_8h" name="MePolyOffsetter.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyOffsetter.h</includes>
     <includes id="_me_poly_cleaner_8h" name="MePolyCleaner.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyCleaner.h</includes>
@@ -119,20 +140,20 @@
   </compound>
   <compound kind="file">
     <name>MePolyOffsetter.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_offsetter_8h</filename>
     <class kind="class">xms::MePolyOffsetterOutput</class>
     <class kind="class">xms::MePolyOffsetter</class>
   </compound>
   <compound kind="file">
     <name>MePolyOffsetter.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_offsetter_8t_8h</filename>
     <class kind="class">MePolyOffsetterUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyPatcher.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_patcher_8cpp</filename>
     <includes id="_me_poly_patcher_8h" name="MePolyPatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPatcher.h</includes>
     <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
@@ -141,19 +162,19 @@
   </compound>
   <compound kind="file">
     <name>MePolyPatcher.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_patcher_8h</filename>
     <class kind="class">xms::MePolyPatcher</class>
   </compound>
   <compound kind="file">
     <name>MePolyPatcher.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_patcher_8t_8h</filename>
     <class kind="class">MePolyPatcherUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyPaverToMeshPts.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_paver_to_mesh_pts_8cpp</filename>
     <includes id="_me_poly_paver_to_mesh_pts_8h" name="MePolyPaverToMeshPts.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPaverToMeshPts.h</includes>
     <includes id="_me_intersect_polys_8h" name="MeIntersectPolys.h" local="no" imported="no">xmsmesh/meshing/detail/MeIntersectPolys.h</includes>
@@ -161,22 +182,29 @@
     <includes id="_me_poly_offsetter_8h" name="MePolyOffsetter.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyOffsetter.h</includes>
     <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
     <includes id="_me_poly_paver_to_mesh_pts_8t_8h" name="MePolyPaverToMeshPts.t.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPaverToMeshPts.t.h</includes>
+    <member kind="function">
+      <type>void</type>
+      <name>mePolyPaverRedistribute</name>
+      <anchorfile>_me_poly_paver_to_mesh_pts_8cpp.html</anchorfile>
+      <anchor>a44ef4f8ae6e74fa6a90a2c4adbbf6be3</anchor>
+      <arglist>(BSHP&lt; MePolyRedistributePts &gt; a_redist, const MePolyOffsetterOutput &amp;a_input, MePolyOffsetterOutput &amp;a_out, int a_polyOffsetIter)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MePolyPaverToMeshPts.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_paver_to_mesh_pts_8h</filename>
     <class kind="class">xms::MePolyPaverToMeshPts</class>
   </compound>
   <compound kind="file">
     <name>MePolyPaverToMeshPts.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_paver_to_mesh_pts_8t_8h</filename>
     <class kind="class">MePolyPaverToMeshPtsUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyPts.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_pts_8cpp</filename>
     <includes id="_me_poly_pts_8h" name="MePolyPts.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPts.h</includes>
     <includes id="_me_poly_offsetter_8h" name="MePolyOffsetter.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyOffsetter.h</includes>
@@ -188,16 +216,149 @@
       <anchor>a560015e20e7c3a9d3d6a63b0ac19411c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="typedef">
+      <type>std::map&lt; size_t, std::multimap&lt; double, size_t &gt; &gt;</type>
+      <name>SegMap</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a1d68f3a305814ade4fd239d3e5cd5f88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>std::map&lt; const std::vector&lt; size_t &gt; *, SegMap &gt;</type>
+      <name>MapSegMap</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a0f6bb2fc98153ba533e7ae4edc40dc35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static size_t</type>
+      <name>iNextSegIdx</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>aa98a377278dcea81a0825776ec166c1b</anchor>
+      <arglist>(size_t a_i, const std::vector&lt; size_t &gt; &amp;a_seg)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>iAddIntersection</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a1eae77f303dbc7940b33f84ebcafbf42</anchor>
+      <arglist>(size_t a_i, const std::vector&lt; size_t &gt; &amp;a_iSeg, size_t a_j, double a_t, MapSegMap &amp;a_mapSegCross)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>iHashPts</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a325acd5d1f90a69a16d5978659360173</anchor>
+      <arglist>(std::vector&lt; size_t &gt; &amp;a_newIdx, BSHP&lt; std::vector&lt; Pt3d &gt;&gt; a_pts, double a_xyTol)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::vector&lt; GmBstBox3d &gt;</type>
+      <name>iCalcSegEnvelopes</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>afe53df91c316dfa53b6005955e0568ab</anchor>
+      <arglist>(const std::vector&lt; size_t &gt; &amp;a_segs, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>iEnvelopesOverlapOrTouch</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a79b5406b0bc7a0f9f2a11229f1e1685a</anchor>
+      <arglist>(size_t a_i, size_t a_j, const std::vector&lt; GmBstBox3d &gt; &amp;a_iEnv, const std::vector&lt; GmBstBox3d &gt; &amp;a_jEnv)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>iCalcIntersectionT</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a2a257209fa06556a1b37c967d4dafddb</anchor>
+      <arglist>(const Pt3d &amp;a_p0, const Pt3d &amp;a_p1, Pt3d &amp;a_iPt, double a_xyTol)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>iCheckSharedPtIdx</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>ac32decd6e84be69775668904001361dc</anchor>
+      <arglist>(size_t a_i, size_t a_j, const std::vector&lt; size_t &gt; &amp;a_iSeg, const std::vector&lt; size_t &gt; &amp;a_jSeg, const std::vector&lt; Pt3d &gt; &amp;a_pts, double a_xyTol, MapSegMap &amp;a_mapSegCross)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>iIntersectTwoSegments</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a131267ed09136dce25a55cbd0707d532</anchor>
+      <arglist>(const Pt3d &amp;a_s1p0, const Pt3d &amp;a_s1p1, const Pt3d &amp;a_s2p0, const Pt3d &amp;a_s2p1, double a_xyTol, std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>iCheckIntersection</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>ace962fe11d72ab6cca98db59357999b0</anchor>
+      <arglist>(size_t a_i, size_t a_j, const std::vector&lt; size_t &gt; &amp;a_iSeg, const std::vector&lt; size_t &gt; &amp;a_jSeg, BSHP&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_shptrPts, double a_xyTol, MapSegMap &amp;a_mapSegCross, BSHP&lt; GmPtSearch &gt; a_ps)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>iPolyInsideOfPoly</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a78b7c155ced04cf1df903798022aa69a</anchor>
+      <arglist>(const GmBstPoly3d &amp;a_poly, const std::vector&lt; size_t &gt; &amp;a_polyToTest, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>iFindPolysInsideOfOtherPolys</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>ad3785aa34b4c33cc377f65e59930ac0f</anchor>
+      <arglist>(std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_polyInsideOfPoly, std::list&lt; std::vector&lt; size_t &gt;&gt; &amp;a_loops, MePolyPts &amp;a_polyPts)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static std::vector&lt; double &gt;</type>
+      <name>iCalcPolyAreas</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a80a0782564a026ac3c57777cbcaa393f</anchor>
+      <arglist>(const std::list&lt; std::vector&lt; size_t &gt;&gt; &amp;a_loops, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>iRemoveRepeatedSegmentFromSequence</name>
+      <anchorfile>_me_poly_pts_8cpp.html</anchorfile>
+      <anchor>a7a93e6bbd38472ae4595a8a8e71a28e6</anchor>
+      <arglist>(std::list&lt; size_t &gt; &amp;a_sequence)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MePolyPts.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_poly_pts_8h</filename>
     <class kind="class">xms::MePolyPts</class>
+    <member kind="typedef">
+      <type>std::set&lt; size_t &gt;</type>
+      <name>SetIdx</name>
+      <anchorfile>_me_poly_pts_8h.html</anchorfile>
+      <anchor>a595fb5e3dc8eb25bc84b8cf45a2a7f28</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MePolyRedistributePtsCurvature.cpp</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_poly_redistribute_pts_curvature_8cpp</filename>
+    <includes id="_me_poly_redistribute_pts_curvature_8h" name="MePolyRedistributePtsCurvature.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h</includes>
+    <includes id="_me_poly_redistribute_pts_curvature_8t_8h" name="MePolyRedistributePtsCurvature.t.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.t.h</includes>
+    <class kind="class">xms::MePolyRedistributePtsCurvatureImpl</class>
+  </compound>
+  <compound kind="file">
+    <name>MePolyRedistributePtsCurvature.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_poly_redistribute_pts_curvature_8h</filename>
+    <class kind="class">xms::MePolyRedistributePtsCurvature</class>
+  </compound>
+  <compound kind="file">
+    <name>MePolyRedistributePtsCurvature.t.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_poly_redistribute_pts_curvature_8t_8h</filename>
+    <class kind="class">MePolyRedistributePtsCurvatureUnitTests</class>
+    <class kind="class">MePolyRedistributePtsCurvatureIntermediateTests</class>
   </compound>
   <compound kind="file">
     <name>MeRefinePtsToPolys.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_refine_pts_to_polys_8cpp</filename>
     <includes id="_me_refine_pts_to_polys_8h" name="MeRefinePtsToPolys.h" local="no" imported="no">xmsmesh/meshing/detail/MeRefinePtsToPolys.h</includes>
     <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
@@ -207,58 +368,385 @@
   </compound>
   <compound kind="file">
     <name>MeRefinePtsToPolys.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_refine_pts_to_polys_8h</filename>
     <class kind="class">xms::MeRefinePtsToPolys</class>
   </compound>
   <compound kind="file">
     <name>MeRefinePtsToPolys.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_refine_pts_to_polys_8t_8h</filename>
     <class kind="class">MeRefinePtsToPolysUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MeRelaxer.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_relaxer_8cpp</filename>
     <includes id="_me_relaxer_8h" name="MeRelaxer.h" local="no" imported="no">xmsmesh/meshing/detail/MeRelaxer.h</includes>
+    <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
     <includes id="_me_relaxer_8t_8h" name="MeRelaxer.t.h" local="no" imported="no">xmsmesh/meshing/detail/MeRelaxer.t.h</includes>
     <class kind="class">xms::MeRelaxerImpl</class>
   </compound>
   <compound kind="file">
     <name>MeRelaxer.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_relaxer_8h</filename>
     <class kind="class">xms::MeRelaxer</class>
   </compound>
   <compound kind="file">
     <name>MeRelaxer.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_relaxer_8t_8h</filename>
     <class kind="class">MeRelaxerUnitTests</class>
   </compound>
   <compound kind="file">
+    <name>MeWeightMatcher.cpp</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_weight_matcher_8cpp</filename>
+    <includes id="_me_weight_matcher_8h" name="MeWeightMatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MeWeightMatcher.h</includes>
+    <includes id="_me_weight_matcher_8t_8h" name="MeWeightMatcher.t.h" local="no" imported="no">xmsmesh/meshing/detail/MeWeightMatcher.t.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>TS_ASSERT_MATCH_WEIGHTS</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>aeb59825954577658760377947ff3cbe2</anchor>
+      <arglist>(a_expected, a_edges, a_cardinality)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>_TS_ASSERT_MATCH_WEIGHTS</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>af85239f50daa57d4bac8073be8dc9a0c</anchor>
+      <arglist>(a_file, a_line, a_expected, a_edges, a_cardinality)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_vec</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a3a3d1f75c9bfc48aa4298d67369b5644</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecMeEdge</type>
+      <name>m_edges</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>aa853da1a1d9eac99d60c64a79e8b31d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_nEdge</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a2a67a05d9208b2b64c903b2ce78e8c6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_nVertex</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a5a5e4e8c4ab77d1f26dbc1693d7c0ef0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_maxWeight</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>acfbe88d0326dcfb956910100289a2088</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_endPoint</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>acea08ceacd54f688ff25f368a7af485e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt2dPy</type>
+      <name>m_neighbEnd</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a6682ee7de33743fed71cdfdab696d0b5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_mate</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>af126fa23a21cfcac11ce48f3c26d245c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_label</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a158e2f5b3b1f2583caebaca24bce1877</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_labelEnd</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>ad7aece46454d1be242a86ee6238e5b5e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_inBlossom</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a0ed673efb0d52d8e4383a07d0785c5ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_blossomParent</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a63c5f59cb9e73641e543541282fc77e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt2dPy</type>
+      <name>m_blossomChildren</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a1ebf32cdb5d82431836c4a7bffc37ed4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_blossomBase</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>ac1f57a46fd16964530a8b82dbfdf7d0d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt2dPy</type>
+      <name>m_blossomEndPts</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a9e7a78db25c1076ce04b15b47822e8de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_bestEdge</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>aaf99abe473120671abe335f6c47b8707</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt2dPy</type>
+      <name>m_blossomBestEdges</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a946c590bb6b2256777ed470a88fc2630</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_unusedBlossoms</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a970c1cfcd58a47a531fb34ea3879983e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_dualVar</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>ab0709ffecf4f5d316f92d4788ac9db21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecBool</type>
+      <name>m_allowEdge</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>a881a43ab6455a28ddf67ef1fd687a00c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecIntPy</type>
+      <name>m_queue</name>
+      <anchorfile>_me_weight_matcher_8cpp.html</anchorfile>
+      <anchor>adc2af1184ba1576ad86348f92a232b81</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MeWeightMatcher.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_weight_matcher_8h</filename>
+    <class kind="struct">xms::MeEdge</class>
+    <class kind="class">xms::MeWeightMatcher</class>
+    <member kind="typedef">
+      <type>std::vector&lt; MeEdge &gt;</type>
+      <name>VecMeEdge</name>
+      <anchorfile>_me_weight_matcher_8h.html</anchorfile>
+      <anchor>a0a99b7b955cacf7330975b056e748a64</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MeWeightMatcher.t.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_weight_matcher_8t_8h</filename>
+    <class kind="class">MeWeightMatcherUnitTests</class>
+  </compound>
+  <compound kind="file">
+    <name>MeBadQuadRemover.cpp</name>
+    <path>/home/conan/xmsmesh/meshing/</path>
+    <filename>_me_bad_quad_remover_8cpp</filename>
+    <includes id="_me_bad_quad_remover_8h" name="MeBadQuadRemover.h" local="no" imported="no">xmsmesh/meshing/MeBadQuadRemover.h</includes>
+    <includes id="_me_bad_quad_remover_8t_8h" name="MeBadQuadRemover.t.h" local="no" imported="no">xmsmesh/meshing/MeBadQuadRemover.t.h</includes>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_num3EdgePoints</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a8da32761b839473258ff31498921b05d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_pointIdx</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>ac7001d740fa48b5851881031c5a58260</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; XmUGrid &gt;</type>
+      <name>m_ugrid</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>aaf22002695497230e40601db32e50798</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_pointIdxMap</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>ac5434a933a38ebd41086a5043a082257</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>DynBitset</type>
+      <name>m_cellsToDelete</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>aeae0aaf9b54f0bc450f877e90b26d3e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MovedPointVec</type>
+      <name>m_movedPoints</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a566cf23925b60c9b8327b5bcc690a14d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecCellData</type>
+      <name>m_cellsData</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a1bc452d896277c7a00097202ad2da3ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const VecInt</type>
+      <name>m_adjPointCnts</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a1a93f3b00e306d928315a11afbb2373b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MeBadQuadRemover.h</name>
+    <path>/home/conan/xmsmesh/meshing/</path>
+    <filename>_me_bad_quad_remover_8h</filename>
+    <class kind="class">xms::MeBadQuadRemover</class>
+  </compound>
+  <compound kind="file">
+    <name>MeBadQuadRemover.t.h</name>
+    <path>/home/conan/xmsmesh/meshing/</path>
+    <filename>_me_bad_quad_remover_8t_8h</filename>
+    <class kind="class">MeBadQuadRemoverUnitTests</class>
+  </compound>
+  <compound kind="file">
     <name>MeMeshUtils.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_mesh_utils_8cpp</filename>
     <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
     <includes id="_me_mesh_utils_8t_8h" name="MeMeshUtils.t.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.t.h</includes>
     <class kind="class">xms::SmoothIo</class>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>meiDoSmooth</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>a5a11233d4ecb6d24e3a14455b5ae07a3</anchor>
+      <arglist>(SmoothIo &amp;a_)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meSizeFunctionFromDepth</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>a29eec2a008fa0ec0239a63d043cecde3</anchor>
+      <arglist>(const VecDbl &amp;a_depths, VecDbl &amp;a_size, double a_minSize, double a_maxSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meSmoothSizeFunction</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>abb4b34e0e4cbae7cce74281e4af03d74</anchor>
+      <arglist>(BSHP&lt; TrTin &gt; a_tin, const VecFlt &amp;a_sizes, double a_sizeRatio, double a_minSize, int a_anchorType, const DynBitset &amp;a_ptsFlag, VecFlt &amp;a_smoothSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meSmoothElevBySlope</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>ad261cbc87abd581d39387ae1b3faf678</anchor>
+      <arglist>(BSHP&lt; TrTin &gt; a_tin, const VecFlt &amp;a_elevs, double a_maxSlope, int a_anchorType, const DynBitset &amp;a_ptsFlag, VecFlt &amp;a_smoothElevs)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meModifyMessageWithPolygonId</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>a32ac433275a1bc19bfa83969dc3f1623</anchor>
+      <arglist>(int a_polyId, std::string &amp;a_msg)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MeMeshUtils.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_mesh_utils_8h</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>meSizeFunctionFromDepth</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>a29eec2a008fa0ec0239a63d043cecde3</anchor>
+      <arglist>(const VecDbl &amp;a_depths, VecDbl &amp;a_size, double a_minSize, double a_maxSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meSmoothSizeFunction</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>abb4b34e0e4cbae7cce74281e4af03d74</anchor>
+      <arglist>(BSHP&lt; TrTin &gt; a_tin, const VecFlt &amp;a_sizes, double a_sizeRatio, double a_minSize, int a_anchorType, const DynBitset &amp;a_ptsFlag, VecFlt &amp;a_smoothSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meSmoothElevBySlope</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>ad261cbc87abd581d39387ae1b3faf678</anchor>
+      <arglist>(BSHP&lt; TrTin &gt; a_tin, const VecFlt &amp;a_elevs, double a_maxSlope, int a_anchorType, const DynBitset &amp;a_ptsFlag, VecFlt &amp;a_smoothElevs)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>meModifyMessageWithPolygonId</name>
+      <anchorfile>_me_mesh_utils_8cpp.html</anchorfile>
+      <anchor>a32ac433275a1bc19bfa83969dc3f1623</anchor>
+      <arglist>(int a_polyId, std::string &amp;a_msg)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MeMeshUtils.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_mesh_utils_8t_8h</filename>
     <class kind="class">MeMeshUtilsUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MeMultiPolyMesher.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_mesher_8cpp</filename>
     <includes id="_me_multi_poly_mesher_8h" name="MeMultiPolyMesher.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesher.h</includes>
     <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
@@ -269,19 +757,19 @@
   </compound>
   <compound kind="file">
     <name>MeMultiPolyMesher.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_mesher_8h</filename>
     <class kind="class">xms::MeMultiPolyMesher</class>
   </compound>
   <compound kind="file">
     <name>MeMultiPolyMesher.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_mesher_8t_8h</filename>
     <class kind="class">MeMultiPolyMesherUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MeMultiPolyMesherIo.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_mesher_io_8h</filename>
     <class kind="class">xms::MePolyInput</class>
     <class kind="class">xms::MeRefinePoint</class>
@@ -289,7 +777,7 @@
   </compound>
   <compound kind="file">
     <name>MeMultiPolyTo2dm.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_to2dm_8cpp</filename>
     <includes id="_me_multi_poly_to2dm_8h" name="MeMultiPolyTo2dm.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyTo2dm.h</includes>
     <includes id="_me_multi_poly_mesher_8h" name="MeMultiPolyMesher.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesher.h</includes>
@@ -297,23 +785,30 @@
     <includes id="_me_multi_poly_to2dm_8t_8h" name="MeMultiPolyTo2dm.t.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyTo2dm.t.h</includes>
     <includes id="_tut_meshing_8t_8h" name="TutMeshing.t.h" local="no" imported="no">xmsmesh/tutorial/TutMeshing.t.h</includes>
     <class kind="class">xms::MeMultiPolyTo2dmImpl</class>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>iSortCellsForTesting</name>
+      <anchorfile>_me_multi_poly_to2dm_8cpp.html</anchorfile>
+      <anchor>a84c6044f41a3892159d4374c3bb66406</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_io)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MeMultiPolyTo2dm.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_to2dm_8h</filename>
     <class kind="class">xms::MeMultiPolyTo2dm</class>
   </compound>
   <compound kind="file">
     <name>MeMultiPolyTo2dm.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_multi_poly_to2dm_8t_8h</filename>
     <class kind="class">MeMultiPolyTo2dmUnitTests</class>
     <class kind="class">MeMultiPolyTo2dmIntermediateTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyMesher.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_poly_mesher_8cpp</filename>
     <includes id="_me_poly_mesher_8h" name="MePolyMesher.h" local="no" imported="no">xmsmesh/meshing/MePolyMesher.h</includes>
     <includes id="_me_poly_paver_to_mesh_pts_8h" name="MePolyPaverToMeshPts.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyPaverToMeshPts.h</includes>
@@ -325,131 +820,699 @@
     <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
     <includes id="_me_poly_mesher_8t_8h" name="MePolyMesher.t.h" local="no" imported="no">xmsmesh/meshing/MePolyMesher.t.h</includes>
     <class kind="class">xms::MePolyMesherImpl</class>
+    <member kind="typedef">
+      <type>boost::unordered_map&lt; std::pair&lt; double, double &gt;, int &gt;</type>
+      <name>PtHash</name>
+      <anchorfile>_me_poly_mesher_8cpp.html</anchorfile>
+      <anchor>a164529c7f09d57379abca6dd375ed05d</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MePolyMesher.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_poly_mesher_8h</filename>
     <class kind="class">xms::MePolyMesher</class>
   </compound>
   <compound kind="file">
     <name>MePolyMesher.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_poly_mesher_8t_8h</filename>
     <class kind="class">MePolyMesherUnitTests</class>
   </compound>
   <compound kind="file">
     <name>MePolyRedistributePts.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_poly_redistribute_pts_8cpp</filename>
     <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
     <includes id="_me_poly_offsetter_8h" name="MePolyOffsetter.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyOffsetter.h</includes>
+    <includes id="_me_poly_redistribute_pts_curvature_8h" name="MePolyRedistributePtsCurvature.h" local="no" imported="no">xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h</includes>
     <includes id="_me_poly_redistribute_pts_8t_8h" name="MePolyRedistributePts.t.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.t.h</includes>
     <class kind="class">xms::MePolyRedistributePtsImpl</class>
+    <member kind="function">
+      <type>void</type>
+      <name>mePolyPaverRedistribute</name>
+      <anchorfile>_me_poly_paver_to_mesh_pts_8cpp.html</anchorfile>
+      <anchor>a44ef4f8ae6e74fa6a90a2c4adbbf6be3</anchor>
+      <arglist>(BSHP&lt; MePolyRedistributePts &gt; a_redist, const MePolyOffsetterOutput &amp;a_input, MePolyOffsetterOutput &amp;a_out, int a_polyOffsetIter)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MePolyRedistributePts.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_poly_redistribute_pts_8h</filename>
     <class kind="class">xms::MePolyRedistributePts</class>
   </compound>
   <compound kind="file">
     <name>MePolyRedistributePts.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
+    <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_poly_redistribute_pts_8t_8h</filename>
     <class kind="class">MePolyRedistributePtsUnitTests</class>
   </compound>
   <compound kind="file">
-    <name>MeMeshUtils_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>_me_mesh_utils__py_8cpp</filename>
-    <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
+    <name>MeQuadBlossom.cpp</name>
+    <path>/home/conan/xmsmesh/meshing/</path>
+    <filename>_me_quad_blossom_8cpp</filename>
+    <includes id="_me_quad_blossom_8h" name="MeQuadBlossom.h" local="no" imported="no">xmsmesh/meshing/MeQuadBlossom.h</includes>
+    <includes id="_me_weight_matcher_8h" name="MeWeightMatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MeWeightMatcher.h</includes>
+    <includes id="_me_quad_blossom_8t_8h" name="MeQuadBlossom.t.h" local="no" imported="no">xmsmesh/meshing/MeQuadBlossom.t.h</includes>
+    <member kind="variable">
+      <type>const double</type>
+      <name>PI_OVER_TWO</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ac0b189b5d1a9663ea53ed8965c531c09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const double</type>
+      <name>TWO_OVER_PI</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ab136e9d94dc522e1ca17e197e6c4f022</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const double</type>
+      <name>TWO_PI</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a9b41bd904b5251c686c373ce2eb287a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>DEFAULT_COST</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a825dc9185e65d4599a081f0fd580d65a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_p0</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a4e3f61ee56e7a1da56cc964d6add7ce3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_p1</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ac1c0712d631d0b9630a44f493081075d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_fL</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa5c1aef3a8e1414edae038bfba486d1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_fR</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ae78a3b44cd4fabecb7b25c635e4005d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_pL</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa27935e32ad9d568e2a1142733a1b9cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_pR</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ad5623817eb89a57f0d69b841f676e963</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_priorPoint</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a39c94516af56c6a99d7e40829e49cbfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_nextPoint</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a7e27fbdab44f61542516ac01e4b1470e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_cell</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ae7b6d7c91e9aaac6371e6515dbbb4bde</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_points</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aeacd1791f540e1036ebb08ce12527cc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt2d</type>
+      <name>m_faces</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aec4f993f59fa7a56c6d41c53b878b79b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_splitPoints</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa340cf9a862e3d183128fbe98e67e312</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecEdge</type>
+      <name>m_interiorEdges</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa0ddcbea7a6f4e8f9ce57995a7f218f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecEdge</type>
+      <name>m_boundaryEdges</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a030e5bd0108c6f478202140cc2fc4894</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecMeEdge</type>
+      <name>m_costs</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>addcd470e34d9a0d2446f6e5b2f9a0998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecMeEdge</type>
+      <name>m_extraEdges</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a8da5e2ea5af4d4ffae25c2af8a2a1ef0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt2d</type>
+      <name>m_extraPoints</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a0e60bb99dd8212a3e1095fc585529742</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
-    <name>MeMultiPolyMesher_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>_me_multi_poly_mesher__py_8cpp</filename>
-    <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
-    <includes id="_me_multi_poly_mesher_8h" name="MeMultiPolyMesher.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesher.h</includes>
+    <name>MeQuadBlossom.h</name>
+    <path>/home/conan/xmsmesh/meshing/</path>
+    <filename>_me_quad_blossom_8h</filename>
+    <class kind="class">xms::MeQuadBlossom</class>
   </compound>
   <compound kind="file">
-    <name>MeMultiPolyMesherIo_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>_me_multi_poly_mesher_io__py_8cpp</filename>
-    <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>MeMultiPolyTo2dm_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>_me_multi_poly_to2dm__py_8cpp</filename>
-    <includes id="_me_multi_poly_to2dm_8h" name="MeMultiPolyTo2dm.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyTo2dm.h</includes>
-    <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>MePolyMesher_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>_me_poly_mesher__py_8cpp</filename>
-    <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
-    <includes id="_me_poly_mesher_8h" name="MePolyMesher.h" local="no" imported="no">xmsmesh/meshing/MePolyMesher.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>MePolyRedistributePts_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>_me_poly_redistribute_pts__py_8cpp</filename>
-    <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>meshing_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>meshing__py_8cpp</filename>
-    <includes id="meshing__py_8h" name="meshing_py.h" local="no" imported="no">xmsmesh/python/meshing/meshing_py.h</includes>
-  </compound>
-  <compound kind="file">
-    <name>meshing_py.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>meshing__py_8h</filename>
-  </compound>
-  <compound kind="file">
-    <name>xmsmesh_py.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/</path>
-    <filename>xmsmesh__py_8cpp</filename>
-    <includes id="meshing__py_8h" name="meshing_py.h" local="no" imported="no">xmsmesh/python/meshing/meshing_py.h</includes>
+    <name>MeQuadBlossom.t.h</name>
+    <path>/home/conan/xmsmesh/meshing/</path>
+    <filename>_me_quad_blossom_8t_8h</filename>
+    <class kind="class">MeQuadBlossomUnitTests</class>
   </compound>
   <compound kind="file">
     <name>TutMeshing.cpp</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/tutorial/</path>
+    <path>/home/conan/xmsmesh/tutorial/</path>
     <filename>_tut_meshing_8cpp</filename>
     <includes id="_tut_meshing_8t_8h" name="TutMeshing.t.h" local="no" imported="no">xmsmesh/tutorial/TutMeshing.t.h</includes>
     <includes id="_me_mesh_utils_8h" name="MeMeshUtils.h" local="no" imported="no">xmsmesh/meshing/MeMeshUtils.h</includes>
     <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
     <includes id="_me_multi_poly_to2dm_8h" name="MeMultiPolyTo2dm.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyTo2dm.h</includes>
     <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
+    <includes id="_me_quad_blossom_8h" name="MeQuadBlossom.h" local="no" imported="no">xmsmesh/meshing/MeQuadBlossom.h</includes>
+    <includes id="_me_bad_quad_remover_8h" name="MeBadQuadRemover.h" local="no" imported="no">xmsmesh/meshing/MeBadQuadRemover.h</includes>
+    <member kind="function">
+      <type>bool</type>
+      <name>tutReadMeshIoFromFile</name>
+      <anchorfile>_tut_meshing_8cpp.html</anchorfile>
+      <anchor>a134d4b470054fdcc8e9d032a5a1a83e3</anchor>
+      <arglist>(const std::string &amp;a_fname, MeMultiPolyMesherIo &amp;a_io)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>tutReadPolygons</name>
+      <anchorfile>_tut_meshing_8cpp.html</anchorfile>
+      <anchor>a628745f5e25428ed1e435e712ae741c1</anchor>
+      <arglist>(const std::string &amp;a_fname, VecPt3d2d &amp;a_outside, VecPt3d3d &amp;a_inside)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>tutGenerateAndCompare2dm</name>
+      <anchorfile>_tut_meshing_8cpp.html</anchorfile>
+      <anchor>a9db0e37fd5930a52e63761e6e6274747</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_io, const std::string &amp;a_fileBase)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>TutMeshing.t.h</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/tutorial/</path>
+    <path>/home/conan/xmsmesh/tutorial/</path>
     <filename>_tut_meshing_8t_8h</filename>
     <class kind="class">TutMeshingIntermediateTests</class>
+    <class kind="class">TutRedistributionIntermediateTests</class>
+    <member kind="function">
+      <type>bool</type>
+      <name>tutReadMeshIoFromFile</name>
+      <anchorfile>_tut_meshing_8cpp.html</anchorfile>
+      <anchor>a134d4b470054fdcc8e9d032a5a1a83e3</anchor>
+      <arglist>(const std::string &amp;a_fname, MeMultiPolyMesherIo &amp;a_io)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>tutReadPolygons</name>
+      <anchorfile>_tut_meshing_8cpp.html</anchorfile>
+      <anchor>a628745f5e25428ed1e435e712ae741c1</anchor>
+      <arglist>(const std::string &amp;a_fname, VecPt3d2d &amp;a_outside, VecPt3d3d &amp;a_inside)</arglist>
+    </member>
   </compound>
-  <compound kind="page">
-    <name>md_Meshing_Tutorial</name>
-    <title>Meshing_Tutorial</title>
-    <filename>md__meshing__tutorial</filename>
-    <docanchor file="md__meshing__tutorial" title="Meshing Tutorial">Meshing_Tutorial</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Introduction">Intro_Meshing</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Simple Polygon">Example_Simple_Polygon</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Complex Polygon">Example_Complex_Polygon</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Simple Polygon with a hole">Example_Complex_Polygon_Hole</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Breaklines">Example_Breaklines</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Refine Points">Example_RefinePoints</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Multiple Polygons with variable spacing, holes, breaklines, and refine points">Example_MultiPolygon</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Scalar Paving">Example_ScalarPaving</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Patch Mesh Generation">Example_Patch</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Polyline point redistribution">Example_PolyLineRedist</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Checking Meshing Input for Errors">Check_Input</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Smooth transition for constant size function">Example_ConstantSmooth</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Generate size function from depth">Example_SizeFromDepth</docanchor>
-    <docanchor file="md__meshing__tutorial" title="Example - Smooth a size function">Example_SmoothSizeFunc</docanchor>
+  <compound kind="class">
+    <name>xms::MePolyPts::impl</name>
+    <filename>classxms_1_1_me_poly_pts_1_1impl.html</filename>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_xyTol</name>
+      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
+      <anchor>a79a75da667a256ad1804d593ba762e75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; std::vector&lt; Pt3d &gt; &gt;</type>
+      <name>m_pts</name>
+      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
+      <anchor>a315fa3fc181ef4a65e8665ce502cd47f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>MapSegMap</type>
+      <name>m_segCross</name>
+      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
+      <anchor>ae9e1550ae892311e5ebeef5732218e85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; GmPtSearch &gt;</type>
+      <name>m_ps</name>
+      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
+      <anchor>a3950ffb883e2baa6e3b60dfac48766f0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeIntersectPolys::impl</name>
+    <filename>classxms_1_1_me_intersect_polys_1_1impl.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>SetupInIn</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>aa683047b668278e38e64efda08e45109</anchor>
+      <arglist>(const std::vector&lt; MePolyOffsetterOutput &gt; &amp;a_offsets, double a_xyTol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetupInOut</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>ab4604a9b9aff868c31bc1c24826e85a7</anchor>
+      <arglist>(const MePolyOffsetterOutput &amp;a_offsets, double a_xyTol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InInTrivialPolyCases</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a6d9984efe2a03d287ffb9b7d661fe4a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InInDoIntersection</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a68f99c37a87903fbcba64d4547940531</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InOutDoIntersection</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a236721bf46563b037addd8d689709ade</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillOutput</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>acefcbea70b613c92fc19ee9c64204a09</anchor>
+      <arglist>(MePolyOffsetterOutput &amp;a_out)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ClassifyPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>adc69578ca732412af35c448c04eef4a2</anchor>
+      <arglist>(const MePolyOffsetterOutput &amp;a_input, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>OnSetup</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a31bf9c8e72e23abc91c6b94ece0d7b11</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ClassifyDisjointPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a53a16ea98c77188f458a5ee50a14fcce</anchor>
+      <arglist>(SetIdx &amp;a_delPolys)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ClassifyPolysInsideOfPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a5e3763186db9ddeb3ab4e11236e1e4d3</anchor>
+      <arglist>(SetIdx &amp;a_delPolys)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>UpdateInPolyLoopsFromHash</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a9ed731fa9e76eb38d246f93371e88e1c</anchor>
+      <arglist>(const std::vector&lt; size_t &gt; &amp;a_idx)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InOutCalcStartingStack</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a00a0acd166a0844483d5bb08cbe1fa76</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; size_t &gt;</type>
+      <name>InOutFindIntersectingPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a9cdbeeb9b5851b87e54131412a88001d</anchor>
+      <arglist>(size_t a_poly)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillPolysInsideOfPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a078d98dfbe73f8817960c1eb37bb8bc2</anchor>
+      <arglist>(std::set&lt; size_t &gt; &amp;a_oPoly, std::set&lt; size_t &gt; &amp;a_psetUsed, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
+    </member>
+    <member kind="function">
+      <type>GmBstPoly3d</type>
+      <name>BoostPoly</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a9ed7af21fd2ff4a2b69d1eb550473f75</anchor>
+      <arglist>(size_t a_loopIdx)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>BoostPolyUnion</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a0fbf51fcb2b1a59771252c56a85c282f</anchor>
+      <arglist>(size_t a_i, size_t a_j)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>BoostPolySubtract</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>ae53c6a69462cb6b11b15b5dddf4c23f0</anchor>
+      <arglist>(size_t a_i, size_t a_j)</arglist>
+    </member>
+    <member kind="variable">
+      <type>MePolyPts</type>
+      <name>m_polyPts</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a42e5d7fcacfa2504ac3fdc55fda28ccf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; std::vector&lt; size_t &gt; &gt;</type>
+      <name>m_loops</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a29c178b91331054932cabb94cfe4ebc4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; int &gt;</type>
+      <name>m_loopTypes</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>af820721564ccca6e0d84e474ba0648a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; GmBstBox3d &gt;</type>
+      <name>m_envelopes</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a4e41543ae94f935c8a7746128aa86a78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::list&lt; size_t &gt;</type>
+      <name>m_stack</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>aa2ae966358d7b4e5ede3785783036e95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>MePolyOffsetterOutput</type>
+      <name>m_out</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>acc36ae3b8c5dbaa97fb1c8d6e94b5288</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; GmBstPoly3d &gt;</type>
+      <name>m_bPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>abc497d9f854178c27e43cc58d49c98b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; GmBstPoly3d &gt;</type>
+      <name>m_bOutPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a183a8cfaec5c293ef4472b92edfba1c4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; int &gt;</type>
+      <name>m_bOutPolyType</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>a7c98a1fadc6199cb2a6ff56fd80307fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>SetIdx</type>
+      <name>m_inOutOpolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>abff09d1da1caebe659564df0a62865d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>boost::unordered_set&lt; std::pair&lt; size_t, size_t &gt; &gt;</type>
+      <name>m_polyInsideOfPoly</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>af7c4a99f45ddadeb0aae5527b339de3f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeBadQuadRemover</name>
+    <filename>classxms_1_1_me_bad_quad_remover.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MeBadQuadRemover</name>
+      <anchorfile>classxms_1_1_me_bad_quad_remover.html</anchorfile>
+      <anchor>a38294f2d631df3e7403a179494da5658</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MeBadQuadRemover</name>
+      <anchorfile>classxms_1_1_me_bad_quad_remover.html</anchorfile>
+      <anchor>acb5d404af33ca7d82347a8e5f9b49c1d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MeBadQuadRemover &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_bad_quad_remover.html</anchorfile>
+      <anchor>a0252afc98457abd29b12b8716cd512be</anchor>
+      <arglist>(BSHP&lt; XmUGrid &gt; a_ugrid)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MeBadQuadRemoverUnitTests</name>
+    <filename>class_me_bad_quad_remover_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testGetAdjacentPointCounts</name>
+      <anchorfile>class_me_bad_quad_remover_unit_tests.html</anchorfile>
+      <anchor>a610ea2c3be8ed4a11bc5eb7d60c0af47</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReplacePoints</name>
+      <anchorfile>class_me_bad_quad_remover_unit_tests.html</anchorfile>
+      <anchor>a3a1951da781afe149926175f38103b7c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCollapse</name>
+      <anchorfile>class_me_bad_quad_remover_unit_tests.html</anchorfile>
+      <anchor>a83cd541830a1b7726017040c8c8793b6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCollapseQuadTri</name>
+      <anchorfile>class_me_bad_quad_remover_unit_tests.html</anchorfile>
+      <anchor>a7b727d37c74e5e13ea58b250f0c007ef</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>xms::MeEdge</name>
+    <filename>structxms_1_1_me_edge.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MeEdge</name>
+      <anchorfile>structxms_1_1_me_edge.html</anchorfile>
+      <anchor>a273ef5270b238f799c3a40e44a83108b</anchor>
+      <arglist>(int a_f0, int a_f1, int a_weight)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>structxms_1_1_me_edge.html</anchorfile>
+      <anchor>ac30c2ba5d1a8abbd749c327d66c9072e</anchor>
+      <arglist>(const MeEdge &amp;a_rhs) const</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_f0</name>
+      <anchorfile>structxms_1_1_me_edge.html</anchorfile>
+      <anchor>a1d06f04c366a639f8045a4f2bf8fd1a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_f1</name>
+      <anchorfile>structxms_1_1_me_edge.html</anchorfile>
+      <anchor>a690ce21d426b85fc2081f52f9813e122</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_weight</name>
+      <anchorfile>structxms_1_1_me_edge.html</anchorfile>
+      <anchor>ab5de275aa07fa5d08e5b97b5f7300763</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeIntersectPolys</name>
+    <filename>classxms_1_1_me_intersect_polys.html</filename>
+    <class kind="class">xms::MeIntersectPolys::impl</class>
+    <member kind="function">
+      <type></type>
+      <name>MeIntersectPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>a669d1de7b71def888ba18b1b02bb0b41</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~MeIntersectPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>af126d19ebee8065433a9363c452d900c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetupInIn</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>a6d5eb91f1c8aec61dc8cb98886263eab</anchor>
+      <arglist>(const std::vector&lt; MePolyOffsetterOutput &gt; &amp;a_offsets, double a_xyTol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetupInOut</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>ac58f3f1a483ffe11a252939c7560421b</anchor>
+      <arglist>(const MePolyOffsetterOutput &amp;a_offsets, double a_xyTol)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CalcEnvelopes</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>afd68d71257c3ea07910d4123173617fa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InInTrivialPolyCases</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>aceab2ec73ad8007694250ddfb3d177e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InInDoIntersection</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>ac949fbf44b05b7157f1e3da32cb596e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>InOutDoIntersection</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>a9b2e96280a127e1d51c24b415b73b4c5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillOutput</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>a53fc33783f03b807ce312683e9f85612</anchor>
+      <arglist>(MePolyOffsetterOutput &amp;a_out)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ClassifyPolys</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>a60da13c79e172a12d4d34518b1a68d0b</anchor>
+      <arglist>(const MePolyOffsetterOutput &amp;a_input, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>XM_DISALLOW_COPY_AND_ASSIGN</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>ab7a6a2c425ba525234ca05a9fe635c5e</anchor>
+      <arglist>(MeIntersectPolys)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>friend</type>
+      <name>MeIntersectPolysUnitTests</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>aaa8a78b6d70a7352403134c7db2923b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>impl *</type>
+      <name>m_p</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>a7ccbdf78d4df28d4b4d58ba5142cb0ae</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>MeIntersectPolysUnitTests</name>
@@ -502,6 +1565,194 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>xms::MeMultiPolyMesher</name>
+    <filename>classxms_1_1_me_multi_poly_mesher.html</filename>
+    <member kind="function" static="yes">
+      <type>static boost::shared_ptr&lt; MeMultiPolyMesher &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher.html</anchorfile>
+      <anchor>a2059704769b514d8d356ca72fcaa9c72</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeMultiPolyMesherImpl</name>
+    <filename>classxms_1_1_me_multi_poly_mesher_impl.html</filename>
+    <base>xms::MeMultiPolyMesher</base>
+    <member kind="function">
+      <type></type>
+      <name>MeMultiPolyMesherImpl</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a2db48092569bf5ed54eef6a4e8e55232</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>MeshIt</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a158c6ffdda1e035af9d20cfc3d531dfc</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_io) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetObserver</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a4b6a624facd695b141de2b1eb03b7197</anchor>
+      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>AppendMesh</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a719c7ceefa6faeecf21db9ebd692742f</anchor>
+      <arglist>(VecPt3d &amp;a_points, const VecInt &amp;a_triangles, VecInt &amp;a_cells)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>AddUniquePoints</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a5d80f0fb81fdfc1ebe868a9ea65a1295</anchor>
+      <arglist>(const VecPt3d &amp;a_points, VecInt &amp;a_oldDups, VecInt &amp;a_newDups)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>RenumberNewMesh</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>ad6d60306f08e3da32a81fa73b5b8999f</anchor>
+      <arglist>(int a_oldNumPts, size_t a_numNewPts, const VecInt &amp;a_oldDups, const VecInt &amp;a_newDups, VecInt &amp;a_cells) const</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>AppendNewCells</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>ab4642c15854be09316478ddea6858c48</anchor>
+      <arglist>(const VecInt &amp;a_cells)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>ReportUnusedRefinePts</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>ad0770e4b31a9a5eb7820892f913f7935</anchor>
+      <arglist>(const MeMultiPolyMesherIo &amp;a_io, const VecPt3d &amp;a_usedPts)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>ValidateInput</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>acc44cac7bfb802e5d545371c527d3e13</anchor>
+      <arglist>(const MeMultiPolyMesherIo &amp;a_io)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>CheckForIntersections</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>af4dc84607c20590364f7bb80e23f8975</anchor>
+      <arglist>(const MeMultiPolyMesherIo &amp;a_io, std::string &amp;a_errors) const</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>ExtentsOverlap</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a3f38d514f228adf8de7ad11d8ca0a19f</anchor>
+      <arglist>(const Pt3d &amp;oneMn, const Pt3d &amp;oneMx, const Pt3d &amp;two1, const Pt3d &amp;two2) const</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; VecPt3d &gt;</type>
+      <name>m_pts</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a67bae822c78a2fadbdb5890c17f8aabb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_cells</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a62cebc026325100fa063132e16358e80</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_cellCount</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>ad0a1297b4d9d2c4dcc040e15981f708a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>boost::unordered_map&lt; std::pair&lt; double, double &gt;, int &gt;</type>
+      <name>m_ptHash</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>ac5f958520185e51e95bb2363ea7f2707</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; Observer &gt;</type>
+      <name>m_prog</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a578ac240eb6edf88669c53bf5db01036</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeMultiPolyMesherIo</name>
+    <filename>classxms_1_1_me_multi_poly_mesher_io.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MeMultiPolyMesherIo</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>a5f2731b562f9d9f48147e4b70fe0f73d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; MePolyInput &gt;</type>
+      <name>m_polys</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>a0bb7270c90ac0115140d38b6b3670e08</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; MeRefinePoint &gt;</type>
+      <name>m_refPts</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>a3f1916f6cc658980525e9f2bc08b3818</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_checkTopology</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>a887206d9460bebd38a1cb20c2d2900e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_returnCellPolygons</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>abc36d6ee0a9c2092bb5f9b790b8dc836</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_points</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>aacb633f31a29b025f3e27ac592bd77af</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt</type>
+      <name>m_cells</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>a63b93f54bf5925889939c7fbea7ac1e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt</type>
+      <name>m_cellPolygons</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
+      <anchor>aadc2c7e8509438d20ebdd4573b2feb94</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>MeMultiPolyMesherUnitTests</name>
     <filename>class_me_multi_poly_mesher_unit_tests.html</filename>
     <member kind="function">
@@ -545,6 +1796,64 @@
       <anchorfile>class_me_multi_poly_mesher_unit_tests.html</anchorfile>
       <anchor>a75dd8a3164000d46a93a379820b6ef49</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeMultiPolyTo2dm</name>
+    <filename>classxms_1_1_me_multi_poly_to2dm.html</filename>
+    <member kind="function" static="yes">
+      <type>static boost::shared_ptr&lt; MeMultiPolyTo2dm &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm.html</anchorfile>
+      <anchor>a8a3ee646bf8ad45c7d0583eb67adaad5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeMultiPolyTo2dmImpl</name>
+    <filename>classxms_1_1_me_multi_poly_to2dm_impl.html</filename>
+    <base>xms::MeMultiPolyTo2dm</base>
+    <member kind="function">
+      <type>bool</type>
+      <name>Generate2dm</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>aafda4a4beeefa85e90ffb36dcc245e2f</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, const std::string &amp;a_outFileName, int a_precision=15) override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Generate2dm</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>a4ac8878fd5655b10eb796aebbdd53d34</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision=15) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Write2dm</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>aa287cf480811360dd1dfb467abec212b</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetObserver</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>a472acd2f5c53046b92dd1238b81c0090</anchor>
+      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; Observer &gt;</type>
+      <name>m_prog</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>ad04e8ca93cf865389d0a3384343a8316</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_sortCellsForTesting</name>
+      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
+      <anchor>a56f0e1a3428070f7b8f1d59ea4243a89</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -608,6 +1917,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>testCasePaveSanDiego_SpringRelaxation</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>a95e4d0efe63c12d290be081b9ece8e90</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>testCasePatch6</name>
       <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
       <anchor>a84226b4982620e02a55dcc8a2a183dc3</anchor>
@@ -658,6 +1974,50 @@
       <anchorfile>class_me_multi_poly_to2dm_unit_tests.html</anchorfile>
       <anchor>ae7f8b6d1fc7151bdabf6ff79e3133aae</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MePolyCleaner</name>
+    <filename>classxms_1_1_me_poly_cleaner.html</filename>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MePolyCleaner &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner.html</anchorfile>
+      <anchor>a09905c7c0f0212906a232a14a19c45a2</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MePolyCleanerImpl</name>
+    <filename>classxms_1_1_me_poly_cleaner_impl.html</filename>
+    <base>xms::MePolyCleaner</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>CleanPolyOffset</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
+      <anchor>a2c806142632e75103ef750d65708216f</anchor>
+      <arglist>(const std::vector&lt; Pt3d &gt; &amp;a_input, int a_pType, double a_tol, MePolyOffsetterOutput &amp;a_out) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>IntersectCleanInPolys</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
+      <anchor>a9699fa49812c5c89680d18d318eaf708</anchor>
+      <arglist>(const std::vector&lt; MePolyOffsetterOutput &gt; &amp;a_offsets, MePolyOffsetterOutput &amp;a_out, double a_xyTol) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>IntersectCleanInOutPolys</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
+      <anchor>a819f72a2397418eeadc9c9d8a2e06764</anchor>
+      <arglist>(const MePolyOffsetterOutput &amp;a_offsets, MePolyOffsetterOutput &amp;a_out, double a_xyTol) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillOutputForCleanPolyOffset</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
+      <anchor>a6ebd8c33f63b8e77ffed8263a3e9f600</anchor>
+      <arglist>(MePolyOffsetterOutput &amp;a_out, int a_pType, std::list&lt; std::vector&lt; size_t &gt;&gt; &amp;a_loops, std::vector&lt; int &gt; &amp;a_loopType, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1015,6 +2375,460 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>xms::MePolyInput</name>
+    <filename>classxms_1_1_me_poly_input.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MePolyInput</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>aa2de4705ffd1120b852ce6f997fe2974</anchor>
+      <arglist>(const VecPt3d &amp;a_outPoly=VecPt3d(), const VecPt3d2d &amp;a_insidePolys=VecPt3d2d(), double a_bias=1.0, const BSHP&lt; InterpBase &gt; a_sizeFunction=nullptr, const VecInt &amp;a_polyCorners=VecInt(), const BSHP&lt; InterpBase &gt; a_elevFunction=nullptr)</arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_outPoly</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>ad85860ecd7ab18a60f29ceb9a2fc99fc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d2d</type>
+      <name>m_insidePolys</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>ada6e1927f7a333e15f487e89fd8551f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_bias</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>ab827e115dee885a10b769b8e43b474aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; InterpBase &gt;</type>
+      <name>m_sizeFunction</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>aa30944b8fb5e3e176c595ca812781290</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_constSizeFunction</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>a8f7fbf25af31e2750c0790d54e5293c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_constSizeBias</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>aca43fb2091a846525c1ce79551e63b54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt</type>
+      <name>m_polyCorners</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>af922303af2f65d7f64958fd06279f913</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; InterpBase &gt;</type>
+      <name>m_elevFunction</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>a2f60aa5e32e96d7c978603e221222a04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_boundPtsToRemove</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>a976eaa518215734aabbd425432bc8598</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_removeInternalFourTrianglePts</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>a5161e8344982fef43b2dbb9cc634b82e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>ab585d9db0685593ff0b72fb26480e0ab</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_seedPoints</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>af7a4b3af4535c9872aac233b8fd9e82a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::string</type>
+      <name>m_relaxationMethod</name>
+      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
+      <anchor>a90f4f6fcebbdddef0bb468250f9e75cc</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MePolyMesher</name>
+    <filename>classxms_1_1_me_poly_mesher.html</filename>
+    <member kind="function" static="yes">
+      <type>static boost::shared_ptr&lt; MePolyMesher &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_poly_mesher.html</anchorfile>
+      <anchor>a55f927c865f21214a3ddf83d555a81be</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MePolyMesherImpl</name>
+    <filename>classxms_1_1_me_poly_mesher_impl.html</filename>
+    <base>xms::MePolyMesher</base>
+    <member kind="enumeration">
+      <type></type>
+      <name>BoundaryEnum</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a66e23ee126f481bf9d054a393d6dc60f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>MeshIt</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>af43b21c3f2bc08efd92e93be0c1905fb</anchor>
+      <arglist>(const MeMultiPolyMesherIo &amp;a_input, size_t a_polyIdx, VecPt3d &amp;a_points, VecInt &amp;a_triangles, VecInt &amp;a_cells) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>MeshIt</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ad5166c04cb918385473ca991020a9234</anchor>
+      <arglist>(const VecPt3d &amp;a_outPoly, const VecPt3d2d &amp;a_inPolys, double a_bias, VecPt3d &amp;a_points, VecInt &amp;a_triangles)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetObserver</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a8cd6b96681c377f09066892354241ae8</anchor>
+      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>GetProcessedRefinePts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>aab7ff4fdd10edf54ee16cc52b9be6abf</anchor>
+      <arglist>(std::vector&lt; Pt3d &gt; &amp;a_pts) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>TestWithPoints</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ad1611d3db413f69faa6b4bcfcb6a0bf1</anchor>
+      <arglist>(const VecInt &amp;a_outPoly, const VecInt2d &amp;a_inPolys, const VecPt3d &amp;a_points, VecInt &amp;a_triangles)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>MeshFromInputs</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a33f9baab82615955be26ccf01722c5b4</anchor>
+      <arglist>(std::vector&lt; Pt3d &gt; &amp;a_points, VecInt &amp;a_triangles, VecInt &amp;a_cells)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>SortPoly</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a30689bd4ccb20d43ee1546f01d839ad8</anchor>
+      <arglist>(VecPt3d &amp;a_outPoly)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>ComputeExtents</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a8551128f7258ad1688b7fddfbd250e22</anchor>
+      <arglist>(Pt3d &amp;a_mn, Pt3d &amp;a_mx)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>ComputeTolerance</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a6b5518a828eb3dfe74ef7e834a47c1cd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>GenerateMeshPts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ab70755776812847322ea8895f3ee8d25</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>ProcessBoundaryPtsFlaggedToRemove</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a7455e7c96729a9d307cd0e8fd9a0fa08</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>Triangulate</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ad68acb17df4307a4e496b9d6a14e49d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>FindAllPolyPointIdxs</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>aa1999551495593bd32bdaf4900ffe232</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>FindPolyPointIdxs</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a93aa4ab00b964d86520bb9e223e68a17</anchor>
+      <arglist>(const VecPt3d &amp;a_poly, VecInt &amp;a_polyPtIdxs)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>AddBreaklines</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>adc6ce7365d7ea870518af28692814dcc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>DeleteTrianglesOutsidePolys</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a2e59d8e57abad6732e8d8a34bad05d48</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>AutoFixFourTrianglePts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a3583c279d3074146afe19d419d4cba7d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>Relax</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>af68eca5496fb5e55db0ce34e15e4d0cf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>ExportTinForDebug</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a1e5750f6033d2115c6308692749b5a5a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d</type>
+      <name>m_outPoly</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a52b73a7fe2f6a935fa1e8e67de963ad0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d2d</type>
+      <name>m_inPolys</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>aca90ae1cc61a7e50ee626b14cc61b43e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d2d</type>
+      <name>m_refPtPolys</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>acc638395e49e0d8eea907b731959bf8c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d</type>
+      <name>m_refMeshPts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a3d4a45db5dfb6947a2061d7afa119037</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d</type>
+      <name>m_refPtsTooClose</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a1034ebceca22bdb7585ab828f79b9891</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; VecPt3d &gt;</type>
+      <name>m_points</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a3b524e8866885c585e45a5a04d632b28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; TrTin &gt;</type>
+      <name>m_tin</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a7ed3b98f58a876ed9063232c0366f04c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; MePolyRedistributePts &gt;</type>
+      <name>m_redist</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a3f17593d30ef0b6231aa97fc10af9f99</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; MePolyPaverToMeshPts &gt;</type>
+      <name>m_polyPaver</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a1d24271858e850fcaa42ab4c80c47fb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; MeRefinePtsToPolys &gt;</type>
+      <name>m_refineToPolys</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>aa4363393c0ba103cee2e3630e4fc572e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; MeRelaxer &gt;</type>
+      <name>m_relaxer</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a63c7147fd612276147b3c7b5c15eb943</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_cells</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>af81ffa562796fa52081a46b78c227241</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>m_bias</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ae45f2f00dcd37296a06e71952915e13c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_outPolyPtIdxs</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a3b8e7478df0cd42e488744a2a788f4d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt2d</type>
+      <name>m_inPolyPtIdxs</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ab6be1fd69f372b28cc115acc25142824</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_refPtIdxs</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a5661e056c34f5b63e445268ab8927580</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_polyCorners</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a5448b1f290d30739dce077897273ea3a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>double</type>
+      <name>m_xyTol</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>ad6d49768295e988176b3a4bc80328603</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>m_testing</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a3747126ec1d1c00af868c5a40407bdb6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; Observer &gt;</type>
+      <name>m_observer</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>aa44e16287114ae2adb165730e3f4e98a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Pt3d</type>
+      <name>m_min</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a298fa5855730cf0f24d89a2758194a73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Pt3d</type>
+      <name>m_max</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a4ae4cb550e8b8b7cdf220cb9081ac870</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>PtHash</type>
+      <name>m_ptHash</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>acc189da8a7bd099a5a925e79e030f1de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; InterpBase &gt;</type>
+      <name>m_elev</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a50c3ceba3a654ba328160b6c3b28f67d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>af9cfecfe660eeda377c58b55744a69f4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d</type>
+      <name>m_seedPts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a78a74e7005fc302d1b52d227974b8ad3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecPt3d</type>
+      <name>m_boundPtsToRemove</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a506110ea9b485c4565c35437f46c1c5c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>m_removeInternalFourTrianglePts</name>
+      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
+      <anchor>a00fb4dc1014d53393112779603450986</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>MePolyMesherUnitTests</name>
     <filename>class_me_poly_mesher_unit_tests.html</filename>
     <member kind="function">
@@ -1026,793 +2840,22 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>MePolyOffsetterUnitTests</name>
-    <filename>class_me_poly_offsetter_unit_tests.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>testCreateClass</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>a98caf89c16207799fd5b669b31617850</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testBox0</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>a221515d0d85b35959db680261dcface4</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testBox1</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>ab89d82c1081c22588dadb1b8511d40c5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testBox1a</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>ad1adaa93f50ee29cf5abafdbdb83dde5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testCase1</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>a4467beb9a502f86ed99e5307aae3e610</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testCase1a</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>ac1a25a3808913ab16987adffdfb86f1b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testCase1b</name>
-      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
-      <anchor>ad8d5087487c40fbe7ce71975d7ffb2ba</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MePolyPatcherUnitTests</name>
-    <filename>class_me_poly_patcher_unit_tests.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>testCreateClass</name>
-      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
-      <anchor>ae2484a2deb6fced00c1611b3001d7301</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testPolyPtsToSides</name>
-      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
-      <anchor>ae6ca155a01d185597c906588b12c695a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testPolyPtsToSides1</name>
-      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
-      <anchor>a115d4917da426e7d97bb6e01321d5eaa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testPatch00</name>
-      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
-      <anchor>a6f36de054476f9980aa818a7d8624e9d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testQuadPatchErrors</name>
-      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
-      <anchor>a331ecec6680df53814ee141aa647dd73</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testBug9226</name>
-      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
-      <anchor>aed115580be5fcf5ee8ecb3621fa4f29f</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MePolyPaverToMeshPtsUnitTests</name>
-    <filename>class_me_poly_paver_to_mesh_pts_unit_tests.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>testCreateClass</name>
-      <anchorfile>class_me_poly_paver_to_mesh_pts_unit_tests.html</anchorfile>
-      <anchor>a7e0c2bbd7224a594f5b2d2383410ec6f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testCase1</name>
-      <anchorfile>class_me_poly_paver_to_mesh_pts_unit_tests.html</anchorfile>
-      <anchor>a2e2b26108f8ca13cc7fdf560cbeb73d3</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testCase2</name>
-      <anchorfile>class_me_poly_paver_to_mesh_pts_unit_tests.html</anchorfile>
-      <anchor>a5e49b49c994825aa9b5a5a03051594f3</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MePolyRedistributePtsUnitTests</name>
-    <filename>class_me_poly_redistribute_pts_unit_tests.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>testCreateClass</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>ad8bd52ef7827fb7f32eccc029f7d689e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testInterpEdgeLengths</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a06a07706d817e8bbdb36ca4898e8d5d6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testInterpEdgeLengths1</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>ada964cb61034e7f85f751072a4137292</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testInterpEdgeLengths2</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a87a39afc1bc7231bd93d110ca12c605e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testInterpEdgeLengths3</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a9022bd4f61dd47dbcccbceba7511a0c7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testInterpEdgeLengths4</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>aacd28a8c2e6ba1b07b1163348d1d04fd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPts</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>aa260b8a6770ba0041f73dcb5386e1cc9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPts1</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a9733bcfef033c6d75997045198bdaa7e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPts2</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a4fcbe781e3489d7c041f489d650f371c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPts3</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>afe5a53f874c3d4b0f2ad7a5b155c1572</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPts4</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>aaaa44a1f9f8cef6c2d9c4314b11c6c13</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPts5</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>ac622c6a162ccaa5b696f1e80dedfb5d5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testIntersectWithTris</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a4c0ae4cf187425d9ba5dce50489cafb5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPolyLine</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>ab42643dcc2d1f31da5d2ca5d6fb8d13c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPolyLine1</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a618ae9d86e2c0374360db49fc753df9c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRedistPolyLine2</name>
-      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
-      <anchor>a4f71a1e0f03eeca3f33363adce482edf</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MeRefinePtsToPolysUnitTests</name>
-    <filename>class_me_refine_pts_to_polys_unit_tests.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>testCreateClass</name>
-      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
-      <anchor>a564e652bcf895ede6754d0db4f7c4312</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testTriPolyAtPoint</name>
-      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
-      <anchor>ae316c622167c02b8fe6441bd6929282f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testHexPolyAtPoint</name>
-      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
-      <anchor>aee3ae8a77be1a10716216c18b046eec8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRefPtsAsPolys</name>
-      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
-      <anchor>a5e1859eed173b2da7ec19db51238373a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>testRefinePtsTooCloseToBoundary</name>
-      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
-      <anchor>a159c9dcfab6e1fbbe83e09edf466ee24</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>MeRelaxerUnitTests</name>
-    <filename>class_me_relaxer_unit_tests.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>testRelaxWhileMeshing</name>
-      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
-      <anchor>ac43157bdad5a114e83066ac96f22efbf</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>TutMeshingIntermediateTests</name>
-    <filename>class_tut_meshing_intermediate_tests.html</filename>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const CxxTest::TestGroup &amp;</type>
-      <name>group</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>ae8c0811451e81ce690a4b3a13b90780f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_SimplePolygon</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a4bba234994c3b7fb4d6de2af0a93df28</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_ComplexPolygon</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>aca21ece58a116cc6e905cecded135763</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_SimplePolygonWithHole</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a97aefc16612ebf834d3b306fc9d6b702</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_Breakline</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a766687c31cf21266280eee287b99e1ec</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_RefinePoints</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a242ca8d4ebf60cbaa22d5ef2fb75ccc7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_MultiplePolygons</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a73fe21b1441eef9c225046b073627f65</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_ScalarPaving</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>af9d6182b721b7950d8ec2f46ba9160ba</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_Patch</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a4cc20f4b834919dd705b4a6724abb1f9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_PolyLineRedist</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a876be03e72fbacd49c133a69418e3e26</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_ConstantSmooth</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>ab3096f420b245110a335ec3929416400</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_SizeFuncFromDepth</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>a18ecf6b96514984d40f296590550b4c2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>test_Example_SmoothSizeFunc</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>ad2f8db20610932f74a4c721016ad8539</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="namespace">
-    <name>python::meshing::MeMeshUtils_pyt</name>
-    <filename>namespacepython_1_1meshing_1_1_me_mesh_utils__pyt.html</filename>
-    <class kind="class">python::meshing::MeMeshUtils_pyt::TestMeMeshUtils</class>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MeMeshUtils_pyt::TestMeMeshUtils</name>
-    <filename>classpython_1_1meshing_1_1_me_mesh_utils__pyt_1_1_test_me_mesh_utils.html</filename>
-  </compound>
-  <compound kind="namespace">
-    <name>python::meshing::MeMultiPolyMesher_pyt</name>
-    <filename>namespacepython_1_1meshing_1_1_me_multi_poly_mesher__pyt.html</filename>
-    <class kind="class">python::meshing::MeMultiPolyMesher_pyt::TestMeMultiPolyMesher</class>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MeMultiPolyMesher_pyt::TestMeMultiPolyMesher</name>
-    <filename>classpython_1_1meshing_1_1_me_multi_poly_mesher__pyt_1_1_test_me_multi_poly_mesher.html</filename>
-  </compound>
-  <compound kind="namespace">
-    <name>python::meshing::MeMultiPolyMesherIo_pyt</name>
-    <filename>namespacepython_1_1meshing_1_1_me_multi_poly_mesher_io__pyt.html</filename>
-    <class kind="class">python::meshing::MeMultiPolyMesherIo_pyt::TestMeMultiPolyMesherIo</class>
-    <class kind="class">python::meshing::MeMultiPolyMesherIo_pyt::TestMePolyInput</class>
-    <class kind="class">python::meshing::MeMultiPolyMesherIo_pyt::TestMeRefinePoint</class>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MeMultiPolyMesherIo_pyt::TestMeMultiPolyMesherIo</name>
-    <filename>classpython_1_1meshing_1_1_me_multi_poly_mesher_io__pyt_1_1_test_me_multi_poly_mesher_io.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MeMultiPolyMesherIo_pyt::TestMePolyInput</name>
-    <filename>classpython_1_1meshing_1_1_me_multi_poly_mesher_io__pyt_1_1_test_me_poly_input.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MeMultiPolyMesherIo_pyt::TestMeRefinePoint</name>
-    <filename>classpython_1_1meshing_1_1_me_multi_poly_mesher_io__pyt_1_1_test_me_refine_point.html</filename>
-  </compound>
-  <compound kind="namespace">
-    <name>python::meshing::MeMultiPolyTo2dm_pyt</name>
-    <filename>namespacepython_1_1meshing_1_1_me_multi_poly_to2dm__pyt.html</filename>
-    <class kind="class">python::meshing::MeMultiPolyTo2dm_pyt::TestMeMultiPolyTo2dm</class>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MeMultiPolyTo2dm_pyt::TestMeMultiPolyTo2dm</name>
-    <filename>classpython_1_1meshing_1_1_me_multi_poly_to2dm__pyt_1_1_test_me_multi_poly_to2dm.html</filename>
-  </compound>
-  <compound kind="namespace">
-    <name>python::meshing::MePolyMesher_pyt</name>
-    <filename>namespacepython_1_1meshing_1_1_me_poly_mesher__pyt.html</filename>
-    <class kind="class">python::meshing::MePolyMesher_pyt::TestMePolyMesher</class>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MePolyMesher_pyt::TestMePolyMesher</name>
-    <filename>classpython_1_1meshing_1_1_me_poly_mesher__pyt_1_1_test_me_poly_mesher.html</filename>
-  </compound>
-  <compound kind="namespace">
-    <name>python::meshing::MePolyRedistributePts_pyt</name>
-    <filename>namespacepython_1_1meshing_1_1_me_poly_redistribute_pts__pyt.html</filename>
-    <class kind="class">python::meshing::MePolyRedistributePts_pyt::TestMePolyRedistributePts</class>
-  </compound>
-  <compound kind="class">
-    <name>python::meshing::MePolyRedistributePts_pyt::TestMePolyRedistributePts</name>
-    <filename>classpython_1_1meshing_1_1_me_poly_redistribute_pts__pyt_1_1_test_me_poly_redistribute_pts.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeIntersectPolys</name>
-    <filename>classxms_1_1_me_intersect_polys.html</filename>
-    <class kind="class">xms::MeIntersectPolys::impl</class>
-    <member kind="function">
+    <name>xms::MePolyOffsetter</name>
+    <filename>classxms_1_1_me_poly_offsetter.html</filename>
+    <member kind="enumeration">
       <type></type>
-      <name>MeIntersectPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>a669d1de7b71def888ba18b1b02bb0b41</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>~MeIntersectPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>af126d19ebee8065433a9363c452d900c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetupInIn</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>a6d5eb91f1c8aec61dc8cb98886263eab</anchor>
-      <arglist>(const std::vector&lt; MePolyOffsetterOutput &gt; &amp;a_offsets, double a_xyTol)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetupInOut</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>ac58f3f1a483ffe11a252939c7560421b</anchor>
-      <arglist>(const MePolyOffsetterOutput &amp;a_offsets, double a_xyTol)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>CalcEnvelopes</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>afd68d71257c3ea07910d4123173617fa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InInTrivialPolyCases</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>aceab2ec73ad8007694250ddfb3d177e7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InInDoIntersection</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>ac949fbf44b05b7157f1e3da32cb596e7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InOutDoIntersection</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>a9b2e96280a127e1d51c24b415b73b4c5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>FillOutput</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>a53fc33783f03b807ce312683e9f85612</anchor>
-      <arglist>(MePolyOffsetterOutput &amp;a_out)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>ClassifyPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>a60da13c79e172a12d4d34518b1a68d0b</anchor>
-      <arglist>(const MePolyOffsetterOutput &amp;a_input, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type></type>
-      <name>XM_DISALLOW_COPY_AND_ASSIGN</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>ab7a6a2c425ba525234ca05a9fe635c5e</anchor>
-      <arglist>(MeIntersectPolys)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>friend</type>
-      <name>MeIntersectPolysUnitTests</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>aaa8a78b6d70a7352403134c7db2923b7</anchor>
+      <name>polytype</name>
+      <anchorfile>classxms_1_1_me_poly_offsetter.html</anchorfile>
+      <anchor>a8bf5344ac6518b6b18f0d6ee6bbeb9f5</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>impl *</type>
-      <name>m_p</name>
-      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
-      <anchor>a7ccbdf78d4df28d4b4d58ba5142cb0ae</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeIntersectPolys::impl</name>
-    <filename>classxms_1_1_me_intersect_polys_1_1impl.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>SetupInIn</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>aa683047b668278e38e64efda08e45109</anchor>
-      <arglist>(const std::vector&lt; MePolyOffsetterOutput &gt; &amp;a_offsets, double a_xyTol)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetupInOut</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>ab4604a9b9aff868c31bc1c24826e85a7</anchor>
-      <arglist>(const MePolyOffsetterOutput &amp;a_offsets, double a_xyTol)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InInTrivialPolyCases</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a6d9984efe2a03d287ffb9b7d661fe4a5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InInDoIntersection</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a68f99c37a87903fbcba64d4547940531</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InOutDoIntersection</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a236721bf46563b037addd8d689709ade</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>FillOutput</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>acefcbea70b613c92fc19ee9c64204a09</anchor>
-      <arglist>(MePolyOffsetterOutput &amp;a_out)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>ClassifyPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>adc69578ca732412af35c448c04eef4a2</anchor>
-      <arglist>(const MePolyOffsetterOutput &amp;a_input, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>OnSetup</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a31bf9c8e72e23abc91c6b94ece0d7b11</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>ClassifyDisjointPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a53a16ea98c77188f458a5ee50a14fcce</anchor>
-      <arglist>(SetIdx &amp;a_delPolys)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>ClassifyPolysInsideOfPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a5e3763186db9ddeb3ab4e11236e1e4d3</anchor>
-      <arglist>(SetIdx &amp;a_delPolys)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>UpdateInPolyLoopsFromHash</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a9ed731fa9e76eb38d246f93371e88e1c</anchor>
-      <arglist>(const std::vector&lt; size_t &gt; &amp;a_idx)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>InOutCalcStartingStack</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a00a0acd166a0844483d5bb08cbe1fa76</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; size_t &gt;</type>
-      <name>InOutFindIntersectingPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a9cdbeeb9b5851b87e54131412a88001d</anchor>
-      <arglist>(size_t a_poly)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>FillPolysInsideOfPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a078d98dfbe73f8817960c1eb37bb8bc2</anchor>
-      <arglist>(std::set&lt; size_t &gt; &amp;a_oPoly, std::set&lt; size_t &gt; &amp;a_psetUsed, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
-    </member>
-    <member kind="function">
-      <type>GmBstPoly3d</type>
-      <name>BoostPoly</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a9ed7af21fd2ff4a2b69d1eb550473f75</anchor>
-      <arglist>(size_t a_loopIdx)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>BoostPolyUnion</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a0fbf51fcb2b1a59771252c56a85c282f</anchor>
-      <arglist>(size_t a_i, size_t a_j)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>BoostPolySubtract</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>ae53c6a69462cb6b11b15b5dddf4c23f0</anchor>
-      <arglist>(size_t a_i, size_t a_j)</arglist>
-    </member>
-    <member kind="variable">
-      <type>MePolyPts</type>
-      <name>m_polyPts</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a42e5d7fcacfa2504ac3fdc55fda28ccf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; std::vector&lt; size_t &gt; &gt;</type>
-      <name>m_loops</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a29c178b91331054932cabb94cfe4ebc4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; int &gt;</type>
-      <name>m_loopTypes</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>af820721564ccca6e0d84e474ba0648a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; GmBstBox3d &gt;</type>
-      <name>m_envelopes</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a4e41543ae94f935c8a7746128aa86a78</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::list&lt; size_t &gt;</type>
-      <name>m_stack</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>aa2ae966358d7b4e5ede3785783036e95</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>MePolyOffsetterOutput</type>
-      <name>m_out</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>acc36ae3b8c5dbaa97fb1c8d6e94b5288</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; GmBstPoly3d &gt;</type>
-      <name>m_bPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>abc497d9f854178c27e43cc58d49c98b9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; GmBstPoly3d &gt;</type>
-      <name>m_bOutPolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a183a8cfaec5c293ef4472b92edfba1c4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; int &gt;</type>
-      <name>m_bOutPolyType</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>a7c98a1fadc6199cb2a6ff56fd80307fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>SetIdx</type>
-      <name>m_inOutOpolys</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>abff09d1da1caebe659564df0a62865d4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>boost::unordered_set&lt; std::pair&lt; size_t, size_t &gt; &gt;</type>
-      <name>m_polyInsideOfPoly</name>
-      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
-      <anchor>af7c4a99f45ddadeb0aae5527b339de3f</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MePolyCleanerImpl</name>
-    <filename>classxms_1_1_me_poly_cleaner_impl.html</filename>
-    <base>xms::MePolyCleaner</base>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>CleanPolyOffset</name>
-      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
-      <anchor>a2c806142632e75103ef750d65708216f</anchor>
-      <arglist>(const std::vector&lt; Pt3d &gt; &amp;a_input, int a_pType, double a_tol, MePolyOffsetterOutput &amp;a_out) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>IntersectCleanInPolys</name>
-      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
-      <anchor>a9699fa49812c5c89680d18d318eaf708</anchor>
-      <arglist>(const std::vector&lt; MePolyOffsetterOutput &gt; &amp;a_offsets, MePolyOffsetterOutput &amp;a_out, double a_xyTol) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>IntersectCleanInOutPolys</name>
-      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
-      <anchor>a819f72a2397418eeadc9c9d8a2e06764</anchor>
-      <arglist>(const MePolyOffsetterOutput &amp;a_offsets, MePolyOffsetterOutput &amp;a_out, double a_xyTol) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>FillOutputForCleanPolyOffset</name>
-      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
-      <anchor>a6ebd8c33f63b8e77ffed8263a3e9f600</anchor>
-      <arglist>(MePolyOffsetterOutput &amp;a_out, int a_pType, std::list&lt; std::vector&lt; size_t &gt;&gt; &amp;a_loops, std::vector&lt; int &gt; &amp;a_loopType, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static BSHP&lt; MePolyCleaner &gt;</type>
+      <type>static BSHP&lt; MePolyOffsetter &gt;</type>
       <name>New</name>
-      <anchorfile>classxms_1_1_me_poly_cleaner.html</anchorfile>
-      <anchor>a09905c7c0f0212906a232a14a19c45a2</anchor>
+      <anchorfile>classxms_1_1_me_poly_offsetter.html</anchorfile>
+      <anchor>a2af9c3ec15be470eb7a455a90b32a569</anchor>
       <arglist>()</arglist>
     </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MePolyCleaner</name>
-    <filename>classxms_1_1_me_poly_cleaner.html</filename>
   </compound>
   <compound kind="class">
     <name>xms::MePolyOffsetterImpl</name>
@@ -1916,20 +2959,6 @@
       <anchor>a381f40cc4cdafb7d9097e0b91475a0c8</anchor>
       <arglist></arglist>
     </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>polytype</name>
-      <anchorfile>classxms_1_1_me_poly_offsetter.html</anchorfile>
-      <anchor>a8bf5344ac6518b6b18f0d6ee6bbeb9f5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static BSHP&lt; MePolyOffsetter &gt;</type>
-      <name>New</name>
-      <anchorfile>classxms_1_1_me_poly_offsetter.html</anchorfile>
-      <anchor>a2af9c3ec15be470eb7a455a90b32a569</anchor>
-      <arglist>()</arglist>
-    </member>
   </compound>
   <compound kind="class">
     <name>xms::MePolyOffsetterOutput</name>
@@ -1957,8 +2986,68 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::MePolyOffsetter</name>
-    <filename>classxms_1_1_me_poly_offsetter.html</filename>
+    <name>MePolyOffsetterUnitTests</name>
+    <filename>class_me_poly_offsetter_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCreateClass</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>a98caf89c16207799fd5b669b31617850</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testBox0</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>a221515d0d85b35959db680261dcface4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testBox1</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>ab89d82c1081c22588dadb1b8511d40c5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testBox1a</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>ad1adaa93f50ee29cf5abafdbdb83dde5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCase1</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>a4467beb9a502f86ed99e5307aae3e610</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCase1a</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>ac1a25a3808913ab16987adffdfb86f1b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCase1b</name>
+      <anchorfile>class_me_poly_offsetter_unit_tests.html</anchorfile>
+      <anchor>ad8d5087487c40fbe7ce71975d7ffb2ba</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MePolyPatcher</name>
+    <filename>classxms_1_1_me_poly_patcher.html</filename>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MePolyPatcher &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_poly_patcher.html</anchorfile>
+      <anchor>afe15657a86b15975a6a858de8972ca1d</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>xms::MePolyPatcherImpl</name>
@@ -2356,17 +3445,52 @@
       <anchor>a0bdd16be00ee0b98840a704c8d47ec84</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static BSHP&lt; MePolyPatcher &gt;</type>
-      <name>New</name>
-      <anchorfile>classxms_1_1_me_poly_patcher.html</anchorfile>
-      <anchor>afe15657a86b15975a6a858de8972ca1d</anchor>
-      <arglist>()</arglist>
-    </member>
   </compound>
   <compound kind="class">
-    <name>xms::MePolyPatcher</name>
-    <filename>classxms_1_1_me_poly_patcher.html</filename>
+    <name>MePolyPatcherUnitTests</name>
+    <filename>class_me_poly_patcher_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCreateClass</name>
+      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
+      <anchor>ae2484a2deb6fced00c1611b3001d7301</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testPolyPtsToSides</name>
+      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
+      <anchor>ae6ca155a01d185597c906588b12c695a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testPolyPtsToSides1</name>
+      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
+      <anchor>a115d4917da426e7d97bb6e01321d5eaa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testPatch00</name>
+      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
+      <anchor>a6f36de054476f9980aa818a7d8624e9d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testQuadPatchErrors</name>
+      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
+      <anchor>a331ecec6680df53814ee141aa647dd73</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testBug9226</name>
+      <anchorfile>class_me_poly_patcher_unit_tests.html</anchorfile>
+      <anchor>aed115580be5fcf5ee8ecb3621fa4f29f</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>xms::MePolyPaverToMeshPts</name>
@@ -2376,6 +3500,31 @@
       <name>New</name>
       <anchorfile>classxms_1_1_me_poly_paver_to_mesh_pts.html</anchorfile>
       <anchor>a542a0dd9f8636800428df6314179c3fd</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MePolyPaverToMeshPtsUnitTests</name>
+    <filename>class_me_poly_paver_to_mesh_pts_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCreateClass</name>
+      <anchorfile>class_me_poly_paver_to_mesh_pts_unit_tests.html</anchorfile>
+      <anchor>a7e0c2bbd7224a594f5b2d2383410ec6f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCase1</name>
+      <anchorfile>class_me_poly_paver_to_mesh_pts_unit_tests.html</anchorfile>
+      <anchor>a2e2b26108f8ca13cc7fdf560cbeb73d3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCase2</name>
+      <anchorfile>class_me_poly_paver_to_mesh_pts_unit_tests.html</anchorfile>
+      <anchor>a5e49b49c994825aa9b5a5a03051594f3</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -2497,1151 +3646,284 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::MePolyPts::impl</name>
-    <filename>classxms_1_1_me_poly_pts_1_1impl.html</filename>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_xyTol</name>
-      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
-      <anchor>a79a75da667a256ad1804d593ba762e75</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; std::vector&lt; Pt3d &gt; &gt;</type>
-      <name>m_pts</name>
-      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
-      <anchor>a315fa3fc181ef4a65e8665ce502cd47f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>MapSegMap</type>
-      <name>m_segCross</name>
-      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
-      <anchor>ae9e1550ae892311e5ebeef5732218e85</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; GmPtSearch &gt;</type>
-      <name>m_ps</name>
-      <anchorfile>classxms_1_1_me_poly_pts_1_1impl.html</anchorfile>
-      <anchor>a3950ffb883e2baa6e3b60dfac48766f0</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeRefinePtsToPolysImpl</name>
-    <filename>classxms_1_1_me_refine_pts_to_polys_impl.html</filename>
-    <base>xms::MeRefinePtsToPolys</base>
+    <name>xms::MePolyRedistributePts</name>
+    <filename>classxms_1_1_me_poly_redistribute_pts.html</filename>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetRefinePoints</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a3ebd744350f79118d86961a00031edb6</anchor>
-      <arglist>(const std::vector&lt; MeRefinePoint &gt; &amp;a_pts, double a_tol) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>RefPtsAsPolys</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a22004c2b89bce9e49f318c03693209ea</anchor>
-      <arglist>(int a_polyId, const std::vector&lt; Pt3d &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_inPolys, std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_newInPolys, std::vector&lt; Pt3d &gt; &amp;a_refMeshPts, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>FindPtsInsidePolygon</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>af6b8e2f86737505245b21bd43b8ee414</anchor>
-      <arglist>(const std::vector&lt; Pt3d &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_inPolys, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>CheckRefPtsTooCloseToOtherRefPts</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>abc512c4669a097b5dafc8cdaf8ee8f3a</anchor>
-      <arglist>(std::multimap&lt; double, size_t &gt; &amp;a_mapSizeIdx, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>CreateNewInsidePolygons</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a0448bf8978dd18e1424ab9e64e4c66fe</anchor>
-      <arglist>(std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_newInPolys, std::vector&lt; Pt3d &gt; &amp;a_refMeshPts, std::vector&lt; Pt3d &gt; &amp;a_refPtsProcessed)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; Pt3d &gt;</type>
-      <name>TriPolyAtPoint</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a9e1a3750e7a5474282fce372a27edbc3</anchor>
-      <arglist>(const Pt3d &amp;a_pt, double a_size)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; Pt3d &gt;</type>
-      <name>HexPolyAtPoint</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a8ba232c7bc96711669bddbe199bc2f73</anchor>
-      <arglist>(const Pt3d &amp;a_pt, double a_size)</arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_TwoTimesSqrtThree</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a0fa4df112088fdca832803f7222d01db</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_SqrtThree</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>aa908c35c94440e2955d726e205d78582</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_SqrtThreeOverTwo</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a38d4616b27e8b8e05fd1923e72d5fcad</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_xyTol</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a0f4ed775b25ce48cac9cb547754b5632</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; MeRefinePoint &gt;</type>
-      <name>m_pts</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a67884459688fe3ad4be73029990f4da4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; size_t &gt;</type>
-      <name>m_ptsInsidePoly</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a5e4256c399b93fdbe7aeb32b8e5a3f52</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_polyId</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
-      <anchor>a9ab6fda79e1e2df304eaf025f2c3eb58</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static BSHP&lt; MeRefinePtsToPolys &gt;</type>
-      <name>New</name>
-      <anchorfile>classxms_1_1_me_refine_pts_to_polys.html</anchorfile>
-      <anchor>a0ef9726499e2bc704216db657e075f2d</anchor>
+      <type>virtual</type>
+      <name>~MePolyRedistributePts</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts.html</anchorfile>
+      <anchor>a038d5b5a0a925545e5e305cbec8e9796</anchor>
       <arglist>()</arglist>
     </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeRefinePtsToPolys</name>
-    <filename>classxms_1_1_me_refine_pts_to_polys.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeRelaxerImpl</name>
-    <filename>classxms_1_1_me_relaxer_impl.html</filename>
-    <base>xms::MeRelaxer</base>
-    <member kind="enumeration">
-      <type></type>
-      <name>RelaxFlagEnum</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>af1298d486ffc3ed280e4f83580091ad5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="enumeration">
-      <type></type>
-      <name>RelaxTypeEnum</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>af43d0da0546dc99c61e90c220074f367</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>Relax</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>af8f35200c2eaf454b2685a4d0d217530</anchor>
-      <arglist>(const VecInt &amp;a_fixedPoints, BSHP&lt; TrTin &gt; a_tin) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a95a4cd3cc4216f5c9d4c0c2ae649572b</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>ComputeCentroids</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a72d2fdfc5717cb0d401a5000a51d2e40</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>RelaxMarkedPoints</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a092517f9daeb4b9ffbb3213072766626</anchor>
-      <arglist>(RelaxTypeEnum a_relaxType, int a_iteration, int a_numiterations)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>AreaRelax</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>ac2f7b2b0afeaab10988df1c2358ea40d</anchor>
-      <arglist>(int a_point, Pt3d &amp;a_newLocation)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>AngleRelax</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a4856eb451cb077bcafe5bc2e356b4e34</anchor>
-      <arglist>(int a_point, Pt3d &amp;a_newLocation)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>RelaxOnBoundary</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a4326c3d586ca14c0616391573ec6d79d</anchor>
-      <arglist>(int a_point, Pt3d &amp;a_newLocation, int a_relaxType)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; TrTin &gt;</type>
-      <name>m_tin</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a646cc58f2a4eeb03c1a45e13f423e34d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const VecInt *</type>
-      <name>m_fixedPoints</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>ac9a1b2a1a86e45772fafa61a1372baec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d</type>
-      <name>m_centroids</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>aa87369c136247fbb9bbbe833c168ed79</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>m_slideangle</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>acb07efcf81273e94e8f38607c673a7d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_flags</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a0a7223785c7e77a123ccf4b617002ea5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_observer</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a86bedfb0f447b1389003d9a77119b792</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function" static="yes">
-      <type>static BSHP&lt; MeRelaxer &gt;</type>
+      <type>static BSHP&lt; MePolyRedistributePts &gt;</type>
       <name>New</name>
-      <anchorfile>classxms_1_1_me_relaxer.html</anchorfile>
-      <anchor>a4b8262f42ecba1079856b39d239b55ba</anchor>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts.html</anchorfile>
+      <anchor>a022428867bdc83af2bb0550a752390bd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
-      <name>MeRelaxer</name>
-      <anchorfile>classxms_1_1_me_relaxer.html</anchorfile>
-      <anchor>a43548aeaafaa92be6d39d7ec5c47cc87</anchor>
+      <name>MePolyRedistributePts</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts.html</anchorfile>
+      <anchor>a72d7561fa6ae0b7fc3f4436734ae8552</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+  </compound>
+  <compound kind="class">
+    <name>xms::MePolyRedistributePtsCurvature</name>
+    <filename>classxms_1_1_me_poly_redistribute_pts_curvature.html</filename>
+    <member kind="function" virtualness="virtual">
       <type>virtual</type>
-      <name>~MeRelaxer</name>
-      <anchorfile>classxms_1_1_me_relaxer.html</anchorfile>
-      <anchor>a1c06d7b2b73945aaf9a38482afec01d6</anchor>
+      <name>~MePolyRedistributePtsCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature.html</anchorfile>
+      <anchor>a31a1c4c20bbb19bedab7c775182a33d1</anchor>
       <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeRelaxer</name>
-    <filename>classxms_1_1_me_relaxer.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>xms::SmoothIo</name>
-    <filename>classxms_1_1_smooth_io.html</filename>
-    <member kind="function">
-      <type>bool</type>
-      <name>CalcMaxSize</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>aeeab282e879b74cf2619be8b327358a3</anchor>
-      <arglist>(double a_length, float a_smoothVal, double &amp;a_maxSize)</arglist>
-    </member>
-    <member kind="function">
-      <type>double</type>
-      <name>CalcMinSize</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>a3e4b3961c22271a588103b3259835567</anchor>
-      <arglist>(double a_length, float a_smoothVal, double a_calcMaxSize)</arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; TrTin &gt;</type>
-      <name>m_tin</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>a669b930810dddb90405cb0899d05e487</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const VecFlt *</type>
-      <name>m_sizes</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>a03fa6656791ab7bfc83bb384d20220ec</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_anchorType</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>a911e3ae9d375fc5860fd9a4413f14624</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>DynBitset</type>
-      <name>m_ptsFlag</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>ae615bc9651c7986b6a09d35dd0291d29</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecFlt *</type>
-      <name>m_smoothSize</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>abbd3e34e5c1a8320c7b71bfbfc797519</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>m_checkMinSize</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>aaf44ff52940ddd51c0140627b6d4b2e3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_sizeRatio</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>a03aa09e537af0dab8e011252e28dd6d4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_minSize</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>aa15ad91001d5fb58e640e477f7cd845c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_scaleFactor</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>aed8725a00285c702912031ee3af2597e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_percentGrowth</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>a06f407049856f5b0b1f805044c396877</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_logPercentGrowth</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>ae2f90148d7b666c3ca092d56f2138fd5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_maxSize</name>
-      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
-      <anchor>ab48601ce5c80f0420af243b5acd89bb6</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeMultiPolyMesherImpl</name>
-    <filename>classxms_1_1_me_multi_poly_mesher_impl.html</filename>
-    <base>xms::MeMultiPolyMesher</base>
-    <member kind="function">
-      <type></type>
-      <name>MeMultiPolyMesherImpl</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a2db48092569bf5ed54eef6a4e8e55232</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>MeshIt</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a158c6ffdda1e035af9d20cfc3d531dfc</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_io) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a4b6a624facd695b141de2b1eb03b7197</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>AppendMesh</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a719c7ceefa6faeecf21db9ebd692742f</anchor>
-      <arglist>(VecPt3d &amp;a_points, const VecInt &amp;a_triangles, VecInt &amp;a_cells)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>AddUniquePoints</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a5d80f0fb81fdfc1ebe868a9ea65a1295</anchor>
-      <arglist>(const VecPt3d &amp;a_points, VecInt &amp;a_oldDups, VecInt &amp;a_newDups)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>RenumberNewMesh</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a17a9e80fa7bff3ba20f517369afd1de2</anchor>
-      <arglist>(int a_oldNumPts, size_t a_numNewPts, const VecInt &amp;a_oldDups, const VecInt &amp;a_newDups, VecInt &amp;a_cells) const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>AppendNewCells</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>ab4642c15854be09316478ddea6858c48</anchor>
-      <arglist>(const VecInt &amp;a_cells)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>ReportUnusedRefinePts</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>ad0770e4b31a9a5eb7820892f913f7935</anchor>
-      <arglist>(const MeMultiPolyMesherIo &amp;a_io, const VecPt3d &amp;a_usedPts)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>ValidateInput</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>acc44cac7bfb802e5d545371c527d3e13</anchor>
-      <arglist>(const MeMultiPolyMesherIo &amp;a_io)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>CheckForIntersections</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>ac164d9cab2f825fb8717461ecc06f48c</anchor>
-      <arglist>(const MeMultiPolyMesherIo &amp;a_io, std::string &amp;a_errors) const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>ExtentsOverlap</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a9f9b209f44ab4b4a3c534b972e60f40c</anchor>
-      <arglist>(const Pt3d &amp;oneMn, const Pt3d &amp;oneMx, const Pt3d &amp;two1, const Pt3d &amp;two2) const </arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; VecPt3d &gt;</type>
-      <name>m_pts</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a67bae822c78a2fadbdb5890c17f8aabb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_cells</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a62cebc026325100fa063132e16358e80</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>m_cellCount</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>ad0a1297b4d9d2c4dcc040e15981f708a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>boost::unordered_map&lt; std::pair&lt; double, double &gt;, int &gt;</type>
-      <name>m_ptHash</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>ac5f958520185e51e95bb2363ea7f2707</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_prog</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a578ac240eb6edf88669c53bf5db01036</anchor>
-      <arglist></arglist>
     </member>
     <member kind="function" static="yes">
-      <type>static boost::shared_ptr&lt; MeMultiPolyMesher &gt;</type>
+      <type>static BSHP&lt; MePolyRedistributePtsCurvature &gt;</type>
       <name>New</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher.html</anchorfile>
-      <anchor>a2059704769b514d8d356ca72fcaa9c72</anchor>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature.html</anchorfile>
+      <anchor>a4a7402853fa2f4ff05d557fbdecb86ee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>MePolyRedistributePtsCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature.html</anchorfile>
+      <anchor>a0f1dd41bcb38238080e4292b2e6db737</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>xms::SegmentLocation</name>
-    <filename>structxms_1_1_segment_location.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>SegmentLocation</name>
-      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
-      <anchor>a0e104f5a3fd069beb76b6470d08f59de</anchor>
-      <arglist>(int a_poly=0, int a_polySeg=0, int a_inPoly=0, int a_inPolySeg=0)</arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_poly</name>
-      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
-      <anchor>abe30cbc89ba40c67b019ff45314892ff</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_polySeg</name>
-      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
-      <anchor>a8e4de360b918daaf388d9b99411d9d01</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_inPoly</name>
-      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
-      <anchor>a5c4caca23db3f1d0d337d7bc5456ea9a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_inPolySeg</name>
-      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
-      <anchor>a1c2c1a343d7d77da5e949ba1c279841f</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
   <compound kind="class">
-    <name>xms::MeMultiPolyMesher</name>
-    <filename>classxms_1_1_me_multi_poly_mesher.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>xms::MePolyInput</name>
-    <filename>classxms_1_1_me_poly_input.html</filename>
+    <name>xms::MePolyRedistributePtsCurvatureImpl</name>
+    <filename>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</filename>
+    <base>xms::MePolyRedistributePtsCurvature</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual VecPt3d</type>
+      <name>Redistribute</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>aa3fc20fd07cfe0837dad23d17d50a120</anchor>
+      <arglist>(const VecPt3d &amp;a_points, double a_featureSize, double a_mean_spacing, double a_minimumCurvature=0.001, bool a_smooth=false)</arglist>
+    </member>
     <member kind="function">
-      <type></type>
-      <name>MePolyInput</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>aa2de4705ffd1120b852ce6f997fe2974</anchor>
-      <arglist>(const VecPt3d &amp;a_outPoly=VecPt3d(), const VecPt3d2d &amp;a_insidePolys=VecPt3d2d(), double a_bias=1.0, const BSHP&lt; InterpBase &gt; a_sizeFunction=nullptr, const VecInt &amp;a_polyCorners=VecInt(), const BSHP&lt; InterpBase &gt; a_elevFunction=nullptr)</arglist>
+      <type>void</type>
+      <name>Setup</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>afa6e459b5767f7b56d20718befd56e04</anchor>
+      <arglist>(const VecPt3d &amp;)</arglist>
     </member>
-    <member kind="variable">
-      <type>VecPt3d</type>
-      <name>m_outPoly</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>ad85860ecd7ab18a60f29ceb9a2fc99fc</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecPt3d2d</type>
-      <name>m_insidePolys</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>ada6e1927f7a333e15f487e89fd8551f9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_bias</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>ab827e115dee885a10b769b8e43b474aa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; InterpBase &gt;</type>
-      <name>m_sizeFunction</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>aa30944b8fb5e3e176c595ca812781290</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_constSizeFunction</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>a8f7fbf25af31e2750c0790d54e5293c6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_constSizeBias</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>aca43fb2091a846525c1ce79551e63b54</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecInt</type>
-      <name>m_polyCorners</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>af922303af2f65d7f64958fd06279f913</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; InterpBase &gt;</type>
-      <name>m_elevFunction</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>a2f60aa5e32e96d7c978603e221222a04</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecPt3d</type>
-      <name>m_boundPtsToRemove</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>a976eaa518215734aabbd425432bc8598</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>m_removeInternalFourTrianglePts</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>a5161e8344982fef43b2dbb9cc634b82e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_polyId</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>ab585d9db0685593ff0b72fb26480e0ab</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecPt3d</type>
-      <name>m_seedPoints</name>
-      <anchorfile>classxms_1_1_me_poly_input.html</anchorfile>
-      <anchor>af7a4b3af4535c9872aac233b8fd9e82a</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeRefinePoint</name>
-    <filename>classxms_1_1_me_refine_point.html</filename>
     <member kind="function">
-      <type></type>
-      <name>MeRefinePoint</name>
-      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
-      <anchor>abb5d4c69f4b54d4e4dccf1f829a788ba</anchor>
-      <arglist>(const Pt3d &amp;a_pt, double a_size, bool a_createMeshPoint)</arglist>
+      <type>VecPt3d</type>
+      <name>PlacePoints</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>add20918f15dcbebb1e709cf9e9d16df8</anchor>
+      <arglist>(double a_featureSize, int a_numPoints, double a_minimumCurvature, bool a_smooth)</arglist>
     </member>
-    <member kind="variable">
+    <member kind="function">
+      <type>void</type>
+      <name>GetSignificantPoints</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>ab769d002c76c1b257802e4c37b9a9f7f</anchor>
+      <arglist>(double a_featureSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CalculateCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a4b92742b91a0aba8c07897e763af07f4</anchor>
+      <arglist>(double a_featureSize, double a_minimumCurvature)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>GetCurvatureFromParameter</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>abbd39942297b69cd2bf3e32b2444c039</anchor>
+      <arglist>(double a_param, double a_interval)</arglist>
+    </member>
+    <member kind="function">
       <type>Pt3d</type>
-      <name>m_pt</name>
-      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
-      <anchor>a685764eaa977f41d8bdd3b1f099614b3</anchor>
-      <arglist></arglist>
+      <name>GetPointFromParameter</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a107a73b80179966e1f0a89e2c32caa62</anchor>
+      <arglist>(double a_param)</arglist>
     </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>m_size</name>
-      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
-      <anchor>acdee8a50e9336087d658c40206c259d7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>m_createMeshPoint</name>
-      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
-      <anchor>acd11cdc615e2287624860b153303f4a2</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeMultiPolyMesherIo</name>
-    <filename>classxms_1_1_me_multi_poly_mesher_io.html</filename>
     <member kind="function">
-      <type></type>
-      <name>MeMultiPolyMesherIo</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>a5f2731b562f9d9f48147e4b70fe0f73d</anchor>
+      <type>void</type>
+      <name>GetParameterIFM</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>aed7401ec3a01729dcc899f5ff52893fd</anchor>
+      <arglist>(double a_param, double a_interval, double &amp;a_ti, double &amp;a_tm, double &amp;a_tf)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ShiftAndAggregateOpen</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a207786ba2b92047918308c90303a35e3</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="variable">
-      <type>std::vector&lt; MePolyInput &gt;</type>
-      <name>m_polys</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>a0bb7270c90ac0115140d38b6b3670e08</anchor>
-      <arglist></arglist>
+    <member kind="function">
+      <type>void</type>
+      <name>ShiftAndAggregateClosed</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a5e1c225e01aef350e219ac1f70836357</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="variable">
-      <type>std::vector&lt; MeRefinePoint &gt;</type>
-      <name>m_refPts</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>a3f1916f6cc658980525e9f2bc08b3818</anchor>
-      <arglist></arglist>
+    <member kind="function">
+      <type>void</type>
+      <name>DoSmoothing</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>ae20865397dcc4b5207185f49c54fa111</anchor>
+      <arglist>(bool a_smooth)</arglist>
     </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>m_checkTopology</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>a887206d9460bebd38a1cb20c2d2900e5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>m_returnCellPolygons</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>abc36d6ee0a9c2092bb5f9b790b8dc836</anchor>
-      <arglist></arglist>
+    <member kind="function">
+      <type>VecPt3d</type>
+      <name>NewPointsFromParamCurvs</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>aa525db55958d9f359769fc88d0dfdfba</anchor>
+      <arglist>(int a_numPoints)</arglist>
     </member>
     <member kind="variable">
       <type>VecPt3d</type>
       <name>m_points</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>aacb633f31a29b025f3e27ac592bd77af</anchor>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a73ad943c5a9d9585bb335b84a0008c8d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>VecInt</type>
-      <name>m_cells</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>a63b93f54bf5925889939c7fbea7ac1e3</anchor>
+      <type>VecDbl</type>
+      <name>m_segmentLengths</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>aa90639492753527bb6fea70fa356ed18</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>VecInt</type>
-      <name>m_cellPolygons</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_io.html</anchorfile>
-      <anchor>aadc2c7e8509438d20ebdd4573b2feb94</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeMultiPolyTo2dmImpl</name>
-    <filename>classxms_1_1_me_multi_poly_to2dm_impl.html</filename>
-    <base>xms::MeMultiPolyTo2dm</base>
-    <member kind="function">
-      <type>bool</type>
-      <name>Generate2dm</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>aafda4a4beeefa85e90ffb36dcc245e2f</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, const std::string &amp;a_outFileName, int a_precision=15) override</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>Generate2dm</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a4ac8878fd5655b10eb796aebbdd53d34</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision=15) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Write2dm</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>aa287cf480811360dd1dfb467abec212b</anchor>
-      <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a472acd2f5c53046b92dd1238b81c0090</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_prog</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>ad04e8ca93cf865389d0a3384343a8316</anchor>
+      <type>VecDbl</type>
+      <name>m_accumulatedSegmentLengths</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a31f59cf48e376a1083838f808821ab5d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>bool</type>
-      <name>m_sortCellsForTesting</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a56f0e1a3428070f7b8f1d59ea4243a89</anchor>
+      <type>VecDbl</type>
+      <name>m_parametricDistance</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a70501de633ea82e6c03932004da44918</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static boost::shared_ptr&lt; MeMultiPolyTo2dm &gt;</type>
-      <name>New</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm.html</anchorfile>
-      <anchor>a8a3ee646bf8ad45c7d0583eb67adaad5</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>xms::MeMultiPolyTo2dm</name>
-    <filename>classxms_1_1_me_multi_poly_to2dm.html</filename>
-  </compound>
-  <compound kind="class">
-    <name>xms::MePolyMesherImpl</name>
-    <filename>classxms_1_1_me_poly_mesher_impl.html</filename>
-    <base>xms::MePolyMesher</base>
-    <member kind="enumeration">
-      <type></type>
-      <name>BoundaryEnum</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a66e23ee126f481bf9d054a393d6dc60f</anchor>
+    <member kind="variable">
+      <type>VecDbl</type>
+      <name>m_curvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a94c34bd3ab926a9170263d35a87607aa</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>MeshIt</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>af43b21c3f2bc08efd92e93be0c1905fb</anchor>
-      <arglist>(const MeMultiPolyMesherIo &amp;a_input, size_t a_polyIdx, VecPt3d &amp;a_points, VecInt &amp;a_triangles, VecInt &amp;a_cells) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>MeshIt</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ad5166c04cb918385473ca991020a9234</anchor>
-      <arglist>(const VecPt3d &amp;a_outPoly, const VecPt3d2d &amp;a_inPolys, double a_bias, VecPt3d &amp;a_points, VecInt &amp;a_triangles)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a8cd6b96681c377f09066892354241ae8</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>GetProcessedRefinePts</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>aab7ff4fdd10edf54ee16cc52b9be6abf</anchor>
-      <arglist>(std::vector&lt; Pt3d &gt; &amp;a_pts) override</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>TestWithPoints</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ad1611d3db413f69faa6b4bcfcb6a0bf1</anchor>
-      <arglist>(const VecInt &amp;a_outPoly, const VecInt2d &amp;a_inPolys, const VecPt3d &amp;a_points, VecInt &amp;a_triangles)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>MeshFromInputs</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a33f9baab82615955be26ccf01722c5b4</anchor>
-      <arglist>(std::vector&lt; Pt3d &gt; &amp;a_points, VecInt &amp;a_triangles, VecInt &amp;a_cells)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>SortPoly</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a30689bd4ccb20d43ee1546f01d839ad8</anchor>
-      <arglist>(VecPt3d &amp;a_outPoly)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>ComputeExtents</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a8551128f7258ad1688b7fddfbd250e22</anchor>
-      <arglist>(Pt3d &amp;a_mn, Pt3d &amp;a_mx)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>ComputeTolerance</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a6b5518a828eb3dfe74ef7e834a47c1cd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>GenerateMeshPts</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ab70755776812847322ea8895f3ee8d25</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>ProcessBoundaryPtsFlaggedToRemove</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a7455e7c96729a9d307cd0e8fd9a0fa08</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>Triangulate</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ad68acb17df4307a4e496b9d6a14e49d5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>FindAllPolyPointIdxs</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>aa1999551495593bd32bdaf4900ffe232</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>FindPolyPointIdxs</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a93aa4ab00b964d86520bb9e223e68a17</anchor>
-      <arglist>(const VecPt3d &amp;a_poly, VecInt &amp;a_polyPtIdxs)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>AddBreaklines</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>adc6ce7365d7ea870518af28692814dcc</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>DeleteTrianglesOutsidePolys</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a2e59d8e57abad6732e8d8a34bad05d48</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>AutoFixFourTrianglePts</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a3583c279d3074146afe19d419d4cba7d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>Relax</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>af68eca5496fb5e55db0ce34e15e4d0cf</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>ExportTinForDebug</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a1e5750f6033d2115c6308692749b5a5a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d</type>
-      <name>m_outPoly</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a52b73a7fe2f6a935fa1e8e67de963ad0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d2d</type>
-      <name>m_inPolys</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>aca90ae1cc61a7e50ee626b14cc61b43e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d2d</type>
-      <name>m_refPtPolys</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>acc638395e49e0d8eea907b731959bf8c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d</type>
-      <name>m_refMeshPts</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a3d4a45db5dfb6947a2061d7afa119037</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d</type>
-      <name>m_refPtsTooClose</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a1034ebceca22bdb7585ab828f79b9891</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; VecPt3d &gt;</type>
-      <name>m_points</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a3b524e8866885c585e45a5a04d632b28</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; TrTin &gt;</type>
-      <name>m_tin</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a7ed3b98f58a876ed9063232c0366f04c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; MePolyRedistributePts &gt;</type>
-      <name>m_redist</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a3f17593d30ef0b6231aa97fc10af9f99</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; MePolyPaverToMeshPts &gt;</type>
-      <name>m_polyPaver</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a1d24271858e850fcaa42ab4c80c47fb5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; MeRefinePtsToPolys &gt;</type>
-      <name>m_refineToPolys</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>aa4363393c0ba103cee2e3630e4fc572e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; MeRelaxer &gt;</type>
-      <name>m_relaxer</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a63c7147fd612276147b3c7b5c15eb943</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_cells</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>af81ffa562796fa52081a46b78c227241</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
+    <member kind="variable">
       <type>double</type>
-      <name>m_bias</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ae45f2f00dcd37296a06e71952915e13c</anchor>
+      <name>m_length</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a5fafb85104a102134b0ee904a588464e</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_outPolyPtIdxs</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a3b8e7478df0cd42e488744a2a788f4d7</anchor>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_open</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>aadd4e6faedfdb9c28f53004071a36c05</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>VecInt2d</type>
-      <name>m_inPolyPtIdxs</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ab6be1fd69f372b28cc115acc25142824</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_refPtIdxs</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a5661e056c34f5b63e445268ab8927580</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_polyCorners</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a5448b1f290d30739dce077897273ea3a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
+    <member kind="variable">
       <type>double</type>
-      <name>m_xyTol</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>ad6d49768295e988176b3a4bc80328603</anchor>
+      <name>m_tol</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a168c7eac3299441f47f165460a77f3c4</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>m_testing</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a3747126ec1d1c00af868c5a40407bdb6</anchor>
+    <member kind="variable">
+      <type>std::map&lt; double, int &gt;</type>
+      <name>m_distMap</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_curvature_impl.html</anchorfile>
+      <anchor>a2a1c872b635c5be2ea2520c5938d3ea5</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_observer</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>aa44e16287114ae2adb165730e3f4e98a</anchor>
-      <arglist></arglist>
+  </compound>
+  <compound kind="class">
+    <name>MePolyRedistributePtsCurvatureIntermediateTests</name>
+    <filename>class_me_poly_redistribute_pts_curvature_intermediate_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCoastline</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_intermediate_tests.html</anchorfile>
+      <anchor>a9197a6ac6e3cb507729207dfd95d6af5</anchor>
+      <arglist>()</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>Pt3d</type>
-      <name>m_min</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a298fa5855730cf0f24d89a2758194a73</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>Pt3d</type>
-      <name>m_max</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a4ae4cb550e8b8b7cdf220cb9081ac870</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>PtHash</type>
-      <name>m_ptHash</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>acc189da8a7bd099a5a925e79e030f1de</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; InterpBase &gt;</type>
-      <name>m_elev</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a50c3ceba3a654ba328160b6c3b28f67d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>m_polyId</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>af9cfecfe660eeda377c58b55744a69f4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d</type>
-      <name>m_seedPts</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a78a74e7005fc302d1b52d227974b8ad3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecPt3d</type>
-      <name>m_boundPtsToRemove</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a506110ea9b485c4565c35437f46c1c5c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>m_removeInternalFourTrianglePts</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a00fb4dc1014d53393112779603450986</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static boost::shared_ptr&lt; MePolyMesher &gt;</type>
-      <name>New</name>
-      <anchorfile>classxms_1_1_me_poly_mesher.html</anchorfile>
-      <anchor>a55f927c865f21214a3ddf83d555a81be</anchor>
+    <member kind="function">
+      <type>void</type>
+      <name>testIsland</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_intermediate_tests.html</anchorfile>
+      <anchor>a004a36a478825fcb5c3b48a15cd760af</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::MePolyMesher</name>
-    <filename>classxms_1_1_me_poly_mesher.html</filename>
+    <name>MePolyRedistributePtsCurvatureUnitTests</name>
+    <filename>class_me_poly_redistribute_pts_curvature_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCreateClass</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>a9ab78fe54ff0c55e8e48fc0d1078fae4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSetup</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>ac8af01965fe6c0630f6d6a8bd18cd44a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testGetSignificantPoints</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>aef4a1a19403bb993d10a81c4f8a62772</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testCalculateCurvature</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>a177728ab70f300d35eca4b597467be35</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testShiftAndAggregateOpen</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>aebf735422fcd661b1088cbe7e3302c0d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testShiftAndAggregateClosed</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>aed8bef3b55ba4b871dcf1f80ffa90481</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testDoSmoothing</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>a0f2796cd336630fe4eb501a7cc90f3d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testNewPointsFromParamCurvs</name>
+      <anchorfile>class_me_poly_redistribute_pts_curvature_unit_tests.html</anchorfile>
+      <anchor>a3d9215b567d858793645b1421c15b738</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>xms::MePolyRedistributePtsImpl</name>
@@ -3675,12 +3957,19 @@
       <anchor>a850b87b86dc1bb92a769258fcc9f2d84</anchor>
       <arglist>(double a_sizeBias) override</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+    <member kind="function">
+      <type>void</type>
+      <name>SetUseCurvatureRedistribution</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>a6544386ee3d260b7537a7e178ceabb34</anchor>
+      <arglist>(double a_featureSize, double a_meanSpacing, double a_minimumCurvature, bool a_smooth) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>Redistribute</name>
       <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
-      <anchor>a20541eca759fdab292a1a7e9744ba412</anchor>
-      <arglist>(const MePolyOffsetterOutput &amp;a_input, MePolyOffsetterOutput &amp;a_out, int a_polyOffsetIter) override</arglist>
+      <anchor>aac52f2b4ae60edbb9c1d45567b503408</anchor>
+      <arglist>(const MePolyOffsetterOutput &amp;a_input, MePolyOffsetterOutput &amp;a_out, int a_polyOffsetIter)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual VecPt3d</type>
@@ -3688,6 +3977,13 @@
       <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
       <anchor>a0059cd6ab245728455885a989cd505c7</anchor>
       <arglist>(const VecPt3d &amp;a_polyLine) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>SizeFromLocation</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>a963c4908a6fbfb9a9650287b45836859</anchor>
+      <arglist>(const Pt3d &amp;a_location) override</arglist>
     </member>
     <member kind="function">
       <type>VecPt3d</type>
@@ -3892,115 +4188,1249 @@
       <anchor>a9665333f3d034c52fadf4dc9243050b4</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static BSHP&lt; MePolyRedistributePts &gt;</type>
-      <name>New</name>
-      <anchorfile>classxms_1_1_me_poly_redistribute_pts.html</anchorfile>
-      <anchor>a022428867bdc83af2bb0550a752390bd</anchor>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_featureSizeCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>ae3cd8013ecb332a733fcc8801e9c658c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_meanSpacingCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>a673a9d511c7d15ce8183bf8e0d6eec77</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_minimumCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>a91163f2846d2827fb39b554d00d4a758</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_smoothCurvature</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>adba368de6bb91ab80ea400e87fdb5da8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; MePolyRedistributePtsCurvature &gt;</type>
+      <name>m_curvatureRedist</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>a94d434491f93ce5050b3c8196a9a3524</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MePolyRedistributePtsUnitTests</name>
+    <filename>class_me_poly_redistribute_pts_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCreateClass</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>ad8bd52ef7827fb7f32eccc029f7d689e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInterpEdgeLengths</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a06a07706d817e8bbdb36ca4898e8d5d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInterpEdgeLengths1</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>ada964cb61034e7f85f751072a4137292</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInterpEdgeLengths2</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a87a39afc1bc7231bd93d110ca12c605e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInterpEdgeLengths3</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a9022bd4f61dd47dbcccbceba7511a0c7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInterpEdgeLengths4</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>aacd28a8c2e6ba1b07b1163348d1d04fd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPts</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>aa260b8a6770ba0041f73dcb5386e1cc9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPts1</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a9733bcfef033c6d75997045198bdaa7e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPts2</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a4fcbe781e3489d7c041f489d650f371c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPts3</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>afe5a53f874c3d4b0f2ad7a5b155c1572</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPts4</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>aaaa44a1f9f8cef6c2d9c4314b11c6c13</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPts5</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>ac622c6a162ccaa5b696f1e80dedfb5d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testIntersectWithTris</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a4c0ae4cf187425d9ba5dce50489cafb5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPolyLine</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>ab42643dcc2d1f31da5d2ca5d6fb8d13c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPolyLine1</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a618ae9d86e2c0374360db49fc753df9c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRedistPolyLine2</name>
+      <anchorfile>class_me_poly_redistribute_pts_unit_tests.html</anchorfile>
+      <anchor>a4f71a1e0f03eeca3f33363adce482edf</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::MePolyRedistributePts</name>
-    <filename>classxms_1_1_me_poly_redistribute_pts.html</filename>
+    <name>xms::MeQuadBlossom</name>
+    <filename>classxms_1_1_me_quad_blossom.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MeQuadBlossom</name>
+      <anchorfile>classxms_1_1_me_quad_blossom.html</anchorfile>
+      <anchor>a656d6536638c9573120ef59f85946681</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MeQuadBlossom</name>
+      <anchorfile>classxms_1_1_me_quad_blossom.html</anchorfile>
+      <anchor>a331ceeb949344716171ddbe1a17bbec6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MeQuadBlossom &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_quad_blossom.html</anchorfile>
+      <anchor>a43b266a9440b9227018450fcdce8050b</anchor>
+      <arglist>(BSHP&lt; XmUGrid &gt; a_ugrid)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>EstimatedRunTimeInMinutes</name>
+      <anchorfile>classxms_1_1_me_quad_blossom.html</anchorfile>
+      <anchor>a2b7a90fb4e78a40f0b12336d4b1f8eda</anchor>
+      <arglist>(int a_numPoints)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; XmUGrid &gt;</type>
+      <name>SplitToQuads</name>
+      <anchorfile>classxms_1_1_me_quad_blossom.html</anchorfile>
+      <anchor>a1ff21af893cd899f0fd2167764e2fbf4</anchor>
+      <arglist>(BSHP&lt; XmUGrid &gt; a_ugrid)</arglist>
+    </member>
   </compound>
-  <compound kind="dir">
-    <name>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail/</path>
-    <filename>dir_abd8c1a13056d463f3dafa116a92b72c.html</filename>
-    <file>MeIntersectPolys.cpp</file>
-    <file>MeIntersectPolys.h</file>
-    <file>MeIntersectPolys.t.h</file>
-    <file>MePolyCleaner.cpp</file>
-    <file>MePolyCleaner.h</file>
-    <file>MePolyCleaner.t.h</file>
-    <file>MePolyOffsetter.cpp</file>
-    <file>MePolyOffsetter.h</file>
-    <file>MePolyOffsetter.t.h</file>
-    <file>MePolyPatcher.cpp</file>
-    <file>MePolyPatcher.h</file>
-    <file>MePolyPatcher.t.h</file>
-    <file>MePolyPaverToMeshPts.cpp</file>
-    <file>MePolyPaverToMeshPts.h</file>
-    <file>MePolyPaverToMeshPts.t.h</file>
-    <file>MePolyPts.cpp</file>
-    <file>MePolyPts.h</file>
-    <file>MeRefinePtsToPolys.cpp</file>
-    <file>MeRefinePtsToPolys.h</file>
-    <file>MeRefinePtsToPolys.t.h</file>
-    <file>MeRelaxer.cpp</file>
-    <file>MeRelaxer.h</file>
-    <file>MeRelaxer.t.h</file>
+  <compound kind="class">
+    <name>MeQuadBlossomUnitTests</name>
+    <filename>class_me_quad_blossom_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testGetInteriorEdges</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a9a45d0d3fc50eafbe1c7dea11f9da480</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testGetBoundaryEdges</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>af45faf811395e5866ac55377b9be3168</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testProcessVertexChains</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>aa56cb1e1aef2099a152ae1234b7dcc94</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testEta</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a1349696b3eba5fa40ca57ab3895739c4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testGetAngle</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a819c135710957e3dfbf10b54c95da76a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testExtractCellsAdjacentToPoint</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a87a686ddc39dd9de28a7f61286e3a0ea</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testGetEdges</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a6552f4db075b6b7cc2299aa7ddd03172</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testEliminateEdges</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a44eea568101dfb6f9b8c1d31bfa04841</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSimpleTriangle</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>aed8effc39f8e14bad4191da8acfc5ac0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSimpleQuad</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a64c56ea9d1859ff5a7ca4d31737c73be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testComplexQuad</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a336d5ee358eca9f04cb3503045e30f8d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSplitToQuads</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>ac2ce7dfdf8025bd6862377df0af541e8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testEstimatedRunTime</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>a6798adc0495afb13dc5344f696c69cbd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testPreMakeQuads</name>
+      <anchorfile>class_me_quad_blossom_unit_tests.html</anchorfile>
+      <anchor>aa227056bbee529107e3a1d430739aefd</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
-  <compound kind="dir">
-    <name>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing/</path>
-    <filename>dir_b733b5162124708acba02f9106a93503.html</filename>
-    <file>__init__.py</file>
-    <file>MeMeshUtils_py.cpp</file>
-    <file>MeMeshUtils_pyt.py</file>
-    <file>MeMultiPolyMesher_py.cpp</file>
-    <file>MeMultiPolyMesher_pyt.py</file>
-    <file>MeMultiPolyMesherIo_py.cpp</file>
-    <file>MeMultiPolyMesherIo_pyt.py</file>
-    <file>MeMultiPolyTo2dm_py.cpp</file>
-    <file>MeMultiPolyTo2dm_pyt.py</file>
-    <file>MePolyMesher_py.cpp</file>
-    <file>MePolyMesher_pyt.py</file>
-    <file>MePolyRedistributePts_py.cpp</file>
-    <file>MePolyRedistributePts_pyt.py</file>
-    <file>meshing_py.cpp</file>
-    <file>meshing_py.h</file>
+  <compound kind="class">
+    <name>xms::MeRefinePoint</name>
+    <filename>classxms_1_1_me_refine_point.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MeRefinePoint</name>
+      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
+      <anchor>abb5d4c69f4b54d4e4dccf1f829a788ba</anchor>
+      <arglist>(const Pt3d &amp;a_pt, double a_size, bool a_createMeshPoint)</arglist>
+    </member>
+    <member kind="variable">
+      <type>Pt3d</type>
+      <name>m_pt</name>
+      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
+      <anchor>a685764eaa977f41d8bdd3b1f099614b3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_size</name>
+      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
+      <anchor>acdee8a50e9336087d658c40206c259d7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_createMeshPoint</name>
+      <anchorfile>classxms_1_1_me_refine_point.html</anchorfile>
+      <anchor>acd11cdc615e2287624860b153303f4a2</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
-  <compound kind="dir">
-    <name>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/</path>
-    <filename>dir_7b496edbef050d8b43485d3aed8596cb.html</filename>
-    <dir>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing/detail</dir>
-    <file>MeMeshUtils.cpp</file>
-    <file>MeMeshUtils.h</file>
-    <file>MeMeshUtils.t.h</file>
-    <file>MeMultiPolyMesher.cpp</file>
-    <file>MeMultiPolyMesher.h</file>
-    <file>MeMultiPolyMesher.t.h</file>
-    <file>MeMultiPolyMesherIo.h</file>
-    <file>MeMultiPolyTo2dm.cpp</file>
-    <file>MeMultiPolyTo2dm.h</file>
-    <file>MeMultiPolyTo2dm.t.h</file>
-    <file>MePolyMesher.cpp</file>
-    <file>MePolyMesher.h</file>
-    <file>MePolyMesher.t.h</file>
-    <file>MePolyRedistributePts.cpp</file>
-    <file>MePolyRedistributePts.h</file>
-    <file>MePolyRedistributePts.t.h</file>
+  <compound kind="class">
+    <name>xms::MeRefinePtsToPolys</name>
+    <filename>classxms_1_1_me_refine_pts_to_polys.html</filename>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MeRefinePtsToPolys &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys.html</anchorfile>
+      <anchor>a0ef9726499e2bc704216db657e075f2d</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
-  <compound kind="dir">
-    <name>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/</path>
-    <filename>dir_9a3232e58b7cd746197860c82c97c362.html</filename>
-    <dir>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python/meshing</dir>
-    <file>__init__.py</file>
-    <file>cxxtest.cpp</file>
-    <file>xmsmesh_py.cpp</file>
+  <compound kind="class">
+    <name>xms::MeRefinePtsToPolysImpl</name>
+    <filename>classxms_1_1_me_refine_pts_to_polys_impl.html</filename>
+    <base>xms::MeRefinePtsToPolys</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetRefinePoints</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a3ebd744350f79118d86961a00031edb6</anchor>
+      <arglist>(const std::vector&lt; MeRefinePoint &gt; &amp;a_pts, double a_tol) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>RefPtsAsPolys</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a22004c2b89bce9e49f318c03693209ea</anchor>
+      <arglist>(int a_polyId, const std::vector&lt; Pt3d &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_inPolys, std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_newInPolys, std::vector&lt; Pt3d &gt; &amp;a_refMeshPts, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FindPtsInsidePolygon</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>af6b8e2f86737505245b21bd43b8ee414</anchor>
+      <arglist>(const std::vector&lt; Pt3d &gt; &amp;a_outPoly, const std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_inPolys, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CheckRefPtsTooCloseToOtherRefPts</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>abc512c4669a097b5dafc8cdaf8ee8f3a</anchor>
+      <arglist>(std::multimap&lt; double, size_t &gt; &amp;a_mapSizeIdx, std::vector&lt; Pt3d &gt; &amp;a_refPtsTooClose)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>CreateNewInsidePolygons</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a0448bf8978dd18e1424ab9e64e4c66fe</anchor>
+      <arglist>(std::vector&lt; std::vector&lt; Pt3d &gt;&gt; &amp;a_newInPolys, std::vector&lt; Pt3d &gt; &amp;a_refMeshPts, std::vector&lt; Pt3d &gt; &amp;a_refPtsProcessed)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; Pt3d &gt;</type>
+      <name>TriPolyAtPoint</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a9e1a3750e7a5474282fce372a27edbc3</anchor>
+      <arglist>(const Pt3d &amp;a_pt, double a_size)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; Pt3d &gt;</type>
+      <name>HexPolyAtPoint</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a8ba232c7bc96711669bddbe199bc2f73</anchor>
+      <arglist>(const Pt3d &amp;a_pt, double a_size)</arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_TwoTimesSqrtThree</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a0fa4df112088fdca832803f7222d01db</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_SqrtThree</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>aa908c35c94440e2955d726e205d78582</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_SqrtThreeOverTwo</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a38d4616b27e8b8e05fd1923e72d5fcad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_xyTol</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a0f4ed775b25ce48cac9cb547754b5632</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; MeRefinePoint &gt;</type>
+      <name>m_pts</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a67884459688fe3ad4be73029990f4da4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; size_t &gt;</type>
+      <name>m_ptsInsidePoly</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a5e4256c399b93fdbe7aeb32b8e5a3f52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_polyId</name>
+      <anchorfile>classxms_1_1_me_refine_pts_to_polys_impl.html</anchorfile>
+      <anchor>a9ab6fda79e1e2df304eaf025f2c3eb58</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
-  <compound kind="dir">
-    <name>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/tutorial</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/tutorial/</path>
-    <filename>dir_c33d3f6376854b697a65b7cbb3236d1f.html</filename>
-    <file>TutMeshing.cpp</file>
-    <file>TutMeshing.t.h</file>
+  <compound kind="class">
+    <name>MeRefinePtsToPolysUnitTests</name>
+    <filename>class_me_refine_pts_to_polys_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testCreateClass</name>
+      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
+      <anchor>a564e652bcf895ede6754d0db4f7c4312</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testTriPolyAtPoint</name>
+      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
+      <anchor>ae316c622167c02b8fe6441bd6929282f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testHexPolyAtPoint</name>
+      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
+      <anchor>aee3ae8a77be1a10716216c18b046eec8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRefPtsAsPolys</name>
+      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
+      <anchor>a5e1859eed173b2da7ec19db51238373a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testRefinePtsTooCloseToBoundary</name>
+      <anchorfile>class_me_refine_pts_to_polys_unit_tests.html</anchorfile>
+      <anchor>a159c9dcfab6e1fbbe83e09edf466ee24</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
-  <compound kind="dir">
-    <name>/home/travis/build/Aquaveo/xmsmesh/xmsmesh</name>
-    <path>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/</path>
-    <filename>dir_a042f6ead331ad68c5f1fb7c065ab2e2.html</filename>
-    <dir>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/meshing</dir>
-    <dir>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/python</dir>
-    <dir>/home/travis/build/Aquaveo/xmsmesh/xmsmesh/tutorial</dir>
+  <compound kind="class">
+    <name>xms::MeRelaxer</name>
+    <filename>classxms_1_1_me_relaxer.html</filename>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MeRelaxer &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_relaxer.html</anchorfile>
+      <anchor>a4b8262f42ecba1079856b39d239b55ba</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>MeRelaxer</name>
+      <anchorfile>classxms_1_1_me_relaxer.html</anchorfile>
+      <anchor>a43548aeaafaa92be6d39d7ec5c47cc87</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MeRelaxer</name>
+      <anchorfile>classxms_1_1_me_relaxer.html</anchorfile>
+      <anchor>a1c06d7b2b73945aaf9a38482afec01d6</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeRelaxerImpl</name>
+    <filename>classxms_1_1_me_relaxer_impl.html</filename>
+    <base>xms::MeRelaxer</base>
+    <member kind="enumeration">
+      <type></type>
+      <name>RelaxFlagEnum</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>af1298d486ffc3ed280e4f83580091ad5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>RelaxTypeEnum</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>af43d0da0546dc99c61e90c220074f367</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Relax</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>af8f35200c2eaf454b2685a4d0d217530</anchor>
+      <arglist>(const VecInt &amp;a_fixedPoints, BSHP&lt; TrTin &gt; a_tin) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetObserver</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a95a4cd3cc4216f5c9d4c0c2ae649572b</anchor>
+      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>SetRelaxationMethod</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a6c25c8618a66ca56de66c986b9e08154</anchor>
+      <arglist>(const std::string &amp;a_relaxMethod) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetPointSizer</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a43f18a68f931244fc16ed765d3d1997a</anchor>
+      <arglist>(BSHP&lt; MePolyRedistributePts &gt; a_sizer) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ComputeCentroids</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a72d2fdfc5717cb0d401a5000a51d2e40</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>RelaxMarkedPoints</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a092517f9daeb4b9ffbb3213072766626</anchor>
+      <arglist>(RelaxTypeEnum a_relaxType, int a_iteration, int a_numiterations)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AreaRelax</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a20c8a68c2b979af40b9ef3055d88d593</anchor>
+      <arglist>(int a_point, Pt3d &amp;a_newLocation)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AngleRelax</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a113869d8825bfd284f02b98e31d7baea</anchor>
+      <arglist>(int a_point, Pt3d &amp;a_newLocation)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SpringRelaxSinglePoint</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a0a2a08ace75f0a6a7702ce4241359b86</anchor>
+      <arglist>(int a_point, Pt3d &amp;a_newLocation)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetupNeighbors</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>aad85932b55eb7869e6c3f9f03ec3b35d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetupPointSizes</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>af5c25194f909526b75239ea09175280f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>NewLocationIsValid</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>afc75f90d51bb57f4d31f352f3005d9ab</anchor>
+      <arglist>(size_t a_idx, Pt3d &amp;a_newLocation)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>AllTrianglesHavePositiveArea</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a23f8f90a04ae98694eb8c971554236c6</anchor>
+      <arglist>(BSHP&lt; TrTin &gt; a_tin)</arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; TrTin &gt;</type>
+      <name>m_tin</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a646cc58f2a4eeb03c1a45e13f423e34d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const VecInt *</type>
+      <name>m_fixedPoints</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>ac9a1b2a1a86e45772fafa61a1372baec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_centroids</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>aa87369c136247fbb9bbbe833c168ed79</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_slideangle</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>acb07efcf81273e94e8f38607c673a7d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt</type>
+      <name>m_flags</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a0a7223785c7e77a123ccf4b617002ea5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; Observer &gt;</type>
+      <name>m_observer</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a86bedfb0f447b1389003d9a77119b792</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>RelaxTypeEnum</type>
+      <name>m_relaxType</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>ae47193f320967651bf17ccd3c681954e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; MePolyRedistributePts &gt;</type>
+      <name>m_sizer</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a852d2d36fe50d554a3aab092f97eaf6d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecDbl</type>
+      <name>m_pointSizes</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>accad1df242e23b4f11e03c6bbecb5b63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt2d</type>
+      <name>m_pointNeighbors</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>aba5c0eabc0a32208a87505b3ab95512a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt</type>
+      <name>m_pointsToDelete</name>
+      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
+      <anchor>a523f30a13fafade0d12ff950074c7698</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MeRelaxerUnitTests</name>
+    <filename>class_me_relaxer_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testRelaxWhileMeshing</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>ac43157bdad5a114e83066ac96f22efbf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSpringRelaxSetup</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>a25c6646fbb26f719cbe548fecca9f5a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSpringRelaxSetup2</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>af896bda9cc7c6b8a2203e6225285d0c5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSpringRelaxSinglePoint</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>a67aa6489b4fd5924194af12536a130cb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSpringRelaxSinglePoint2</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>a968c23272bd6bdbc4dbfba37db632f8e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSpringRelaxSinglePoint3</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>a0051364eb6d7b025bb1ae13b1e4dd9d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testNewLocationIsValid</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>a00103a45865ecb2fee3f3b91d85b3bde</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testAllTrianglesHavePositiveArea</name>
+      <anchorfile>class_me_relaxer_unit_tests.html</anchorfile>
+      <anchor>a68809b99b184eda979be2f0e97f16071</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::MeWeightMatcher</name>
+    <filename>classxms_1_1_me_weight_matcher.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MeWeightMatcher</name>
+      <anchorfile>classxms_1_1_me_weight_matcher.html</anchorfile>
+      <anchor>aa56c740b755be44527aea4335a62cbd2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MeWeightMatcher</name>
+      <anchorfile>classxms_1_1_me_weight_matcher.html</anchorfile>
+      <anchor>aa3f992c2de0acbc5cea834b5b1c3f542</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static BSHP&lt; MeWeightMatcher &gt;</type>
+      <name>New</name>
+      <anchorfile>classxms_1_1_me_weight_matcher.html</anchorfile>
+      <anchor>acbb0f78f0fbfe40e9c7f87f7afd7d306</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>MeWeightMatcherUnitTests</name>
+    <filename>class_me_weight_matcher_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testPythonVectors</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a02758e5cd8adc1d9061a542a9ae00405</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test10_empty</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a125e1dca4c054584ebac36b35a89add9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test11_singleedge</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>aba225f33f8d12bbcb7ceb9472e9558ba</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test12</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>aef0cec65912503205bcbe470790151f5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test13</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a138bba9fb29d5b9f38f055681858ecab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test14_maxcard</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a10358c81559d23c1b790e033c13234d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test16_negative</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a1d216a132a1cbd32617b9aca2873246c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test20_sblossom</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>ab0038d78ed4e46b167ed157bcb901a36</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test21_tblossom</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>aa80ea03be0282ee71c8d9c8b12ef02de</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test22_s_nest</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a3ee229aaba7baf0248548cbf0fc8f06f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test23_s_relabel_nest</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a93aa15127ed69b34589b11424affed1e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test24_s_nest_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>af8b4006cfac1b5fbfc663ba90108293c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test25_s_t_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a6fcdd07fbddc26217108cf7f8da6dbc9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test26_s_nest_t_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>adc478826acf56ddda0a76a4cccadcddf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test30_tnasty_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>ad91bcc116dbbc1a328a65edb4cf58505</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test31_tnasty2_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a59fb0bdde1b3c9f20c43ed79f6902f58</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test32_t_expand_leastslack</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>acda8ca0a4b8d407b8a7085db909e67e7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test33_nest_tnasty_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a421c81fd08f9f06977ea3b40baa3697f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test34_nest_relabel_expand</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a45422a57042e9e57eb3e27657a1821b9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSimpleTriangle</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>ac17293eca247d9df3811da74243b8ac6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSimpleQuad</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>ae15c125f2e90277b10adb9e62eff8780</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testComplexQuad</name>
+      <anchorfile>class_me_weight_matcher_unit_tests.html</anchorfile>
+      <anchor>a14c83af49ce4b763871640c889f14a86</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>xms::SegmentLocation</name>
+    <filename>structxms_1_1_segment_location.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>SegmentLocation</name>
+      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
+      <anchor>a0e104f5a3fd069beb76b6470d08f59de</anchor>
+      <arglist>(int a_poly=0, int a_polySeg=0, int a_inPoly=0, int a_inPolySeg=0)</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_poly</name>
+      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
+      <anchor>abe30cbc89ba40c67b019ff45314892ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_polySeg</name>
+      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
+      <anchor>a8e4de360b918daaf388d9b99411d9d01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_inPoly</name>
+      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
+      <anchor>a5c4caca23db3f1d0d337d7bc5456ea9a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_inPolySeg</name>
+      <anchorfile>structxms_1_1_segment_location.html</anchorfile>
+      <anchor>a1c2c1a343d7d77da5e949ba1c279841f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::SmoothIo</name>
+    <filename>classxms_1_1_smooth_io.html</filename>
+    <member kind="function">
+      <type>bool</type>
+      <name>CalcMaxSize</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>aeeab282e879b74cf2619be8b327358a3</anchor>
+      <arglist>(double a_length, float a_smoothVal, double &amp;a_maxSize)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>CalcMinSize</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>a3e4b3961c22271a588103b3259835567</anchor>
+      <arglist>(double a_length, float a_smoothVal, double a_calcMaxSize)</arglist>
+    </member>
+    <member kind="variable">
+      <type>BSHP&lt; TrTin &gt;</type>
+      <name>m_tin</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>a669b930810dddb90405cb0899d05e487</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const VecFlt *</type>
+      <name>m_sizes</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>a03fa6656791ab7bfc83bb384d20220ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_anchorType</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>a911e3ae9d375fc5860fd9a4413f14624</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>DynBitset</type>
+      <name>m_ptsFlag</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>ae615bc9651c7986b6a09d35dd0291d29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecFlt *</type>
+      <name>m_smoothSize</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>abbd3e34e5c1a8320c7b71bfbfc797519</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_checkMinSize</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>aaf44ff52940ddd51c0140627b6d4b2e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_sizeRatio</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>a03aa09e537af0dab8e011252e28dd6d4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_minSize</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>aa15ad91001d5fb58e640e477f7cd845c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_scaleFactor</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>aed8725a00285c702912031ee3af2597e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_percentGrowth</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>a06f407049856f5b0b1f805044c396877</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_logPercentGrowth</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>ae2f90148d7b666c3ca092d56f2138fd5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>m_maxSize</name>
+      <anchorfile>classxms_1_1_smooth_io.html</anchorfile>
+      <anchor>ab48601ce5c80f0420af243b5acd89bb6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>TutMeshingIntermediateTests</name>
+    <filename>class_tut_meshing_intermediate_tests.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const CxxTest::TestGroup &amp;</type>
+      <name>group</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>ae8c0811451e81ce690a4b3a13b90780f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_SimplePolygon</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a4bba234994c3b7fb4d6de2af0a93df28</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_ComplexPolygon</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>aca21ece58a116cc6e905cecded135763</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_SimplePolygonWithHole</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a97aefc16612ebf834d3b306fc9d6b702</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_Breakline</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a766687c31cf21266280eee287b99e1ec</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_RefinePoints</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a242ca8d4ebf60cbaa22d5ef2fb75ccc7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_MultiplePolygons</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a73fe21b1441eef9c225046b073627f65</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_ScalarPaving</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>af9d6182b721b7950d8ec2f46ba9160ba</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_Patch</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a4cc20f4b834919dd705b4a6724abb1f9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_ConstantSmooth</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>ab3096f420b245110a335ec3929416400</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_SizeFuncFromDepth</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a18ecf6b96514984d40f296590550b4c2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_SmoothSizeFunc</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>ad2f8db20610932f74a4c721016ad8539</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_SpringRelax</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a248c0b0b4537aa1557488deca36d6fb0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_QuadBlossom_BadQuadRemover</name>
+      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
+      <anchor>a4e77cbc32699681a269adbe9c3d23cfa</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>TutRedistributionIntermediateTests</name>
+    <filename>class_tut_redistribution_intermediate_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_SimplePolygon_Redistribute</name>
+      <anchorfile>class_tut_redistribution_intermediate_tests.html</anchorfile>
+      <anchor>a9eb3277fc6ae36c29d318ccaa7e9dda3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_Redistribute_SizeFunction</name>
+      <anchorfile>class_tut_redistribution_intermediate_tests.html</anchorfile>
+      <anchor>ae3bb6506e15a62d5f8ef3587240bc208</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_Redistribute_Curvature</name>
+      <anchorfile>class_tut_redistribution_intermediate_tests.html</anchorfile>
+      <anchor>a4e64db8d0bfade59ff5e1973a28b2080</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_Example_Redistribute_Polygon_Curvature</name>
+      <anchorfile>class_tut_redistribution_intermediate_tests.html</anchorfile>
+      <anchor>a83304d7a642141e74a4c3bce7361e4c8</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="page">
+    <name>md_Meshing_Tutorial</name>
+    <title>Meshing_Tutorial</title>
+    <filename>md__meshing__tutorial</filename>
+    <docanchor file="md__meshing__tutorial" title="Meshing Tutorial">Meshing_Tutorial</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Introduction">Intro_Meshing</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Simple Polygon">Example_Simple_Polygon</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Complex Polygon">Example_Complex_Polygon</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Simple Polygon with a hole">Example_Complex_Polygon_Hole</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Breaklines">Example_Breaklines</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Refine Points">Example_RefinePoints</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Multiple Polygons with variable spacing, holes, breaklines, and refine points">Example_MultiPolygon</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Scalar Paving">Example_ScalarPaving</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Patch Mesh Generation">Example_Patch</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Checking Meshing Input for Errors">Check_Input</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Smooth transition for constant size function">Example_ConstantSmooth</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Generate size function from depth">Example_SizeFromDepth</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Smooth a size function">Example_SmoothSizeFunc</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Spring relaxation">Example_Spring_Relax</docanchor>
+    <docanchor file="md__meshing__tutorial" title="Example - Triangular to quad mesh using Quad Blossom and Bad Quad Remover">Example_Quad_Blossom</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>md_Redistribution_Tutorial</name>
+    <title>Redistribution_Tutorial</title>
+    <filename>md__redistribution__tutorial</filename>
+    <docanchor file="md__redistribution__tutorial" title="Redistribution Tutorial">Redistribution_Tutorial</docanchor>
+    <docanchor file="md__redistribution__tutorial" title="Introduction">Intro_Redistribution</docanchor>
+    <docanchor file="md__redistribution__tutorial" title="Example - Redistribute Simple Polygon to Constant Size">Example_Redistribution_Simple_Polygon</docanchor>
+    <docanchor file="md__redistribution__tutorial" title="Example - Redistribute Simple Polygon with a Size Function">Example_Redistribution_Size_Function</docanchor>
+    <docanchor file="md__redistribution__tutorial" title="Example - Redistribute Simple Polyline using Curvature">Example_Redistribution_Curvature</docanchor>
+    <docanchor file="md__redistribution__tutorial" title="Example - Redistribute Simple Polygon using Curvature">Example_Redistribution_Curvature_Polygon</docanchor>
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title></title>
+    <title>xmscore</title>
     <filename>index</filename>
     <docanchor file="index" title="xmsmesh ">xmsmesh</docanchor>
     <docanchor file="index" title="Introduction ">XmsmeshIntroduction</docanchor>

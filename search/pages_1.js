@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['meshing_5ftutorial',['Meshing_Tutorial',['../md__meshing__tutorial.html',1,'']]]
+  ['3d_20ugrid_20tutorial',['3D UGrid Tutorial',['https://aquaveo.github.io/xmsgrid/md__three_d__tutorial.html',1,'']]]
 ];

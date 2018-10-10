@@ -1,29 +1,5 @@
 var searchData=
 [
-  ['geomsxmsngintermediatetests',['GeomsXmsngIntermediateTests',['https://aquaveo.github.io/xmsinterp/class_geoms_xmsng_intermediate_tests.html',1,'']]],
-  ['geomsxmsngunittests',['GeomsXmsngUnitTests',['https://aquaveo.github.io/xmsinterp/class_geoms_xmsng_unit_tests.html',1,'']]],
-  ['gmextents2d',['GmExtents2d',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_extents2d.html',1,'xms']]],
-  ['gmextents3d',['GmExtents3d',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_extents3d.html',1,'xms']]],
-  ['gmextents3dunittests',['GmExtents3dUnitTests',['https://aquaveo.github.io/xmsinterp/class_gm_extents3d_unit_tests.html',1,'']]],
-  ['gmmultipolyintersectionsorter',['GmMultiPolyIntersectionSorter',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersection_sorter.html',1,'xms']]],
-  ['gmmultipolyintersectionsorterterse',['GmMultiPolyIntersectionSorterTerse',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersection_sorter_terse.html',1,'xms']]],
-  ['gmmultipolyintersector',['GmMultiPolyIntersector',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersector.html',1,'xms']]],
-  ['gmmultipolyintersector2intermediatetests',['GmMultiPolyIntersector2IntermediateTests',['https://aquaveo.github.io/xmsinterp/class_gm_multi_poly_intersector2_intermediate_tests.html',1,'']]],
-  ['gmmultipolyintersectordata',['GmMultiPolyIntersectorData',['https://aquaveo.github.io/xmsinterp/structxms_1_1_gm_multi_poly_intersector_data.html',1,'xms']]],
-  ['gmmultipolyintersectorimpl',['GmMultiPolyIntersectorImpl',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersector_impl.html',1,'xms']]],
-  ['gmmultipolyintersectorunittests',['GmMultiPolyIntersectorUnitTests',['https://aquaveo.github.io/xmsinterp/class_gm_multi_poly_intersector_unit_tests.html',1,'']]],
-  ['gmpointinpolytester_5fgmpointinpolygon2d',['GmPointInPolyTester_gmPointInPolygon2D',['https://aquaveo.github.io/xmsinterp/class_gm_point_in_poly_tester__gm_point_in_polygon2_d.html',1,'']]],
-  ['gmpointinpolytester_5fgmpolygon',['GmPointInPolyTester_GmPolygon',['https://aquaveo.github.io/xmsinterp/class_gm_point_in_poly_tester___gm_polygon.html',1,'']]],
-  ['gmpointinpolyunittests',['GmPointInPolyUnitTests',['https://aquaveo.github.io/xmsinterp/class_gm_point_in_poly_unit_tests.html',1,'']]],
-  ['gmpolygon',['GmPolygon',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_polygon.html',1,'xms']]],
-  ['gmpolygonimpl',['GmPolygonImpl',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_polygon_impl.html',1,'xms']]],
-  ['gmpolygonintermediatetests',['GmPolygonIntermediateTests',['https://aquaveo.github.io/xmsinterp/class_gm_polygon_intermediate_tests.html',1,'']]],
-  ['gmpolygonunittests',['GmPolygonUnitTests',['https://aquaveo.github.io/xmsinterp/class_gm_polygon_unit_tests.html',1,'']]],
-  ['gmpolylineptredistributer',['GmPolyLinePtRedistributer',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_poly_line_pt_redistributer.html',1,'xms']]],
-  ['gmpolylineptredistributerimpl',['GmPolyLinePtRedistributerImpl',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_poly_line_pt_redistributer_impl.html',1,'xms']]],
-  ['gmpolylineptredistributerunittests',['GmPolyLinePtRedistributerUnitTests',['https://aquaveo.github.io/xmsinterp/class_gm_poly_line_pt_redistributer_unit_tests.html',1,'']]],
-  ['gmptsearch',['GmPtSearch',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_pt_search.html',1,'xms']]],
-  ['gmptsearchimpl',['GmPtSearchImpl',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_pt_search_impl.html',1,'xms']]],
-  ['gmtrisearch',['GmTriSearch',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_tri_search.html',1,'xms']]],
-  ['gmtrisearchimpl',['GmTriSearchImpl',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_tri_search_impl.html',1,'xms']]]
+  ['fsatisfies',['fSatisfies',['https://aquaveo.github.io/xmsinterp/classxms_1_1f_satisfies.html',1,'xms']]],
+  ['functorsunittests',['FunctorsUnitTests',['https://aquaveo.github.io/xmscore/class_functors_unit_tests.html',1,'']]]
 ];

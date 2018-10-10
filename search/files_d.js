@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['set_2eh',['set.h',['https://aquaveo.github.io/xmscore/set_8h.html',1,'']]],
-  ['singleton_2ecpp',['Singleton.cpp',['https://aquaveo.github.io/xmscore/_singleton_8cpp.html',1,'']]],
-  ['singleton_2eh',['Singleton.h',['https://aquaveo.github.io/xmscore/_singleton_8h.html',1,'']]],
-  ['stringutil_2ecpp',['StringUtil.cpp',['https://aquaveo.github.io/xmscore/_string_util_8cpp.html',1,'']]],
-  ['stringutil_2eh',['StringUtil.h',['https://aquaveo.github.io/xmscore/_string_util_8h.html',1,'']]],
-  ['stringutil_2et_2eh',['StringUtil.t.h',['https://aquaveo.github.io/xmscore/_string_util_8t_8h.html',1,'']]]
+  ['progress_2ecpp',['Progress.cpp',['https://aquaveo.github.io/xmscore/_progress_8cpp.html',1,'']]],
+  ['progress_2eh',['Progress.h',['https://aquaveo.github.io/xmscore/_progress_8h.html',1,'']]],
+  ['progress_2et_2eh',['Progress.t.h',['https://aquaveo.github.io/xmscore/_progress_8t_8h.html',1,'']]],
+  ['pt_2ecpp',['pt.cpp',['https://aquaveo.github.io/xmscore/pt_8cpp.html',1,'']]],
+  ['pt_2eh',['pt.h',['https://aquaveo.github.io/xmscore/pt_8h.html',1,'']]],
+  ['pt_2et_2eh',['pt.t.h',['https://aquaveo.github.io/xmscore/pt_8t_8h.html',1,'']]],
+  ['ptsfwd_2eh',['ptsfwd.h',['https://aquaveo.github.io/xmscore/ptsfwd_8h.html',1,'']]]
 ];

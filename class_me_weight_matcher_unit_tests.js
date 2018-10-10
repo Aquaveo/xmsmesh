@@ -1,0 +1,25 @@
+var class_me_weight_matcher_unit_tests =
+[
+    [ "test10_empty", "class_me_weight_matcher_unit_tests.html#a125e1dca4c054584ebac36b35a89add9", null ],
+    [ "test11_singleedge", "class_me_weight_matcher_unit_tests.html#aba225f33f8d12bbcb7ceb9472e9558ba", null ],
+    [ "test12", "class_me_weight_matcher_unit_tests.html#aef0cec65912503205bcbe470790151f5", null ],
+    [ "test13", "class_me_weight_matcher_unit_tests.html#a138bba9fb29d5b9f38f055681858ecab", null ],
+    [ "test14_maxcard", "class_me_weight_matcher_unit_tests.html#a10358c81559d23c1b790e033c13234d5", null ],
+    [ "test16_negative", "class_me_weight_matcher_unit_tests.html#a1d216a132a1cbd32617b9aca2873246c", null ],
+    [ "test20_sblossom", "class_me_weight_matcher_unit_tests.html#ab0038d78ed4e46b167ed157bcb901a36", null ],
+    [ "test21_tblossom", "class_me_weight_matcher_unit_tests.html#aa80ea03be0282ee71c8d9c8b12ef02de", null ],
+    [ "test22_s_nest", "class_me_weight_matcher_unit_tests.html#a3ee229aaba7baf0248548cbf0fc8f06f", null ],
+    [ "test23_s_relabel_nest", "class_me_weight_matcher_unit_tests.html#a93aa15127ed69b34589b11424affed1e", null ],
+    [ "test24_s_nest_expand", "class_me_weight_matcher_unit_tests.html#af8b4006cfac1b5fbfc663ba90108293c", null ],
+    [ "test25_s_t_expand", "class_me_weight_matcher_unit_tests.html#a6fcdd07fbddc26217108cf7f8da6dbc9", null ],
+    [ "test26_s_nest_t_expand", "class_me_weight_matcher_unit_tests.html#adc478826acf56ddda0a76a4cccadcddf", null ],
+    [ "test30_tnasty_expand", "class_me_weight_matcher_unit_tests.html#ad91bcc116dbbc1a328a65edb4cf58505", null ],
+    [ "test31_tnasty2_expand", "class_me_weight_matcher_unit_tests.html#a59fb0bdde1b3c9f20c43ed79f6902f58", null ],
+    [ "test32_t_expand_leastslack", "class_me_weight_matcher_unit_tests.html#acda8ca0a4b8d407b8a7085db909e67e7", null ],
+    [ "test33_nest_tnasty_expand", "class_me_weight_matcher_unit_tests.html#a421c81fd08f9f06977ea3b40baa3697f", null ],
+    [ "test34_nest_relabel_expand", "class_me_weight_matcher_unit_tests.html#a45422a57042e9e57eb3e27657a1821b9", null ],
+    [ "testComplexQuad", "class_me_weight_matcher_unit_tests.html#a14c83af49ce4b763871640c889f14a86", null ],
+    [ "testPythonVectors", "class_me_weight_matcher_unit_tests.html#a02758e5cd8adc1d9061a542a9ae00405", null ],
+    [ "testSimpleQuad", "class_me_weight_matcher_unit_tests.html#ae15c125f2e90277b10adb9e62eff8780", null ],
+    [ "testSimpleTriangle", "class_me_weight_matcher_unit_tests.html#ac17293eca247d9df3811da74243b8ac6", null ]
+];

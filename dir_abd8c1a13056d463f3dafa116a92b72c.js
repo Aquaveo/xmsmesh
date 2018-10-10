@@ -42,6 +42,16 @@ var dir_abd8c1a13056d463f3dafa116a92b72c =
     ] ],
     [ "MePolyPts.cpp", "_me_poly_pts_8cpp.html", "_me_poly_pts_8cpp" ],
     [ "MePolyPts.h", "_me_poly_pts_8h.html", "_me_poly_pts_8h" ],
+    [ "MePolyRedistributePtsCurvature.cpp", "_me_poly_redistribute_pts_curvature_8cpp.html", [
+      [ "MePolyRedistributePtsCurvatureImpl", "classxms_1_1_me_poly_redistribute_pts_curvature_impl.html", "classxms_1_1_me_poly_redistribute_pts_curvature_impl" ]
+    ] ],
+    [ "MePolyRedistributePtsCurvature.h", "_me_poly_redistribute_pts_curvature_8h.html", [
+      [ "MePolyRedistributePtsCurvature", "classxms_1_1_me_poly_redistribute_pts_curvature.html", "classxms_1_1_me_poly_redistribute_pts_curvature" ]
+    ] ],
+    [ "MePolyRedistributePtsCurvature.t.h", "_me_poly_redistribute_pts_curvature_8t_8h.html", [
+      [ "MePolyRedistributePtsCurvatureUnitTests", "class_me_poly_redistribute_pts_curvature_unit_tests.html", "class_me_poly_redistribute_pts_curvature_unit_tests" ],
+      [ "MePolyRedistributePtsCurvatureIntermediateTests", "class_me_poly_redistribute_pts_curvature_intermediate_tests.html", "class_me_poly_redistribute_pts_curvature_intermediate_tests" ]
+    ] ],
     [ "MeRefinePtsToPolys.cpp", "_me_refine_pts_to_polys_8cpp.html", [
       [ "MeRefinePtsToPolysImpl", "classxms_1_1_me_refine_pts_to_polys_impl.html", "classxms_1_1_me_refine_pts_to_polys_impl" ]
     ] ],
@@ -59,5 +69,10 @@ var dir_abd8c1a13056d463f3dafa116a92b72c =
     ] ],
     [ "MeRelaxer.t.h", "_me_relaxer_8t_8h.html", [
       [ "MeRelaxerUnitTests", "class_me_relaxer_unit_tests.html", "class_me_relaxer_unit_tests" ]
+    ] ],
+    [ "MeWeightMatcher.cpp", "_me_weight_matcher_8cpp.html", "_me_weight_matcher_8cpp" ],
+    [ "MeWeightMatcher.h", "_me_weight_matcher_8h.html", "_me_weight_matcher_8h" ],
+    [ "MeWeightMatcher.t.h", "_me_weight_matcher_8t_8h.html", [
+      [ "MeWeightMatcherUnitTests", "class_me_weight_matcher_unit_tests.html", "class_me_weight_matcher_unit_tests" ]
     ] ]
 ];

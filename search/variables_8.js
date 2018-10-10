@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['w',['w',['https://aquaveo.github.io/xmscore/classxms_1_1_pt4.html#a871dee21ccefe470143d40290306b2c8',1,'xms::Pt4']]]
+  ['two_5fover_5fpi',['TWO_OVER_PI',['../_me_quad_blossom_8cpp.html#ab136e9d94dc522e1ca17e197e6c4f022',1,'xms']]],
+  ['two_5fpi',['TWO_PI',['../_me_quad_blossom_8cpp.html#a9b41bd904b5251c686c373ce2eb287a1',1,'xms']]]
 ];
