@@ -32,9 +32,6 @@ bool tutReadPolygons(const std::string& a_fname, VecPt3d2d& a_outside, VecPt3d3d
 class TutMeshingIntermediateTests : public CxxTest::TestSuite
 {
 public:
-#ifndef CXXTEST4
-  virtual const CxxTest::TestGroup& group();
-#endif
   void test_Example_SimplePolygon();
   void test_Example_ComplexPolygon();
   void test_Example_SimplePolygonWithHole();

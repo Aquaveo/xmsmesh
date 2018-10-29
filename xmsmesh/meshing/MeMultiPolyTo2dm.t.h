@@ -24,9 +24,6 @@
 class MeMultiPolyTo2dmUnitTests : public CxxTest::TestSuite
 {
 public:
-#ifndef CXXTEST4
-  virtual const CxxTest::TestGroup& group();
-#endif
   void testCreateClass();
   void testCase4();
 };
@@ -34,9 +31,6 @@ public:
 class MeMultiPolyTo2dmIntermediateTests : public CxxTest::TestSuite
 {
 public:
-#ifndef CXXTEST4
-  virtual const CxxTest::TestGroup& group();
-#endif
   void testCase2();
   void testCase100();
   void testCase101();

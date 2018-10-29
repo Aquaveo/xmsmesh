@@ -400,19 +400,6 @@ static void iBuildTestCase4Polys(std::vector<VecPt3d>& a_outside,
 /// \brief Tests for MeMultiPolyTo2dm.
 ////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------
-/// \brief    Defines the test group.
-/// \return CxxTest::TestGroup reference.
-//------------------------------------------------------------------------------
-#ifndef CXXTEST4
-//------------------------------------------------------------------------------
-/// \brief
-//------------------------------------------------------------------------------
-const CxxTest::TestGroup& MeMultiPolyTo2dmUnitTests::group()
-{
-  return CxxTest::TestSuite::group();
-} // MeMultiPolyToUGridIntermediateTests::group
-#endif
-//------------------------------------------------------------------------------
 /// \brief tests creating the class
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmUnitTests::testCreateClass()
@@ -587,20 +574,6 @@ void MeMultiPolyTo2dmUnitTests::testCase4()
 /// \class MeMultiPolyTo2dmIntermediateTests
 /// \brief Tests for MeMultiPolyTo2dm.
 ////////////////////////////////////////////////////////////////////////////////
-//------------------------------------------------------------------------------
-/// \brief    Defines the test group.
-/// \return CxxTest::TestGroup reference.
-//------------------------------------------------------------------------------
-#ifndef CXXTEST4
-//------------------------------------------------------------------------------
-/// \brief
-//------------------------------------------------------------------------------
-const CxxTest::TestGroup& MeMultiPolyTo2dmIntermediateTests::group()
-{
-  return *CxxTest::TestGroup::GetGroup(CxxTest::TG_INTERMEDIATE);
-  // return CxxTest::TestSuite::group();
-} // MeMultiPolyTo2dmIntermediateTests::group
-#endif
 //------------------------------------------------------------------------------
 /// \brief tests meshing a square with a "c" shaped hole in it
 //------------------------------------------------------------------------------

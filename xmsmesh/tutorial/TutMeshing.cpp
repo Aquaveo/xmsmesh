@@ -264,16 +264,6 @@ void tutGenerateAndCompare2dm(MeMultiPolyMesherIo& a_io, const std::string& a_fi
 /// \brief    Defines the test group.
 /// \return CxxTest::TestGroup reference.
 //------------------------------------------------------------------------------
-#ifndef CXXTEST4
-//------------------------------------------------------------------------------
-/// \brief
-//------------------------------------------------------------------------------
-const CxxTest::TestGroup& TutMeshingIntermediateTests::group()
-{
-  return *CxxTest::TestGroup::GetGroup(CxxTest::TG_INTERMEDIATE);
-  // return CxxTest::TestSuite::group();
-} // TutMeshingIntermediateTests::group
-#endif
 //------------------------------------------------------------------------------
 /// \brief Example for meshing a simple square polygon
 //------------------------------------------------------------------------------
