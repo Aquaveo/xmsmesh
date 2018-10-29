@@ -143,7 +143,7 @@ set(xmsmesh_py_source
 # Tests
 if (BUILD_TESTING)
   add_definitions(-DXMS_TEST_PATH="${XMS_TEST_PATH}/")
-  add_definitions(-DCXX_TEST -DCXXTEST4)
+  add_definitions(-DCXX_TEST)
 
   list(APPEND xmsmesh_sources
     xmsmesh/meshing/MeMeshUtils.t.h
