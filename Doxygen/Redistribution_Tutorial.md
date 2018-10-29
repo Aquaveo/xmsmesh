@@ -22,7 +22,7 @@ An image of the redistributed polygon from this example is shown below.
 ## Example - Redistribute Simple Polygon with a Size Function{#Example_Redistribution_Size_Function}
 This example show how to redistribute a polygon boundary using a size function. The size function is specified using xms::InterpBase. The InterpBase class performs spatial interpolation from points and triangles. This example uses a simple polygon with a set of 5 points and 4 triangles to define a linear size function.A picture of the example is shown below.
 
-![Simple polygon with linear size function](tutMesh_ScalarPaving_Input.png)
+![Simple polygon with linear size function](tutRedist_Size_Function_Input.png)
 
 \snippet xmsmesh/tutorial/TutMeshing.cpp snip_test_Example_Redistribute_SizeFunction
 
