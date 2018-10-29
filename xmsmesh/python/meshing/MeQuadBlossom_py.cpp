@@ -12,7 +12,7 @@
 #include <boost/shared_ptr.hpp>
 #include <xmscore/python/misc/PyUtils.h>
 #include <xmsgrid/ugrid/XmUGrid.h>
-#include <xmsmesh/meshing/MeQuadBlossom.h>
+#include <xmsmesh/meshing/detail/MeQuadBlossom.h>
 
 //----- Namespace declaration --------------------------------------------------
 namespace py = pybind11;
