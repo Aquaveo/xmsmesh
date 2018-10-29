@@ -11,7 +11,7 @@
 // 1. Precompiled header
 
 // 2. My own header
-#include <xmsmesh/meshing/MeBadQuadRemover.h>
+#include <xmsmesh/meshing/detail/MeBadQuadRemover.h>
 
 // 3. Standard library headers
 #include <cmath>
@@ -633,7 +633,7 @@ MeBadQuadRemover::~MeBadQuadRemover()
 // UNIT TESTS
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <xmsmesh/meshing/MeBadQuadRemover.t.h>
+#include <xmsmesh/meshing/detail/MeBadQuadRemover.t.h>
 
 #include <xmscore/testing/TestTools.h>
 

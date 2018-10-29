@@ -985,8 +985,8 @@ void TutRedistributionIntermediateTests::test_Example_Redistribute_Polygon_Curva
 //! [snip_test_Example_QuadBlossom_BadQuadRemover]
 #include <xmsgrid/ugrid/XmUGrid.h>
 #include <xmsgrid/ugrid/XmUGridUtils.h>
-#include <xmsmesh/meshing/MeQuadBlossom.h>
-#include <xmsmesh/meshing/MeBadQuadRemover.h>
+#include <xmsmesh/meshing/detail/MeQuadBlossom.h>
+#include <xmsmesh/meshing/detail/MeBadQuadRemover.h>
 
 void TutMeshingIntermediateTests::test_Example_QuadBlossom_BadQuadRemover()
 {

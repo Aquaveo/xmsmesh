@@ -11,7 +11,7 @@
 // 1. Precompiled header
 
 // 2. My own header
-#include <xmsmesh/meshing/MeQuadBlossom.h>
+#include <xmsmesh/meshing/detail/MeQuadBlossom.h>
 
 // 3. Standard library headers
 #include <cmath>
@@ -1032,7 +1032,7 @@ BSHP<XmUGrid> MeQuadBlossom::SplitToQuads(BSHP<XmUGrid> a_ugrid)
 // UNIT TESTS
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <xmsmesh/meshing/MeQuadBlossom.t.h>
+#include <xmsmesh/meshing/detail/MeQuadBlossom.t.h>
 
 #include <xmscore/testing/TestTools.h>
 #include <xmsinterp/triangulate/TrTriangulatorPoints.h>

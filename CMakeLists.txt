@@ -82,11 +82,10 @@ link_directories(${EXT_LIB_DIRS})
 
 # Static library sources
 set(xmsmesh_sources
-  xmsmesh/meshing/MeBadQuadRemover.cpp
   xmsmesh/meshing/MeMeshUtils.cpp
   xmsmesh/meshing/MeMultiPolyTo2dm.cpp
   xmsmesh/meshing/MeMultiPolyMesher.cpp
-  xmsmesh/meshing/MeQuadBlossom.cpp
+  xmsmesh/meshing/detail/MeBadQuadRemover.cpp
   xmsmesh/meshing/detail/MeIntersectPolys.cpp
   xmsmesh/meshing/detail/MePolyPatcher.cpp
   xmsmesh/meshing/detail/MePolyOffsetter.cpp
@@ -94,6 +93,7 @@ set(xmsmesh_sources
   xmsmesh/meshing/detail/MePolyCleaner.cpp
   xmsmesh/meshing/detail/MePolyPts.cpp
   xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.cpp
+  xmsmesh/meshing/detail/MeQuadBlossom.cpp
   xmsmesh/meshing/detail/MeRefinePtsToPolys.cpp
   xmsmesh/meshing/detail/MeRelaxer.cpp
   xmsmesh/meshing/detail/MeWeightMatcher.cpp
@@ -103,14 +103,13 @@ set(xmsmesh_sources
 )
 
 set(xmsmesh_headers
-  xmsmesh/meshing/MeBadQuadRemover.h
   xmsmesh/meshing/MeMeshUtils.h
   xmsmesh/meshing/MePolyMesher.h
   xmsmesh/meshing/MeMultiPolyMesher.h
   xmsmesh/meshing/MeMultiPolyMesherIo.h
   xmsmesh/meshing/MeMultiPolyTo2dm.h
   xmsmesh/meshing/MePolyRedistributePts.h
-  xmsmesh/meshing/MeQuadBlossom.h
+  xmsmesh/meshing/detail/MeBadQuadRemover.h
   xmsmesh/meshing/detail/MePolyCleaner.h
   xmsmesh/meshing/detail/MePolyOffsetter.h
   xmsmesh/meshing/detail/MePolyPts.h
@@ -118,6 +117,7 @@ set(xmsmesh_headers
   xmsmesh/meshing/detail/MeIntersectPolys.h
   xmsmesh/meshing/detail/MePolyPaverToMeshPts.h
   xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.h
+  xmsmesh/meshing/detail/MeQuadBlossom.h
   xmsmesh/meshing/detail/MeRefinePtsToPolys.h
   xmsmesh/meshing/detail/MeRelaxer.h
   xmsmesh/meshing/detail/MeWeightMatcher.h
@@ -146,19 +146,19 @@ if (BUILD_TESTING)
   add_definitions(-DCXX_TEST -DCXXTEST4)
 
   list(APPEND xmsmesh_sources
-    xmsmesh/meshing/MeBadQuadRemover.t.h
     xmsmesh/meshing/MeMeshUtils.t.h
     xmsmesh/meshing/MeMultiPolyTo2dm.t.h
     xmsmesh/meshing/MePolyMesher.t.h
     xmsmesh/meshing/MeMultiPolyMesher.t.h
     xmsmesh/meshing/MePolyRedistributePts.t.h
-    xmsmesh/meshing/MeQuadBlossom.t.h
+    xmsmesh/meshing/detail/MeBadQuadRemover.t.h
     xmsmesh/meshing/detail/MePolyPaverToMeshPts.t.h
     xmsmesh/meshing/detail/MeIntersectPolys.t.h
     xmsmesh/meshing/detail/MePolyPatcher.t.h
     xmsmesh/meshing/detail/MePolyOffsetter.t.h
     xmsmesh/meshing/detail/MePolyCleaner.t.h
     xmsmesh/meshing/detail/MePolyRedistributePtsCurvature.t.h
+    xmsmesh/meshing/detail/MeQuadBlossom.t.h
     xmsmesh/meshing/detail/MeRefinePtsToPolys.t.h
     xmsmesh/meshing/detail/MeRelaxer.t.h
     xmsmesh/meshing/detail/MeWeightMatcher.t.h
