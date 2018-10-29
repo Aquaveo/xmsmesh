@@ -290,12 +290,13 @@ void MeRelaxerImpl::RelaxMarkedPoints(RelaxTypeEnum a_relaxType,
         XM_ASSERT(false);
         break;
       }
+      // preserve the elevation
+      newlocation.z = origlocation.z;
 
       // Change the points location and check for bad triangles
       if (NewLocationIsValid(p, newlocation))
       {
-        points[p].x = newlocation.x;
-        points[p].y = newlocation.y;
+        points[p] = newlocation;
         if (m_sizer)
         {
           // point moved and we must update its target size when doing
@@ -452,7 +453,6 @@ void MeRelaxerImpl::SpringRelaxSinglePoint(int a_point, Pt3d& a_newLocation)
   fy *= numPtsFactor;
   a_newLocation.x = p0.x + fx;
   a_newLocation.y = p0.y + fy;
-  a_newLocation.z = p0.z;
 } // MeRelaxerImpl::SpringRelax
 //------------------------------------------------------------------------------
 /// \brief Set up neighbor point information to be used by the
@@ -665,7 +665,7 @@ void MeRelaxerUnitTests::testRelaxWhileMeshing()
   {
     for (size_t j = 0; j < 5; ++j)
     {
-      tin->Points().push_back(Pt3d(j * 10.0, i * 10.0, 0.0));
+      tin->Points().push_back(Pt3d(j * 10.0, i * 10.0, static_cast<double>(j)));
     }
   }
 
@@ -679,15 +679,18 @@ void MeRelaxerUnitTests::testRelaxWhileMeshing()
 
   BSHP<MeRelaxer> relaxer = MeRelaxer::New();
   relaxer->Relax(outPoly, tin);
-  const double kDelta = 1e-5;
-  double pointsAfterA[] = {
-    0.0, 0.0,  10.0,      0.0,       20.0,      0.0,       30.0,      0.0,       40.0, 0.0,
-    0.0, 10.0, 11.095340, 8.8783699, 20.021946, 10.198352, 29.943135, 9.9222857, 40.0, 10.0,
-    0.0, 20.0, 9.3320588, 19.085690, 20.677562, 20.864280, 31.148854, 18.861555, 40.0, 20.0,
-    0.0, 30.0, 9.9438849, 29.753838, 18.833441, 31.188921, 29.137598, 29.132561, 40.0, 30.0,
-    0.0, 40.0, 10.0,      40.0,      20.0,      40.0,      30.0,      40.0,      40.0, 40.0};
-  VecPt3d pointsAfter = iArrayToVecPt3d(pointsAfterA, XM_COUNTOF(pointsAfterA));
-  TS_ASSERT_DELTA_VECPT3D(pointsAfter, tin->Points(), kDelta);
+  const double kDelta = 1e-2;
+  VecPt3d& tinPts = tin->Points();
+  VecPt3d expectedPts{
+    {0.00, 0.00, 0.00},   {10.00, 0.00, 1.00},  {20.00, 0.00, 2.00},  {30.00, 0.00, 3.00},
+    {40.00, 0.00, 4.00},  {0.00, 10.00, 0.00},  {11.10, 8.88, 1.00},  {20.02, 10.20, 2.00},
+    {29.94, 9.92, 3.00},  {40.00, 10.00, 4.00}, {0.00, 20.00, 0.00},  {9.33, 19.09, 1.00},
+    {20.68, 20.86, 2.00}, {31.15, 18.86, 3.00}, {40.00, 20.00, 4.00}, {0.00, 30.00, 0.00},
+    {9.94, 29.75, 1.00},  {18.83, 31.19, 2.00}, {29.14, 29.13, 3.00}, {40.00, 30.00, 4.00},
+    {0.00, 40.00, 0.00},  {10.00, 40.00, 1.00}, {20.00, 40.00, 2.00}, {30.00, 40.00, 3.00},
+    {40.00, 40.00, 4.00}};
+
+  TS_ASSERT_DELTA_VECPT3D(expectedPts, tinPts, kDelta);
 
 } // MeRelaxerUnitTests::testRelaxWhileMeshing
 //------------------------------------------------------------------------------
@@ -813,7 +816,7 @@ void MeRelaxerUnitTests::testSpringRelaxSinglePoint()
   TS_ASSERT(newDist < startDist);
   TS_ASSERT(r.NewLocationIsValid(4, newloc));
 
-  Pt3d expectedNewLoc(0.905, 0.542, 5);
+  Pt3d expectedNewLoc(0.905, 0.542, 0);
   TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
   TS_ASSERT(r.NewLocationIsValid(4, newloc));
 
@@ -822,7 +825,7 @@ void MeRelaxerUnitTests::testSpringRelaxSinglePoint()
   r.SpringRelaxSinglePoint(4, newloc);
   newDist = Mdist(0.0, 0.0, newloc.x, newloc.y);
   TS_ASSERT(newDist < startDist);
-  expectedNewLoc = Pt3d(0.023, 0.016, 5);
+  expectedNewLoc = Pt3d(0.023, 0.016, 0);
   TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
 
   tin->Points()[4] = newloc;
@@ -830,7 +833,7 @@ void MeRelaxerUnitTests::testSpringRelaxSinglePoint()
   r.SpringRelaxSinglePoint(4, newloc);
   newDist = Mdist(0.0, 0.0, newloc.x, newloc.y);
   TS_ASSERT(newDist < startDist);
-  expectedNewLoc = Pt3d(0, 0, 5);
+  expectedNewLoc = Pt3d(0, 0, 0);
   TS_ASSERT_DELTA_PT3D(expectedNewLoc, newloc, 1e-2);
   TS_ASSERT(r.NewLocationIsValid(4, newloc));
 } // MeRelaxerUnitTests::testSpringRelaxSinglePoint
