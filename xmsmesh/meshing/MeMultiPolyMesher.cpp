@@ -23,6 +23,7 @@
 #include <boost/unordered_map.hpp>
 
 // 5. Shared code headers
+#include <xmscore/misc/Progress.h>
 #include <xmsinterp/geometry/GmPtSearch.h>
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
@@ -53,12 +54,6 @@ public:
 
   virtual bool MeshIt(MeMultiPolyMesherIo& a_io) override;
 
-  //------------------------------------------------------------------------------
-  /// \brief Set the observer to use for feedback while processing.
-  /// \param a_: The observer.
-  //------------------------------------------------------------------------------
-  virtual void SetObserver(BSHP<Observer> a_) override { m_prog = a_; }
-
 private:
   void AppendMesh(VecPt3d& a_points, const VecInt& a_triangles, VecInt& a_cells);
   void AddUniquePoints(const VecPt3d& a_points, VecInt& a_oldDups, VecInt& a_newDups);
@@ -80,7 +75,6 @@ private:
   VecInt m_cells;      ///< Mesh cells as a stream
   int m_cellCount;     ///< Number of cells
   boost::unordered_map<std::pair<double, double>, int> m_ptHash; ///< hashes points
-  BSHP<Observer> m_prog;                                         ///< Observer
 };                                                               // class MeMultiPolyMesherImpl
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +118,6 @@ MeMultiPolyMesherImpl::MeMultiPolyMesherImpl()
 : m_pts(new VecPt3d())
 , m_cells()
 , m_cellCount(0)
-, m_prog()
 {
 } // MeMultiPolyMesherImpl::MeMultiPolyMesherImpl
 //------------------------------------------------------------------------------
@@ -143,9 +136,9 @@ bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
 
   // Mesh each polygon and merge the triangles together into one mesh
   BSHP<MePolyMesher> pm = MePolyMesher::New();
-  pm->SetObserver(m_prog);
-  if (m_prog)
-    m_prog->BeginOperationString("Meshing multiple polygons");
+  std::stringstream ss;
+  ss << "Meshing polygon 1 of " << a_io.m_polys.size();
+  Progress prog(ss.str());
 
   VecPt3d pts, refinePts, tmpPts;
   VecInt tris, cells, cellPolygons;
@@ -167,13 +160,10 @@ bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
     }
 
     // Update progress
-    if (m_prog)
-    {
-      std::stringstream ss;
-      ss << "Meshing polygon " << i << " of " << a_io.m_polys.size();
-      m_prog->UpdateMessage(ss.str());
-      m_prog->ProgressStatus((double)i / a_io.m_polys.size());
-    }
+    ss.str("");
+    ss << "Meshing polygon " << i + 2 << " of " << a_io.m_polys.size();
+    prog.UpdateMessage(ss.str());
+    prog.ProgressStatus((double)i / a_io.m_polys.size());
   }
 
   // Move memory and cleanup
@@ -182,9 +172,6 @@ bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
   a_io.m_cellPolygons.swap(cellPolygons);
   m_ptHash.clear();
   m_cellCount = 0;
-
-  if (m_prog)
-    m_prog->EndOperation();
 
   // report unused refine points
   ReportUnusedRefinePts(a_io, refinePts);

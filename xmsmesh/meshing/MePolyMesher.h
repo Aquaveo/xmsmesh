@@ -53,7 +53,6 @@ public:
                       VecInt& a_triangles,
                       VecInt& a_cell) = 0;
 
-  virtual void SetObserver(boost::shared_ptr<Observer> a) = 0;
   virtual void GetProcessedRefinePts(VecPt3d& a_pts) = 0;
 
 private:

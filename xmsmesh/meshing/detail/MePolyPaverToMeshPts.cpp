@@ -29,6 +29,7 @@
 #include <xmsmesh/meshing/detail/MePolyOffsetter.h>
 #include <xmsmesh/meshing/MePolyRedistributePts.h>
 #include <xmscore/misc/Observer.h>
+#include <xmscore/misc/Progress.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/XmConst.h>
 
@@ -229,8 +230,7 @@ void MePolyPaverToMeshPtsImpl::TearDown()
 //------------------------------------------------------------------------------
 void MePolyPaverToMeshPtsImpl::ProcessStack()
 {
-  if (m_prog)
-    m_prog->BeginOperationString("Paving Polygon");
+  Progress prog("Paving Polygon");
 
   double area;
   std::list<Poly>::iterator it(m_polyStack.begin());
@@ -261,11 +261,8 @@ void MePolyPaverToMeshPtsImpl::ProcessStack()
 
     // do progress
     area = AreaFromPolyStack();
-    if (m_prog)
-      m_prog->ProgressStatus(area / m_polyEnvelopeArea);
+    prog.ProgressStatus(1.0 - (area / m_polyEnvelopeArea));
   }
-  if (m_prog)
-    m_prog->EndOperation();
 } // MePolyPaverToMeshPtsImpl::ProcessStack
 //------------------------------------------------------------------------------
 /// \brief Takes the points on a_poly and moves them to the output of mesh

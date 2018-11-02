@@ -95,7 +95,6 @@ public:
   /// \brief sets the observer class to get feedback on the meshing process
   /// \param a_: The observer.
   //------------------------------------------------------------------------------
-  virtual void SetObserver(BSHP<Observer> a_) override { m_observer = a_; }
   virtual void GetProcessedRefinePts(std::vector<Pt3d>& a_pts) override;
 
   void TestWithPoints(const VecInt& a_outPoly,
@@ -142,7 +141,6 @@ private:
   VecInt m_polyCorners;      ///< corner indexes used with mesh patch generation
   double m_xyTol;            ///< xy tolerance used in geometric comparisons
   bool m_testing;            ///< flag to indicate if we are testing the class
-  BSHP<Observer> m_observer; ///< observer to send feedback on the meshing progress
   Pt3d m_min;                ///< min xy bound
   Pt3d m_max;                ///< max xy bound
   PtHash m_ptHash;           ///< hash for point locations
@@ -206,7 +204,6 @@ MePolyMesherImpl::MePolyMesherImpl()
 , m_refPtIdxs()
 , m_xyTol(1e-9)
 , m_testing(false)
-, m_observer()
 , m_polyId(-1)
 , m_seedPts()
 {
@@ -508,7 +505,6 @@ void MePolyMesherImpl::GenerateMeshPts()
     }
     else
     {
-      m_polyPaver->SetObserver(m_observer);
       // generate mesh points
       m_polyPaver->PolyToMeshPts(m_outPoly, inPolys, m_bias, m_xyTol, *m_points);
     }
@@ -560,7 +556,6 @@ void MePolyMesherImpl::Triangulate()
 {
   m_tin->SetPoints(m_points);
   TrTriangulatorPoints client(*m_points.get(), m_tin->Triangles(), &m_tin->TrisAdjToPts());
-  client.SetObserver(m_observer);
   bool rv = client.Triangulate();
   if (!rv)
   {
@@ -584,7 +579,6 @@ void MePolyMesherImpl::ExportTinForDebug()
 void MePolyMesherImpl::AddBreaklines()
 {
   BSHP<TrBreaklineAdder> adder = TrBreaklineAdder::New();
-  adder->SetObserver(m_observer);
   adder->SetTin(m_tin, m_xyTol);
 
   // Close the polys
@@ -608,11 +602,6 @@ void MePolyMesherImpl::AddBreaklines()
 //------------------------------------------------------------------------------
 void MePolyMesherImpl::DeleteTrianglesOutsidePolys()
 {
-  if (m_observer)
-  {
-    m_observer->BeginOperationString("Deleting triangles outside of polygon.");
-  }
-
   // Close the polygons by making the last point the same as the first and
   // create one 2D array for outer and all inner
   VecInt2d allPolys;
@@ -626,11 +615,6 @@ void MePolyMesherImpl::DeleteTrianglesOutsidePolys()
 
   BSHP<TrOuterTriangleDeleter> deleter = TrOuterTriangleDeleter::New();
   deleter->Delete(allPolys, m_tin);
-
-  if (m_observer)
-  {
-    m_observer->EndOperation();
-  }
 } // MePolyMesherImpl::DeleteTrianglesOutsidePolys
 //------------------------------------------------------------------------------
 /// \brief Delete internal points that are only connected to 4 triangles and
@@ -641,7 +625,6 @@ void MePolyMesherImpl::AutoFixFourTrianglePts()
   if (!m_removeInternalFourTrianglePts)
     return;
   BSHP<TrAutoFixFourTrianglePts> fixer = TrAutoFixFourTrianglePts::New();
-  fixer->SetObserver(m_observer);
 
   // can't delete boundary pts or refine points
   VecInt noDeletePts(m_outPolyPtIdxs);

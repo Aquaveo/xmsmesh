@@ -42,7 +42,6 @@ public:
   /// \cond
 
   virtual bool MeshIt(MeMultiPolyMesherIo& a_io) = 0;
-  virtual void SetObserver(boost::shared_ptr<Observer> a_) = 0;
   virtual ~MeMultiPolyMesher() {}
 
   /// \endcond

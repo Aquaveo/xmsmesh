@@ -179,7 +179,6 @@ bool MeMultiPolyTo2dmImpl::Generate2dm(MeMultiPolyMesherIo& a_io,
 
   // Mesh the polygons
   BSHP<MeMultiPolyMesher> mp = MeMultiPolyMesher::New();
-  mp->SetObserver(m_prog);
   if (!mp->MeshIt(a_io))
   {
     XM_LOG(xmlog::error, "Failed to generate mesh from polygons.");
