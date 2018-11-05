@@ -20,7 +20,6 @@
 
 // 5. Shared code headers
 #include <xmscore/math/math.h>
-#include <xmscore/misc/Observer.h>
 #include <xmscore/misc/StringUtil.h>
 #include <xmscore/misc/XmConst.h>
 #include <xmscore/misc/XmError.h>
@@ -68,11 +67,6 @@ public:
   virtual void Relax(/*MeshPolyEnum a_meshPolyEnum,*/
                      const VecInt& a_fixedPoints,
                      BSHP<TrTin> a_tin) override;
-  //------------------------------------------------------------------------------
-  /// \brief Sets the observer to report progress on the process.
-  /// \param a_: The observer.
-  //------------------------------------------------------------------------------
-  virtual void SetObserver(BSHP<Observer> a_) override { m_observer = a_; }
   virtual bool SetRelaxationMethod(const std::string& a_relaxMethod) override;
   //------------------------------------------------------------------------------
   /// \brief Sets size function used by the spring relaxation method
@@ -95,7 +89,6 @@ public:
   VecPt3d m_centroids;         ///< The triangle centroids
   double m_slideangle;         ///< Used on boundary relaxation. Not sure how to document this one
   VecInt m_flags;              ///< Flags for points of type RelaxFlagEnum
-  BSHP<Observer> m_observer;   ///< observer class to report progress
   RelaxTypeEnum m_relaxType;   ///< the type of relaxation to perform. See RelaxTypeEnum
   BSHP<MePolyRedistributePts> m_sizer; ///< size function used by the spring relax method
   VecDbl m_pointSizes;                 ///< sizer size at each mesh point
@@ -117,7 +110,6 @@ MeRelaxerImpl::MeRelaxerImpl()
 , m_centroids()
 , m_slideangle(5.0)
 , m_flags()
-, m_observer()
 , m_relaxType(RELAXTYPE_AREA)
 , m_sizer()
 , m_pointSizes()
@@ -317,12 +309,6 @@ void MeRelaxerImpl::RelaxMarkedPoints(RelaxTypeEnum a_relaxType,
 
     } // if (m_flags[p])
 
-    // Update progress
-    if (m_observer)
-    {
-      double pcntdone = iterationPercent * p / (double)nPoints;
-      m_observer->ProgressStatus(pcntdone);
-    }
   } // for (int p = 0; p < nPoints; ++p)
 } // MeRelaxerImpl::RelaxMarkedPoints
 //------------------------------------------------------------------------------

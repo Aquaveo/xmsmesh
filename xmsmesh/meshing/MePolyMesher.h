@@ -27,7 +27,6 @@
 namespace xms
 {
 class MeMultiPolyMesherIo;
-class Observer;
 //----- Constants / Enumerations -----------------------------------------------
 
 //----- Structs / Classes ------------------------------------------------------

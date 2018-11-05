@@ -20,13 +20,6 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         poly_mesher = MeMultiPolyMesher()
         self.assertIsInstance(poly_mesher, MeMultiPolyMesher)
 
-    def test_set_observer(self):
-        mesher = MeMultiPolyMesher()
-        obs = Observer()
-        # obs.pytest_id = "ObserverTestMeMultiPolyMesher"
-        mesher.set_observer(obs)
-        # TODO we don't have a way to test this yet.
-
     def test_mesh_it(self):
         pass
 

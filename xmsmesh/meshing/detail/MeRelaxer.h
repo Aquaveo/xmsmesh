@@ -26,7 +26,6 @@ namespace xms
 //----- Forward declarations ---------------------------------------------------
 
 class TrTin;
-class Observer;
 class MePolyRedistributePts;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +36,6 @@ public:
 
   /// \cond
   virtual void Relax(const VecInt& a_fixedPoints, boost::shared_ptr<TrTin> a_tin) = 0;
-  virtual void SetObserver(boost::shared_ptr<Observer> a) = 0;
   virtual bool SetRelaxationMethod(const std::string& a_relaxType) = 0;
   virtual void SetPointSizer(BSHP<MePolyRedistributePts> a_sizer) = 0;
   /// \endcond

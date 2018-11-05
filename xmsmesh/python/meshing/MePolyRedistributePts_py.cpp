@@ -10,7 +10,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
-#include <xmscore/python/misc/PublicObserver.h>
 #include <xmsinterp/interpolate/InterpBase.h>
 #include <xmsmesh/meshing/MePolyRedistributePts.h>
 

@@ -10,7 +10,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
-#include <xmscore/python/misc/PublicObserver.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MePolyMesher.h>
 
@@ -59,19 +58,6 @@ void initMePolyMesher(py::module &m) {
             py::array ret_cell(vec_cell.size(), vec_cell.data());
             return py::make_tuple(result, ret_points, ret_tris, ret_cell);
         },mesh_it_doc,py::arg("mesh_io"),py::arg("poly_idx"));
-    // -------------------------------------------------------------------------
-    // function: set_observer
-    // -------------------------------------------------------------------------
-    const char* set_observer_doc = R"pydoc(
-        sets the observer class to get feedback on the meshing process
-
-        Args:
-          obs (Observer): The obersever
-    )pydoc";
-    polyMesher.def("set_observer", [](xms::MePolyMesher &self,
-                                boost::shared_ptr<xms::PublicObserver> obs) {
-            self.SetObserver(obs);
-        },set_observer_doc, py::arg("obs"));
     // -------------------------------------------------------------------------
     // function: get_processed_refine_pts
     // -------------------------------------------------------------------------

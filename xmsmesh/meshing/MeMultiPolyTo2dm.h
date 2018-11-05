@@ -27,7 +27,6 @@
 
 namespace xms
 {
-class Observer;
 class MeMultiPolyMesherIo;
 
 //----- Constants / Enumerations -----------------------------------------------
@@ -52,7 +51,6 @@ public:
                            std::ostream& a_os,
                            int a_precision = 15) = 0;
 
-  virtual void SetObserver(BSHP<Observer> a_) = 0;
   virtual ~MeMultiPolyTo2dm() {}
 
 protected:

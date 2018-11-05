@@ -11,7 +11,6 @@
 #include <pybind11/numpy.h>
 #include <sstream>
 #include <boost/shared_ptr.hpp>
-#include <xmscore/python/misc/PublicObserver.h>
 #include <xmsmesh/meshing/MeMultiPolyTo2dm.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 
@@ -50,17 +49,4 @@ void initMeMultiPolyTo2dm(py::module &m) {
           }
           return py::make_tuple(self.Generate2dm(mesh_io, fname), "");
         },generate_2dm_doc,py::arg("mesh_io"),py::arg("fname"),py::arg("precision")=15);
-    // -------------------------------------------------------------------------
-    // function: set_observer
-    // -------------------------------------------------------------------------
-    const char* set_observer_doc = R"pydoc(
-        sets the observer class to give feedback on the grid generation process
-
-        Args:
-          obs (Observer): The observer.
-    )pydoc";
-    poly2dm.def("set_observer", [](xms::MeMultiPolyTo2dm &self,
-                                boost::shared_ptr<xms::PublicObserver> obs) {
-            self.SetObserver(obs);
-        },set_observer_doc, py::arg("obs"));
 }

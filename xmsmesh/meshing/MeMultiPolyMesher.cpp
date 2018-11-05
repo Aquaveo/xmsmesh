@@ -28,7 +28,6 @@
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MePolyMesher.h>
-#include <xmscore/misc/Observer.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/stl/set.h>
 #include <xmscore/stl/vector.h>

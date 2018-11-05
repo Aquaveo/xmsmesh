@@ -18,7 +18,6 @@
 //----- Namespace declaration --------------------------------------------------
 namespace xms
 {
-class Observer;
 class MePolyRedistributePts;
 
 //----- Constants / Enumerations -----------------------------------------------
@@ -39,7 +38,6 @@ public:
                              std::vector<Pt3d>& a_meshPts) = 0;
 
   virtual void SetRedistributor(BSHP<MePolyRedistributePts> a_) = 0;
-  virtual void SetObserver(BSHP<Observer> a_) = 0;
 
 private:
   XM_DISALLOW_COPY_AND_ASSIGN(MePolyPaverToMeshPts);

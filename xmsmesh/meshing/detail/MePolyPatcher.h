@@ -18,7 +18,6 @@
 //----- Namespace declaration --------------------------------------------------
 namespace xms
 {
-class Observer;
 
 //----- Constants / Enumerations -----------------------------------------------
 
@@ -37,7 +36,6 @@ public:
                       double a_xytol,
                       VecPt3d& a_points,
                       VecInt& a_cells) = 0;
-  virtual void SetObserver(BSHP<Observer> a_) = 0;
 
 protected:
   MePolyPatcher() {}

@@ -54,8 +54,7 @@ class MePolyPatcherImpl : public MePolyPatcher
   friend MePolyPatcherUnitTests; ///< tests the class
 public:
   MePolyPatcherImpl()
-  : m_prog()
-  , m_n0(0)
+  : m_n0(0)
   , m_n1(0)
   , m_dn(0)
   , m_np_end(0)
@@ -76,11 +75,6 @@ public:
                       double a_xytol,
                       VecPt3d& a_points,
                       VecInt& a_cells) override;
-  //------------------------------------------------------------------------------
-  /// \brief sets the observer to report progress
-  /// \param a_: The observer.
-  //------------------------------------------------------------------------------
-  void SetObserver(BSHP<Observer> a_) override { m_prog = a_; }
 
   size_t PolyCornerClosestToTopLeft(const VecPt3d& a_oPoly,
                                     const VecInt& a_idx,
@@ -107,7 +101,6 @@ public:
   void CreateCellAdjacencyInfo();
   void GetCellPtInfo(int a_cellIdx, VecInt& a_ptIdxs, VecInt& a_adjCellIdx, VecInt2d& a_adjPts);
 
-  BSHP<Observer> m_prog;   ///< observer to report mesh generation progress
   VecPt3d2d m_pts,         ///< polygon points divided into 4 sides
     m_side1pts,            ///< 1 side of polygon points
     m_side2pts,            ///< 1 side of polygon points

@@ -30,7 +30,6 @@
 #include <xmscore/misc/XmConst.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/boost_defines.h> // BSHP
-#include <xmscore/misc/Observer.h>
 #include <xmscore/misc/XmLog.h>
 #include <xmscore/stl/set.h>
 #include <xmsinterp/geometry/geoms.h>
@@ -91,10 +90,6 @@ public:
                       VecPt3d& a_points,
                       VecInt& a_triangles);
 
-  //------------------------------------------------------------------------------
-  /// \brief sets the observer class to get feedback on the meshing process
-  /// \param a_: The observer.
-  //------------------------------------------------------------------------------
   virtual void GetProcessedRefinePts(std::vector<Pt3d>& a_pts) override;
 
   void TestWithPoints(const VecInt& a_outPoly,

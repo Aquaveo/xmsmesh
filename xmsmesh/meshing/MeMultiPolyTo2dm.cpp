@@ -59,14 +59,6 @@ public:
 
   void Write2dm(MeMultiPolyMesherIo& a_input, std::ostream& a_os, int a_precision);
 
-  //------------------------------------------------------------------------------
-  /// \brief sets the observer class to give feedback on the grid generation process
-  /// \param a_: The observer.
-  //------------------------------------------------------------------------------
-  virtual void SetObserver(BSHP<Observer> a_) override { m_prog = a_; }
-
-  BSHP<Observer> m_prog; ///< observer class to give feedback on grid generation process
-
   /// to avoid different order of cells/elements on different OS'es we will sort
   /// the cells for consistent results
   bool m_sortCellsForTesting = true;

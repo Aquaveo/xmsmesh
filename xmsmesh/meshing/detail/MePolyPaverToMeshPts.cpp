@@ -28,7 +28,6 @@
 #include <xmsmesh/meshing/detail/MePolyCleaner.h>
 #include <xmsmesh/meshing/detail/MePolyOffsetter.h>
 #include <xmsmesh/meshing/MePolyRedistributePts.h>
-#include <xmscore/misc/Observer.h>
 #include <xmscore/misc/Progress.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/XmConst.h>
@@ -81,7 +80,6 @@ public:
   , m_bias(1)
   , m_polyEnvelopeArea(0)
   , m_polyOffsetIter(1)
-  , m_prog()
   {
   }
 
@@ -94,7 +92,6 @@ public:
   /// \brief
   //------------------------------------------------------------------------------
   void SetRedistributor(BSHP<MePolyRedistributePts> a_) override { m_externalRedist = a_; }
-  void SetObserver(BSHP<Observer> a_) override { m_prog = a_; }
   void Setup();
   void TearDown();
   void ProcessStack();
@@ -115,7 +112,6 @@ public:
   double m_bias;
   double m_polyEnvelopeArea;
   int m_polyOffsetIter;
-  BSHP<Observer> m_prog;
   boost::unordered_set<std::pair<double, double>> m_ptHash;
 
   std::vector<MePolyOffsetterOutput> m_offsetOutputs;

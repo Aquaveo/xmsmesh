@@ -11,7 +11,6 @@
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
 #include <xmscore/misc/XmError.h>
-#include <xmscore/python/misc/PublicObserver.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MeMultiPolyMesher.h>
 
@@ -48,17 +47,4 @@ void initMeMultiPolyMesher(py::module &m) {
               return py::make_tuple(false, errors);
             }
         },mesh_it_doc, py::arg("mesh_io"));
-  // ---------------------------------------------------------------------------
-  // function: set_observer
-  // ---------------------------------------------------------------------------
-  const char* set_observer_doc = R"pydoc(
-      Set the observer to use for feedback while processing.
-
-      Args:
-          obs (Observer): The observer.
-  )pydoc";
-    polymesher.def("set_observer", [](xms::MeMultiPolyMesher &self,
-                                boost::shared_ptr<xms::PublicObserver> obs) {
-            self.SetObserver(obs);
-        },set_observer_doc, py::arg("obs"));
 }

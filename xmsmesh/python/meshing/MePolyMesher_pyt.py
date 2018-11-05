@@ -29,11 +29,6 @@ class TestMePolyMesher(unittest.TestCase):
         mesher = MePolyMesher()
         self.assertIsInstance(mesher, MePolyMesher)
 
-    def test_set_observer(self):
-        mesher = MePolyMesher()
-        obs = Observer()
-        mesher.set_observer(obs)
-        
     def test_mesh_it(self):
         outside_poly = ((5, 0, 0), (10, 5, 0), (10, 15, 0),
                         (5, 20, 0), (0, 15, 0), (0, 5, 0))

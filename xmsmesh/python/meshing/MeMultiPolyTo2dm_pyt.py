@@ -25,12 +25,6 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
         to2dm = MeMultiPolyTo2dm()
         self.assertIsInstance(to2dm, MeMultiPolyTo2dm)
 
-    def test_set_observer(self):
-        to2dm = MeMultiPolyTo2dm()
-        obs = Observer()
-        to2dm.set_observer(obs)
-        # TODO: Expand testing here
-
     def test_generate_2dm(self):
         to2dm = MeMultiPolyTo2dm()
         io = MeMultiPolyMesherIo()
