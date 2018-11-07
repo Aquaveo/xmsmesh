@@ -963,7 +963,7 @@ BSHP<XmUGrid> MeQuadBlossom::SplitToQuads(BSHP<XmUGrid> a_ugrid)
   VecPt3d points = a_ugrid->GetLocations();
   VecInt cells;
 
-  int numPoints = a_ugrid->PointCount();
+  int numPoints = a_ugrid->GetPointCount();
   VecVecAdjPointMidpoint edgeMidsides(numPoints);
   for (int pointIdx = 0; pointIdx < numPoints; ++pointIdx)
   {

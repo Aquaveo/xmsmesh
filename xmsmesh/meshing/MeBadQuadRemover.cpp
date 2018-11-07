@@ -203,8 +203,8 @@ int GetAdjacentPointCount(BSHP<XmUGrid> a_ugrid, int a_pointIdx)
 //------------------------------------------------------------------------------
 VecInt GetAdjacentPointCounts(BSHP<XmUGrid> a_ugrid)
 {
-  VecInt counts(a_ugrid->PointCount());
-  int numPoints = a_ugrid->PointCount();
+  VecInt counts(a_ugrid->GetPointCount());
+  int numPoints = a_ugrid->GetPointCount();
   for (int pointIdx = 0; pointIdx < numPoints; ++pointIdx)
   {
     counts[pointIdx] = GetAdjacentPointCount(a_ugrid, pointIdx);
@@ -228,7 +228,7 @@ VecInt GetAdjacentPointCounts(BSHP<XmUGrid> a_ugrid)
 //------------------------------------------------------------------------------
 MeBadQuadRemoverImpl::MeBadQuadRemoverImpl(BSHP<XmUGrid> a_ugrid)
 : m_ugrid(a_ugrid)
-, m_pointIdxMap(a_ugrid->PointCount(), -1)
+, m_pointIdxMap(a_ugrid->GetPointCount(), -1)
 , m_adjPointCnts(GetAdjacentPointCounts(a_ugrid))
 {
   int cellCount = a_ugrid->GetCellCount();
@@ -338,7 +338,7 @@ BSHP<XmUGrid> MeBadQuadRemoverImpl::BuildUGridFromReplacedPoints()
   }
 
   VecPt3d newPoints;
-  int numPoints = (int)m_ugrid->PointCount();
+  int numPoints = (int)m_ugrid->GetPointCount();
   newPoints.reserve(numPoints);
   int currPtIdx = 0;
   VecInt newPointIdxLookupTable(numPoints, -1);
