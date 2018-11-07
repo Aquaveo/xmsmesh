@@ -70,7 +70,9 @@ echo "" > .nojekyll
 
 #install doxygen
 sudo apt-get update
-sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
+wget http://utils.aquaveo.com/doxygen-1.8.14-aquaveo.deb
+sudo apt-get install libedit2 libllvm5.0 libclang1-5.0 libxapian30
+sudo dpkg -i doxygen-1.8.14-aquaveo.deb
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
