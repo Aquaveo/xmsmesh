@@ -1593,13 +1593,6 @@
       <anchor>a158c6ffdda1e035af9d20cfc3d531dfc</anchor>
       <arglist>(MeMultiPolyMesherIo &amp;a_io) override</arglist>
     </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a4b6a624facd695b141de2b1eb03b7197</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
     <member kind="function" protection="private">
       <type>void</type>
       <name>AppendMesh</name>
@@ -1682,13 +1675,6 @@
       <name>m_ptHash</name>
       <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
       <anchor>ac5f958520185e51e95bb2363ea7f2707</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_prog</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>a578ac240eb6edf88669c53bf5db01036</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1833,20 +1819,6 @@
       <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
       <anchor>aa287cf480811360dd1dfb467abec212b</anchor>
       <arglist>(MeMultiPolyMesherIo &amp;a_input, std::ostream &amp;a_os, int a_precision)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>a472acd2f5c53046b92dd1238b81c0090</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_prog</name>
-      <anchorfile>classxms_1_1_me_multi_poly_to2dm_impl.html</anchorfile>
-      <anchor>ad04e8ca93cf865389d0a3384343a8316</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>bool</type>
@@ -2514,13 +2486,6 @@
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>a8cd6b96681c377f09066892354241ae8</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
       <name>GetProcessedRefinePts</name>
       <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
       <anchor>aab7ff4fdd10edf54ee16cc52b9be6abf</anchor>
@@ -2762,13 +2727,6 @@
       <name>m_testing</name>
       <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
       <anchor>a3747126ec1d1c00af868c5a40407bdb6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_observer</name>
-      <anchorfile>classxms_1_1_me_poly_mesher_impl.html</anchorfile>
-      <anchor>aa44e16287114ae2adb165730e3f4e98a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -3061,13 +3019,6 @@
       <arglist>(int a_polyId, const VecPt3d &amp;a_outPoly, const VecInt &amp;a_polyCorners, double a_xytol, VecPt3d &amp;a_points, VecInt &amp;a_cells) override</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_poly_patcher_impl.html</anchorfile>
-      <anchor>abf75dd5529d241bb17c3a6bc13b5dd7f</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="function">
       <type>size_t</type>
       <name>PolyCornerClosestToTopLeft</name>
       <anchorfile>classxms_1_1_me_poly_patcher_impl.html</anchorfile>
@@ -3192,13 +3143,6 @@
       <anchorfile>classxms_1_1_me_poly_patcher_impl.html</anchorfile>
       <anchor>a34274027a0c5f2851c6471b70bd54fb0</anchor>
       <arglist>(int a_cellIdx, VecInt &amp;a_ptIdxs, VecInt &amp;a_adjCellIdx, VecInt2d &amp;a_adjPts)</arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_prog</name>
-      <anchorfile>classxms_1_1_me_poly_patcher_impl.html</anchorfile>
-      <anchor>a80185fafb90ede6155201d3da2e6abff</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>VecPt3d2d</type>
@@ -4717,13 +4661,6 @@
       <arglist>(const VecInt &amp;a_fixedPoints, BSHP&lt; TrTin &gt; a_tin) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
-      <name>SetObserver</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a95a4cd3cc4216f5c9d4c0c2ae649572b</anchor>
-      <arglist>(BSHP&lt; Observer &gt; a_) override</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>SetRelaxationMethod</name>
       <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
@@ -4833,13 +4770,6 @@
       <name>m_flags</name>
       <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
       <anchor>a0a7223785c7e77a123ccf4b617002ea5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>BSHP&lt; Observer &gt;</type>
-      <name>m_observer</name>
-      <anchorfile>classxms_1_1_me_relaxer_impl.html</anchorfile>
-      <anchor>a86bedfb0f447b1389003d9a77119b792</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">

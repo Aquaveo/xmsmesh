@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['x',['https://aquaveo.github.io/xmscore/classxms_1_1_pt2.html#ad745ecd6452f58f494bb7272f15ba094',1,'xms::Pt2::x()'],['https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a',1,'xms::Pt3::x()'],['https://aquaveo.github.io/xmscore/classxms_1_1_pt4.html#aad37780e1c7e2ee393de407fb197b8f9',1,'xms::Pt4::x()']]]
+  ['y',['y',['https://aquaveo.github.io/xmscore/classxms_1_1_pt2.html#a18572826ae6b934a324b196f0b58de88',1,'xms::Pt2::y()'],['https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290',1,'xms::Pt3::y()'],['https://aquaveo.github.io/xmscore/classxms_1_1_pt4.html#abf1e472e85eee6a9b9767e0bbfe1b141',1,'xms::Pt4::y()']]]
 ];

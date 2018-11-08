@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['beginoperationstring',['BeginOperationString',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a9117ce56380817da4d907c30ff229e9c',1,'xms::Observer::impl::BeginOperationString()'],['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a70a1cf0b6f4ab3bb533dda17767abf3f',1,'xms::Observer::BeginOperationString()']]],
+  ['beginoperationstring',['BeginOperationString',['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a70a1cf0b6f4ab3bb533dda17767abf3f',1,'MockObserver::BeginOperationString()'],['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a9117ce56380817da4d907c30ff229e9c',1,'xms::Observer::impl::BeginOperationString()']]],
   ['blendfunc',['BlendFunc',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#affbd9a0395c7a13efda1f5371cfd586e',1,'xms::InterpNatNeighImpl']]],
   ['blendweights',['BlendWeights',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#ab39f57fb320a9b51460a2b01a92dd912',1,'xms::InterpNatNeighImpl']]],
   ['boostpoly',['BoostPoly',['../classxms_1_1_me_intersect_polys_1_1impl.html#a9ed7af21fd2ff4a2b69d1eb550473f75',1,'xms::MeIntersectPolys::impl']]],

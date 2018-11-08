@@ -1,11 +1,12 @@
 var searchData=
 [
+  ['misc',['misc',['https://aquaveo.github.io/xmscore/namespacepython_1_1misc_1_1observer__pyt.html',1,'python']]],
+  ['observer_5fpyt',['observer_pyt',['https://aquaveo.github.io/xmscore/namespacepython_1_1misc_1_1observer__pyt.html',1,'python::misc']]],
   ['pi_5fover_5ftwo',['PI_OVER_TWO',['../_me_quad_blossom_8cpp.html#ac0b189b5d1a9663ea53ed8965c531c09',1,'xms']]],
   ['piover3',['PIOVER3',['../_me_poly_offsetter_8cpp.html#a4cfff025e18e95fae55d167e8cd49b08',1,'MePolyOffsetter.cpp']]],
   ['piover6',['PIOVER6',['../_me_poly_offsetter_8cpp.html#a9b4e5dcd0ca3b60974d3bc58c4f37ee1',1,'MePolyOffsetter.cpp']]],
   ['placepoints',['PlacePoints',['../classxms_1_1_me_poly_redistribute_pts_curvature_impl.html#add20918f15dcbebb1e709cf9e9d16df8',1,'xms::MePolyRedistributePtsCurvatureImpl']]],
   ['pointactivityfromtriactivity',['PointActivityFromTriActivity',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_tri_search_impl.html#a5b26bb57b6a3dc0373188675dbf09c11',1,'xms::GmTriSearchImpl']]],
-  ['pointcount',['PointCount',['https://aquaveo.github.io/xmsgrid/classxms_1_1_xm_u_grid.html#a079d0f44930c597b1ebe45786f8ff000',1,'xms::XmUGrid::PointCount()'],['https://aquaveo.github.io/xmsgrid/classxms_1_1_xm_u_grid_impl.html#a91222e8f9816eb369898da1f91ae3d10',1,'xms::XmUGridImpl::PointCount()']]],
   ['pointidxesfromtriidx',['PointIdxesFromTriIdx',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_tri_search_impl.html#ab3a89a592db07b714e4a5eb8d12037c6',1,'xms::GmTriSearchImpl']]],
   ['pointindexfound',['PointIndexFound',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#a8947cb759381812e9b2b906b48874553',1,'xms::TrTinImpl']]],
   ['pointisincircumcircle',['PointIsInCircumcircle',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#a208635ddaf084e5baae40c2538ff1dd1',1,'xms::TrTinImpl']]],
@@ -30,7 +31,7 @@ var searchData=
   ['progress_2eh',['Progress.h',['https://aquaveo.github.io/xmscore/_progress_8h.html',1,'']]],
   ['progress_2et_2eh',['Progress.t.h',['https://aquaveo.github.io/xmscore/_progress_8t_8h.html',1,'']]],
   ['progresslistener',['ProgressListener',['https://aquaveo.github.io/xmscore/classxms_1_1_progress_listener.html',1,'xms']]],
-  ['progressstatus',['ProgressStatus',['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#ac53cde5a326843717b57e49767ff5be4',1,'xms::Observer::ProgressStatus()'],['https://aquaveo.github.io/xmscore/classxms_1_1_progress.html#ad9b48819d490b81c76a3ac0b2f8e8c3d',1,'xms::Progress::ProgressStatus()']]],
+  ['progressstatus',['ProgressStatus',['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#ac53cde5a326843717b57e49767ff5be4',1,'MockObserver::ProgressStatus()'],['https://aquaveo.github.io/xmscore/classxms_1_1_progress.html#ad9b48819d490b81c76a3ac0b2f8e8c3d',1,'xms::Progress::ProgressStatus()']]],
   ['progressunittests',['ProgressUnitTests',['https://aquaveo.github.io/xmscore/class_progress_unit_tests.html',1,'']]],
   ['pt_2ecpp',['pt.cpp',['https://aquaveo.github.io/xmscore/pt_8cpp.html',1,'']]],
   ['pt_2eh',['pt.h',['https://aquaveo.github.io/xmscore/pt_8h.html',1,'']]],
@@ -51,5 +52,11 @@ var searchData=
   ['ptssharedpointer',['PtsSharedPointer',['../classxms_1_1_me_poly_pts.html#a463b1e489ab991904aad2385efe5f5c4',1,'xms::MePolyPts']]],
   ['ptstosearch',['PtsToSearch',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_pt_search_impl.html#aa1392683701227465eb55bda1a899865',1,'xms::GmPtSearchImpl']]],
   ['ptswithindistancetoptinrtree',['PtsWithinDistanceToPtInRtree',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_pt_search_impl.html#ad4086c679fcc467109725b43b5862791',1,'xms::GmPtSearchImpl']]],
-  ['ptunittests',['PtUnitTests',['https://aquaveo.github.io/xmscore/class_pt_unit_tests.html',1,'']]]
+  ['ptunittests',['PtUnitTests',['https://aquaveo.github.io/xmscore/class_pt_unit_tests.html',1,'']]],
+  ['publicobserver',['PublicObserver',['https://aquaveo.github.io/xmscore/classxms_1_1_public_observer.html',1,'xms']]],
+  ['publicobserver_2eh',['PublicObserver.h',['https://aquaveo.github.io/xmscore/_public_observer_8h.html',1,'']]],
+  ['pyobserver',['PyObserver',['https://aquaveo.github.io/xmscore/class_py_observer.html',1,'']]],
+  ['pyobserver_2eh',['PyObserver.h',['https://aquaveo.github.io/xmscore/_py_observer_8h.html',1,'']]],
+  ['python',['python',['https://aquaveo.github.io/xmscore/namespacepython_1_1misc_1_1observer__pyt.html',1,'']]],
+  ['pyutils_2eh',['PyUtils.h',['https://aquaveo.github.io/xmscore/_py_utils_8h.html',1,'']]]
 ];

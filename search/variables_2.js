@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error',['error',['https://aquaveo.github.io/xmscore/namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1',1,'xmlog']]]
+  ['intersection',['intersection',['https://aquaveo.github.io/xmsinterp/structxms_1_1edgerecord.html#a34b4f43309c69d116fad70ebe6cf0dfb',1,'xms::edgerecord']]]
 ];

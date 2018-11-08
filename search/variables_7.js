@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['singleton_3c_20xmlog_20_3e',['Singleton&lt; XmLog &gt;',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a7fb5edb11e589948eb870d1b327fa401',1,'xms::XmLog']]]
+  ['two_5fover_5fpi',['TWO_OVER_PI',['../_me_quad_blossom_8cpp.html#ab136e9d94dc522e1ca17e197e6c4f022',1,'xms']]],
+  ['two_5fpi',['TWO_PI',['../_me_quad_blossom_8cpp.html#a9b41bd904b5251c686c373ce2eb287a1',1,'xms']]]
 ];

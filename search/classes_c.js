@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['testobserver',['TestObserver',['https://aquaveo.github.io/xmscore/classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html',1,'python::misc::observer_pyt']]],
   ['threadloop',['ThreadLoop',['https://aquaveo.github.io/xmsinterp/classxms_1_1_thread_loop.html',1,'xms']]],
   ['threadmgr',['ThreadMgr',['https://aquaveo.github.io/xmsinterp/classxms_1_1_thread_mgr.html',1,'xms']]],
   ['threadmgrimpl',['ThreadMgrImpl',['https://aquaveo.github.io/xmsinterp/classxms_1_1_thread_mgr_impl.html',1,'xms']]],

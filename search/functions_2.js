@@ -18,6 +18,7 @@ var searchData=
   ['checkpoints',['CheckPoints',['https://aquaveo.github.io/xmsinterp/class_gm_point_in_poly_unit_tests.html#a9fbcdd807e9e110065b9b44fe07755c0',1,'GmPointInPolyUnitTests']]],
   ['checkrefptstooclosetootherrefpts',['CheckRefPtsTooCloseToOtherRefPts',['../classxms_1_1_me_refine_pts_to_polys_impl.html#abc512c4669a097b5dafc8cdaf8ee8f3a',1,'xms::MeRefinePtsToPolysImpl']]],
   ['checktoaddpoint',['CheckToAddPoint',['../classxms_1_1_me_poly_offsetter_impl.html#ae28a56617f172348af14ada458325f28',1,'xms::MePolyOffsetterImpl']]],
+  ['checktriangle',['CheckTriangle',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#a819d105df8de79aae59791e7316ee209',1,'xms::TrTinImpl']]],
   ['classifydisjointpolys',['ClassifyDisjointPolys',['../classxms_1_1_me_intersect_polys_1_1impl.html#a53a16ea98c77188f458a5ee50a14fcce',1,'xms::MeIntersectPolys::impl']]],
   ['classifyloopsfrominpolyandremoveinvalid',['ClassifyLoopsFromInPolyAndRemoveInvalid',['../classxms_1_1_me_poly_pts.html#a6074acdefbad1e3c8fb32b70e244b454',1,'xms::MePolyPts']]],
   ['classifypolys',['ClassifyPolys',['../classxms_1_1_me_intersect_polys_1_1impl.html#adc69578ca732412af35c448c04eef4a2',1,'xms::MeIntersectPolys::impl::ClassifyPolys()'],['../classxms_1_1_me_intersect_polys.html#a60da13c79e172a12d4d34518b1a68d0b',1,'xms::MeIntersectPolys::ClassifyPolys()']]],

@@ -13,6 +13,7 @@ var searchData=
   ['removebackwardloopsforcleanpolyoffset',['RemoveBackwardLoopsForCleanPolyOffset',['../classxms_1_1_me_poly_pts.html#ad2fadc7df692502323ecccc7938889e4',1,'xms::MePolyPts']]],
   ['removecornertouches',['RemoveCornerTouches',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersection_sorter_terse.html#ac86036c81726449c8121c1a05fd73db3',1,'xms::GmMultiPolyIntersectionSorterTerse']]],
   ['removeduplicateedges',['RemoveDuplicateEdges',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersection_sorter_terse.html#a1ef5deaea8e21cd99a88376758bc6c64',1,'xms::GmMultiPolyIntersectionSorterTerse']]],
+  ['removelongthintrianglesonperimeter',['RemoveLongThinTrianglesOnPerimeter',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_tin_impl.html#a6539e41ceec60374722e504d8e38dfb2',1,'xms::TrTinImpl']]],
   ['removepts',['RemovePts',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_auto_fix_four_triangle_pts_impl.html#a8c1abb56f3123fc5a41e7ac155e4a886',1,'xms::TrAutoFixFourTrianglePtsImpl']]],
   ['removetris',['RemoveTris',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_auto_fix_four_triangle_pts_impl.html#a94350c394e0cab1a5491210257567dff',1,'xms::TrAutoFixFourTrianglePtsImpl']]],
   ['renumbernewmesh',['RenumberNewMesh',['../classxms_1_1_me_multi_poly_mesher_impl.html#ad6d60306f08e3da32a81fa73b5b8999f',1,'xms::MeMultiPolyMesherImpl']]],

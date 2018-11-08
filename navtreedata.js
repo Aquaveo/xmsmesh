@@ -1,3 +1,26 @@
+/*
+@ @licstart  The following is the entire license notice for the
+JavaScript code in this file.
+
+Copyright (C) 1997-2017 by Dimitri van Heesch
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+@licend  The above is the entire license notice
+for the JavaScript code in this file
+*/
 var NAVTREE =
 [
   [ "xmsmesh", "index.html", [
@@ -53,8 +76,8 @@ var NAVTREE =
         [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
-    [ "Files", null, [
-      [ "File List", "files.html", "files" ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Variables", "globals_vars.html", null ],
@@ -67,9 +90,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"class_me_multi_poly_to2dm_intermediate_tests.html#a51c63bcaf0d65ee1469828506e7f7357",
-"classxms_1_1_me_multi_poly_mesher_impl.html#acc44cac7bfb802e5d545371c527d3e13",
-"classxms_1_1_me_poly_redistribute_pts_curvature_impl.html#afa6e459b5767f7b56d20718befd56e04"
+"class_me_multi_poly_to2dm_intermediate_tests.html#a6887b23210111e847781760f0718374a",
+"classxms_1_1_me_multi_poly_mesher_impl.html#ad6d60306f08e3da32a81fa73b5b8999f",
+"classxms_1_1_me_poly_redistribute_pts_impl.html#a23f79b88f89afe2013c665573a14b23d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

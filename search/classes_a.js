@@ -9,5 +9,7 @@ var searchData=
   ['pt3_3c_20double_20_3e',['Pt3&lt; double &gt;',['https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html',1,'xms']]],
   ['pt4',['Pt4',['https://aquaveo.github.io/xmscore/classxms_1_1_pt4.html',1,'xms']]],
   ['ptsearchunittests',['PtSearchUnitTests',['https://aquaveo.github.io/xmsinterp/class_pt_search_unit_tests.html',1,'']]],
-  ['ptunittests',['PtUnitTests',['https://aquaveo.github.io/xmscore/class_pt_unit_tests.html',1,'']]]
+  ['ptunittests',['PtUnitTests',['https://aquaveo.github.io/xmscore/class_pt_unit_tests.html',1,'']]],
+  ['publicobserver',['PublicObserver',['https://aquaveo.github.io/xmscore/classxms_1_1_public_observer.html',1,'xms']]],
+  ['pyobserver',['PyObserver',['https://aquaveo.github.io/xmscore/class_py_observer.html',1,'']]]
 ];
