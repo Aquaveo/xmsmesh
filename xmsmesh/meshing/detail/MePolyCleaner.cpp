@@ -59,7 +59,7 @@ public:
                                     std::list<std::vector<size_t>>& a_loops,
                                     std::vector<int>& a_loopType,
                                     const VecPt3d& a_pts);
-  VecPt3d m_origOutsidePoly;
+  VecPt3d m_origOutsidePoly; ///< the original outside polygon for this step of the paving process
 };
 //----- Internal functions -----------------------------------------------------
 #if 0
