@@ -22,18 +22,19 @@
 // 4. External library headers
 #include <boost/format.hpp>
 #include <boost/unordered_map.hpp>
-
-// 5. Shared code headers
+#include <xmscore/misc/StringUtil.h>
 #include <xmscore/misc/Progress.h>
+#include <xmscore/misc/XmError.h>
+#include <xmscore/stl/set.h>
+#include <xmscore/stl/vector.h>
 #include <xmsinterp/geometry/GmPtSearch.h>
 #include <xmsinterp/geometry/geoms.h>
 #include <xmsinterp/interpolate/InterpIdw.h>
 #include <xmsinterp/interpolate/InterpLinear.h>
+
+// 5. Shared code headers
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MePolyMesher.h>
-#include <xmscore/misc/XmError.h>
-#include <xmscore/stl/set.h>
-#include <xmscore/stl/vector.h>
 
 // 6. Non-shared code headers
 
