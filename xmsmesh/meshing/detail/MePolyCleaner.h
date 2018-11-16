@@ -8,8 +8,7 @@
 #pragma once
 
 //----- Included files ---------------------------------------------------------
-#include <vector>
-#include <xmscore/points/ptsfwd.h>
+#include <xmscore/stl/vector.h>
 #include <xmscore/misc/base_macros.h>
 #include <xmscore/misc/boost_defines.h>
 
@@ -31,10 +30,11 @@ public:
   static BSHP<MePolyCleaner> New();
 
   /// \cond
-  virtual void CleanPolyOffset(const std::vector<Pt3d>& a_input,
+  virtual void CleanPolyOffset(const VecPt3d& a_input,
                                int a_pType,
                                double a_tol,
                                MePolyOffsetterOutput& a_out) = 0;
+  virtual void SetOriginalOutsidePolygon(const VecPt3d& a_origOutPoly) = 0;
 
   virtual void IntersectCleanInPolys(const std::vector<MePolyOffsetterOutput>& a_offsets,
                                      MePolyOffsetterOutput& a_out,

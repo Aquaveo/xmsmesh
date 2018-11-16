@@ -97,7 +97,7 @@ public:
   void ProcessStack();
   void AddPolygonToMeshPoints(const Poly& a_poly, bool a_first);
   void DoPave(const Poly& a_poly);
-  void CleanPave();
+  void CleanPave(const Poly& a_poly);
   void RedistributePts();
   void ClassifyPolys();
   double AreaFromPolyStack();
@@ -239,11 +239,11 @@ void MePolyPaverToMeshPtsImpl::ProcessStack()
     // Pave the polygon
     DoPave(p);
     // clean the results from the pave
-    CleanPave();
+    CleanPave(p);
     // redistribute points on the polygons
     RedistributePts();
     // clean again after redistributing the points
-    CleanPave();
+    CleanPave(p);
     // classify the newly created polys into polygons defined by the "Poly"
     // class and put them on the stack
     ClassifyPolys();
@@ -349,8 +349,9 @@ void MePolyPaverToMeshPtsImpl::DoPave(const Poly& a_poly)
 /// \brief Cleans up the results from the paving operation. There may be newly
 /// created polygons that intersect.
 //------------------------------------------------------------------------------
-void MePolyPaverToMeshPtsImpl::CleanPave()
+void MePolyPaverToMeshPtsImpl::CleanPave(const Poly& a_poly)
 {
+  m_cleaner->SetOriginalOutsidePolygon(a_poly.m_outside);
   // intersect the new inner polys with the other inner polys
   MePolyOffsetterOutput out, out2;
   m_cleaner->IntersectCleanInPolys(m_offsetOutputs, out, m_xyTol);

@@ -14,6 +14,7 @@
 #include <xmsmesh/meshing/MeMultiPolyMesher.h>
 
 // 3. Standard library headers
+#include <fstream>
 #include <numeric>
 #include <set>
 #include <sstream>
@@ -26,6 +27,8 @@
 #include <xmscore/misc/Progress.h>
 #include <xmsinterp/geometry/GmPtSearch.h>
 #include <xmsinterp/geometry/geoms.h>
+#include <xmsinterp/interpolate/InterpIdw.h>
+#include <xmsinterp/interpolate/InterpLinear.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MePolyMesher.h>
 #include <xmscore/misc/XmError.h>
@@ -102,7 +105,103 @@ public:
 };                 // struct SegmentLocation
 
 //----- Internal functions -----------------------------------------------------
+namespace
+{
+//------------------------------------------------------------------------------
+/// \brief Writes the Interpolation data to a file if a debug file is present
+/// \param a_os[in]: the file
+/// \param a_interp[in]: the interpolation class
+//------------------------------------------------------------------------------
+void iWriteInterpDataToDebugFile(std::fstream& a_os, BSHP<InterpBase> a_interp)
+{
+  BSHP<VecPt3d> ptsPtr = a_interp->GetPts();
+  BSHP<InterpIdw> idw = BDPC<InterpIdw>(a_interp);
+  BSHP<InterpLinear> linear = BDPC<InterpLinear>(a_interp);
+  XM_ENSURE_TRUE(ptsPtr && (idw || linear));
+  if (idw)
+    a_os << "IDW";
+  else
+    a_os << "LINEAR";
 
+  VecPt3d& pts(*ptsPtr);
+  a_os << pts.size() << "\n";
+  for (const auto& p : pts)
+    a_os << STRstd(p.x) << " " << STRstd(p.y) << "\n";
+} // iWriteInterpDataToDebugFile
+//------------------------------------------------------------------------------
+/// \brief Writes the MeMultiPolyMesherIo to a file if a debug file is present
+/// \param a_io[in] the input to the mesher
+//------------------------------------------------------------------------------
+void iWriteInputsToDebugFile(MeMultiPolyMesherIo& a_io)
+{
+  std::ifstream f("c:\\temp\\xmsmesh_write_inputs.dbg");
+  if (!f.good())
+    return;
+  std::fstream os;
+  os.open("C:\\temp\\xmsmesh_inputs.txt", std::fstream::out);
+  if (os.bad())
+    return;
+  for (size_t i = 0; i < a_io.m_polys.size(); ++i)
+  {
+    MePolyInput& poly(a_io.m_polys[i]);
+    os << "BEGIN_POLYGON\nOUTSIDE " << poly.m_outPoly.size() << "\n";
+    for (auto& p : poly.m_outPoly)
+      os << STRstd(p.x) << " " << STRstd(p.y) << "\n";
+    for (auto& v : poly.m_insidePolys)
+    {
+      os << "INSIDE " << v.size() << "\n";
+      for (auto& p : v)
+        os << STRstd(p.x) << " " << STRstd(p.y) << "\n";
+    }
+    os << "BIAS " << STRstd(poly.m_bias) << "\n";
+    if (poly.m_sizeFunction)
+    {
+      os << "SIZE_FUNCTION\n";
+      iWriteInterpDataToDebugFile(os, poly.m_sizeFunction);
+    }
+    if (poly.m_elevFunction)
+    {
+      os << "ELEVATION_FUNCTION\n";
+      iWriteInterpDataToDebugFile(os, poly.m_elevFunction);
+    }
+    if (poly.m_constSizeFunction != -1)
+    {
+      os << "CONST_SIZE_FUNCTION " << STRstd(poly.m_constSizeFunction) << "\n";
+    }
+    if (!poly.m_polyCorners.empty())
+    {
+      os << "PATCH_CORNERS ";
+      for (size_t j = 0; j < poly.m_polyCorners.size(); ++j)
+        os << poly.m_polyCorners[j] << " ";
+      os << "\n";
+    }
+    if (poly.m_relaxationMethod != "")
+    {
+      os << "RELAXATION_METHOD " << poly.m_relaxationMethod << "\n";
+    }
+    os << "END_POLYGON\n";
+  }
+  if (a_io.m_checkTopology)
+  {
+    os << "CHECK_TOPOLOGY\n";
+  }
+  if (a_io.m_returnCellPolygons)
+  {
+    os << "RETURN_CELL_POLYGONS\n";
+  }
+  if (!a_io.m_refPts.empty())
+  {
+    os << "REFINE_POINTS " << a_io.m_refPts.size() << "\n";
+    for (auto& p : a_io.m_refPts)
+    {
+      os << STRstd(p.m_pt.x) << " " << STRstd(p.m_pt.y) << " " << STRstd(p.m_size) << " "
+         << p.m_createMeshPoint << "\n";
+    }
+  }
+
+} // iWriteInputsToDebugFile
+
+} // unnamed namespace
 //----- Class / Function definitions -------------------------------------------
 
 //////////////////////////////////////////////////////////////////////////////
@@ -128,6 +227,7 @@ MeMultiPolyMesherImpl::MeMultiPolyMesherImpl()
 //------------------------------------------------------------------------------
 bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
 {
+  iWriteInputsToDebugFile(a_io);
   if (!ValidateInput(a_io))
   {
     return false;

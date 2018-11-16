@@ -29,6 +29,7 @@
 #include <xmsinterp/geometry/GmBoostTypes.h> // GmBstPoly3d, XmBstRing
 #include <xmsmesh/meshing/detail/MePolyOffsetter.h>
 #include <xmscore/misc/XmError.h>
+#include <xmscore/stl/vector.h>
 
 // 6. Non-shared code headers
 
@@ -78,12 +79,14 @@ public:
   bool BoostPolyUnion(size_t a_i, size_t a_j);
   bool BoostPolySubtract(size_t a_i, size_t a_j);
 
+  void DeleteBad_NEWOUT_POLY(MePolyOffsetterOutput& a_out, const VecPt3d& a_origOutsidePoly);
+
   MePolyPts m_polyPts;                      ///< polygon points class
   std::vector<std::vector<size_t>> m_loops; ///< indexes to points that make polygons
   std::vector<int> m_loopTypes;        ///< type of polygon (OUTSIDE_POLY, INSIDE_POLY, NEWOUT_POLY)
   std::vector<GmBstBox3d> m_envelopes; ///< extents of polygons
   std::list<size_t> m_stack;           ///< stack for processing the polygons
-  MePolyOffsetterOutput m_out;         ///< newpolygons created by theis class
+  MePolyOffsetterOutput m_out;         ///< newpolygons created by this class
 
   std::vector<GmBstPoly3d> m_bPolys;    ///< boost::geometry::polygon
   std::vector<GmBstPoly3d> m_bOutPolys; ///< boost::geometry::polygon
@@ -92,8 +95,8 @@ public:
   SetIdx m_inOutOpolys; ///< outside polygons
 
   // used by intersect IN wth IN
-  boost::unordered_set<std::pair<size_t, size_t>>
-    m_polyInsideOfPoly; ///< index of polygon that is inside of another polygon
+  /// index of polygon that is inside of another polygon
+  boost::unordered_set<std::pair<size_t, size_t>> m_polyInsideOfPoly;
 };
 //----- Internal functions -----------------------------------------------------
 
@@ -252,6 +255,17 @@ void MeIntersectPolys::ClassifyPolys(const MePolyOffsetterOutput& a_input,
 {
   m_p->ClassifyPolys(a_input, a_output);
 } // MpInsidePolys::ClassifyPolys
+//------------------------------------------------------------------------------
+/// \brief calls implementation
+/// \param a_out: Holds the output polygons from the operation performed (either
+/// InInDoIntersection or InOutDoIntersection
+/// \param a_origOutsidePoly The outside polygon for this step of the pave operation
+//------------------------------------------------------------------------------
+void MeIntersectPolys::DeleteBad_NEWOUT_POLY(MePolyOffsetterOutput& a_out,
+                                             const VecPt3d& a_origOutsidePoly)
+{
+  m_p->DeleteBad_NEWOUT_POLY(a_out, a_origOutsidePoly);
+} // MpInsidePolys::DeleteBad_NEWOUT_POLY
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MeIntersectPolys::impl
@@ -267,26 +281,67 @@ void MeIntersectPolys::impl::SetupInIn(const std::vector<MePolyOffsetterOutput>&
                                        double a_xyTol)
 {
   m_polyPts.XyTol() = a_xyTol;
+  auto moveToOut = [this](const MePolyOffsetterOutput& o, size_t j, size_t start) {
+    m_out.m_loopTypes.push_back(o.m_loopTypes[j]);
+    m_out.m_loops.push_back(o.m_loops[j]);
+    for (size_t k = 0; start > 0 && k < m_out.m_loops.back().size(); ++k)
+    {
+      m_out.m_loops.back()[k] += start;
+    }
+  };
+
   // get all points of INSIDE_POLY polys and put into a single
   // array and update indexes for segment definitions.
   std::vector<Pt3d>& pts(m_polyPts.Pts());
   for (size_t i = 0; i < a_offsets.size(); ++i)
   {
     const MePolyOffsetterOutput& o(a_offsets[i]);
-    // add the points and INSIDE_POLY loops
+    std::vector<GmBstPoly3d> newOutPolys;
+    // add the points and INSIDE_POLY loops, but don' t add INSIDE_POLY that are in NEWOUT_POLY
     size_t start = pts.size();
     pts.insert(pts.end(), o.m_pts.begin(), o.m_pts.end());
+    for (size_t j = 0; j < o.m_loops.size(); ++j)
+    {
+      // move to output
+      if (MePolyOffsetter::OUTSIDE_POLY == o.m_loopTypes[j] ||
+          MePolyOffsetter::NEWOUT_POLY == o.m_loopTypes[j])
+      {
+        moveToOut(o, j, start);
+        if (MePolyOffsetter::NEWOUT_POLY == o.m_loopTypes[j])
+        {
+          // create a polygon to be used later when checking INSIDE_POLY polys
+          GmBstPoly3d bPoly;
+          const std::vector<size_t>& l(o.m_loops[j]);
+          std::vector<size_t>::const_iterator it(l.begin()), iend(l.end());
+          for (; it != iend; ++it)
+          {
+            bg::exterior_ring(bPoly).push_back(pts[*it]);
+          }
+          bg::exterior_ring(bPoly).push_back(pts[l[0]]);
+          newOutPolys.push_back(bPoly);
+        }
+      }
+    }
+
     for (size_t j = 0; j < o.m_loops.size(); ++j)
     {
       if (MePolyOffsetter::OUTSIDE_POLY == o.m_loopTypes[j] ||
           MePolyOffsetter::NEWOUT_POLY == o.m_loopTypes[j])
       {
-        m_out.m_loopTypes.push_back(o.m_loopTypes[j]);
-        m_out.m_loops.push_back(o.m_loops[j]);
-        for (size_t k = 0; start > 0 && k < m_out.m_loops.back().size(); ++k)
-        {
-          m_out.m_loops.back()[k] += start;
-        }
+        continue;
+      }
+
+      // make sure the INSIDE_POLY is not inside of a NEWOUT_POLY
+      bool moveToOutput(false);
+      Pt3d& p0(pts[o.m_loops[j][0]]);
+      for (size_t k = 0; !moveToOutput && k < newOutPolys.size(); ++k)
+      {
+        if (bg::within(p0, newOutPolys[k]))
+          moveToOutput = true;
+      }
+      if (moveToOutput)
+      {
+        moveToOut(o, j, start);
         continue;
       }
 
@@ -485,6 +540,23 @@ void MeIntersectPolys::impl::FillOutput(MePolyOffsetterOutput& a_out)
         loop.push_back(idx);
       }
       std::reverse(loop.begin(), loop.end());
+      // add inner rings as NEWOUT_POLY polygons
+      if (!p.inners().empty())
+      {
+        for (size_t j = 0; j < p.inners().size(); ++j)
+        {
+          std::vector<size_t> iPolyLoop;
+          VecPt3d& iPoly(p.inners()[j]);
+          for (size_t k = 0; k < iPoly.size() - 1; ++k)
+          {
+            size_t idx = m_polyPts.IdxFromPt3d(iPoly[k]);
+            iPolyLoop.push_back(idx);
+          }
+          std::reverse(iPolyLoop.begin(), iPolyLoop.end());
+          a_out.m_loops.push_back(iPolyLoop);
+          a_out.m_loopTypes.push_back(MePolyOffsetter::NEWOUT_POLY);
+        }
+      }
     }
     else
     {
@@ -765,7 +837,7 @@ GmBstPoly3d MeIntersectPolys::impl::BoostPoly(size_t a_loopIdx)
     bg::exterior_ring(poly).push_back(pts[l[0]]);
   }
   return poly;
-} // MeInsidePolys::impl::BoostPoly
+} // MeIntersectPolys::impl::BoostPoly
 //------------------------------------------------------------------------------
 /// \brief Performs a union operation on 2 polygons. Used by InInDoIntersection
 /// \param a_i Index to a polygon (m_loops[a_i]).
@@ -785,12 +857,14 @@ bool MeIntersectPolys::impl::BoostPolyUnion(size_t a_i, size_t a_j)
     return false;
   m_stack.push_back(m_bPolys.size());
   m_bPolys.push_back(out[0]);
-  m_bPolys.back().inners().clear();
+  // do not remove inner polygons
+  // m_bPolys.back().inners().clear();
   std::vector<Pt3d>& pts(m_bPolys.back().outer());
   std::vector<size_t> loop(pts.size());
   for (size_t i = 0; i < loop.size(); ++i)
     loop[i] = i;
   m_envelopes.push_back(iCalcPolyEnvelope(loop, pts));
+#if 0
   // put any inner polygons into the output
   for (size_t i = 0; i < out[0].inners().size(); ++i)
   {
@@ -804,8 +878,9 @@ bool MeIntersectPolys::impl::BoostPolyUnion(size_t a_i, size_t a_j)
     m_bOutPolys.push_back(innerPoly);
     m_bOutPolyType.push_back(MePolyOffsetter::NEWOUT_POLY);
   }
+#endif
   return true;
-} // MeInsidePolys::impl::BoostPolyUnion
+} // MeIntersectPolys::impl::BoostPolyUnion
 //------------------------------------------------------------------------------
 /// \brief Performs a subtraction with 2 polygons. Used by InOutDoIntersection
 /// \param a_i Index to a polygon (m_loops[a_i]).
@@ -834,7 +909,69 @@ bool MeIntersectPolys::impl::BoostPolySubtract(size_t a_i, size_t a_j)
     m_loopTypes.push_back(MePolyOffsetter::OUTSIDE_POLY);
   }
   return true;
-} // MeInsidePolys::impl::BoostPolyUnion
+} // MeIntersectPolys::impl::BoostPolyUnion
+//------------------------------------------------------------------------------
+/// \brief deletes NEWOUT_POLY polygons that have points outside of OUTSIDE_POLY
+/// polygon
+/// \param a_out: Holds the output polygons from the operation performed (either
+/// InInDoIntersection or InOutDoIntersection)
+/// \param a_origOutsidePoly The outside polygon for this step of the pave operation
+//------------------------------------------------------------------------------
+void MeIntersectPolys::impl::DeleteBad_NEWOUT_POLY(MePolyOffsetterOutput& a_out,
+                                                   const VecPt3d& a_origOutsidePoly)
+{
+  if (a_origOutsidePoly.empty())
+    return;
+
+  // get the OUTSIDE_POLY polygons
+  std::set<size_t> newOutPolys, polysToDelete;
+  for (size_t i = 0; i < a_out.m_loopTypes.size(); ++i)
+  {
+    if (MePolyOffsetter::NEWOUT_POLY == a_out.m_loopTypes[i])
+      newOutPolys.insert(i);
+  }
+
+  if (newOutPolys.empty())
+    return;
+
+  // make a boost polygon from the outside polygon
+  GmBstPoly3d oPoly;
+  for (size_t i = 0; i < a_origOutsidePoly.size(); ++i)
+  {
+    bg::exterior_ring(oPoly).push_back(a_origOutsidePoly[i]);
+  }
+  bg::exterior_ring(oPoly).push_back(a_origOutsidePoly[0]);
+
+  VecPt3d& pts(a_out.m_pts);
+  // now check the NEWOUT_POLY polygons to see if any points are outside the
+  // outside polygon
+  for (const auto& newOutPolyIdx : newOutPolys)
+  {
+    if (polysToDelete.find(newOutPolyIdx) != polysToDelete.end())
+      continue;
+
+    bool pointOutside(false);
+    std::vector<size_t>& l1(a_out.m_loops[newOutPolyIdx]);
+    for (size_t i = 0; !pointOutside && i < l1.size(); ++i)
+    {
+      Pt3d& p(pts[l1[i]]);
+      if (!bg::covered_by(p, oPoly))
+        pointOutside = true;
+    }
+    if (pointOutside)
+      polysToDelete.insert(newOutPolyIdx);
+  }
+
+  // delete polygons
+  auto rit = polysToDelete.rbegin(), rend = polysToDelete.rend();
+  for (; rit != rend; ++rit)
+  {
+    a_out.m_loops[*rit] = a_out.m_loops.back();
+    a_out.m_loops.pop_back();
+    a_out.m_loopTypes[*rit] = a_out.m_loopTypes.back();
+    a_out.m_loopTypes.pop_back();
+  }
+} // MeIntersectPolys::impl::DeleteBad_NEWOUT_POLY
 
 } // namespace xms
 

@@ -43,6 +43,10 @@ public:
   void testCasePaveConstSizeTransition();
   void testSeedPoints();
   void testSeedPoints_PolygonWithHole();
+  void testbug11299();
+  void testInternalFeaturesCase0();
+  void testInternalFeaturesCase1();
+  void testInternalFeaturesCase2();
 };
 
 //} // namespace xms

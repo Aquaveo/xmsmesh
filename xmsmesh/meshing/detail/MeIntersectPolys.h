@@ -9,6 +9,7 @@
 
 //----- Included files ---------------------------------------------------------
 #include <xmscore/misc/base_macros.h>
+#include <xmscore/stl/vector.h>
 #include <xmsmesh/meshing/detail/MePolyPts.h>
 
 //----- Forward declarations ---------------------------------------------------
@@ -39,6 +40,7 @@ public:
   void FillOutput(MePolyOffsetterOutput& a_out);
   void ClassifyPolys(const MePolyOffsetterOutput& a_input,
                      std::vector<std::vector<size_t>>& a_output);
+  void DeleteBad_NEWOUT_POLY(MePolyOffsetterOutput& a_out, const VecPt3d& a_origOutsidePoly);
 
 private:
   XM_DISALLOW_COPY_AND_ASSIGN(MeIntersectPolys); ///< prevent compiler generated copy/assign
