@@ -755,21 +755,21 @@ void MeMultiPolyTo2dmIntermediateTests::testbug11299()
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testInternalFeaturesCase0()
 {
-  iTestFromPolyFile("internalFeatures\\case0", 10);
+  iTestFromPolyFile("internalFeatures/case0", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testInternalFeaturesCase0
 //------------------------------------------------------------------------------
 /// \brief Test providing seed points to the mesher for a polygon with a hole
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testInternalFeaturesCase1()
 {
-  iTestFromPolyFile("internalFeatures\\case1", 10);
+  iTestFromPolyFile("internalFeatures/case1", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testInternalFeaturesCase1
 //------------------------------------------------------------------------------
 /// \brief Test providing seed points to the mesher for a polygon with a hole
 //------------------------------------------------------------------------------
 void MeMultiPolyTo2dmIntermediateTests::testInternalFeaturesCase2()
 {
-  iTestFromPolyFile("internalFeatures\\case2", 10);
+  iTestFromPolyFile("internalFeatures/case2", 10);
 } // MeMultiPolyTo2dmIntermediateTests::testInternalFeaturesCase2
 
 #endif // CXX_TEST
