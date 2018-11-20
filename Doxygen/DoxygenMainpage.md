@@ -19,7 +19,7 @@ xmsmesh is a meshing library used in xms libraries and products.
 License {#XmsmeshLicense}
 -------
 
-The code is distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at [http://www.aquaveo.com/xmsng/LICENSE_1_0.txt](http://www.aquaveo.com/xmsng/LICENSE_1_0.txt)). 
+The code is distributed under FreeBSD License (See accompanying file LICENSE or [https://aquaveo.com/bsd/license.txt](https://aquaveo.com/bsd/license.txt)). 
 
 Python
 ------
