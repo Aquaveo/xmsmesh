@@ -7,6 +7,7 @@ var classxms_1_1_me_intersect_polys_1_1impl =
     [ "ClassifyDisjointPolys", "classxms_1_1_me_intersect_polys_1_1impl.html#a53a16ea98c77188f458a5ee50a14fcce", null ],
     [ "ClassifyPolys", "classxms_1_1_me_intersect_polys_1_1impl.html#adc69578ca732412af35c448c04eef4a2", null ],
     [ "ClassifyPolysInsideOfPolys", "classxms_1_1_me_intersect_polys_1_1impl.html#a5e3763186db9ddeb3ab4e11236e1e4d3", null ],
+    [ "DeleteBad_NEWOUT_POLY", "classxms_1_1_me_intersect_polys_1_1impl.html#ad2254f11699e3b7f7d07aa649638b864", null ],
     [ "FillOutput", "classxms_1_1_me_intersect_polys_1_1impl.html#acefcbea70b613c92fc19ee9c64204a09", null ],
     [ "FillPolysInsideOfPolys", "classxms_1_1_me_intersect_polys_1_1impl.html#a078d98dfbe73f8817960c1eb37bb8bc2", null ],
     [ "InInDoIntersection", "classxms_1_1_me_intersect_polys_1_1impl.html#a68f99c37a87903fbcba64d4547940531", null ],

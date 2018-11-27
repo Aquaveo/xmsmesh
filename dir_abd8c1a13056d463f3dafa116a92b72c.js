@@ -1,5 +1,12 @@
 var dir_abd8c1a13056d463f3dafa116a92b72c =
 [
+    [ "MeBadQuadRemover.cpp", "_me_bad_quad_remover_8cpp.html", "_me_bad_quad_remover_8cpp" ],
+    [ "MeBadQuadRemover.h", "_me_bad_quad_remover_8h.html", [
+      [ "MeBadQuadRemover", "classxms_1_1_me_bad_quad_remover.html", "classxms_1_1_me_bad_quad_remover" ]
+    ] ],
+    [ "MeBadQuadRemover.t.h", "_me_bad_quad_remover_8t_8h.html", [
+      [ "MeBadQuadRemoverUnitTests", "class_me_bad_quad_remover_unit_tests.html", "class_me_bad_quad_remover_unit_tests" ]
+    ] ],
     [ "MeIntersectPolys.cpp", "_me_intersect_polys_8cpp.html", "_me_intersect_polys_8cpp" ],
     [ "MeIntersectPolys.h", "_me_intersect_polys_8h.html", [
       [ "MeIntersectPolys", "classxms_1_1_me_intersect_polys.html", "classxms_1_1_me_intersect_polys" ]
@@ -51,6 +58,13 @@ var dir_abd8c1a13056d463f3dafa116a92b72c =
     [ "MePolyRedistributePtsCurvature.t.h", "_me_poly_redistribute_pts_curvature_8t_8h.html", [
       [ "MePolyRedistributePtsCurvatureUnitTests", "class_me_poly_redistribute_pts_curvature_unit_tests.html", "class_me_poly_redistribute_pts_curvature_unit_tests" ],
       [ "MePolyRedistributePtsCurvatureIntermediateTests", "class_me_poly_redistribute_pts_curvature_intermediate_tests.html", "class_me_poly_redistribute_pts_curvature_intermediate_tests" ]
+    ] ],
+    [ "MeQuadBlossom.cpp", "_me_quad_blossom_8cpp.html", "_me_quad_blossom_8cpp" ],
+    [ "MeQuadBlossom.h", "_me_quad_blossom_8h.html", [
+      [ "MeQuadBlossom", "classxms_1_1_me_quad_blossom.html", "classxms_1_1_me_quad_blossom" ]
+    ] ],
+    [ "MeQuadBlossom.t.h", "_me_quad_blossom_8t_8h.html", [
+      [ "MeQuadBlossomUnitTests", "class_me_quad_blossom_unit_tests.html", "class_me_quad_blossom_unit_tests" ]
     ] ],
     [ "MeRefinePtsToPolys.cpp", "_me_refine_pts_to_polys_8cpp.html", [
       [ "MeRefinePtsToPolysImpl", "classxms_1_1_me_refine_pts_to_polys_impl.html", "classxms_1_1_me_refine_pts_to_polys_impl" ]

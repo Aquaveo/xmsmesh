@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>xmsmesh: /home/conan/xmsmesh/meshing/MeBadQuadRemover.cpp File Reference</title>
+<title>xmsmesh: /home/conan/xmsmesh/meshing/detail/MeBadQuadRemover.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('_me_bad_quad_remover_8cpp.html','');})
 <div class="title">MeBadQuadRemover.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="_me_bad_quad_remover_8h_source.html">xmsmesh/meshing/MeBadQuadRemover.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="_me_bad_quad_remover_8h_source.html">xmsmesh/meshing/detail/MeBadQuadRemover.h</a>&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;numeric&gt;</code><br />
 <code>#include &lt;boost/utility.hpp&gt;</code><br />
@@ -101,12 +101,12 @@ $(document).ready(function(){initNavTree('_me_bad_quad_remover_8cpp.html','');})
 <code>#include &lt;xmsgrid/ugrid/XmEdge.h&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmsgrid.tag:https://aquaveo.github.io/xmsgrid/" href="https://aquaveo.github.io/xmsgrid/_xm_u_grid_8h.html">xmsgrid/ugrid/XmUGrid.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmsinterp.tag:https://aquaveo.github.io/xmsinterp/" href="https://aquaveo.github.io/xmsinterp/geoms_8h.html">xmsinterp/geometry/geoms.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_me_bad_quad_remover_8t_8h_source.html">xmsmesh/meshing/MeBadQuadRemover.t.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_me_bad_quad_remover_8t_8h_source.html">xmsmesh/meshing/detail/MeBadQuadRemover.t.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html">xmscore/testing/TestTools.h</a>&gt;</code><br />
 </div>
 <p><a href="_me_bad_quad_remover_8cpp_source.html">Go to the source code of this file.</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under FreeBSD License (See accompanying file LICENSE or <a href="https://aqaveo.com/bsd/license.txt">https://aqaveo.com/bsd/license.txt</a>) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
 </div><h2 class="groupheader">Variable Documentation</h2>
@@ -131,7 +131,7 @@ $(document).ready(function(){initNavTree('_me_bad_quad_remover_8cpp.html','');})
 </div><div class="memdoc">
 <p>Number of adjacent points to m_ugrid-&gt;GetPoint(i). Negative if a boundary point. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_bad_quad_remover_8cpp_source.html#l00098">98</a> of file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_bad_quad_remover_8cpp_source.html#l00097">97</a> of file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
 
 </div>
 </div>
@@ -148,7 +148,7 @@ $(document).ready(function(){initNavTree('_me_bad_quad_remover_8cpp.html','');})
 </div><div class="memdoc">
 <p>Count of non-boundary vertices in the face with 3 attached edges. -999 means it hasn't been set. Less than 0 if face is not a quad. -4 is used to flag the cell as not collapsible. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_bad_quad_remover_8cpp_source.html#l00061">61</a> of file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_bad_quad_remover_8cpp_source.html#l00060">60</a> of file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
 
 </div>
 </div>
@@ -165,7 +165,7 @@ $(document).ready(function(){initNavTree('_me_bad_quad_remover_8cpp.html','');})
 </div><div class="memdoc">
 <p>The index of the point in a quad that will collapse to its diagonal point if the quad is collapsible (or -1 if the collapse criteria is not met or not yet determined). </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_bad_quad_remover_8cpp_source.html#l00064">64</a> of file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_bad_quad_remover_8cpp_source.html#l00063">63</a> of file <a class="el" href="_me_bad_quad_remover_8cpp_source.html">MeBadQuadRemover.cpp</a>.</p>
 
 </div>
 </div>
@@ -174,8 +174,8 @@ $(document).ready(function(){initNavTree('_me_bad_quad_remover_8cpp.html','');})
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_bad_quad_remover_8cpp.html">MeBadQuadRemover.cpp</a></li>
-    <li class="footer">Generated on Thu Nov 8 2018 04:28:16 for xmsmesh by
+    <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="dir_abd8c1a13056d463f3dafa116a92b72c.html">detail</a></li><li class="navelem"><a class="el" href="_me_bad_quad_remover_8cpp.html">MeBadQuadRemover.cpp</a></li>
+    <li class="footer">Generated on Tue Nov 27 2018 18:55:48 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

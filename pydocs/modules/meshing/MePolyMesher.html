@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MePolyMesher &mdash; XmsMesh Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MePolyRedistributePts" href="MePolyRedistributePts.html" />
+    <link rel="prev" title="MeMultiPolyTo2dm" href="MeMultiPolyTo2dm.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> XmsMesh Library
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh_py.meshing">Meshing</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="MeBadQuadRemover.html">MeBadQuadRemover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeMeshUtils.html">MeMeshUtils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesher.html">MeMultiPolyMesher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesherIo.html">MeMultiPolyMesherIo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeMultiPolyTo2dm.html">MeMultiPolyTo2dm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MePolyMesher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MePolyRedistributePts.html">MePolyRedistributePts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MeQuadBlossom.html">MeQuadBlossom</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">XmsMesh Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../modules.html">Modules</a> &raquo;</li>
+        
+      <li>MePolyMesher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/modules/meshing/MePolyMesher.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mepolymesher">
+<h1>MePolyMesher<a class="headerlink" href="#mepolymesher" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="xmsmesh_py.meshing.MePolyMesher">
+<em class="property">class </em><code class="descclassname">xmsmesh_py.meshing.</code><code class="descname">MePolyMesher</code><a class="headerlink" href="#xmsmesh_py.meshing.MePolyMesher" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="xmsmesh_py.meshing.MePolyMesher.get_processed_refine_pts">
+<code class="descname">get_processed_refine_pts</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyMesher</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh_py.meshing.MePolyMesher.get_processed_refine_pts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the refine points that were inside the polygon, both points that 
+are included in the meshing process and those that were not.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>iterable: Locations of refine points used inside of this polygon.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmsmesh_py.meshing.MePolyMesher.mesh_it">
+<code class="descname">mesh_it</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyMesher</em>, <em>mesh_io: xmsmesh_py.meshing.MeMultiPolyMesherIo</em>, <em>poly_idx: int</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#xmsmesh_py.meshing.MePolyMesher.mesh_it" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform MESH_PAVE, MESH_SPAVE, MESH_PATCH meshing on a polygon.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first docutils">
+<dt>mesh_io (MeMultiPolyMesherIo):Meshing input: polygons and optional</dt>
+<dd>inputs</dd>
+</dl>
+<p class="last">poly_idx (int): Index to the polygon in a_input to mesh</p>
+</dd>
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>tuple: True if no errors encountered, computed mesh points, computed </dt>
+<dd>mesh triangles from paving, computed mesh cells from patch.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MePolyRedistributePts.html" class="btn btn-neutral float-right" title="MePolyRedistributePts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MeMultiPolyTo2dm.html" class="btn btn-neutral" title="MeMultiPolyTo2dm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, aquaveo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

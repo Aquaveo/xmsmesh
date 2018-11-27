@@ -1,6 +1,6 @@
 var class_me_multi_poly_to2dm_intermediate_tests =
 [
-    [ "group", "class_me_multi_poly_to2dm_intermediate_tests.html#a13547c9f15b56d361ce86289038ecc93", null ],
+    [ "testbug11299", "class_me_multi_poly_to2dm_intermediate_tests.html#a9fbbbb81ff74bd4036f86f5b32d1c97b", null ],
     [ "testCase100", "class_me_multi_poly_to2dm_intermediate_tests.html#a6887b23210111e847781760f0718374a", null ],
     [ "testCase101", "class_me_multi_poly_to2dm_intermediate_tests.html#a0d57c11d85d15a93d98b47e354d932ec", null ],
     [ "testCase102", "class_me_multi_poly_to2dm_intermediate_tests.html#a745cf3b28d5f91a99e57af8daa59aaaf", null ],
@@ -11,6 +11,9 @@ var class_me_multi_poly_to2dm_intermediate_tests =
     [ "testCasePaveGeo", "class_me_multi_poly_to2dm_intermediate_tests.html#ac17f07874b30aa40a86e28fd7f7680d1", null ],
     [ "testCasePaveSanDiego", "class_me_multi_poly_to2dm_intermediate_tests.html#a51c63bcaf0d65ee1469828506e7f7357", null ],
     [ "testCasePaveSanDiego_SpringRelaxation", "class_me_multi_poly_to2dm_intermediate_tests.html#a95e4d0efe63c12d290be081b9ece8e90", null ],
+    [ "testInternalFeaturesCase0", "class_me_multi_poly_to2dm_intermediate_tests.html#a3210a2b3c512bbbe5d43f52f3b835c2f", null ],
+    [ "testInternalFeaturesCase1", "class_me_multi_poly_to2dm_intermediate_tests.html#ab4c2d3d04b6ebcf326ca062829e90555", null ],
+    [ "testInternalFeaturesCase2", "class_me_multi_poly_to2dm_intermediate_tests.html#a1e0546f024078cb4fcaf80b2807eb005", null ],
     [ "testSeedPoints", "class_me_multi_poly_to2dm_intermediate_tests.html#a8a53ed50a016e51edf18554a8ed7e90f", null ],
     [ "testSeedPoints_PolygonWithHole", "class_me_multi_poly_to2dm_intermediate_tests.html#a2b35e85216c3845865d581e41f6a458a", null ]
 ];

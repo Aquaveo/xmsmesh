@@ -1,6 +1,5 @@
 var class_tut_meshing_intermediate_tests =
 [
-    [ "group", "class_tut_meshing_intermediate_tests.html#ae8c0811451e81ce690a4b3a13b90780f", null ],
     [ "test_Example_Breakline", "class_tut_meshing_intermediate_tests.html#a766687c31cf21266280eee287b99e1ec", null ],
     [ "test_Example_ComplexPolygon", "class_tut_meshing_intermediate_tests.html#aca21ece58a116cc6e905cecded135763", null ],
     [ "test_Example_ConstantSmooth", "class_tut_meshing_intermediate_tests.html#ab3096f420b245110a335ec3929416400", null ],

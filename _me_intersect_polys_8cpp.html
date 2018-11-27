@@ -101,6 +101,7 @@ $(document).ready(function(){initNavTree('_me_intersect_polys_8cpp.html','');});
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmsinterp.tag:https://aquaveo.github.io/xmsinterp/" href="https://aquaveo.github.io/xmsinterp/_gm_boost_types_8h.html">xmsinterp/geometry/GmBoostTypes.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_me_poly_offsetter_8h_source.html">xmsmesh/meshing/detail/MePolyOffsetter.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/_xm_error_8h.html">xmscore/misc/XmError.h</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/vector_8h.html">xmscore/stl/vector.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_me_intersect_polys_8t_8h_source.html">xmsmesh/meshing/detail/MeIntersectPolys.t.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html">xmscore/testing/TestTools.h</a>&gt;</code><br />
 </div>
@@ -136,7 +137,7 @@ Functions</h2></td></tr>
 <tr class="separator:a8e5d7c5c0474d02b81baa59bea49231e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under FreeBSD License (See accompanying file LICENSE or <a href="https://aqaveo.com/bsd/license.txt">https://aqaveo.com/bsd/license.txt</a>) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -184,11 +185,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the envelop of a polygon. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_me_intersect_polys_8cpp_source.html#l00108">108</a> of file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_intersect_polys_8cpp_source.html#l00110">110</a> of file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_me_intersect_polys_8cpp_source.html#l00108">xms::iCalcPolyEnvelope()</a>, <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, and <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
+<p class="reference">References <a class="el" href="_me_intersect_polys_8cpp_source.html#l00110">xms::iCalcPolyEnvelope()</a>, <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, and <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_me_intersect_polys_8cpp_source.html#l00816">xms::MeIntersectPolys::impl::BoostPolySubtract()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00775">xms::MeIntersectPolys::impl::BoostPolyUnion()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00206">xms::MeIntersectPolys::CalcEnvelopes()</a>, and <a class="el" href="_me_intersect_polys_8cpp_source.html#l00108">xms::iCalcPolyEnvelope()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_me_intersect_polys_8cpp_source.html#l00890">xms::MeIntersectPolys::impl::BoostPolySubtract()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00846">xms::MeIntersectPolys::impl::BoostPolyUnion()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00208">xms::MeIntersectPolys::CalcEnvelopes()</a>, and <a class="el" href="_me_intersect_polys_8cpp_source.html#l00110">xms::iCalcPolyEnvelope()</a>.</p>
 
 </div>
 </div>
@@ -243,11 +244,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if envelope a_i is inside of envelope a_j </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_me_intersect_polys_8cpp_source.html#l00157">157</a> of file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_intersect_polys_8cpp_source.html#l00159">159</a> of file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_me_intersect_polys_8cpp_source.html#l00157">xms::iEnvelopeInsideOfEnvelope()</a>, <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, and <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
+<p class="reference">References <a class="el" href="_me_intersect_polys_8cpp_source.html#l00159">xms::iEnvelopeInsideOfEnvelope()</a>, <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, and <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_me_intersect_polys_8cpp_source.html#l00622">xms::MeIntersectPolys::impl::ClassifyPolysInsideOfPolys()</a>, and <a class="el" href="_me_intersect_polys_8cpp_source.html#l00157">xms::iEnvelopeInsideOfEnvelope()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_me_intersect_polys_8cpp_source.html#l00693">xms::MeIntersectPolys::impl::ClassifyPolysInsideOfPolys()</a>, and <a class="el" href="_me_intersect_polys_8cpp_source.html#l00159">xms::iEnvelopeInsideOfEnvelope()</a>.</p>
 
 </div>
 </div>
@@ -309,11 +310,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true only if the envelopes overlap (not touch) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_me_intersect_polys_8cpp_source.html#l00139">139</a> of file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_intersect_polys_8cpp_source.html#l00141">141</a> of file <a class="el" href="_me_intersect_polys_8cpp_source.html">MeIntersectPolys.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_me_intersect_polys_8cpp_source.html#l00139">xms::iEnvelopesOverlap()</a>, <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, and <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
+<p class="reference">References <a class="el" href="_me_intersect_polys_8cpp_source.html#l00141">xms::iEnvelopesOverlap()</a>, <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">xms::Pt3&lt; T &gt;::x</a>, and <a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a218217ff3405493c7b6dce94935f1290">xms::Pt3&lt; T &gt;::y</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_me_intersect_polys_8cpp_source.html#l00580">xms::MeIntersectPolys::impl::ClassifyDisjointPolys()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00139">xms::iEnvelopesOverlap()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00386">xms::MeIntersectPolys::impl::InInDoIntersection()</a>, and <a class="el" href="_me_intersect_polys_8cpp_source.html#l00719">xms::MeIntersectPolys::impl::InOutFindIntersectingPolys()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_me_intersect_polys_8cpp_source.html#l00651">xms::MeIntersectPolys::impl::ClassifyDisjointPolys()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00141">xms::iEnvelopesOverlap()</a>, <a class="el" href="_me_intersect_polys_8cpp_source.html#l00440">xms::MeIntersectPolys::impl::InInDoIntersection()</a>, and <a class="el" href="_me_intersect_polys_8cpp_source.html#l00790">xms::MeIntersectPolys::impl::InOutFindIntersectingPolys()</a>.</p>
 
 </div>
 </div>
@@ -323,7 +324,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="dir_abd8c1a13056d463f3dafa116a92b72c.html">detail</a></li><li class="navelem"><a class="el" href="_me_intersect_polys_8cpp.html">MeIntersectPolys.cpp</a></li>
-    <li class="footer">Generated on Thu Nov 8 2018 04:28:16 for xmsmesh by
+    <li class="footer">Generated on Tue Nov 27 2018 18:55:48 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

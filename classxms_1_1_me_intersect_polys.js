@@ -5,6 +5,7 @@ var classxms_1_1_me_intersect_polys =
     [ "~MeIntersectPolys", "classxms_1_1_me_intersect_polys.html#af126d19ebee8065433a9363c452d900c", null ],
     [ "CalcEnvelopes", "classxms_1_1_me_intersect_polys.html#afd68d71257c3ea07910d4123173617fa", null ],
     [ "ClassifyPolys", "classxms_1_1_me_intersect_polys.html#a60da13c79e172a12d4d34518b1a68d0b", null ],
+    [ "DeleteBad_NEWOUT_POLY", "classxms_1_1_me_intersect_polys.html#abc59a88a53e7bd8a0716e526aae065b4", null ],
     [ "FillOutput", "classxms_1_1_me_intersect_polys.html#a53fc33783f03b807ce312683e9f85612", null ],
     [ "InInDoIntersection", "classxms_1_1_me_intersect_polys.html#ac949fbf44b05b7157f1e3da32cb596e7", null ],
     [ "InInTrivialPolyCases", "classxms_1_1_me_intersect_polys.html#aceab2ec73ad8007694250ddfb3d177e7", null ],

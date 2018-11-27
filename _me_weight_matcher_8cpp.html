@@ -115,7 +115,7 @@ Macros</h2></td></tr>
 <tr class="separator:af85239f50daa57d4bac8073be8dc9a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under FreeBSD License (See accompanying file LICENSE or <a href="https://aqaveo.com/bsd/license.txt">https://aqaveo.com/bsd/license.txt</a>) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 </div><h2 class="groupheader">Variable Documentation</h2>
@@ -140,7 +140,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If m_allowEdge[k] is true, edge k has zero slack in the optimization problem; if m_allowEdge[k] is false, the edge's slack may or may not be zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00469">469</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00468">468</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -165,7 +165,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If v is a free vertex (or an unreached vertex inside a T-blossom), m_bestEdge[v] is the edge to an S-vertex with least slack, or -1 if there is no such edge. If b is a (possibly trivial) top-level S-blossom, m_bestEdge[b] is the least-slack edge to a different S-blossom, or -1 if there is no such edge. This is used for efficient computation of delta2 and delta3. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00444">444</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00443">443</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a (sub-)blossom, m_blossomBase[b] is its base VERTEX (i.e. recursive sub-blossom). if m_nVertex is 4: [0, 1, 2, 3, -1, -1, -1, -1] </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00428">428</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00427">427</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a non-trivial top-level S-blossom, m_blossomBestEdges[b] is a list of least-slack edges to neighbouring S-blossoms, or None if no such list has been computed yet. This is used for efficient computation of delta3. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00450">450</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00449">449</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,7 +240,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a non-trivial (sub-)blossom, m_blossomChildren[b] is an ordered list of its sub-blossoms, starting with the base and going round the blossom. m_blossomChildren = (2 * m_nVertex) * [ None ] </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00423">423</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00422">422</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -265,7 +265,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a non-trivial (sub-)blossom, m_blossomEndPts[b] is a list of endpoints on its connecting edges, such that m_blossomEndPts[b][i] is the local endpoint of m_blossomChildren[b][i] on the edge that connects it to m_blossomChildren[b][wrap(i+1)]. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00435">435</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00434">434</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -290,7 +290,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a sub-blossom, m_blossomParent[b] is its immediate parent (sub-)blossom. If b is a top-level blossom, m_blossomParent[b] is -1. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00417">417</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00416">416</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +315,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If v is a vertex, m_dualVar[v] = 2 * u(v) where u(v) is the v's variable in the dual optimization problem (multiplication by two ensures integer values throughout the algorithm if all edge weights are integers). If b is a non-trivial blossom, m_dualVar[b] = z(b) where z(b) is b's variable in the dual optimization problem. if m_nVertex is 4 and m_maxWeight is w: [w, w, w, w, 0, 0, 0, 0] </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00464">464</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00463">463</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,7 +340,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>Edge endpoints are numbered 0 .. (2*m_nEdge-1), such that endpoints (2*k) and (2*k+1) both belong to edge k. If p is an edge endpoint, m_endPoint[p] is the vertex to which endpoint p is attached. Not modified by the algorithm. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00375">375</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00374">374</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,7 +365,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If v is a vertex, m_inBlossom[v] is the top-level blossom to which v belongs. If v is a top-level vertex, v is itself a blossom (a trivial blossom) and m_inBlossom[v] == v. Initially all vertices are top-level trivial blossoms. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00412">412</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00411">411</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +390,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a top-level blossom, m_label[b] is 0 if b is unlabeled (free); 1 if b is an S-vertex/blossom; 2 if b is a T-vertex/blossom. The label of a vertex is found by looking at the label of its top-level containing blossom. If v is a vertex inside a T-blossom, m_label[v] is 2 iff v is reachable from an S-vertex outside the blossom. Labels are assigned during a stage and reset after each augmentation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00397">397</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00396">396</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -415,7 +415,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If b is a labeled top-level blossom, m_labelEnd[b] is the remote endpoint of the edge through which b obtained its label, or -1 if b's base vertex is single. If v is a vertex inside a T-blossom and m_label[v] == 2, m_labelEnd[v] is the remote endpoint of the edge through which v is reachable from outside the blossom. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00405">405</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00404">404</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -440,7 +440,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If v is a vertex, m_mate[v] is the remote endpoint of its matched edge, or -1 if it is single (i.e. m_endPoint[m_mate[v]] is v's partner vertex). Initially all vertices are single; updated during augmentation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00386">386</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00385">385</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +465,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>If v is a vertex, m_neighbEnd[v] is the list of remote endpoints of the edges attached to v. Not modified by the algorithm. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00380">380</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00379">379</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -490,7 +490,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p>List of currently unused blossom numbers. if m_nVertex is 4: [4, 5, 6, 7] </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00454">454</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_weight_matcher_8cpp_source.html#l00453">453</a> of file <a class="el" href="_me_weight_matcher_8cpp_source.html">MeWeightMatcher.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +500,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="dir_abd8c1a13056d463f3dafa116a92b72c.html">detail</a></li><li class="navelem"><a class="el" href="_me_weight_matcher_8cpp.html">MeWeightMatcher.cpp</a></li>
-    <li class="footer">Generated on Thu Nov 8 2018 04:28:16 for xmsmesh by
+    <li class="footer">Generated on Tue Nov 27 2018 18:55:48 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

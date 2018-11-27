@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>xmsmesh: /home/conan/xmsmesh/meshing/MeQuadBlossom.cpp File Reference</title>
+<title>xmsmesh: /home/conan/xmsmesh/meshing/detail/MeQuadBlossom.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('_me_quad_blossom_8cpp.html','');});
 <div class="title">MeQuadBlossom.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="_me_quad_blossom_8h_source.html">xmsmesh/meshing/MeQuadBlossom.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="_me_quad_blossom_8h_source.html">xmsmesh/meshing/detail/MeQuadBlossom.h</a>&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;numeric&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/_xm_error_8h.html">xmscore/misc/XmError.h</a>&gt;</code><br />
@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('_me_quad_blossom_8cpp.html','');});
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmsgrid.tag:https://aquaveo.github.io/xmsgrid/" href="https://aquaveo.github.io/xmsgrid/_xm_u_grid_8h.html">xmsgrid/ugrid/XmUGrid.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmsinterp.tag:https://aquaveo.github.io/xmsinterp/" href="https://aquaveo.github.io/xmsinterp/geoms_8h.html">xmsinterp/geometry/geoms.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_me_weight_matcher_8h_source.html">xmsmesh/meshing/detail/MeWeightMatcher.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_me_quad_blossom_8t_8h_source.html">xmsmesh/meshing/MeQuadBlossom.t.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_me_quad_blossom_8t_8h_source.html">xmsmesh/meshing/detail/MeQuadBlossom.t.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmscore.tag:https://aquaveo.github.io/xmscore/" href="https://aquaveo.github.io/xmscore/_test_tools_8h.html">xmscore/testing/TestTools.h</a>&gt;</code><br />
 <code>#include &lt;<a class="elRef" doxygen="/home/conan/Doxygen/xmsinterp.tag:https://aquaveo.github.io/xmsinterp/" href="https://aquaveo.github.io/xmsinterp/_tr_triangulator_points_8h.html">xmsinterp/triangulate/TrTriangulatorPoints.h</a>&gt;</code><br />
 </div>
@@ -128,7 +128,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <tr class="separator:a825dc9185e65d4599a081f0fd580d65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under FreeBSD License (See accompanying file LICENSE or <a href="https://aqaveo.com/bsd/license.txt">https://aqaveo.com/bsd/license.txt</a>) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_me_quad_blossom_8cpp_source.html">MeQuadBlossom.cpp</a>.</p>
 </div><h2 class="groupheader">Variable Documentation</h2>
@@ -145,7 +145,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 </div><div class="memdoc">
 <p>The costs of each edge between designated faces. </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_quad_blossom_8cpp_source.html#l00144">144</a> of file <a class="el" href="_me_quad_blossom_8cpp_source.html">MeQuadBlossom.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_quad_blossom_8cpp_source.html#l00143">143</a> of file <a class="el" href="_me_quad_blossom_8cpp_source.html">MeQuadBlossom.cpp</a>.</p>
 
 </div>
 </div>
@@ -162,7 +162,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 </div><div class="memdoc">
 <p>For every extra edge the boundary point and prior and next point of each of the two extra edge faces. { p, face0_prior, face0_next, face1_prior, face1_next } </p>
 
-<p class="definition">Definition at line <a class="el" href="_me_quad_blossom_8cpp_source.html#l00150">150</a> of file <a class="el" href="_me_quad_blossom_8cpp_source.html">MeQuadBlossom.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_me_quad_blossom_8cpp_source.html#l00149">149</a> of file <a class="el" href="_me_quad_blossom_8cpp_source.html">MeQuadBlossom.cpp</a>.</p>
 
 </div>
 </div>
@@ -171,8 +171,8 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="_me_quad_blossom_8cpp.html">MeQuadBlossom.cpp</a></li>
-    <li class="footer">Generated on Thu Nov 8 2018 04:28:16 for xmsmesh by
+    <li class="navelem"><a class="el" href="dir_a042f6ead331ad68c5f1fb7c065ab2e2.html">xmsmesh</a></li><li class="navelem"><a class="el" href="dir_7b496edbef050d8b43485d3aed8596cb.html">meshing</a></li><li class="navelem"><a class="el" href="dir_abd8c1a13056d463f3dafa116a92b72c.html">detail</a></li><li class="navelem"><a class="el" href="_me_quad_blossom_8cpp.html">MeQuadBlossom.cpp</a></li>
+    <li class="footer">Generated on Tue Nov 27 2018 18:55:48 for xmsmesh by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
   </ul>

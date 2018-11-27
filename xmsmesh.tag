@@ -1,6 +1,81 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
+    <name>MeBadQuadRemover.cpp</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_bad_quad_remover_8cpp</filename>
+    <includes id="_me_bad_quad_remover_8h" name="MeBadQuadRemover.h" local="no" imported="no">xmsmesh/meshing/detail/MeBadQuadRemover.h</includes>
+    <includes id="_me_bad_quad_remover_8t_8h" name="MeBadQuadRemover.t.h" local="no" imported="no">xmsmesh/meshing/detail/MeBadQuadRemover.t.h</includes>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_num3EdgePoints</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a8da32761b839473258ff31498921b05d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_pointIdx</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>ac7001d740fa48b5851881031c5a58260</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>BSHP&lt; XmUGrid &gt;</type>
+      <name>m_ugrid</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>aaf22002695497230e40601db32e50798</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecInt</type>
+      <name>m_pointIdxMap</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>ac5434a933a38ebd41086a5043a082257</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>DynBitset</type>
+      <name>m_cellsToDelete</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>aeae0aaf9b54f0bc450f877e90b26d3e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MovedPointVec</type>
+      <name>m_movedPoints</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a566cf23925b60c9b8327b5bcc690a14d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>VecCellData</type>
+      <name>m_cellsData</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a1bc452d896277c7a00097202ad2da3ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const VecInt</type>
+      <name>m_adjPointCnts</name>
+      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
+      <anchor>a1a93f3b00e306d928315a11afbb2373b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MeBadQuadRemover.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_bad_quad_remover_8h</filename>
+    <class kind="class">xms::MeBadQuadRemover</class>
+  </compound>
+  <compound kind="file">
+    <name>MeBadQuadRemover.t.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_bad_quad_remover_8t_8h</filename>
+    <class kind="class">MeBadQuadRemoverUnitTests</class>
+  </compound>
+  <compound kind="file">
     <name>MeIntersectPolys.cpp</name>
     <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_intersect_polys_8cpp</filename>
@@ -357,6 +432,173 @@
     <class kind="class">MePolyRedistributePtsCurvatureIntermediateTests</class>
   </compound>
   <compound kind="file">
+    <name>MeQuadBlossom.cpp</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_quad_blossom_8cpp</filename>
+    <includes id="_me_quad_blossom_8h" name="MeQuadBlossom.h" local="no" imported="no">xmsmesh/meshing/detail/MeQuadBlossom.h</includes>
+    <includes id="_me_weight_matcher_8h" name="MeWeightMatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MeWeightMatcher.h</includes>
+    <includes id="_me_quad_blossom_8t_8h" name="MeQuadBlossom.t.h" local="no" imported="no">xmsmesh/meshing/detail/MeQuadBlossom.t.h</includes>
+    <member kind="variable">
+      <type>const double</type>
+      <name>PI_OVER_TWO</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ac0b189b5d1a9663ea53ed8965c531c09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const double</type>
+      <name>TWO_OVER_PI</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ab136e9d94dc522e1ca17e197e6c4f022</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const double</type>
+      <name>TWO_PI</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a9b41bd904b5251c686c373ce2eb287a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const int</type>
+      <name>DEFAULT_COST</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a825dc9185e65d4599a081f0fd580d65a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_p0</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a4e3f61ee56e7a1da56cc964d6add7ce3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_p1</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ac1c0712d631d0b9630a44f493081075d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_fL</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa5c1aef3a8e1414edae038bfba486d1a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_fR</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ae78a3b44cd4fabecb7b25c635e4005d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_pL</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa27935e32ad9d568e2a1142733a1b9cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_pR</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ad5623817eb89a57f0d69b841f676e963</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_priorPoint</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a39c94516af56c6a99d7e40829e49cbfa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_nextPoint</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a7e27fbdab44f61542516ac01e4b1470e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_cell</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>ae7b6d7c91e9aaac6371e6515dbbb4bde</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_points</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aeacd1791f540e1036ebb08ce12527cc1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt2d</type>
+      <name>m_faces</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aec4f993f59fa7a56c6d41c53b878b79b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_splitPoints</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa340cf9a862e3d183128fbe98e67e312</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecEdge</type>
+      <name>m_interiorEdges</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>aa0ddcbea7a6f4e8f9ce57995a7f218f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecEdge</type>
+      <name>m_boundaryEdges</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a030e5bd0108c6f478202140cc2fc4894</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecMeEdge</type>
+      <name>m_costs</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>addcd470e34d9a0d2446f6e5b2f9a0998</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecMeEdge</type>
+      <name>m_extraEdges</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a8da5e2ea5af4d4ffae25c2af8a2a1ef0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>VecInt2d</type>
+      <name>m_extraPoints</name>
+      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
+      <anchor>a0e60bb99dd8212a3e1095fc585529742</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MeQuadBlossom.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_quad_blossom_8h</filename>
+    <class kind="class">xms::MeQuadBlossom</class>
+  </compound>
+  <compound kind="file">
+    <name>MeQuadBlossom.t.h</name>
+    <path>/home/conan/xmsmesh/meshing/detail/</path>
+    <filename>_me_quad_blossom_8t_8h</filename>
+    <class kind="class">MeQuadBlossomUnitTests</class>
+  </compound>
+  <compound kind="file">
     <name>MeRefinePtsToPolys.cpp</name>
     <path>/home/conan/xmsmesh/meshing/detail/</path>
     <filename>_me_refine_pts_to_polys_8cpp</filename>
@@ -588,81 +830,6 @@
     <class kind="class">MeWeightMatcherUnitTests</class>
   </compound>
   <compound kind="file">
-    <name>MeBadQuadRemover.cpp</name>
-    <path>/home/conan/xmsmesh/meshing/</path>
-    <filename>_me_bad_quad_remover_8cpp</filename>
-    <includes id="_me_bad_quad_remover_8h" name="MeBadQuadRemover.h" local="no" imported="no">xmsmesh/meshing/MeBadQuadRemover.h</includes>
-    <includes id="_me_bad_quad_remover_8t_8h" name="MeBadQuadRemover.t.h" local="no" imported="no">xmsmesh/meshing/MeBadQuadRemover.t.h</includes>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_num3EdgePoints</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>a8da32761b839473258ff31498921b05d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_pointIdx</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>ac7001d740fa48b5851881031c5a58260</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>BSHP&lt; XmUGrid &gt;</type>
-      <name>m_ugrid</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>aaf22002695497230e40601db32e50798</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecInt</type>
-      <name>m_pointIdxMap</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>ac5434a933a38ebd41086a5043a082257</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>DynBitset</type>
-      <name>m_cellsToDelete</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>aeae0aaf9b54f0bc450f877e90b26d3e3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>MovedPointVec</type>
-      <name>m_movedPoints</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>a566cf23925b60c9b8327b5bcc690a14d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecCellData</type>
-      <name>m_cellsData</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>a1bc452d896277c7a00097202ad2da3ff</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const VecInt</type>
-      <name>m_adjPointCnts</name>
-      <anchorfile>_me_bad_quad_remover_8cpp.html</anchorfile>
-      <anchor>a1a93f3b00e306d928315a11afbb2373b</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>MeBadQuadRemover.h</name>
-    <path>/home/conan/xmsmesh/meshing/</path>
-    <filename>_me_bad_quad_remover_8h</filename>
-    <class kind="class">xms::MeBadQuadRemover</class>
-  </compound>
-  <compound kind="file">
-    <name>MeBadQuadRemover.t.h</name>
-    <path>/home/conan/xmsmesh/meshing/</path>
-    <filename>_me_bad_quad_remover_8t_8h</filename>
-    <class kind="class">MeBadQuadRemoverUnitTests</class>
-  </compound>
-  <compound kind="file">
     <name>MeMeshUtils.cpp</name>
     <path>/home/conan/xmsmesh/meshing/</path>
     <filename>_me_mesh_utils_8cpp</filename>
@@ -870,173 +1037,6 @@
     <class kind="class">MePolyRedistributePtsUnitTests</class>
   </compound>
   <compound kind="file">
-    <name>MeQuadBlossom.cpp</name>
-    <path>/home/conan/xmsmesh/meshing/</path>
-    <filename>_me_quad_blossom_8cpp</filename>
-    <includes id="_me_quad_blossom_8h" name="MeQuadBlossom.h" local="no" imported="no">xmsmesh/meshing/MeQuadBlossom.h</includes>
-    <includes id="_me_weight_matcher_8h" name="MeWeightMatcher.h" local="no" imported="no">xmsmesh/meshing/detail/MeWeightMatcher.h</includes>
-    <includes id="_me_quad_blossom_8t_8h" name="MeQuadBlossom.t.h" local="no" imported="no">xmsmesh/meshing/MeQuadBlossom.t.h</includes>
-    <member kind="variable">
-      <type>const double</type>
-      <name>PI_OVER_TWO</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>ac0b189b5d1a9663ea53ed8965c531c09</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const double</type>
-      <name>TWO_OVER_PI</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>ab136e9d94dc522e1ca17e197e6c4f022</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const double</type>
-      <name>TWO_PI</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a9b41bd904b5251c686c373ce2eb287a1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const int</type>
-      <name>DEFAULT_COST</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a825dc9185e65d4599a081f0fd580d65a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_p0</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a4e3f61ee56e7a1da56cc964d6add7ce3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_p1</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>ac1c0712d631d0b9630a44f493081075d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_fL</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>aa5c1aef3a8e1414edae038bfba486d1a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_fR</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>ae78a3b44cd4fabecb7b25c635e4005d0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_pL</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>aa27935e32ad9d568e2a1142733a1b9cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_pR</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>ad5623817eb89a57f0d69b841f676e963</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_priorPoint</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a39c94516af56c6a99d7e40829e49cbfa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_nextPoint</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a7e27fbdab44f61542516ac01e4b1470e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>m_cell</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>ae7b6d7c91e9aaac6371e6515dbbb4bde</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecPt3d</type>
-      <name>m_points</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>aeacd1791f540e1036ebb08ce12527cc1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecInt2d</type>
-      <name>m_faces</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>aec4f993f59fa7a56c6d41c53b878b79b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecPt3d</type>
-      <name>m_splitPoints</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>aa340cf9a862e3d183128fbe98e67e312</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecEdge</type>
-      <name>m_interiorEdges</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>aa0ddcbea7a6f4e8f9ce57995a7f218f9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecEdge</type>
-      <name>m_boundaryEdges</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a030e5bd0108c6f478202140cc2fc4894</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecMeEdge</type>
-      <name>m_costs</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>addcd470e34d9a0d2446f6e5b2f9a0998</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecMeEdge</type>
-      <name>m_extraEdges</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a8da5e2ea5af4d4ffae25c2af8a2a1ef0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>VecInt2d</type>
-      <name>m_extraPoints</name>
-      <anchorfile>_me_quad_blossom_8cpp.html</anchorfile>
-      <anchor>a0e60bb99dd8212a3e1095fc585529742</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>MeQuadBlossom.h</name>
-    <path>/home/conan/xmsmesh/meshing/</path>
-    <filename>_me_quad_blossom_8h</filename>
-    <class kind="class">xms::MeQuadBlossom</class>
-  </compound>
-  <compound kind="file">
-    <name>MeQuadBlossom.t.h</name>
-    <path>/home/conan/xmsmesh/meshing/</path>
-    <filename>_me_quad_blossom_8t_8h</filename>
-    <class kind="class">MeQuadBlossomUnitTests</class>
-  </compound>
-  <compound kind="file">
     <name>TutMeshing.cpp</name>
     <path>/home/conan/xmsmesh/tutorial/</path>
     <filename>_tut_meshing_8cpp</filename>
@@ -1045,8 +1045,8 @@
     <includes id="_me_multi_poly_mesher_io_8h" name="MeMultiPolyMesherIo.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyMesherIo.h</includes>
     <includes id="_me_multi_poly_to2dm_8h" name="MeMultiPolyTo2dm.h" local="no" imported="no">xmsmesh/meshing/MeMultiPolyTo2dm.h</includes>
     <includes id="_me_poly_redistribute_pts_8h" name="MePolyRedistributePts.h" local="no" imported="no">xmsmesh/meshing/MePolyRedistributePts.h</includes>
-    <includes id="_me_quad_blossom_8h" name="MeQuadBlossom.h" local="no" imported="no">xmsmesh/meshing/MeQuadBlossom.h</includes>
-    <includes id="_me_bad_quad_remover_8h" name="MeBadQuadRemover.h" local="no" imported="no">xmsmesh/meshing/MeBadQuadRemover.h</includes>
+    <includes id="_me_quad_blossom_8h" name="MeQuadBlossom.h" local="no" imported="no">xmsmesh/meshing/detail/MeQuadBlossom.h</includes>
+    <includes id="_me_bad_quad_remover_8h" name="MeBadQuadRemover.h" local="no" imported="no">xmsmesh/meshing/detail/MeBadQuadRemover.h</includes>
     <member kind="function">
       <type>bool</type>
       <name>tutReadMeshIoFromFile</name>
@@ -1243,6 +1243,13 @@
       <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
       <anchor>ae53c6a69462cb6b11b15b5dddf4c23f0</anchor>
       <arglist>(size_t a_i, size_t a_j)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DeleteBad_NEWOUT_POLY</name>
+      <anchorfile>classxms_1_1_me_intersect_polys_1_1impl.html</anchorfile>
+      <anchor>ad2254f11699e3b7f7d07aa649638b864</anchor>
+      <arglist>(MePolyOffsetterOutput &amp;a_out, const VecPt3d &amp;a_origOutsidePoly)</arglist>
     </member>
     <member kind="variable">
       <type>MePolyPts</type>
@@ -1491,6 +1498,13 @@
       <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
       <anchor>a60da13c79e172a12d4d34518b1a68d0b</anchor>
       <arglist>(const MePolyOffsetterOutput &amp;a_input, std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;a_output)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DeleteBad_NEWOUT_POLY</name>
+      <anchorfile>classxms_1_1_me_intersect_polys.html</anchorfile>
+      <anchor>abc59a88a53e7bd8a0716e526aae065b4</anchor>
+      <arglist>(MePolyOffsetterOutput &amp;a_out, const VecPt3d &amp;a_origOutsidePoly)</arglist>
     </member>
     <member kind="function" protection="private">
       <type></type>
@@ -1831,13 +1845,6 @@
   <compound kind="class">
     <name>MeMultiPolyTo2dmIntermediateTests</name>
     <filename>class_me_multi_poly_to2dm_intermediate_tests.html</filename>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const CxxTest::TestGroup &amp;</type>
-      <name>group</name>
-      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
-      <anchor>a13547c9f15b56d361ce86289038ecc93</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>testCase2</name>
@@ -1922,17 +1929,38 @@
       <anchor>a2b35e85216c3845865d581e41f6a458a</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testbug11299</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>a9fbbbb81ff74bd4036f86f5b32d1c97b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInternalFeaturesCase0</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>a3210a2b3c512bbbe5d43f52f3b835c2f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInternalFeaturesCase1</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>ab4c2d3d04b6ebcf326ca062829e90555</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testInternalFeaturesCase2</name>
+      <anchorfile>class_me_multi_poly_to2dm_intermediate_tests.html</anchorfile>
+      <anchor>a1e0546f024078cb4fcaf80b2807eb005</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>MeMultiPolyTo2dmUnitTests</name>
     <filename>class_me_multi_poly_to2dm_unit_tests.html</filename>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const CxxTest::TestGroup &amp;</type>
-      <name>group</name>
-      <anchorfile>class_me_multi_poly_to2dm_unit_tests.html</anchorfile>
-      <anchor>ace60f97cca8921d142b69b8d6457e653</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>testCreateClass</name>
@@ -1967,8 +1995,15 @@
       <type>virtual void</type>
       <name>CleanPolyOffset</name>
       <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
-      <anchor>a2c806142632e75103ef750d65708216f</anchor>
-      <arglist>(const std::vector&lt; Pt3d &gt; &amp;a_input, int a_pType, double a_tol, MePolyOffsetterOutput &amp;a_out) override</arglist>
+      <anchor>a0776e84ad295ce64b59814a18fc6b184</anchor>
+      <arglist>(const VecPt3d &amp;a_input, int a_pType, double a_tol, MePolyOffsetterOutput &amp;a_out) override</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetOriginalOutsidePolygon</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
+      <anchor>a86d1a03807b4598d2beeea5b3cde0f3b</anchor>
+      <arglist>(const VecPt3d &amp;a_origOutsidePoly) override</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -1988,8 +2023,15 @@
       <type>void</type>
       <name>FillOutputForCleanPolyOffset</name>
       <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
-      <anchor>a6ebd8c33f63b8e77ffed8263a3e9f600</anchor>
-      <arglist>(MePolyOffsetterOutput &amp;a_out, int a_pType, std::list&lt; std::vector&lt; size_t &gt;&gt; &amp;a_loops, std::vector&lt; int &gt; &amp;a_loopType, const std::vector&lt; Pt3d &gt; &amp;a_pts)</arglist>
+      <anchor>a99e9129dd5e73a438cb103f73866d4c9</anchor>
+      <arglist>(MePolyOffsetterOutput &amp;a_out, int a_pType, std::list&lt; std::vector&lt; size_t &gt;&gt; &amp;a_loops, std::vector&lt; int &gt; &amp;a_loopType, const VecPt3d &amp;a_pts)</arglist>
+    </member>
+    <member kind="variable">
+      <type>VecPt3d</type>
+      <name>m_origOutsidePoly</name>
+      <anchorfile>classxms_1_1_me_poly_cleaner_impl.html</anchorfile>
+      <anchor>a086a042e2c2d927e378cab037d01d813</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -5195,13 +5237,6 @@
   <compound kind="class">
     <name>TutMeshingIntermediateTests</name>
     <filename>class_tut_meshing_intermediate_tests.html</filename>
-    <member kind="function" virtualness="virtual">
-      <type>virtual const CxxTest::TestGroup &amp;</type>
-      <name>group</name>
-      <anchorfile>class_tut_meshing_intermediate_tests.html</anchorfile>
-      <anchor>ae8c0811451e81ce690a4b3a13b90780f</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>test_Example_SimplePolygon</name>
