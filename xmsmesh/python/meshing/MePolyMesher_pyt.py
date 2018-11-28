@@ -1,14 +1,14 @@
-"""Test MePolyMesher_py.cpp."""
+"""Test PolyMesher_py.cpp."""
 import unittest
 import numpy as np
 from xmscore_py.misc import Observer
-from xmsmesh.meshing import MePolyMesher
+from xmsmesh.meshing import PolyMesher
 from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 
 
-class TestMePolyMesher(unittest.TestCase):
-    """Test MePolyMesher functions."""
+class TestPolyMesher(unittest.TestCase):
+    """Test PolyMesher functions."""
 
     def setUp(self):
         pass
@@ -25,9 +25,9 @@ class TestMePolyMesher(unittest.TestCase):
     def assertArraysEqual(base, out):
         np.testing.assert_array_equal(np.array(base), out)
 
-    def test_creating_MePolyMesher(self):
-        mesher = MePolyMesher()
-        self.assertIsInstance(mesher, MePolyMesher)
+    def test_creating_PolyMesher(self):
+        mesher = PolyMesher()
+        self.assertIsInstance(mesher, PolyMesher)
 
     def test_mesh_it(self):
         outside_poly = ((5, 0, 0), (10, 5, 0), (10, 15, 0),
@@ -36,7 +36,7 @@ class TestMePolyMesher(unittest.TestCase):
         poly_input = MePolyInput()
         poly_input.outside_poly = outside_poly
         poly_input.inside_polys = inside_polys
-        mesher = MePolyMesher()
+        mesher = PolyMesher()
         mesher_io = MultiPolyMesherIo()
         mesher_io.poly_inputs = (poly_input,)
         status, points, tris, cells = mesher.mesh_it(mesher_io, 0)

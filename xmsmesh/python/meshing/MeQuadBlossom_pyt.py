@@ -1,4 +1,4 @@
-"""Test MePolyMesher_py.cpp."""
+"""Test MeQuadBlossom_py.cpp."""
 import unittest
 import numpy as np
 from xmsgrid_py.ugrid import XmUGrid

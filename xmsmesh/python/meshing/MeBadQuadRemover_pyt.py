@@ -1,4 +1,4 @@
-"""Test MePolyMesher_py.cpp."""
+"""Test MeBadQuadRemover_py.cpp."""
 import unittest
 import numpy as np
 from xmsmesh.meshing import MeBadQuadRemover
