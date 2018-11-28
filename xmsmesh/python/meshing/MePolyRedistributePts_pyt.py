@@ -1,8 +1,8 @@
-"""Test MePolyRedistributePts_py.cpp."""
+"""Test PolyRedistributePts_py.cpp."""
 import unittest
 import numpy as np
 from xmscore_py.misc import Observer
-from xmsmesh.meshing import MePolyRedistributePts
+from xmsmesh.meshing import PolyRedistributePts
 from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
@@ -10,8 +10,8 @@ from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 
 
-class TestMePolyRedistributePts(unittest.TestCase):
-    """Test MePolyRedistributePts functions."""
+class TestPolyRedistributePts(unittest.TestCase):
+    """Test PolyRedistributePts functions."""
 
     def setUp(self):
         pass
@@ -28,18 +28,18 @@ class TestMePolyRedistributePts(unittest.TestCase):
     def assertArraysEqual(base, out):
         np.testing.assert_array_equal(np.array(base), out)
 
-    def test_creating_MePolyRedistributePts(self):
-        mesher = MePolyRedistributePts()
-        self.assertIsInstance(mesher, MePolyRedistributePts)
+    def test_creating_PolyRedistributePts(self):
+        mesher = PolyRedistributePts()
+        self.assertIsInstance(mesher, PolyRedistributePts)
 
     def test_set_size_func_01(self):
-        r = MePolyRedistributePts()
+        r = PolyRedistributePts()
         sf = InterpLinear()
         r.set_size_func(sf)
         # TODO: No way to test if there size function was set correctly
 
     def test_set_size_func_02(self):
-        r = MePolyRedistributePts()
+        r = PolyRedistributePts()
         sf = InterpIdw()
         r.set_size_func(sf)
         # TODO: No way to test if there size function was set correctly
@@ -47,13 +47,13 @@ class TestMePolyRedistributePts(unittest.TestCase):
     def test_set_size_fun_from_poly(self):
         out_poly = ((0, 0, 0), (0, 10, 0), (10, 10, 0), (10, 0, 0))
         in_polys = ()
-        r = MePolyRedistributePts()
+        r = PolyRedistributePts()
         size_bias = 1.0
         r.set_size_func_from_poly(out_poly, in_polys, size_bias)
         # TODO: No way to test if there size function was set correctly
 
     def test_constant_size_func(self):
-        r = MePolyRedistributePts()
+        r = PolyRedistributePts()
         r.set_constant_size_func(0.75)
         poly_line = ((0, 0, 0), (1, 0, 0), (2, 0, 0), (3, 0, 0))
         new_poly_line = r.redistribute(poly_line)
@@ -65,7 +65,7 @@ class TestMePolyRedistributePts(unittest.TestCase):
 
     # TODO: This Crashes when using size bias
     # def test_constant_size_bias(self):
-    #     r = MePolyRedistributePts()
+    #     r = PolyRedistributePts()
     #     r.set_constant_size_bias(1.5)
     #     poly_line = ((0, 0, 0), (1, 0, 0), (2, 0, 0), (3, 0, 0))
     #     new_poly_line = r.redistrubte(poly_line)
@@ -73,7 +73,7 @@ class TestMePolyRedistributePts(unittest.TestCase):
     #     np.testing.assert_array_equal(base_poly_line, new_poly_line)
    
     def test_set_use_curvature_redistribution(self):
-        r = MePolyRedistributePts()
+        r = PolyRedistributePts()
         r.set_use_curvature_redistribution(3.0, 4.0, 0.001, False)
         poly_line = ((0, 0, 0), (5, 5, 0), (10, 10, 0), (15, 5, 0),
                      (20, 10, 0), (21, 10, 0), (25, 0, 0))
@@ -85,7 +85,7 @@ class TestMePolyRedistributePts(unittest.TestCase):
         np.testing.assert_array_almost_equal(base_poly_line, new_poly_line, decimal=2)
 
     def test_redistribute(self):
-        r = MePolyRedistributePts()
+        r = PolyRedistributePts()
         r.set_constant_size_func(7)
         # r.set_constant_size_bias(3.5)
         poly_line = [(x, 0, 0) for x in range(0, 100, 2)]

@@ -19,7 +19,8 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMePolyRedistributePts(py::module &m) {
-    py::class_<xms::MePolyRedistributePts, boost::shared_ptr<xms::MePolyRedistributePts>> polyRedistribute(m, "MePolyRedistributePts");
+    py::class_<xms::MePolyRedistributePts,
+                boost::shared_ptr<xms::MePolyRedistributePts>> polyRedistribute(m, "PolyRedistributePts");
 
 
     polyRedistribute.def(py::init(&xms::MePolyRedistributePts::New));
