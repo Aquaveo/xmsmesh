@@ -1,12 +1,12 @@
 """Test InterpLinear_py.cpp."""
 import unittest
 import numpy as np
-from xmsmesh.meshing import MeMeshUtils
+from xmsmesh.meshing import mesh_utils
 from xmsinterp_py.triangulate import TrTin, TrTriangulatorPoints
 
 
-class TestMeMeshUtils(unittest.TestCase):
-    """Test MeMeshUtils functions."""
+class TestMeshUtils(unittest.TestCase):
+    """Test MeshUtils functions."""
 
     def setUp(self):
         pass
@@ -15,7 +15,7 @@ class TestMeMeshUtils(unittest.TestCase):
         depths = (0, 5, 10, 20, 25, 5, 0)
         min_elem = 2
         max_elem = 102
-        sizes = MeMeshUtils.size_function_from_depth(depths, min_elem, max_elem)
+        sizes = mesh_utils.size_function_from_depth(depths, min_elem, max_elem)
         base_elem_sizes = (2, 22, 42, 82, 102, 22, 2)
         self.assertTupleEqual(base_elem_sizes, sizes)
 
@@ -23,7 +23,7 @@ class TestMeMeshUtils(unittest.TestCase):
         depths = np.array([0, 5, 10, 20, 25, 5, 0])
         min_elem = 2
         max_elem = 102
-        sizes = MeMeshUtils.size_function_from_depth(depths, min_elem, max_elem)
+        sizes = mesh_utils.size_function_from_depth(depths, min_elem, max_elem)
         base_elem_sizes = np.array([2, 22, 42, 82, 102, 22, 2])
         np.testing.assert_array_equal(base_elem_sizes, sizes)
 
@@ -45,7 +45,7 @@ class TestMeMeshUtils(unittest.TestCase):
         min_size = 1.0
         anchor_type = 0
         pt_flags = ()
-        smooth_sizes = MeMeshUtils.smooth_size_function(tin, sizes, size_ratio, min_size,
+        smooth_sizes = mesh_utils.smooth_size_function(tin, sizes, size_ratio, min_size,
                                                       anchor_type, pt_flags)
         base = (4.46, 5.90,  9.36, 12.83, 1.0,   4.46,
                 7.93, 11.39, 4.46, 7.93,  11.39, 14.86)
@@ -69,7 +69,7 @@ class TestMeMeshUtils(unittest.TestCase):
         min_size = 1.0
         anchor_type = 1
         pt_flags = ()
-        smooth_sizes = MeMeshUtils.smooth_size_function(tin, sizes, size_ratio, min_size,
+        smooth_sizes = mesh_utils.smooth_size_function(tin, sizes, size_ratio, min_size,
                                                       anchor_type, pt_flags)
         base = (96.53, 95.10, 91.63, 88.17, 100.0, 96.53,
                 93.07, 89.60, 96.53, 93.07, 89.60, 86.14)
@@ -92,7 +92,7 @@ class TestMeMeshUtils(unittest.TestCase):
         min_size = 0.5
         anchor_type = 0
         pt_flags = ()
-        smooth_sizes = MeMeshUtils.smooth_elev_by_slope(tin, sizes, min_size,
+        smooth_sizes = mesh_utils.smooth_elev_by_slope(tin, sizes, min_size,
                                                       anchor_type, pt_flags)
         base = (6.00,  8.07,  13.07, 18.07, 1.0,   6.00,
                 11.00, 16.00, 6.00,  11.00, 16.00, 21.00)
@@ -115,7 +115,7 @@ class TestMeMeshUtils(unittest.TestCase):
         min_size = 0.5
         anchor_type = 1
         pt_flags = ()
-        smooth_sizes = MeMeshUtils.smooth_elev_by_slope(tin, sizes, min_size,
+        smooth_sizes = mesh_utils.smooth_elev_by_slope(tin, sizes, min_size,
                                                       anchor_type, pt_flags)
         base = (95.00, 92.92, 87.92, 82.92, 100.0, 95.00,
                 90.00, 85.00, 95.00, 90.00, 85.00, 80.00)

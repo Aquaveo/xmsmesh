@@ -21,7 +21,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeMeshUtils(py::module &m) {
 
-    py::module modMeshUtils = m.def_submodule("MeMeshUtils");
+    py::module modMeshUtils = m.def_submodule("mesh_utils");
 
 
   // ---------------------------------------------------------------------------
