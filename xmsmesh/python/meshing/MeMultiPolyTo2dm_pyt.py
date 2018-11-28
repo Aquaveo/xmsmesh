@@ -4,7 +4,7 @@ import numpy as np
 import os
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import MeMultiPolyTo2dm
-from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
 from xmsinterp_py.interpolate import InterpLinear
@@ -27,7 +27,7 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
 
     def test_generate_2dm(self):
         to2dm = MeMultiPolyTo2dm()
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         rv = to2dm.generate_2dm(io, "fname.2dm")
         self.assertTrue(os.path.isfile("fname.2dm"))
 
@@ -52,7 +52,7 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
         poly_input_b.inside_polys = (self.array_to_vec_pt3d(in_b1), self.array_to_vec_pt3d(in_b2))
         poly_input_b.bias = 1.0
 
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         io.poly_inputs = (poly_input_a, poly_input_b)
 
         # mesh the polys

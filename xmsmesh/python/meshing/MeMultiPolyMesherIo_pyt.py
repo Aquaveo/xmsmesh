@@ -1,7 +1,7 @@
-"""Test MeMultiPolyMesherIo_py.cpp."""
+"""Test MultiPolyMesherIo_py.cpp."""
 import unittest
 import numpy as np
-from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
 from xmsinterp_py.interpolate import InterpBase
@@ -9,8 +9,8 @@ from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 
 
-class TestMeMultiPolyMesherIo(unittest.TestCase):
-    """Test MeMultiPolyMesherIo functions."""
+class TestMultiPolyMesherIo(unittest.TestCase):
+    """Test MultiPolyMesherIo functions."""
 
     def setUp(self):
         pass
@@ -31,9 +31,9 @@ class TestMeMultiPolyMesherIo(unittest.TestCase):
             self.assertEqual(str(base[i]), str(out[i]))
 
 
-    def test_creating_MeMultiPolyMesherIo(self):
-        io = MeMultiPolyMesherIo()
-        self.assertIsInstance(io, MeMultiPolyMesherIo)
+    def test_creating_MultiPolyMesherIo(self):
+        io = MultiPolyMesherIo()
+        self.assertIsInstance(io, MultiPolyMesherIo)
         self.assertEqual(False, io.check_topology)
         self.assertEqual(True, io.return_cell_polygons)
         self.assertEqual(0, len(io.points))
@@ -42,9 +42,9 @@ class TestMeMultiPolyMesherIo(unittest.TestCase):
         self.assertEqual(0, len(io.poly_inputs))
         self.assertEqual(0, len(io.refine_points))
 
-    def test_properties_MeMultiPolyMesherIO(self):
-        io = MeMultiPolyMesherIo()
-        self.assertIsInstance(io, MeMultiPolyMesherIo)
+    def test_properties_MultiPolyMesherIo(self):
+        io = MultiPolyMesherIo()
+        self.assertIsInstance(io, MultiPolyMesherIo)
 
         io.check_topology = True
         self.assertEqual(True, io.check_topology)

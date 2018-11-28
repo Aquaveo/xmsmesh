@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import MePolyRedistributePts
-from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
 from xmsinterp_py.interpolate import InterpLinear

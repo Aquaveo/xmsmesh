@@ -1,22 +1,22 @@
-"""Test MeMultiPolyMesher_py.cpp."""
+"""Test MultiPolyMesher_py.cpp."""
 import unittest
 import numpy as np
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import MultiPolyMesher
-from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
 from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 
 
-class TestMeMultiPolyMesher(unittest.TestCase):
-    """Test MeMultiPolyMesher functions."""
+class TestMultiPolyMesher(unittest.TestCase):
+    """Test MultiPolyMesher functions."""
 
     def setUp(self):
         pass
 
-    def test_creating_MeMultiPolyMesher(self):
+    def test_creating_MultiPolyMesher(self):
         poly_mesher = MultiPolyMesher()
         self.assertIsInstance(poly_mesher, MultiPolyMesher)
 
@@ -24,7 +24,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         pass
 
     def test_check_for_intersections_1(self):
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         io.check_topology = True
 
         poly_input = MePolyInput()
@@ -42,7 +42,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         self.assertEqual(expected, errors)
 
     def test_check_for_intersections_2(self):
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         io.check_topology = True
 
         poly_input = MePolyInput()
@@ -63,7 +63,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         self.assertEqual(expected, errors)
 
     def test_check_for_intersections_3(self):
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         io.check_topology = True
 
         poly_inputs = MePolyInput()
@@ -85,7 +85,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         self.assertEqual(expected, errors)
 
     def test_check_for_intersections_4(self):
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         io.check_topology = True
 
         poly_input1 = MePolyInput()
@@ -108,7 +108,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
 
 
     def test_check_for_intersections_5(self):
-        io = MeMultiPolyMesherIo()
+        io = MultiPolyMesherIo()
         io.check_topology = True
 
         poly_input = MePolyInput()
@@ -146,7 +146,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
             [(40, 40, 0), (50, 40, 0), (60, 40, 0), (60, 50, 0),
              (60, 60, 0), (50, 60, 0), (40, 60, 0), (40, 50, 0)]
         ]
-        input = MeMultiPolyMesherIo()
+        input = MultiPolyMesherIo()
         input.poly_inputs = [input_poly]
         mesher = MultiPolyMesher()
         status, error = mesher.mesh_it(input)

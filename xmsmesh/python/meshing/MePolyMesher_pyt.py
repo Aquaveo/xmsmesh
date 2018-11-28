@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import MePolyMesher
-from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 
 
@@ -37,7 +37,7 @@ class TestMePolyMesher(unittest.TestCase):
         poly_input.outside_poly = outside_poly
         poly_input.inside_polys = inside_polys
         mesher = MePolyMesher()
-        mesher_io = MeMultiPolyMesherIo()
+        mesher_io = MultiPolyMesherIo()
         mesher_io.poly_inputs = (poly_input,)
         status, points, tris, cells = mesher.mesh_it(mesher_io, 0)
         self.assertEqual(True, status)
