@@ -21,7 +21,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeQuadBlossom(py::module &m) {
   py::class_<xms::MeQuadBlossom, boost::shared_ptr<xms::MeQuadBlossom>> 
-    quad_blossom(m, "MeQuadBlossom");
+    quad_blossom(m, "QuadBlossom");
 
   // ---------------------------------------------------------------------------
   // function: New quad_blossom initializer

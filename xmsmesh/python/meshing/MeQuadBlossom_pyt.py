@@ -1,8 +1,8 @@
-"""Test MeQuadBlossom_py.cpp."""
+"""Test QuadBlossom_py.cpp."""
 import unittest
 import numpy as np
 from xmsgrid_py.ugrid import XmUGrid
-from xmsmesh.meshing import MeQuadBlossom
+from xmsmesh.meshing import QuadBlossom
 
 def list_int2d_to_cell_stream(cells):
     new_cells = []
@@ -18,8 +18,8 @@ def list_int2d_to_cell_stream(cells):
 def make_XmUGrid(points, faces):
     return XmUGrid(points, list_int2d_to_cell_stream(faces))
 
-class TestMeQuadBlossom(unittest.TestCase):
-    """Test MeQuadBlossom functions."""
+class TestQuadBlossom(unittest.TestCase):
+    """Test QuadBlossom functions."""
 
     @staticmethod
     def array_to_vec_pt3d(a_array):
@@ -50,7 +50,7 @@ class TestMeQuadBlossom(unittest.TestCase):
             5, 3, 5, 6, 8,
             5, 3, 7, 8, 9]
         ugrid = XmUGrid(points, triangles)
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         split_boundary_points = False
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
@@ -67,7 +67,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         self.assertArraysEqual(expected_cells, cells)
         np.testing.assert_allclose(expected_locations, new_locations, atol=1.0e-4)
 
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         split_boundary_points = True
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
@@ -98,7 +98,7 @@ class TestMeQuadBlossom(unittest.TestCase):
             [11, 15, 14]]
 
         ugrid = make_XmUGrid(points, triangles)
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         split_boundary_points = False
         use_angle = False
         new_ugrid = blossom.make_quads(split_boundary_points, use_angle)
@@ -120,7 +120,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
 
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         spilt_boundary_points = True
         use_angle = False
         new_ugrid = blossom.make_quads(spilt_boundary_points, use_angle)
@@ -156,7 +156,7 @@ class TestMeQuadBlossom(unittest.TestCase):
             [12, 19, 18], [12, 13, 19], [13, 20, 19], [13, 14, 20], [14, 21, 20], [14, 15, 21], [15, 22, 21], [15, 23, 22], [15, 16, 23], [16, 17, 23], [17, 24, 23]]
 
         ugrid = make_XmUGrid(points, triangles)
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
         self.assertEqual(16, num_boundary_edges)
         spilt_boundary_points = False
@@ -186,7 +186,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         self.assertArraysEqual(expected_cells, cells)
         np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
         self.assertEqual(16, num_boundary_edges)
         spilt_boundary_points = False
@@ -218,7 +218,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         self.assertArraysEqual(expected_cells, cells)
         np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
         self.assertEqual(16, num_boundary_edges)
         spilt_boundary_points = True
@@ -263,7 +263,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         points = [[0.0, 0.0, 0.0], [10.0, 10.0, 0.0], [0.0, 10.0, 0.0]]
 
         ugrid = make_XmUGrid(points, triangles)
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
         self.assertEqual(3, num_boundary_edges)
         split_boundary_points = True
@@ -286,7 +286,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         points = [[0.0, 0.0, 0.0], [10.0, 0.0, 0.0], [0.0, 10.0, 0.0], [10.0, 10.0, 0.0]]
 
         ugrid = make_XmUGrid(points, triangles)
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
         self.assertEqual(4, num_boundary_edges)
 
@@ -307,7 +307,7 @@ class TestMeQuadBlossom(unittest.TestCase):
         points[9] = [10.0, 10.0, 0.0]
     
         ugrid = make_XmUGrid(points, triangles)
-        blossom = MeQuadBlossom(ugrid)
+        blossom = QuadBlossom(ugrid)
         num_boundary_edges = blossom.pre_make_quads()
         self.assertEqual(5, num_boundary_edges)
         split_boundary_points = True
@@ -320,11 +320,11 @@ class TestMeQuadBlossom(unittest.TestCase):
         np.testing.assert_allclose(expected_locations, actual_locations, atol=1.0e-5)
 
     def test_estimated_run_time(self):
-      self.assertAlmostEqual(0.0085, MeQuadBlossom.estimated_run_time_in_minutes(500), places=3)
-      self.assertAlmostEqual(0.0680, MeQuadBlossom.estimated_run_time_in_minutes(1000), places=3)
-      self.assertAlmostEqual(8.5000, MeQuadBlossom.estimated_run_time_in_minutes(5000), places=3)
-      self.assertAlmostEqual(68.0, MeQuadBlossom.estimated_run_time_in_minutes(10000), places=3)
-      self.assertAlmostEqual(68000.0, MeQuadBlossom.estimated_run_time_in_minutes(100000), places=3)
+      self.assertAlmostEqual(0.0085, QuadBlossom.estimated_run_time_in_minutes(500), places=3)
+      self.assertAlmostEqual(0.0680, QuadBlossom.estimated_run_time_in_minutes(1000), places=3)
+      self.assertAlmostEqual(8.5000, QuadBlossom.estimated_run_time_in_minutes(5000), places=3)
+      self.assertAlmostEqual(68.0, QuadBlossom.estimated_run_time_in_minutes(10000), places=3)
+      self.assertAlmostEqual(68000.0, QuadBlossom.estimated_run_time_in_minutes(100000), places=3)
 
     def test_split_quads(self):
         #  8 ---- 9 ----10 ---- 11 
@@ -352,8 +352,8 @@ class TestMeQuadBlossom(unittest.TestCase):
         ]
 
         ugrid = XmUGrid(points, cells)
-        # blossom = MeQuadBlossom(ugrid)
-        new_ugrid = MeQuadBlossom.split_to_quads(ugrid)
+        # blossom = QuadBlossom(ugrid)
+        new_ugrid = QuadBlossom.split_to_quads(ugrid)
         actual_locations = new_ugrid.get_locations()
         actual_cells = new_ugrid.get_cellstream()
        
