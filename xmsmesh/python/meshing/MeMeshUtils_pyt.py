@@ -1,7 +1,7 @@
 """Test InterpLinear_py.cpp."""
 import unittest
 import numpy as np
-from xmsmesh_py.meshing import MeMeshUtils
+from xmsmesh.meshing import MeMeshUtils
 from xmsinterp_py.triangulate import TrTin, TrTriangulatorPoints
 
 

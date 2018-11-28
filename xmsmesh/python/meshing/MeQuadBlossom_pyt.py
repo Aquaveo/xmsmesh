@@ -2,7 +2,7 @@
 import unittest
 import numpy as np
 from xmsgrid_py.ugrid import XmUGrid
-from xmsmesh_py.meshing import MeQuadBlossom
+from xmsmesh.meshing import MeQuadBlossom
 
 def list_int2d_to_cell_stream(cells):
     new_cells = []

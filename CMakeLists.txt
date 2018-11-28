@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
-project(xmsmesh C CXX)
+project(xmsmeshlib C CXX)
 
 if (APPLE)  
   set(CMAKE_POSITION_INDEPENDENT_CODE False)
@@ -125,10 +125,8 @@ set(xmsmesh_headers
 
 # Pybind11 sources
 set(xmsmesh_py_source
-  # xmsmesh/python/cxxtest.cpp
   xmsmesh/python/xmsmesh_py.cpp
   # Meshing
-  xmsmesh/python/meshing/meshing_py.h
   xmsmesh/python/meshing/meshing_py.cpp
   xmsmesh/python/meshing/MeBadQuadRemover_py.cpp
   xmsmesh/python/meshing/MeMeshUtils_py.cpp
@@ -138,6 +136,10 @@ set(xmsmesh_py_source
   xmsmesh/python/meshing/MePolyMesher_py.cpp
   xmsmesh/python/meshing/MePolyRedistributePts_py.cpp
   xmsmesh/python/meshing/MeQuadBlossom_py.cpp
+)
+
+set(xmsmesh_py_headers
+  xmsmesh/python/meshing/meshing_py.h
 )
 
 # Tests
@@ -201,27 +203,27 @@ if(UNIX AND NOT APPLE)
 endif()
 
 if(IS_PYTHON_BUILD)
-    pybind11_add_module(xmsmesh_py
-      ${xmsmesh_py_source}
+    pybind11_add_module(xmsmesh
+      ${xmsmesh_py_source} ${xmsmesh_py_headers}
     )
 
-    target_include_directories(xmsmesh_py
+    target_include_directories(xmsmesh
         PRIVATE
           ${EXT_LIB_DIRS}
           ${PYTHON_INCLUDE_DIRS}
     )
-    target_link_libraries(xmsmesh_py
+    target_link_libraries(xmsmesh
       PRIVATE
         ${EXT_LIBS}
         ${PROJECT_NAME}
     )
-    set_target_properties(xmsmesh_py PROPERTIES
+    set_target_properties(xmsmesh PROPERTIES
       LINKER_LANGUAGE CXX
     )
 
     # Install recipe
     install(
-      TARGETS xmsmesh_py
+      TARGETS xmsmesh
       ARCHIVE DESTINATION "site-packages"
       LIBRARY DESTINATION "site-packages"
     )
@@ -235,7 +237,7 @@ install(
   ARCHIVE DESTINATION "lib"
   LIBRARY DESTINATION "lib"
 )
-foreach (header IN LISTS xmsmesh_headers)
+foreach (header IN LISTS xmsmesh_headers xmsmesh_py_headers)
   get_filename_component(subdir "${header}" DIRECTORY)
   install(
     FILES "${header}"

@@ -13,18 +13,14 @@
 namespace py = pybind11;
 
 //----- Python Interface -------------------------------------------------------
-//PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-
-std::string version() {
-    return "1.0.0";
-}
-
+#ifndef XMS_VERSION
+  #define XMS_VERSION "99.99.99";
+#endif
 
 //------ Primary Module --------------------------------------------------------
-PYBIND11_MODULE(xmsmesh_py, m) {
+PYBIND11_MODULE(xmsmesh, m) {
     m.doc() = "Python bindings for xmsmesh"; // optional module docstring
-    m.def("version", &version,
-          "Get current version of xmsmesh Python bindings.");
+    m.attr("__version__") = XMS_VERSION;
 
     // Interpolate module
     py::module modMeshing = m.def_submodule("meshing");

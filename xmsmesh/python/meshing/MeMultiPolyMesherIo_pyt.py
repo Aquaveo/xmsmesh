@@ -1,9 +1,9 @@
 """Test MeMultiPolyMesherIo_py.cpp."""
 import unittest
 import numpy as np
-from xmsmesh_py.meshing import MeMultiPolyMesherIo
-from xmsmesh_py.meshing import MePolyInput
-from xmsmesh_py.meshing import MeRefinePoint
+from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MePolyInput
+from xmsmesh.meshing import MeRefinePoint
 from xmsinterp_py.interpolate import InterpBase
 from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw

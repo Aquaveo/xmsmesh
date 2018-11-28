@@ -1,7 +1,7 @@
 """Test MePolyMesher_py.cpp."""
 import unittest
 import numpy as np
-from xmsmesh_py.meshing import MeBadQuadRemover
+from xmsmesh.meshing import MeBadQuadRemover
 from xmsgrid_py.ugrid import XmUGrid
 
 def list_int2d_to_cell_stream(cells):

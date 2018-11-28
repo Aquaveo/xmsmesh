@@ -2,9 +2,9 @@
 import unittest
 import numpy as np
 from xmscore_py.misc import Observer
-from xmsmesh_py.meshing import MePolyMesher
-from xmsmesh_py.meshing import MeMultiPolyMesherIo
-from xmsmesh_py.meshing import MePolyInput
+from xmsmesh.meshing import MePolyMesher
+from xmsmesh.meshing import MeMultiPolyMesherIo
+from xmsmesh.meshing import MePolyInput
 
 
 class TestMePolyMesher(unittest.TestCase):
