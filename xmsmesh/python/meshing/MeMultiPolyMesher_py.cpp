@@ -20,7 +20,7 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeMultiPolyMesher(py::module &m) {
-    py::class_<xms::MeMultiPolyMesher, boost::shared_ptr<xms::MeMultiPolyMesher>> polymesher(m, "MeMultiPolyMesher");
+    py::class_<xms::MeMultiPolyMesher, boost::shared_ptr<xms::MeMultiPolyMesher>> polymesher(m, "MultiPolyMesher");
 
     polymesher.def(py::init(&xms::MeMultiPolyMesher::New));
   // ---------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 import unittest
 import numpy as np
 from xmscore_py.misc import Observer
-from xmsmesh.meshing import MeMultiPolyMesher
+from xmsmesh.meshing import MultiPolyMesher
 from xmsmesh.meshing import MeMultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
@@ -17,8 +17,8 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         pass
 
     def test_creating_MeMultiPolyMesher(self):
-        poly_mesher = MeMultiPolyMesher()
-        self.assertIsInstance(poly_mesher, MeMultiPolyMesher)
+        poly_mesher = MultiPolyMesher()
+        self.assertIsInstance(poly_mesher, MultiPolyMesher)
 
     def test_mesh_it(self):
         pass
@@ -30,7 +30,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         poly_input = MePolyInput()
         poly_input.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 10, 0), (0, -10, 0))
         io.poly_inputs = (poly_input,)
-        mesher = MeMultiPolyMesher()
+        mesher = MultiPolyMesher()
 
         expected = \
             "---Error: Input polygon segments intersect. The segment defined by points 0 and 1 of outer " \
@@ -50,7 +50,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         poly_input.inside_polys = (((10, 50, 0), (90, 50, 0), (90, 90, 0), (10, 10, 0)),)
         io.poly_inputs = (poly_input,)
 
-        mesher = MeMultiPolyMesher()
+        mesher = MultiPolyMesher()
 
         expected = \
             "---Error: Input polygon segments intersect. The segment defined by points 0 and 1 of inner " \
@@ -79,7 +79,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
                    "polygon 0.\n" \
                    "\n\n"
 
-        mesher = MeMultiPolyMesher()
+        mesher = MultiPolyMesher()
         (success, errors) = mesher.mesh_it(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
@@ -94,7 +94,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         poly_input2.outside_poly = ((10, 10, 0), (110, 10, 0), (110, 110, 0), (10, 110, 0))
         io.poly_inputs = (poly_input1, poly_input2)
 
-        mesher = MeMultiPolyMesher()
+        mesher = MultiPolyMesher()
         expected = \
             "---Error: Input polygon segments intersect. The segment defined by points 1 and 2 of outer " \
             "polygon 0 intersects with the segment defined by points 0 and 1 of outer polygon 1.\n" \
@@ -117,7 +117,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
                              ((40, 40, 0), (90, 40, 0), (90, 90, 0), (40, 90, 0)))
         io.poly_inputs = (poly_input,)
 
-        mesher = MeMultiPolyMesher()
+        mesher = MultiPolyMesher()
 
         expected = \
             "---Error: Input polygon segments intersect. The segment defined by points 1 and 2 of inner " \
@@ -148,7 +148,7 @@ class TestMeMultiPolyMesher(unittest.TestCase):
         ]
         input = MeMultiPolyMesherIo()
         input.poly_inputs = [input_poly]
-        mesher = MeMultiPolyMesher()
+        mesher = MultiPolyMesher()
         status, error = mesher.mesh_it(input)
         self.assertTrue(status)
         self.assertEqual(error, '')
