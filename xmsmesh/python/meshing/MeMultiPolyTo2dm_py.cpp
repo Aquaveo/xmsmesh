@@ -20,7 +20,7 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeMultiPolyTo2dm(py::module &m) {
-    py::class_<xms::MeMultiPolyTo2dm, boost::shared_ptr<xms::MeMultiPolyTo2dm>> poly2dm(m, "MeMultiPolyTo2dm");
+    py::class_<xms::MeMultiPolyTo2dm, boost::shared_ptr<xms::MeMultiPolyTo2dm>> poly2dm(m, "MultiPolyTo2dm");
     poly2dm.def(py::init(&xms::MeMultiPolyTo2dm::New));
     // -------------------------------------------------------------------------
     // function: generate_2dm

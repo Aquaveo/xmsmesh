@@ -1,9 +1,9 @@
-"""Test MeMultiPolyTo2dm_py.cpp."""
+"""Test MultiPolyTo2dm_py.cpp."""
 import unittest
 import numpy as np
 import os
 from xmscore_py.misc import Observer
-from xmsmesh.meshing import MeMultiPolyTo2dm
+from xmsmesh.meshing import MultiPolyTo2dm
 from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import MePolyInput
 from xmsmesh.meshing import MeRefinePoint
@@ -11,8 +11,8 @@ from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 
 
-class TestMeMultiPolyTo2dm(unittest.TestCase):
-    """Test MeMultiPolyTo2dm functions."""
+class TestMultiPolyTo2dm(unittest.TestCase):
+    """Test MultiPolyTo2dm functions."""
 
     def setUp(self):
         self.maxDiff = None
@@ -21,12 +21,12 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
     def array_to_vec_pt3d(a_array):
         return [(a_array[i], a_array[i+1], 0) for i in range(0, len(a_array), 2)]
 
-    def test_creating_MeMultiPolyTo2dm(self):
-        to2dm = MeMultiPolyTo2dm()
-        self.assertIsInstance(to2dm, MeMultiPolyTo2dm)
+    def test_creating_MultiPolyTo2dm(self):
+        to2dm = MultiPolyTo2dm()
+        self.assertIsInstance(to2dm, MultiPolyTo2dm)
 
     def test_generate_2dm(self):
-        to2dm = MeMultiPolyTo2dm()
+        to2dm = MultiPolyTo2dm()
         io = MultiPolyMesherIo()
         rv = to2dm.generate_2dm(io, "fname.2dm")
         self.assertTrue(os.path.isfile("fname.2dm"))
@@ -56,7 +56,7 @@ class TestMeMultiPolyTo2dm(unittest.TestCase):
         io.poly_inputs = (poly_input_a, poly_input_b)
 
         # mesh the polys
-        to_2dm = MeMultiPolyTo2dm()
+        to_2dm = MultiPolyTo2dm()
         (success, result) = to_2dm.generate_2dm(io, "", 8)
         
         expected = "MESH2D\n" \
