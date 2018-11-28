@@ -4,8 +4,8 @@ import numpy as np
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import PolyRedistributePts
 from xmsmesh.meshing import MultiPolyMesherIo
-from xmsmesh.meshing import MePolyInput
-from xmsmesh.meshing import MeRefinePoint
+from xmsmesh.meshing import PolyInput
+from xmsmesh.meshing import RefinePoint
 from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 

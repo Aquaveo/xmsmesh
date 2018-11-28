@@ -5,8 +5,8 @@ import os
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import MultiPolyTo2dm
 from xmsmesh.meshing import MultiPolyMesherIo
-from xmsmesh.meshing import MePolyInput
-from xmsmesh.meshing import MeRefinePoint
+from xmsmesh.meshing import PolyInput
+from xmsmesh.meshing import RefinePoint
 from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 
@@ -37,7 +37,7 @@ class TestMultiPolyTo2dm(unittest.TestCase):
                  30, 0,  20, 0,  10, 0,  0,  0,  0,  10, 0,  20, 0,  30, 0,  40, 0,  50)
         in_a1 = (10, 50, 10, 40, 20, 40, 20, 50)
         in_a2 = (10, 20, 10, 10, 20, 10, 20, 20)
-        poly_input_a = MePolyInput()
+        poly_input_a = PolyInput()
         poly_input_a.outside_poly = self.array_to_vec_pt3d(out_a)
         poly_input_a.inside_polys = (self.array_to_vec_pt3d(in_a1), self.array_to_vec_pt3d(in_a2))
         poly_input_a.bias = 1.0
@@ -47,7 +47,7 @@ class TestMultiPolyTo2dm(unittest.TestCase):
                  30, 20, 40, 20, 40, 30, 30, 30, 30, 40, 40, 40, 40, 50, 30, 50)
         in_b1 = (50, 50, 50, 40, 60, 40, 60, 50)
         in_b2 = (50, 20, 50, 10, 60, 10, 60, 20)
-        poly_input_b = MePolyInput()
+        poly_input_b = PolyInput()
         poly_input_b.outside_poly = self.array_to_vec_pt3d(out_b)
         poly_input_b.inside_polys = (self.array_to_vec_pt3d(in_b1), self.array_to_vec_pt3d(in_b2))
         poly_input_b.bias = 1.0

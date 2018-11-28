@@ -4,7 +4,7 @@ import numpy as np
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import PolyMesher
 from xmsmesh.meshing import MultiPolyMesherIo
-from xmsmesh.meshing import MePolyInput
+from xmsmesh.meshing import PolyInput
 
 
 class TestPolyMesher(unittest.TestCase):
@@ -33,7 +33,7 @@ class TestPolyMesher(unittest.TestCase):
         outside_poly = ((5, 0, 0), (10, 5, 0), (10, 15, 0),
                         (5, 20, 0), (0, 15, 0), (0, 5, 0))
         inside_polys = (((10, 5, 0), (10, 15, 0), (0, 15, 0), (0, 5, 0)),)
-        poly_input = MePolyInput()
+        poly_input = PolyInput()
         poly_input.outside_poly = outside_poly
         poly_input.inside_polys = inside_polys
         mesher = PolyMesher()

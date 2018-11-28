@@ -1,7 +1,7 @@
-"""Test MeBadQuadRemover_py.cpp."""
+"""Test BadQuadRemover_py.cpp."""
 import unittest
 import numpy as np
-from xmsmesh.meshing import MeBadQuadRemover
+from xmsmesh.meshing import BadQuadRemover
 from xmsgrid_py.ugrid import XmUGrid
 
 def list_int2d_to_cell_stream(cells):
@@ -18,8 +18,8 @@ def list_int2d_to_cell_stream(cells):
 def make_XmUGrid(points, faces):
     return XmUGrid(points, list_int2d_to_cell_stream(faces))
 
-class TestMeBadQuadRemover(unittest.TestCase):
-    """Test MeBadQuadRemover functions."""
+class TestBadQuadRemover(unittest.TestCase):
+    """Test BadQuadRemover functions."""
 
     def setUp(self):
         pass
@@ -84,7 +84,7 @@ class TestMeBadQuadRemover(unittest.TestCase):
                         [33, 19, 37, 9],  [34, 29, 37, 19], [40, 41, 28, 27], [41, 42, 39, 28],
                         [42, 43, 38, 39], [38, 43, 40, 27], [43, 42, 41, 40]]
 
-        remover = MeBadQuadRemover(make_XmUGrid(points, faces))
+        remover = BadQuadRemover(make_XmUGrid(points, faces))
         collapsed_ugrid = remover.remove_bad_quads(0.7)
         expected_locations = [
             # top row (0-9)
@@ -160,7 +160,7 @@ class TestMeBadQuadRemover(unittest.TestCase):
             [0, 20, 0]  # row 3
             ]
 
-        remover = MeBadQuadRemover(make_XmUGrid(points, faces))
+        remover = BadQuadRemover(make_XmUGrid(points, faces))
         collapsed_ugrid = remover.remove_bad_quads(0.7)
         expected_locations = [[-10, 0, 0], [10, 0, 0], [0, 20, 0]]
 

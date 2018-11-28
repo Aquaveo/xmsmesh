@@ -4,8 +4,8 @@ import numpy as np
 from xmscore_py.misc import Observer
 from xmsmesh.meshing import MultiPolyMesher
 from xmsmesh.meshing import MultiPolyMesherIo
-from xmsmesh.meshing import MePolyInput
-from xmsmesh.meshing import MeRefinePoint
+from xmsmesh.meshing import PolyInput
+from xmsmesh.meshing import RefinePoint
 from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
 
@@ -27,7 +27,7 @@ class TestMultiPolyMesher(unittest.TestCase):
         io = MultiPolyMesherIo()
         io.check_topology = True
 
-        poly_input = MePolyInput()
+        poly_input = PolyInput()
         poly_input.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 10, 0), (0, -10, 0))
         io.poly_inputs = (poly_input,)
         mesher = MultiPolyMesher()
@@ -45,7 +45,7 @@ class TestMultiPolyMesher(unittest.TestCase):
         io = MultiPolyMesherIo()
         io.check_topology = True
 
-        poly_input = MePolyInput()
+        poly_input = PolyInput()
         poly_input.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
         poly_input.inside_polys = (((10, 50, 0), (90, 50, 0), (90, 90, 0), (10, 10, 0)),)
         io.poly_inputs = (poly_input,)
@@ -66,7 +66,7 @@ class TestMultiPolyMesher(unittest.TestCase):
         io = MultiPolyMesherIo()
         io.check_topology = True
 
-        poly_inputs = MePolyInput()
+        poly_inputs = PolyInput()
         poly_inputs.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
         poly_inputs.inside_polys = (((90, 10, 0), (110, 10, 0), (110, 20, 0), (90, 20, 0)),)
         io.poly_inputs = (poly_inputs,)
@@ -88,9 +88,9 @@ class TestMultiPolyMesher(unittest.TestCase):
         io = MultiPolyMesherIo()
         io.check_topology = True
 
-        poly_input1 = MePolyInput()
+        poly_input1 = PolyInput()
         poly_input1.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
-        poly_input2 = MePolyInput()
+        poly_input2 = PolyInput()
         poly_input2.outside_poly = ((10, 10, 0), (110, 10, 0), (110, 110, 0), (10, 110, 0))
         io.poly_inputs = (poly_input1, poly_input2)
 
@@ -111,7 +111,7 @@ class TestMultiPolyMesher(unittest.TestCase):
         io = MultiPolyMesherIo()
         io.check_topology = True
 
-        poly_input = MePolyInput()
+        poly_input = PolyInput()
         poly_input.outside_poly = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
         poly_input.inside_polys = (((10, 10, 0), (60, 10, 0), (60, 60, 0), (10, 60, 0)),
                              ((40, 40, 0), (90, 40, 0), (90, 90, 0), (40, 90, 0)))
@@ -133,7 +133,7 @@ class TestMultiPolyMesher(unittest.TestCase):
         self.assertEqual(expected, errors)
 
     def test_simple_polygon(self):
-        input_poly = MePolyInput()
+        input_poly = PolyInput()
         input_poly.outside_poly = [
             (0, 10, 0), (0, 20, 0), (0, 30, 0), (0, 40, 0), (0, 50, 0), (0, 60, 0), (0, 70, 0), (0, 80, 0),
             (0, 90, 0), (0, 100, 0), (10, 100, 0), (20, 100, 0), (30, 100, 0), (40, 100, 0), (50, 100, 0), (60, 100, 0),

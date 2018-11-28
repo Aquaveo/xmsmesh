@@ -161,7 +161,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
 }
 
 void initMePolyInput(py::module &m) {
-    py::class_<xms::MePolyInput, boost::shared_ptr<xms::MePolyInput>> polyInput(m, "MePolyInput");
+    py::class_<xms::MePolyInput, boost::shared_ptr<xms::MePolyInput>> polyInput(m, "PolyInput");
 
     polyInput.def(py::init<>([](py::iterable out_poly, py::iterable inside_polys, double bias,
                            boost::shared_ptr<xms::InterpBase> &size_function,
@@ -481,7 +481,7 @@ void initMePolyInput(py::module &m) {
 }
 
 void initMeRefinePoint(py::module &m) {
-    py::class_<xms::MeRefinePoint, boost::shared_ptr<xms::MeRefinePoint>> refinePoint(m, "MeRefinePoint");
+    py::class_<xms::MeRefinePoint, boost::shared_ptr<xms::MeRefinePoint>> refinePoint(m, "RefinePoint");
 
     refinePoint.def(py::init<>([](py::tuple pt, double size, bool create_mesh_point) {
             if(py::len(pt) != 3) {

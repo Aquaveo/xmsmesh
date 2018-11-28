@@ -21,7 +21,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void initMeBadQuadRemover(py::module &m) {
   py::class_<xms::MeBadQuadRemover, boost::shared_ptr<xms::MeBadQuadRemover>>
-    bad_quad_remover(m, "MeBadQuadRemover");
+    bad_quad_remover(m, "BadQuadRemover");
 
   bad_quad_remover.def(py::init<>([](boost::shared_ptr<xms::XmUGrid> ugrid)
   {

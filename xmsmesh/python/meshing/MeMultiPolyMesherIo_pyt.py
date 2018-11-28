@@ -2,8 +2,8 @@
 import unittest
 import numpy as np
 from xmsmesh.meshing import MultiPolyMesherIo
-from xmsmesh.meshing import MePolyInput
-from xmsmesh.meshing import MeRefinePoint
+from xmsmesh.meshing import PolyInput
+from xmsmesh.meshing import RefinePoint
 from xmsinterp_py.interpolate import InterpBase
 from xmsinterp_py.interpolate import InterpLinear
 from xmsinterp_py.interpolate import InterpIdw
@@ -64,20 +64,20 @@ class TestMultiPolyMesherIo(unittest.TestCase):
         io.cell_polygons = cell_polygons
         self.assertArraysEqual(cell_polygons, io.cell_polygons)
 
-        pi1 = MePolyInput()
+        pi1 = PolyInput()
         pi1.bias = 2.718
-        pi2 = MePolyInput()
+        pi2 = PolyInput()
         pi2.bias = 0.618
         io.poly_inputs = (pi1, pi2)
         self.assertTupleStringsEqual((pi1, pi2), io.poly_inputs)
 
-        rp1 = MeRefinePoint((5, 0, -3), 3.1, False)
-        rp2 = MeRefinePoint((-2, -2, 1), -0.4, True)
+        rp1 = RefinePoint((5, 0, -3), 3.1, False)
+        rp2 = RefinePoint((-2, -2, 1), -0.4, True)
         io.refine_points = (rp1, rp2)
         self.assertTupleStringsEqual((rp1, rp2), io.refine_points)
 
-class TestMePolyInput(unittest.TestCase):
-    """Test MePolyInput functions."""
+class TestPolyInput(unittest.TestCase):
+    """Test PolyInput functions."""
 
     def setUp(self):
         pass
@@ -92,9 +92,9 @@ class TestMePolyInput(unittest.TestCase):
     def assertArraysEqual(base, out):
         np.testing.assert_array_equal(np.array(base), out)
 
-    def test_creating_default_MePolyInput(self):
-        pi = MePolyInput()
-        self.assertIsInstance(pi, MePolyInput)
+    def test_creating_default_PolyInput(self):
+        pi = PolyInput()
+        self.assertIsInstance(pi, PolyInput)
         self.assertEqual(0, len(pi.outside_poly))
         self.assertEqual(0, len(pi.inside_polys))
         self.assertEqual(1.0, pi.bias)
@@ -104,7 +104,7 @@ class TestMePolyInput(unittest.TestCase):
         self.assertEqual(-1, pi.const_size_function)
         self.assertEqual(False, pi.remove_internal_four_triangle_pts)
 
-    def test_creating_MePolyInput(self):
+    def test_creating_PolyInput(self):
         outside_poly = ((1, 2, 0), (5, 2, 0), (5, 9, 0), (1, 9, 0))
         inside_polys = (((3, 3, 0), (2.5, 4, 0), (2, 3, 0)),
                         ((4, 8, 0), (3, 7, 0), (2, 8, 0))
@@ -114,8 +114,8 @@ class TestMePolyInput(unittest.TestCase):
         size_func = InterpLinear()
         elev_func = InterpIdw()
 
-        pi = MePolyInput(outside_poly, inside_polys, bias, size_func, poly_corners, elev_func)
-        self.assertIsInstance(pi, MePolyInput)
+        pi = PolyInput(outside_poly, inside_polys, bias, size_func, poly_corners, elev_func)
+        self.assertIsInstance(pi, PolyInput)
         self.assertArraysEqual(outside_poly, pi.outside_poly)
         self.assertInsidePolysEqual(inside_polys, pi.inside_polys)
         self.assertEqual(bias, pi.bias)
@@ -125,8 +125,8 @@ class TestMePolyInput(unittest.TestCase):
         self.assertEqual(-1, pi.const_size_function)
         self.assertEqual(False, pi.remove_internal_four_triangle_pts)
 
-    def test_properties_MePolyInput(self):
-        pi = MePolyInput()
+    def test_properties_PolyInput(self):
+        pi = PolyInput()
         outside_poly = ((1, 2, 0), (5, 2, 0), (5, 9, 0), (1, 9, 0))
         inside_polys = (((3, 3, 0), (2.5, 4, 0), (2, 3, 0)),
                         ((4, 8, 0), (3, 7, 0), (2, 8, 0))
@@ -181,21 +181,21 @@ class TestMePolyInput(unittest.TestCase):
         pi.relaxation_method = relaxation_method
         self.assertEqual(relaxation_method, pi.relaxation_method)
 
-class TestMeRefinePoint(unittest.TestCase):
-    """Test MeRefinePoint functions."""
+class TestRefinePoint(unittest.TestCase):
+    """Test RefinePoint functions."""
 
     def setUp(self):
         pass
 
-    def test_creating_MeRefinePoint(self):
-        rp = MeRefinePoint((1, 2, 3), -2.0, True)
-        self.assertIsInstance(rp, MeRefinePoint)
+    def test_creating_RefinePoint(self):
+        rp = RefinePoint((1, 2, 3), -2.0, True)
+        self.assertIsInstance(rp, RefinePoint)
         self.assertEqual((1, 2, 3), rp.point)
         self.assertEqual(-2.0, rp.size)
         self.assertEqual(True, rp.create_mesh_point)
 
-    def test_properties_MeRefinePoint(self):
-        rp = MeRefinePoint((4, 5, 3), 2.0, False)
+    def test_properties_RefinePoint(self):
+        rp = RefinePoint((4, 5, 3), 2.0, False)
 
         self.assertEqual(2.0, rp.size)
         rp.size = 4.5
