@@ -1,7 +1,7 @@
 """Test PolyRedistributePts_py.cpp."""
 import unittest
 import numpy as np
-from xmscore_py.misc import Observer
+from xmscore.misc import Observer
 from xmsmesh.meshing import PolyRedistributePts
 from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import PolyInput

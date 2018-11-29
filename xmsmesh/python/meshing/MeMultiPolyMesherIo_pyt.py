@@ -107,8 +107,7 @@ class TestPolyInput(unittest.TestCase):
     def test_creating_PolyInput(self):
         outside_poly = ((1, 2, 0), (5, 2, 0), (5, 9, 0), (1, 9, 0))
         inside_polys = (((3, 3, 0), (2.5, 4, 0), (2, 3, 0)),
-                        ((4, 8, 0), (3, 7, 0), (2, 8, 0))
-                        )
+                        ((4, 8, 0), (3, 7, 0), (2, 8, 0)))
         poly_corners = (0, 1, 2, 3)
         bias = 3.14159
         size_func = InterpLinear()
@@ -129,8 +128,7 @@ class TestPolyInput(unittest.TestCase):
         pi = PolyInput()
         outside_poly = ((1, 2, 0), (5, 2, 0), (5, 9, 0), (1, 9, 0))
         inside_polys = (((3, 3, 0), (2.5, 4, 0), (2, 3, 0)),
-                        ((4, 8, 0), (3, 7, 0), (2, 8, 0))
-                        )
+                        ((4, 8, 0), (3, 7, 0), (2, 8, 0)))
         poly_corners = (0, 1, 2, 3)
         size_func = InterpLinear()
         elev_func = InterpIdw()
@@ -193,6 +191,12 @@ class TestRefinePoint(unittest.TestCase):
         self.assertEqual((1, 2, 3), rp.point)
         self.assertEqual(-2.0, rp.size)
         self.assertEqual(True, rp.create_mesh_point)
+
+        rp2 = RefinePoint(pt=(1, 1, 3), create_mesh_point=False, size=2.0)
+        self.assertIsInstance(rp2, RefinePoint)
+        self.assertEqual((1, 1, 3), rp2.point)
+        self.assertEqual(2.0, rp2.size)
+        self.assertEqual(False, rp2.create_mesh_point)
 
     def test_properties_RefinePoint(self):
         rp = RefinePoint((4, 5, 3), 2.0, False)

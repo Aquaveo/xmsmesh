@@ -12,7 +12,11 @@
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
 
+#include <xmscore/python/misc/PyUtils.h>
+
 #include <xmsinterp/interpolate/InterpLinear.h>
+
+#include <xmsmesh/python/meshing/meshing_py.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 
 //----- Namespace declaration --------------------------------------------------
@@ -24,8 +28,32 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 void initMeMultiPolyMesherIo(py::module &m) {
     py::class_<xms::MeMultiPolyMesherIo, boost::shared_ptr<xms::MeMultiPolyMesherIo>> polyMesherIo(m, "MultiPolyMesherIo");
 
-
-    polyMesherIo.def(py::init<>());
+    polyMesherIo.def(py::init<>([](py::iterable poly_inputs, py::iterable refine_points,
+            bool check_topology, bool return_cell_polygons) {
+      boost::shared_ptr<xms::MeMultiPolyMesherIo> rval(new xms::MeMultiPolyMesherIo());
+      if (!poly_inputs.is_none())
+      {
+        std::vector<xms::MePolyInput> &vecPolys = rval->m_polys;
+        vecPolys.clear();
+        vecPolys.reserve(py::len(poly_inputs));
+        for (auto item : poly_inputs) {
+          vecPolys.push_back(item.cast<xms::MePolyInput>());
+        }
+      }
+      if (!refine_points.is_none())
+      {
+        std::vector<xms::MeRefinePoint> &vecRefinePoints = rval->m_refPts;
+        vecRefinePoints.clear();
+        vecRefinePoints.reserve(py::len(refine_points));
+        for (auto item : refine_points) {
+          vecRefinePoints.push_back(item.cast<xms::MeRefinePoint>());
+        }
+      }
+      rval->m_checkTopology = check_topology;
+      rval->m_returnCellPolygons = return_cell_polygons;
+      return rval;
+    }), py::arg("poly_inputs") = py::make_tuple(), py::arg("refine_points") = py::make_tuple(),
+        py::arg("check_topology") = false, py::arg("return_cell_polygons") = true);
     // ---------------------------------------------------------------------------
     // function: check_topology
     // ---------------------------------------------------------------------------
@@ -158,6 +186,30 @@ void initMeMultiPolyMesherIo(py::module &m) {
                     vecRefinePoints.push_back(item.cast<xms::MeRefinePoint>());
                  }
             },refine_points_doc);
+    // -------------------------------------------------------------------------
+    // function: __repr__
+    // -------------------------------------------------------------------------
+    polyMesherIo.def("__repr__", [](xms::MeMultiPolyMesherIo &self) {
+        std::string check_topology = self.m_checkTopology ? "True" : "False";
+        std::string return_cell_polygons = self.m_returnCellPolygons ? "True" : "False";
+        std::stringstream ss;
+
+        ss << "PolyMesherIo(s):\n";
+        for (int i = 0; i < self.m_polys.size(); ++i)
+        {
+          ss << "PolyInput #" << i + 1 << ":\n";
+          ss << PyReprStringFromMePolyInput(self.m_polys[i]) << "\n";
+        }
+        ss << "RefinePoint(s):\n";
+        for (int i = 0; i < self.m_polys.size(); ++i)
+        {
+          ss << "RefinePoint #" << i + 1 << ":\n";
+          ss << PyReprStringFromMeRefinePoint(self.m_refPts[i]) << "\n";
+        }
+        ss << "Check Topology: " << check_topology << "\n";
+        ss << "Return Cell Polygons: " << return_cell_polygons << "\n";
+        return ss.str();
+    });
 }
 
 void initMePolyInput(py::module &m) {
@@ -166,47 +218,9 @@ void initMePolyInput(py::module &m) {
     polyInput.def(py::init<>([](py::iterable out_poly, py::iterable inside_polys, double bias,
                            boost::shared_ptr<xms::InterpBase> &size_function,
                            py::iterable poly_corners, boost::shared_ptr<xms::InterpBase> &elev_function) {
-            xms::VecPt3d vec_out_poly;
-            for (auto item : out_poly) {
-              if(!py::isinstance<py::iterable>(item)) {
-                throw py::type_error("First arg (out_poly) must be a n-tuple of 3-tuples");
-              }
-              py::tuple tuple = item.cast<py::tuple>();
-              if (py::len(tuple) != 3) {
-                throw py::type_error("Input points must be 3-tuples");
-              } else {
-                xms::Pt3d point(tuple[0].cast<double>(), tuple[1].cast<double>(), tuple[2].cast<double>());
-                vec_out_poly.push_back(point);
-              }
-            }
-            xms::VecPt3d2d vec_inside_polys;
-            vec_inside_polys.reserve(py::len(inside_polys));
-            for (auto poly : inside_polys) {
-                if (!py::isinstance<py::iterable>(poly)) {
-                    throw py::type_error("Arg (inside_polys) must be an n-tuple of @n-tuples of 3-tuples");
-                }
-                xms::VecPt3d vec_poly;
-                vec_poly.reserve(py::len(poly));
-                for (auto p : poly) {
-                    if (!py::isinstance<py::iterable>(poly)) {
-                        throw py::type_error("Arg (inside_polys) must be an n-tuple of @n-tuples of 3-tuples");
-                    }
-                    py::tuple pt = p.cast<py::tuple>();
-                    if (py::len(pt) != 3) {
-                        throw py::type_error("Arg (inside_polys) must be an n-tuple of n-tuples of @3-tuples");
-                    } else {
-                        xms::Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
-                        vec_poly.push_back(point);
-                    }
-                }
-                vec_inside_polys.push_back(vec_poly);
-            }
-            xms::VecInt vec_poly_corners(py::len(poly_corners));
-            int k = 0;
-            for (auto item : poly_corners) {
-              vec_poly_corners.at(k) = item.cast<int>();
-              k++;
-            }
+            xms::VecPt3d vec_out_poly = *xms::VecPt3dFromPyIter(out_poly);
+            xms::VecPt3d2d vec_inside_polys = *xms::VecPt3d2dFromPyIter(inside_polys);
+            xms::VecInt vec_poly_corners = *xms::VecIntFromPyIter(poly_corners);
             return new xms::MePolyInput(vec_out_poly, vec_inside_polys, bias, size_function,
                                         vec_poly_corners, elev_function);
         }));
@@ -256,44 +270,10 @@ void initMePolyInput(py::module &m) {
     )pydoc";
     polyInput.def_property("inside_polys",
             [](xms::MePolyInput &self) -> py::iterable {
-                //xms::VecPt3d2d &vec_inside_polys = self.m_insidePolys;
-                py::tuple py_inside_polys(self.m_insidePolys.size());
-                for (int i = 0; i < self.m_insidePolys.size(); i++) {
-                    auto inside_poly = self.m_insidePolys[i];
-                    py::array_t<double, py::array::c_style> poly_points({(int)inside_poly.size(), 3});
-                    auto r = poly_points.mutable_unchecked<2>();
-                    for (ssize_t i = 0; i < r.shape(0); i++) {
-                      r(i, 0) = inside_poly[i].x;
-                      r(i, 1) = inside_poly[i].y;
-                      r(i, 2) = inside_poly[i].z;
-                    }
-                    py_inside_polys[i] = poly_points;
-                }
-                return py_inside_polys;
+                return xms::PyIterFromVecPt3d2d(self.m_insidePolys);
             },
             [](xms::MePolyInput &self, py::iterable inside_polys) {
-                self.m_insidePolys.clear();
-                self.m_insidePolys.reserve(py::len(inside_polys));
-                for (auto poly : inside_polys) {
-                    if (!py::isinstance<py::iterable>(poly)) {
-                        throw py::type_error("Arg (inside_polys) must be an n-tuple of @n-tuples of 3-tuples");
-                    }
-                    xms::VecPt3d vec_poly;
-                    vec_poly.reserve(py::len(poly));
-                    for (auto p : poly) {
-                        if (!py::isinstance<py::iterable>(poly)) {
-                            throw py::type_error("Arg (inside_polys) must be an n-tuple of @n-tuples of 3-tuples");
-                        }
-                        py::tuple pt = p.cast<py::tuple>();
-                        if (py::len(pt) != 3) {
-                            throw py::type_error("Arg (inside_polys) must be an n-tuple of n-tuples of @3-tuples");
-                        } else {
-                            xms::Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
-                            vec_poly.push_back(point);
-                        }
-                    }
-                    self.m_insidePolys.push_back(vec_poly);
-                }
+                self.m_insidePolys = *xms::VecPt3d2dFromPyIter(inside_polys);
             },inside_polys_doc);
     // -------------------------------------------------------------------------
     // function: poly_corners
@@ -476,20 +456,22 @@ void initMePolyInput(py::module &m) {
                     "outside_poly size: " << self.m_outPoly.size() << std::endl <<
                     "inside_polys size: " << self.m_insidePolys.size() << std::endl;
              return ss.str();
-        },__str__doc)
-    ;
+        },__str__doc);
+    // -------------------------------------------------------------------------
+    // function: __repr__
+    // -------------------------------------------------------------------------
+    polyInput.def("__repr__", [](xms::MePolyInput &self) {
+      return PyReprStringFromMePolyInput(self);
+    });
 }
 
 void initMeRefinePoint(py::module &m) {
     py::class_<xms::MeRefinePoint, boost::shared_ptr<xms::MeRefinePoint>> refinePoint(m, "RefinePoint");
 
     refinePoint.def(py::init<>([](py::tuple pt, double size, bool create_mesh_point) {
-            if(py::len(pt) != 3) {
-                throw py::type_error("Input point should be a 3-tuple");
-            }
-            xms::Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
+            xms::Pt3d point = xms::Pt3dFromPyIter(pt);
             return new xms::MeRefinePoint(point, size, create_mesh_point);
-        }));
+        }), py::arg("pt"), py::arg("size"), py::arg("create_mesh_point") = true);
     // -------------------------------------------------------------------------
     // function: point
     // -------------------------------------------------------------------------
@@ -504,12 +486,8 @@ void initMeRefinePoint(py::module &m) {
             return py::make_tuple(self.m_pt.x, self.m_pt.y, self.m_pt.z);
           },
           [](xms::MeRefinePoint &self, py::tuple pt) {
-            if(py::len(pt) != 3) {
-              throw py::type_error("Input point should be a 3-tuple");
-            } else {
-              xms::Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
-              self.m_pt = point;
-            }
+            xms::Pt3d point = xms::Pt3dFromPyIter(pt);
+            self.m_pt = point;
           },point_doc);
     // -------------------------------------------------------------------------
     // function: size
@@ -543,4 +521,10 @@ void initMeRefinePoint(py::module &m) {
                    "create_mesh_point: " << self.m_createMeshPoint << std::endl;
             return ss.str();
         }, __str___doc);
+    // -------------------------------------------------------------------------
+    // function: __repr__
+    // -------------------------------------------------------------------------
+    refinePoint.def("__repr__", [](xms::MeRefinePoint &self) {
+      return PyReprStringFromMeRefinePoint(self);
+    });
 }

@@ -128,14 +128,12 @@ set(xmsmesh_py_source
   xmsmesh/python/xmsmesh_py.cpp
   # Meshing
   xmsmesh/python/meshing/meshing_py.cpp
-  xmsmesh/python/meshing/MeBadQuadRemover_py.cpp
   xmsmesh/python/meshing/MeMeshUtils_py.cpp
   xmsmesh/python/meshing/MeMultiPolyMesher_py.cpp
   xmsmesh/python/meshing/MeMultiPolyMesherIo_py.cpp
   xmsmesh/python/meshing/MeMultiPolyTo2dm_py.cpp
   xmsmesh/python/meshing/MePolyMesher_py.cpp
   xmsmesh/python/meshing/MePolyRedistributePts_py.cpp
-  xmsmesh/python/meshing/MeQuadBlossom_py.cpp
 )
 
 set(xmsmesh_py_headers
