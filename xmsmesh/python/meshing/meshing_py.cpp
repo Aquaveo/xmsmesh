@@ -9,6 +9,7 @@
 #include <pybind11/pybind11.h>
 #include <xmscore/python/misc/PyUtils.h>
 #include <xmsinterp/interpolate/InterpBase.h>
+#include <xmsinterp/python/interpolate/interpolate_py.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/python/meshing/meshing_py.h>
 
@@ -19,12 +20,9 @@ namespace py = pybind11;
 
 void initMeshing(py::module &m) {
     initMeMeshUtils(m);
-    initMeMultiPolyMesher(m);
     initMePolyInput(m);
     initMeRefinePoint(m);
     initMeMultiPolyMesherIo(m);
-    initMeMultiPolyTo2dm(m);
-    initMePolyMesher(m);
     initMePolyRedistributePts(m);
 }
 //------------------------------------------------------------------------------
@@ -43,22 +41,22 @@ std::string PyReprStringFromMeRefinePoint(const xms::MeRefinePoint& a_refinePoin
 } // PyReprStringFromMeRefinePoint
 //------------------------------------------------------------------------------
 /// \brief Create string from MePolyInput
-/// \param[in] a_refinePoint: MePolyInput object
+/// \param[in] a_polyInput: MePolyInput object
 /// \return a string
 //------------------------------------------------------------------------------
 std::string PyReprStringFromMePolyInput(const xms::MePolyInput& a_polyInput)
 {
-  std::string szf = a_polyInput.m_sizeFunction == nullptr ? "none" : a_polyInput.m_sizeFunction->ToString();
-  std::string elevf = a_polyInput.m_elevFunction == nullptr ? "none" : a_polyInput.m_elevFunction->ToString();
   std::stringstream ss;
   ss << "outside_poly: " << xms::StringFromVecPt3d(a_polyInput.m_outPoly);
   ss << "inside_poly: " << xms::StringFromVecPt3d2d(a_polyInput.m_insidePolys);
   ss << "bias: " << a_polyInput.m_bias << "\n";
-  ss << "size_func: \n" << xms::PyReprStringFromInterpBase(a_polyInput.m_sizeFunction) << "\n";
+  if (a_polyInput.m_sizeFunction)
+    ss << "size_func: <class: InterpBase>\n";
   ss << "const_size_function: " << a_polyInput.m_constSizeFunction << "\n";
   ss << "const_size_bias: " << a_polyInput.m_constSizeBias << "\n";
   ss << "poly_corners: " << xms::StringFromVecInt(a_polyInput.m_polyCorners);
-  ss << "elev_func: \n" << xms::PyReprStringFromInterpBase(a_polyInput.m_elevFunction) << "\n";
+  if (a_polyInput.m_elevFunction)
+    ss << "size_func: <class: InterpBase>\n";
   ss << "bound_pts_to_remove: " << xms::StringFromVecPt3d(a_polyInput.m_boundPtsToRemove);
   ss << "remove_internal_four_triangle_pts: " << a_polyInput.m_removeInternalFourTrianglePts << "\n";
   ss << "poly_id: " << a_polyInput.m_polyId << "\n";
@@ -66,3 +64,4 @@ std::string PyReprStringFromMePolyInput(const xms::MePolyInput& a_polyInput)
   ss << "relaxation_method: " << a_polyInput.m_relaxationMethod;
   return ss.str();
 } // PyReprStringFromMePolyInput
+

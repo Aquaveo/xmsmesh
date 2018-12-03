@@ -14,6 +14,7 @@
 
 // 3. Standard library headers
 #include <cfloat>
+#include <sstream>
 
 // 4. External library headers
 #include <boost/make_shared.hpp>
@@ -22,6 +23,7 @@
 // 5. Shared code headers
 #include <xmscore/points/pt.h>
 #include <xmscore/math/math.h>
+#include <xmscore/misc/StringUtil.h>
 #include <xmscore/stl/vector.h>
 #include <xmsinterp/geometry/GmMultiPolyIntersector.h>
 #include <xmsinterp/geometry/GmMultiPolyIntersectionSorter.h>
@@ -109,6 +111,7 @@ public:
                     int a_polyOffsetIter);
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) override;
   virtual double SizeFromLocation(const Pt3d& a_location) override;
+  virtual std::string ToPyRepr() const override;
 
   VecPt3d LoopToVecPt3d(const VecSizet& a_idx, const VecPt3d& a_pts);
   void IntersectWithTris(VecPt3d& a_pts);
@@ -154,8 +157,8 @@ public:
   BSHP<VecInt> m_sizeTris;                        ///< triangles from the m_interp class
   BSHP<GmMultiPolyIntersector> m_polyIntersector; ///< used to intersect the polygon with m_sizeTris
   VecInt2d m_polys; ///< polygon definition of triangles for m_polyIntersector
-  bool
-    m_intersectWithTris; ///< flag to indicate that polygon should be intersected with the triangles
+  /// flag to indicate that polygon should be intersected with the triangles
+  bool   m_intersectWithTris;
   double m_distSqTol;    ///< tolerance used to speed up interpolation
   bool m_biasConstSize;  ///< flag to indicate transitioning to constant size function
   int m_polyOffsetIter;  ///< number of iterations from the polygon boundary
@@ -392,6 +395,28 @@ double MePolyRedistributePtsImpl::SizeFromLocation(const Pt3d& a_location)
   InterpEdgeLengths(pts, lengths);
   return lengths.front();
 } // MePolyRedistributePtsImpl::SizeFromLocation
+//------------------------------------------------------------------------------
+/// \brief returns a string for use in the python __repr__ attribute
+/// \return a __repr__ string
+//------------------------------------------------------------------------------
+std::string MePolyRedistributePtsImpl::ToPyRepr() const
+{
+  std::stringstream ss;
+  ss << "size_bias: " << STRstd(m_sizeBias) << "\n";
+  if (m_constSize != XM_NONE)
+    ss << "constant_size_function: " << STRstd(m_constSize) << "\n";
+  if (m_interp)
+    ss << "size_func: <class: InterpBase>\n";
+  if (m_featureSizeCurvature != 0)
+  {
+    ss << "feature_size_curvature: " << STRstd(m_featureSizeCurvature) << "\n";
+    ss << "mean_spacing_curvature: " << STRstd(m_meanSpacingCurvature) << "\n";
+    ss << "minimum_curvature: " << STRstd(m_minimumCurvature) << "\n";
+    std::string offOn[2] = {"False", "True"};
+    ss << "smooth_curvature: " << offOn[(int)m_smoothCurvature] << "\n";
+  }
+  return ss.str();
+} // MePolyRedistributePtsImpl::ToPyRepr
 //------------------------------------------------------------------------------
 /// \brief Creates a vector of pts from indices into another vector of points
 /// \param a_idx Vector of indices into the a_pts vector. Defines the closed

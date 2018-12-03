@@ -12,6 +12,7 @@
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
 
+#include <xmscore/misc/boost_defines.h>
 #include <xmscore/python/misc/PyUtils.h>
 
 #include <xmsinterp/interpolate/InterpLinear.h>
@@ -23,14 +24,14 @@
 namespace py = pybind11;
 
 //----- Python Interface -------------------------------------------------------
-PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
+PYBIND11_DECLARE_HOLDER_TYPE(T, BSHP<T>);
 
 void initMeMultiPolyMesherIo(py::module &m) {
-    py::class_<xms::MeMultiPolyMesherIo, boost::shared_ptr<xms::MeMultiPolyMesherIo>> polyMesherIo(m, "MultiPolyMesherIo");
+    py::class_<xms::MeMultiPolyMesherIo, BSHP<xms::MeMultiPolyMesherIo>> polyMesherIo(m, "MultiPolyMesherIo");
 
     polyMesherIo.def(py::init<>([](py::iterable poly_inputs, py::iterable refine_points,
             bool check_topology, bool return_cell_polygons) {
-      boost::shared_ptr<xms::MeMultiPolyMesherIo> rval(new xms::MeMultiPolyMesherIo());
+      BSHP<xms::MeMultiPolyMesherIo> rval(new xms::MeMultiPolyMesherIo());
       if (!poly_inputs.is_none())
       {
         std::vector<xms::MePolyInput> &vecPolys = rval->m_polys;
@@ -52,7 +53,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
       rval->m_checkTopology = check_topology;
       rval->m_returnCellPolygons = return_cell_polygons;
       return rval;
-    }), py::arg("poly_inputs") = py::make_tuple(), py::arg("refine_points") = py::make_tuple(),
+    }), py::arg("poly_inputs"), py::arg("refine_points") = py::make_tuple(),
         py::arg("check_topology") = false, py::arg("return_cell_polygons") = true);
     // ---------------------------------------------------------------------------
     // function: check_topology
@@ -190,10 +191,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
     // function: __repr__
     // -------------------------------------------------------------------------
     polyMesherIo.def("__repr__", [](xms::MeMultiPolyMesherIo &self) {
-        std::string check_topology = self.m_checkTopology ? "True" : "False";
-        std::string return_cell_polygons = self.m_returnCellPolygons ? "True" : "False";
         std::stringstream ss;
-
         ss << "PolyMesherIo(s):\n";
         for (int i = 0; i < self.m_polys.size(); ++i)
         {
@@ -206,27 +204,50 @@ void initMeMultiPolyMesherIo(py::module &m) {
           ss << "RefinePoint #" << i + 1 << ":\n";
           ss << PyReprStringFromMeRefinePoint(self.m_refPts[i]) << "\n";
         }
-        ss << "Check Topology: " << check_topology << "\n";
-        ss << "Return Cell Polygons: " << return_cell_polygons << "\n";
+        std::string offOn[2] = {"False", "True"};
+        ss << "Check Topology: " << offOn[(int)self.m_checkTopology] << "\n";
+        ss << "Return Cell Polygons: " << offOn[(int)self.m_returnCellPolygons] << "\n";
         return ss.str();
     });
 }
-
+    // -------------------------------------------------------------------------
+    // function: __init__
+    // -------------------------------------------------------------------------
 void initMePolyInput(py::module &m) {
-    py::class_<xms::MePolyInput, boost::shared_ptr<xms::MePolyInput>> polyInput(m, "PolyInput");
+    py::class_<xms::MePolyInput, BSHP<xms::MePolyInput>> polyInput(m, "PolyInput");
+
+    const char* PolyInput_init_doc = R"pydoc(
+        PolyInput initializer
+
+        Args:
+            out_poly (iterable): Point locations of outer polygon. Clockwise. 1st pt != last
+            inside_polys (:obj:`iterable` optional): Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.
+            bias (:obj:`Float` optional): Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.
+            size_function (:obj:`InterpBase` optional): Size function for scalar paving. Default to None
+            poly_corners (:obj:`iterable` optional): Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.
+            elev_function (:obj:`InterpBase` optional): Elevation function for interpolating z coordinate of mesh points. Deafults to None.
+    )pydoc";
 
     polyInput.def(py::init<>([](py::iterable out_poly, py::iterable inside_polys, double bias,
-                           boost::shared_ptr<xms::InterpBase> &size_function,
-                           py::iterable poly_corners, boost::shared_ptr<xms::InterpBase> &elev_function) {
+                           py::object size_function, py::iterable poly_corners, py::object elev_function) {
             xms::VecPt3d vec_out_poly = *xms::VecPt3dFromPyIter(out_poly);
             xms::VecPt3d2d vec_inside_polys = *xms::VecPt3d2dFromPyIter(inside_polys);
             xms::VecInt vec_poly_corners = *xms::VecIntFromPyIter(poly_corners);
-            return new xms::MePolyInput(vec_out_poly, vec_inside_polys, bias, size_function,
-                                        vec_poly_corners, elev_function);
-        }));
-    polyInput.def(py::init<>([]() {
-            return new xms::MePolyInput();
-    }));
+            BSHP<xms::InterpBase> c_size_function;
+            BSHP<xms::InterpBase> c_elev_function;
+            if (!size_function.is_none())
+            {
+              c_size_function = size_function.cast<BSHP<xms::InterpBase>>();
+            }
+            if (!elev_function.is_none())
+            {
+              c_elev_function = elev_function.cast<BSHP<xms::InterpBase>>();
+            }
+            return new xms::MePolyInput(vec_out_poly, vec_inside_polys, bias, c_size_function,
+                                        vec_poly_corners, c_elev_function);
+        }), py::arg("out_poly"), py::arg("inside_polys") = py::make_tuple(), py::arg("bias") = 1.0,
+            py::arg("size_function") = py::none(), py::arg("poly_corners") = py::make_tuple(),
+            py::arg("elev_function") = py::none());
     // ---------------------------------------------------------------------------
     // function: outside_poly
     // ---------------------------------------------------------------------------
@@ -466,7 +487,7 @@ void initMePolyInput(py::module &m) {
 }
 
 void initMeRefinePoint(py::module &m) {
-    py::class_<xms::MeRefinePoint, boost::shared_ptr<xms::MeRefinePoint>> refinePoint(m, "RefinePoint");
+    py::class_<xms::MeRefinePoint, BSHP<xms::MeRefinePoint>> refinePoint(m, "RefinePoint");
 
     refinePoint.def(py::init<>([](py::tuple pt, double size, bool create_mesh_point) {
             xms::Pt3d point = xms::Pt3dFromPyIter(pt);

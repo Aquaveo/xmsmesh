@@ -10,8 +10,13 @@
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
 #include <xmscore/misc/DynBitset.h>
+#include <xmscore/misc/XmError.h>
 #include <xmsinterp/triangulate/TrTin.h>
 #include <xmsmesh/meshing/MeMeshUtils.h>
+#include <xmsmesh/meshing/MeMultiPolyMesher.h>
+#include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
+#include <xmsmesh/meshing/MeMultiPolyTo2dm.h>
+
 
 //----- Namespace declaration --------------------------------------------------
 namespace py = pybind11;
@@ -172,4 +177,58 @@ void initMeMeshUtils(py::module &m) {
         }
     },smooth_elev_by_slope_doc, py::arg("tin"),py::arg("sizes"),
     py::arg("max_slope"),py::arg("anchor_type"),py::arg("pts_flag"));
+
+  // ---------------------------------------------------------------------------
+  // function: generate_triangle_mesh
+  // ---------------------------------------------------------------------------
+  const char* generate_triangle_mesh_doc = R"pydoc(
+      Creates a triangle mesh from the input polygons. The polygons can not
+      overlap.
+
+      Args:
+          mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options for
+            generating a mesh.
+
+      Returns:
+        iterable: True if successful, false with errors otherwise
+  )pydoc";
+    modMeshUtils.def("generate_triangle_mesh",
+     [](xms::MeMultiPolyMesherIo &mesh_io) -> py::iterable
+     {
+       BSHP<xms::MeMultiPolyMesher> multiPolyMesher = xms::MeMultiPolyMesher::New();
+       if (multiPolyMesher->MeshIt(mesh_io)) {
+         return py::make_tuple(true, "");
+       }
+       else {
+         std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
+         return py::make_tuple(false, errors);
+       }
+     },generate_triangle_mesh_doc, py::arg("mesh_io"));
+  // ---------------------------------------------------------------------------
+  // function: generate_2dm
+  // ---------------------------------------------------------------------------
+    const char* generate_2dm_doc = R"pydoc(
+        Creates a 2dm file from polygons
+
+        Args:
+          mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options
+            for generating a mesh.
+          file_name (str): output filename
+          precision (:obj:`int`, optional) decimal point precision
+
+        Returns:
+          tuple: true if the mesh was generated., and resultant filename
+    )pydoc";
+    modMeshUtils.def("generate_2dm",
+     [](xms::MeMultiPolyMesherIo &mesh_io,
+        std::string file_name, int precision) -> py::tuple {
+        BSHP<xms::MeMultiPolyTo2dm> mesher = xms::MeMultiPolyTo2dm::New();
+          if (file_name.empty()) {
+            std::stringstream ss;
+            bool result = mesher->Generate2dm(mesh_io, ss, precision);
+            return py::make_tuple(result, ss.str());
+          }
+          return py::make_tuple(mesher->Generate2dm(mesh_io, file_name), "");
+        },generate_2dm_doc,py::arg("mesh_io"),py::arg("file_name"),py::arg("precision")=15);
+
 }

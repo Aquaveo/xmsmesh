@@ -6,8 +6,8 @@ from xmsmesh.meshing import PolyRedistributePts
 from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import PolyInput
 from xmsmesh.meshing import RefinePoint
-from xmsinterp_py.interpolate import InterpLinear
-from xmsinterp_py.interpolate import InterpIdw
+from xmsinterp.interpolate import InterpLinear
+from xmsinterp.interpolate import InterpIdw
 
 
 class TestPolyRedistributePts(unittest.TestCase):
@@ -34,13 +34,15 @@ class TestPolyRedistributePts(unittest.TestCase):
 
     def test_set_size_func_01(self):
         r = PolyRedistributePts()
-        sf = InterpLinear()
+        pts = ()
+        sf = InterpLinear(pts)
         r.set_size_func(sf)
         # TODO: No way to test if there size function was set correctly
 
     def test_set_size_func_02(self):
         r = PolyRedistributePts()
-        sf = InterpIdw()
+        pts = ()
+        sf = InterpIdw(pts)
         r.set_size_func(sf)
         # TODO: No way to test if there size function was set correctly
 

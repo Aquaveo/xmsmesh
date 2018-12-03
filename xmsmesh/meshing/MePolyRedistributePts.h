@@ -45,6 +45,8 @@ public:
   virtual VecPt3d Redistribute(const VecPt3d& a_polyLine) = 0;
   virtual double SizeFromLocation(const Pt3d& a_location) = 0;
 
+  virtual std::string ToPyRepr() const = 0;
+
 private:
   XM_DISALLOW_COPY_AND_ASSIGN(MePolyRedistributePts);
   /// \endcond

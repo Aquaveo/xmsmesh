@@ -39,6 +39,12 @@ void initMePolyRedistributePts(py::module &m) {
             self.SetSizeFunc(interp);
         },set_size_func_doc,py::arg("interp"));
     // -------------------------------------------------------------------------
+    // function: __repr__
+    // -------------------------------------------------------------------------
+    polyRedistribute.def("__repr__", [](xms::MePolyRedistributePts &self) {
+      return self.ToPyRepr();
+    });
+    // -------------------------------------------------------------------------
     // function: set_size_func_from_poly
     // -------------------------------------------------------------------------
     const char* set_size_func_from_poly_doc = R"pydoc(

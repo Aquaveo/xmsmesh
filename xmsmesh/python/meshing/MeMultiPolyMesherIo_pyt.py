@@ -4,9 +4,9 @@ import numpy as np
 from xmsmesh.meshing import MultiPolyMesherIo
 from xmsmesh.meshing import PolyInput
 from xmsmesh.meshing import RefinePoint
-from xmsinterp_py.interpolate import InterpBase
-from xmsinterp_py.interpolate import InterpLinear
-from xmsinterp_py.interpolate import InterpIdw
+from xmsinterp.interpolate import InterpBase
+from xmsinterp.interpolate import InterpLinear
+from xmsinterp.interpolate import InterpIdw
 
 
 class TestMultiPolyMesherIo(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestMultiPolyMesherIo(unittest.TestCase):
 
 
     def test_creating_MultiPolyMesherIo(self):
-        io = MultiPolyMesherIo()
+        io = MultiPolyMesherIo(())
         self.assertIsInstance(io, MultiPolyMesherIo)
         self.assertEqual(False, io.check_topology)
         self.assertEqual(True, io.return_cell_polygons)
@@ -43,7 +43,7 @@ class TestMultiPolyMesherIo(unittest.TestCase):
         self.assertEqual(0, len(io.refine_points))
 
     def test_properties_MultiPolyMesherIo(self):
-        io = MultiPolyMesherIo()
+        io = MultiPolyMesherIo(())
         self.assertIsInstance(io, MultiPolyMesherIo)
 
         io.check_topology = True
@@ -64,9 +64,10 @@ class TestMultiPolyMesherIo(unittest.TestCase):
         io.cell_polygons = cell_polygons
         self.assertArraysEqual(cell_polygons, io.cell_polygons)
 
-        pi1 = PolyInput()
+        out_poly = ((0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0))
+        pi1 = PolyInput(out_poly)
         pi1.bias = 2.718
-        pi2 = PolyInput()
+        pi2 = PolyInput(out_poly)
         pi2.bias = 0.618
         io.poly_inputs = (pi1, pi2)
         self.assertTupleStringsEqual((pi1, pi2), io.poly_inputs)
@@ -93,9 +94,10 @@ class TestPolyInput(unittest.TestCase):
         np.testing.assert_array_equal(np.array(base), out)
 
     def test_creating_default_PolyInput(self):
-        pi = PolyInput()
+        out_poly = ((0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0))
+        pi = PolyInput(out_poly)
         self.assertIsInstance(pi, PolyInput)
-        self.assertEqual(0, len(pi.outside_poly))
+        self.assertEqual(4, len(pi.outside_poly))
         self.assertEqual(0, len(pi.inside_polys))
         self.assertEqual(1.0, pi.bias)
         self.assertEqual(None, pi.size_function)
@@ -110,8 +112,9 @@ class TestPolyInput(unittest.TestCase):
                         ((4, 8, 0), (3, 7, 0), (2, 8, 0)))
         poly_corners = (0, 1, 2, 3)
         bias = 3.14159
-        size_func = InterpLinear()
-        elev_func = InterpIdw()
+        pts = ((1, 0, 0), (10, 0, 0))
+        size_func = InterpLinear(pts)
+        elev_func = InterpIdw(pts)
 
         pi = PolyInput(outside_poly, inside_polys, bias, size_func, poly_corners, elev_func)
         self.assertIsInstance(pi, PolyInput)
@@ -125,17 +128,19 @@ class TestPolyInput(unittest.TestCase):
         self.assertEqual(False, pi.remove_internal_four_triangle_pts)
 
     def test_properties_PolyInput(self):
-        pi = PolyInput()
+        out_poly = ((0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0))
+        pi = PolyInput(out_poly)
         outside_poly = ((1, 2, 0), (5, 2, 0), (5, 9, 0), (1, 9, 0))
         inside_polys = (((3, 3, 0), (2.5, 4, 0), (2, 3, 0)),
                         ((4, 8, 0), (3, 7, 0), (2, 8, 0)))
         poly_corners = (0, 1, 2, 3)
-        size_func = InterpLinear()
-        elev_func = InterpIdw()
+        pts = ((1, 2, 3), (4, 5, 6))
+        size_func = InterpLinear(pts)
+        elev_func = InterpIdw(pts)
         seed_points = ((3, 3, 0), (4, 3, 0), (4, 8, 0), (3, 8, 0))
         relaxation_method = "spring_relaxation"
 
-        self.assertEqual(0, len(pi.outside_poly))
+        self.assertEqual(4, len(pi.outside_poly))
         pi.outside_poly = outside_poly
         self.assertArraysEqual(outside_poly, pi.outside_poly)
 
