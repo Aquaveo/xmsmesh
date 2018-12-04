@@ -179,9 +179,9 @@ void initMeMeshUtils(py::module &m) {
     py::arg("max_slope"),py::arg("anchor_type"),py::arg("pts_flag"));
 
   // ---------------------------------------------------------------------------
-  // function: generate_triangle_mesh
+  // function: generate_mesh
   // ---------------------------------------------------------------------------
-  const char* generate_triangle_mesh_doc = R"pydoc(
+  const char* generate_mesh_doc = R"pydoc(
       Creates a triangle mesh from the input polygons. The polygons can not
       overlap.
 
@@ -192,7 +192,7 @@ void initMeMeshUtils(py::module &m) {
       Returns:
         iterable: True if successful, false with errors otherwise
   )pydoc";
-    modMeshUtils.def("generate_triangle_mesh",
+    modMeshUtils.def("generate_mesh",
      [](xms::MeMultiPolyMesherIo &mesh_io) -> py::iterable
      {
        BSHP<xms::MeMultiPolyMesher> multiPolyMesher = xms::MeMultiPolyMesher::New();
@@ -203,7 +203,7 @@ void initMeMeshUtils(py::module &m) {
          std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
          return py::make_tuple(false, errors);
        }
-     },generate_triangle_mesh_doc, py::arg("mesh_io"));
+     },generate_mesh_doc, py::arg("mesh_io"));
   // ---------------------------------------------------------------------------
   // function: generate_2dm
   // ---------------------------------------------------------------------------

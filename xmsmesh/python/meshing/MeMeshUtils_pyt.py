@@ -141,7 +141,7 @@ class TestMeshUtils(unittest.TestCase):
             "polygon 0 intersects with the segment defined by points 2 and 3 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, errors) = mesh_utils.generate_triangle_mesh(io)
+        (success, errors) = mesh_utils.generate_mesh(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -160,7 +160,7 @@ class TestMeshUtils(unittest.TestCase):
             "polygon 0 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, errors) = mesh_utils.generate_triangle_mesh(io)
+        (success, errors) = mesh_utils.generate_mesh(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -181,7 +181,7 @@ class TestMeshUtils(unittest.TestCase):
                    "polygon 0.\n" \
                    "\n\n"
 
-        (success, errors) = mesh_utils.generate_triangle_mesh(io)
+        (success, errors) = mesh_utils.generate_mesh(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -202,7 +202,7 @@ class TestMeshUtils(unittest.TestCase):
             "polygon 0 intersects with the segment defined by points 3 and 0 of outer polygon 1.\n" \
             "\n\n"
 
-        (success, errors) = mesh_utils.generate_triangle_mesh(io)
+        (success, errors) = mesh_utils.generate_mesh(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -225,7 +225,7 @@ class TestMeshUtils(unittest.TestCase):
             "polygon 1 of outer polygon 0.\n" \
             "\n\n"
 
-        (success, errors) = mesh_utils.generate_triangle_mesh(io)
+        (success, errors) = mesh_utils.generate_mesh(io)
         self.assertEqual(False, success)
         self.assertEqual(expected, errors)
 
@@ -245,7 +245,7 @@ class TestMeshUtils(unittest.TestCase):
         input_poly = PolyInput(outside_poly, inside_polys)
         input = MultiPolyMesherIo(())
         input.poly_inputs = [input_poly]
-        status, error = mesh_utils.generate_triangle_mesh(input)
+        status, error = mesh_utils.generate_mesh(input)
         self.assertTrue(status)
         self.assertEqual(error, '')
 
