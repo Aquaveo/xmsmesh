@@ -1694,7 +1694,7 @@ void MeQuadBlossomUnitTests::testSimpleTriangle()
     bool splitBoundaryPoints = false;
     bool useAngleCost = true;
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_QUAD, 4, 1, 5, 4, 0,  // 0
       XMU_QUAD, 4, 2, 6, 5, 1,  // 1
@@ -1714,7 +1714,7 @@ void MeQuadBlossomUnitTests::testSimpleTriangle()
     bool splitBoundaryPoints = true;
     bool useAngleCost = true;
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_QUAD, 4, 1, 5, 4, 0,  // 0
       XMU_QUAD, 4, 2, 10, 5, 1, // 1
@@ -1741,7 +1741,7 @@ void MeQuadBlossomUnitTests::testSimpleTriangle()
     bool splitBoundaryPoints = true;
     bool useAngleCost = false;
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_QUAD, 4, 3, 0, 1, 6,  // 0
       XMU_QUAD, 4, 1, 2, 4, 6,  // 1
@@ -1777,7 +1777,7 @@ void MeQuadBlossomUnitTests::testSimpleQuad()
     bool splitBoundaryPoints = false;
     bool useAngleCost = true;
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_QUAD, 4, 1, 5, 4, 0,     // 0
       XMU_QUAD, 4, 2, 6, 5, 1,     // 1
@@ -1801,7 +1801,7 @@ void MeQuadBlossomUnitTests::testSimpleQuad()
     bool splitBoundaryPoints = true;
     bool useAngleCost = true;
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_QUAD, 4, 1, 5, 4, 0,     // 0
       XMU_QUAD, 4, 2, 6, 5, 1,     // 1
@@ -1846,7 +1846,7 @@ void MeQuadBlossomUnitTests::testComplexQuad()
     int numBoundaryEdges = blossom.PreMakeQuads();
     TS_ASSERT_EQUALS(16, numBoundaryEdges);
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_TRIANGLE, 3, 0, 4, 3,    //  0
       XMU_QUAD, 4, 1, 5, 4, 0,     //  1
@@ -1879,7 +1879,7 @@ void MeQuadBlossomUnitTests::testComplexQuad()
     bool splitBoundaryPoints = true;
     bool useAngleCost = true;
     BSHP<XmUGrid> ugrid = blossom._MakeQuads(splitBoundaryPoints, useAngleCost, cost);
-    const VecInt& cells = ugrid->GetCellStream();
+    const VecInt& cells = ugrid->GetCellstream();
     VecInt expectedCells = {
       XMU_QUAD, 4, 3, 0, 4, 25,    //  0
       XMU_QUAD, 4, 1, 5, 4, 0,     //  1
@@ -1993,7 +1993,7 @@ void MeQuadBlossomUnitTests::testSplitToQuads()
     XMU_QUAD, 4, 10, 27, 40, 31
   };
   // clang-format on
-  VecInt quadCells = quadUGrid->GetCellStream();
+  VecInt quadCells = quadUGrid->GetCellstream();
   TS_ASSERT_EQUALS_VEC(expectedQuadCells, quadCells);
 } // MeQuadBlossomUnitTests::testSplitToQuads
 //------------------------------------------------------------------------------

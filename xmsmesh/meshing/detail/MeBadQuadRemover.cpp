@@ -723,7 +723,7 @@ void MeBadQuadRemoverUnitTests::testReplacePoints()
     //    |       |     |    |
     //    0 ------1-----2----3
 
-    TS_ASSERT_EQUALS(expectCells, newUGrid->GetCellStream());
+    TS_ASSERT_EQUALS(expectCells, newUGrid->GetCellstream());
   }
 } // MeBadQuadRemoverUnitTests::testDeletePoints
 //------------------------------------------------------------------------------
@@ -890,7 +890,7 @@ void MeBadQuadRemoverUnitTests::testCollapse()
     9, 4, 25, 26, 17, 16, 9, 4, 26, 27, 29, 17, 9, 4, 27, 28, 31, 29, 9, 4, 31, 18, 30, 29,
     9, 4, 30, 18, 33, 9,  9, 4, 31, 28, 33, 18, 9, 4, 36, 37, 27, 26, 9, 4, 37, 38, 35, 27,
     9, 4, 38, 39, 34, 35, 9, 4, 34, 39, 36, 26, 9, 4, 39, 38, 37, 36};
-  VecInt actualCells = collapsedUGrid->GetCellStream();
+  VecInt actualCells = collapsedUGrid->GetCellstream();
   TS_ASSERT_EQUALS(expectedCells, actualCells);
 } // MeBadQuadRemoverUnitTests::testCollapse
 //------------------------------------------------------------------------------
@@ -918,7 +918,7 @@ void MeBadQuadRemoverUnitTests::testCollapseQuadTri()
 
   VecInt expectedCells = {XMU_TRIANGLE, 3, 0, 1, 2};
 
-  VecInt actualCells = collapsedUGrid->GetCellStream();
+  VecInt actualCells = collapsedUGrid->GetCellstream();
   TS_ASSERT_EQUALS(expectedCells, actualCells);
 } // MeBadQuadRemoverUnitTests::testCollapseQuadTri
 
