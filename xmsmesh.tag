@@ -3971,6 +3971,13 @@
       <anchor>a963c4908a6fbfb9a9650287b45836859</anchor>
       <arglist>(const Pt3d &amp;a_location) override</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual std::string</type>
+      <name>ToPyRepr</name>
+      <anchorfile>classxms_1_1_me_poly_redistribute_pts_impl.html</anchorfile>
+      <anchor>a4d6820b12c6151dab0064e0e60777a54</anchor>
+      <arglist>() const override</arglist>
+    </member>
     <member kind="function">
       <type>VecPt3d</type>
       <name>LoopToVecPt3d</name>

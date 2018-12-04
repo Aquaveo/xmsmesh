@@ -4,7 +4,7 @@ var searchData=
   ['edgerecord',['edgerecord',['https://aquaveo.github.io/xmsinterp/structxms_1_1edgerecord.html',1,'xms']]],
   ['edgesfromtri',['EdgesFromTri',['https://aquaveo.github.io/xmsinterp/classxms_1_1_interp_nat_neigh_impl.html#aad6c40b2274ba9a16d9aeb78b3034eff',1,'xms::InterpNatNeighImpl']]],
   ['elapsedtimeinseconds',['ElapsedTimeInSeconds',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf',1,'xms::Observer::impl']]],
-  ['endoperation',['EndOperation',['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a6ab39e266617c93fb0720f23efa723e0',1,'MockObserver::EndOperation()'],['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2',1,'xms::Observer::impl::EndOperation()']]],
+  ['endoperation',['EndOperation',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2',1,'xms::Observer::impl::EndOperation()'],['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a6ab39e266617c93fb0720f23efa723e0',1,'xms::Observer::EndOperation()']]],
   ['ensureendpointsrepresented',['EnsureEndPointsRepresented',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersector_impl.html#a0d3c6c5b4daa721d5fb2edec53d28dbb',1,'xms::GmMultiPolyIntersectorImpl']]],
   ['environment_2eh',['environment.h',['https://aquaveo.github.io/xmscore/environment_8h.html',1,'']]],
   ['errcount',['ErrCount',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a20ed692af6d8c0100c02f314c6395379',1,'xms::XmLog']]],

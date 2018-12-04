@@ -17,7 +17,7 @@ var searchData=
   ['_7emeweightmatcher',['~MeWeightMatcher',['../classxms_1_1_me_weight_matcher.html#aa3f992c2de0acbc5cea834b5b1c3f542',1,'xms::MeWeightMatcher']]],
   ['_7enodalfunc',['~NodalFunc',['https://aquaveo.github.io/xmsinterp/classxms_1_1_nodal_func.html#a4ba5c3cfd1fca52345242fff0edca824',1,'xms::NodalFunc']]],
   ['_7eprogress',['~Progress',['https://aquaveo.github.io/xmscore/classxms_1_1_progress.html#a093986f04a87dda5503b097ade380029',1,'xms::Progress']]],
-  ['_7eprogresslistener',['~ProgressListener',['https://aquaveo.github.io/xmscore/classxms_1_1_progress_listener.html#a284b9861f146ecfe2ec6967288aca1d3',1,'MockProgressListener']]],
+  ['_7eprogresslistener',['~ProgressListener',['https://aquaveo.github.io/xmscore/classxms_1_1_progress_listener.html#a284b9861f146ecfe2ec6967288aca1d3',1,'xms::ProgressListener']]],
   ['_7ept2',['~Pt2',['https://aquaveo.github.io/xmscore/classxms_1_1_pt2.html#a07974c1bfe87d83350b897fa8ad98e54',1,'xms::Pt2']]],
   ['_7ept3',['~Pt3',['https://aquaveo.github.io/xmscore/classxms_1_1_pt3.html#a1b4a4cb9de9e47f8e0702dd7ac6e1fa7',1,'xms::Pt3']]],
   ['_7ept4',['~Pt4',['https://aquaveo.github.io/xmscore/classxms_1_1_pt4.html#a5cd39733ccb240f7c9c10f3569d2f2bd',1,'xms::Pt4']]],

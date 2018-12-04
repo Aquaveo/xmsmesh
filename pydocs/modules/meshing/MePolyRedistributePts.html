@@ -81,7 +81,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh_py.meshing">Meshing</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#meshing">Meshing</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="MeBadQuadRemover.html">MeBadQuadRemover</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MeMeshUtils.html">MeMeshUtils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesher.html">MeMultiPolyMesher</a></li>
@@ -162,97 +162,6 @@
             
   <div class="section" id="mepolyredistributepts">
 <h1>MePolyRedistributePts<a class="headerlink" href="#mepolyredistributepts" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts">
-<em class="property">class </em><code class="descclassname">xmsmesh_py.meshing.</code><code class="descname">MePolyRedistributePts</code><a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts.redistribute">
-<code class="descname">redistribute</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyRedistributePts</em>, <em>poly_line: iterable</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts.redistribute" title="Permalink to this definition">¶</a></dt>
-<dd><p>Redistributes points on closed loop polylines. The length of edges in 
-the redistribution comes from a size function that is interpolated to 
-the points that make up the polylines. By default this size function 
-comes from the edge lengths in the original polygon.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>poly_line (iterable): Input closed loop polylines</dd>
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>iterable: Redistributed closed loop polylines, Number of iterations </dt>
-<dd>from the polygon boundary</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts.set_constant_size_bias">
-<code class="descname">set_constant_size_bias</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyRedistributePts</em>, <em>size_bias: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts.set_constant_size_bias" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the bias for constant value size function</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>size_bias (float): Transition rate for size function</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts.set_constant_size_func">
-<code class="descname">set_constant_size_func</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyRedistributePts</em>, <em>size: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts.set_constant_size_func" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the size function to a constant value</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>size (float): The element edge size.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts.set_size_func">
-<code class="descname">set_size_func</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyRedistributePts</em>, <em>interp: xms::InterpBase</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts.set_size_func" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the size function interpolator</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>interp (InterpBase): Size function interpolator class</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts.set_size_func_from_poly">
-<code class="descname">set_size_func_from_poly</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyRedistributePts</em>, <em>out_poly: iterable</em>, <em>inside_polys: iterable</em>, <em>size_bias: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts.set_size_func_from_poly" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates an interpolator that uses the spacing on the input polygon as 
-its scalar</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><p class="first">out_poly (iterable): The outside polygon
-inside_polys (iterable): Inside polygons that are inside of</p>
-<blockquote>
-<div>a_outPoly</div></blockquote>
-<p class="last">size_bias (float): A factor used in transitioning the size</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyRedistributePts.set_use_curvature_redistribution">
-<code class="descname">set_use_curvature_redistribution</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyRedistributePts</em>, <em>feature_size: float</em>, <em>mean_spacing: float</em>, <em>minimum_curvature: float</em>, <em>smooth: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh_py.meshing.MePolyRedistributePts.set_use_curvature_redistribution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Specifies that curvature redistribution will be used.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>feature_size (float): The size of the smallest feature in the </dt>
-<dd>polyline to be detected.</dd>
-<dt>mean_spacing (float): The mean spacing between the distributed </dt>
-<dd>points.</dd>
-<dt>minimum_curvature (float): The value of the curvature to be used </dt>
-<dd>instead of 0 in staight lines. It limits the maximum spacing 
-between points. If not included, the default is 0.001.</dd>
-<dt>smooth (bool): Detemines if the curvatures are to be averaged by a </dt>
-<dd>rolling 0.25-0.5-0.25 weighted rolling average.</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 
 

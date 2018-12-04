@@ -80,7 +80,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh_py.meshing">Meshing</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#meshing">Meshing</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="MeBadQuadRemover.html">MeBadQuadRemover</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MeMeshUtils.html">MeMeshUtils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesher.html">MeMultiPolyMesher</a></li>
@@ -161,65 +161,6 @@
             
   <div class="section" id="mequadblossom">
 <h1>MeQuadBlossom<a class="headerlink" href="#mequadblossom" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="xmsmesh_py.meshing.MeQuadBlossom">
-<em class="property">class </em><code class="descclassname">xmsmesh_py.meshing.</code><code class="descname">MeQuadBlossom</code><a class="headerlink" href="#xmsmesh_py.meshing.MeQuadBlossom" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="xmsmesh_py.meshing.MeQuadBlossom.estimated_run_time_in_minutes">
-<code class="descname">estimated_run_time_in_minutes</code><span class="sig-paren">(</span><em>num_points: int</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#xmsmesh_py.meshing.MeQuadBlossom.estimated_run_time_in_minutes" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div>Get the estimated time to run the Quad Blossom algorithm in minutes.</div></blockquote>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>num_points (int): The number of points in the mesh.</dd>
-<dt>Returns:</dt>
-<dd>(double): The estimated minutes to generate the quad mesh.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MeQuadBlossom.make_quads">
-<code class="descname">make_quads</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MeQuadBlossom</em>, <em>split_boundary_points: bool</em>, <em>use_angle: bool</em><span class="sig-paren">)</span> &#x2192; xms::XmUGrid<a class="headerlink" href="#xmsmesh_py.meshing.MeQuadBlossom.make_quads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn faces from triangles into quads by using MeWeightMatcher to identify edges to
-drop and then by calling EliminateEdges to remove them.
-On return, GetPoints() and GetFaces() returns the new points and faces.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>split_boundary_points (bool): If true, split boundary points as needed to create quads</dt>
-<dd>from “pseudo” edges between unmatched boundary triangles separated by at least one
-other triangle.</dd>
-<dt>use_angle (float): If true use angle calculation to compute the cost for a pair of</dt>
-<dd>adjacent triangles; otherwise use a diagonal distance calculation.</dd>
-</dl>
-</dd>
-<dt>Returns:</dt>
-<dd>(xms::XmUGrid) The new ugrid with quads replacing triangles and any new points.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MeQuadBlossom.pre_make_quads">
-<code class="descname">pre_make_quads</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MeQuadBlossom</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#xmsmesh_py.meshing.MeQuadBlossom.pre_make_quads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute edge information and returns the number of boundary edges.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MeQuadBlossom.split_to_quads">
-<code class="descname">split_to_quads</code><span class="sig-paren">(</span><em>ugrid: xms::XmUGrid</em><span class="sig-paren">)</span> &#x2192; xms::XmUGrid<a class="headerlink" href="#xmsmesh_py.meshing.MeQuadBlossom.split_to_quads" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div>Split every cell on the input ugrid at its centroid and edge midpoints to 
-create a new ugrid with only quad cells.</div></blockquote>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>ugrid (XmUGrid): The ugrid to be split into quads.</dd>
-<dt>Returns:</dt>
-<dd>(XmUGrid): The new ugrid that contains half size quad cells only.</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 
 

@@ -81,7 +81,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh_py.meshing">Meshing</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#meshing">Meshing</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="MeBadQuadRemover.html">MeBadQuadRemover</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MeMeshUtils.html">MeMeshUtils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesher.html">MeMultiPolyMesher</a></li>
@@ -162,43 +162,6 @@
             
   <div class="section" id="mepolymesher">
 <h1>MePolyMesher<a class="headerlink" href="#mepolymesher" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="xmsmesh_py.meshing.MePolyMesher">
-<em class="property">class </em><code class="descclassname">xmsmesh_py.meshing.</code><code class="descname">MePolyMesher</code><a class="headerlink" href="#xmsmesh_py.meshing.MePolyMesher" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyMesher.get_processed_refine_pts">
-<code class="descname">get_processed_refine_pts</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyMesher</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh_py.meshing.MePolyMesher.get_processed_refine_pts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the refine points that were inside the polygon, both points that 
-are included in the meshing process and those that were not.</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>iterable: Locations of refine points used inside of this polygon.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmsmesh_py.meshing.MePolyMesher.mesh_it">
-<code class="descname">mesh_it</code><span class="sig-paren">(</span><em>self: xmsmesh_py.meshing.MePolyMesher</em>, <em>mesh_io: xmsmesh_py.meshing.MeMultiPolyMesherIo</em>, <em>poly_idx: int</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#xmsmesh_py.meshing.MePolyMesher.mesh_it" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform MESH_PAVE, MESH_SPAVE, MESH_PATCH meshing on a polygon.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first docutils">
-<dt>mesh_io (MeMultiPolyMesherIo):Meshing input: polygons and optional</dt>
-<dd>inputs</dd>
-</dl>
-<p class="last">poly_idx (int): Index to the polygon in a_input to mesh</p>
-</dd>
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>tuple: True if no errors encountered, computed mesh points, computed </dt>
-<dd>mesh triangles from paving, computed mesh cells from patch.</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 
 

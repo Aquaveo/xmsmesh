@@ -56,7 +56,5 @@ var searchData=
   ['merelaxer_2et_2eh',['MeRelaxer.t.h',['../_me_relaxer_8t_8h.html',1,'']]],
   ['meweightmatcher_2ecpp',['MeWeightMatcher.cpp',['../_me_weight_matcher_8cpp.html',1,'']]],
   ['meweightmatcher_2eh',['MeWeightMatcher.h',['../_me_weight_matcher_8h.html',1,'']]],
-  ['meweightmatcher_2et_2eh',['MeWeightMatcher.t.h',['../_me_weight_matcher_8t_8h.html',1,'']]],
-  ['misc_5fpy_2ecpp',['misc_py.cpp',['https://aquaveo.github.io/xmscore/misc__py_8cpp.html',1,'']]],
-  ['misc_5fpy_2eh',['misc_py.h',['https://aquaveo.github.io/xmscore/misc__py_8h.html',1,'']]]
+  ['meweightmatcher_2et_2eh',['MeWeightMatcher.t.h',['../_me_weight_matcher_8t_8h.html',1,'']]]
 ];

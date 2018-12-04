@@ -22,6 +22,7 @@ var classxms_1_1_me_poly_redistribute_pts_impl =
     [ "SizeFromLocation", "classxms_1_1_me_poly_redistribute_pts_impl.html#a963c4908a6fbfb9a9650287b45836859", null ],
     [ "SizeFromPolyAddEdgeLengths", "classxms_1_1_me_poly_redistribute_pts_impl.html#a20acd321a014fc6e9d660be1d03b186e", null ],
     [ "SizeFromPolyCalcAveEdgeLengthAtPts", "classxms_1_1_me_poly_redistribute_pts_impl.html#aa693fb54fc2be4331584c17fb6655f42", null ],
+    [ "ToPyRepr", "classxms_1_1_me_poly_redistribute_pts_impl.html#a4d6820b12c6151dab0064e0e60777a54", null ],
     [ "TvaluesForSeg", "classxms_1_1_me_poly_redistribute_pts_impl.html#a3d80256606507c265a4ea3a2e6f2badc", null ],
     [ "m_biasConstSize", "classxms_1_1_me_poly_redistribute_pts_impl.html#a661452fd100e73697f0227d49067b8b0", null ],
     [ "m_constSize", "classxms_1_1_me_poly_redistribute_pts_impl.html#a9b4fb9f017b5b163b29d8a0fb7c650e4", null ],
