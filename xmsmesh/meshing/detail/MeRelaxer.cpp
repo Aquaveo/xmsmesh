@@ -155,7 +155,9 @@ void MeRelaxerImpl::Relax(/*MeshPolyEnum a_meshPolyEnum,*/
   ComputeCentroids();
 
   // Set up iterations
+#ifdef _DEBUG
   VecPt3d& pts(m_tin->Points());
+#endif
   int numiterations(3); // default to 3 for area relaxation
   RelaxTypeEnum relaxtype(m_relaxType);
   if (relaxtype == RELAXTYPE_SPRING)
@@ -260,12 +262,8 @@ void MeRelaxerImpl::RelaxMarkedPoints(RelaxTypeEnum a_relaxType,
 {
   XM_ASSERT(a_iteration > 0 && a_numiterations > 0 && a_iteration <= a_numiterations);
 
-  // Progress
-  double iterationPercent = a_iteration / (double)a_numiterations;
-
   // Relax the marked nodes
   VecPt3d& points = m_tin->Points(); // for convenience
-  VecInt2d& trisAdjToPts = m_tin->TrisAdjToPts();
   size_t nPoints = points.size();
   Pt3d origlocation, newlocation;
   for (size_t p = 0; p < nPoints; ++p)
@@ -428,7 +426,6 @@ void MeRelaxerImpl::SpringRelaxSinglePoint(int a_point, Pt3d& a_newLocation)
   double fy(0.0);
 
   double springStiffness(1.0);
-  double stepSize(0.1);
   VecPt3d& points = m_tin->Points();
   VecInt& neighbors(m_pointNeighbors[a_point]);
   double numPtsFactor(1.7 / (double)neighbors.size());
@@ -484,7 +481,9 @@ void MeRelaxerImpl::SetupNeighbors()
       int idx = adjTris[j] * 3;
       for (int t = 0; t < 3; ++t)
       {
+#ifdef _DEBUG
         int ptIdx = tris[idx + t];
+#endif
         XM_ASSERT(ptIdx < nPts);
         setPoints.insert(tris[idx + t]);
       }
@@ -593,23 +592,6 @@ MeRelaxer::~MeRelaxer()
 
 // namespace xms {
 using namespace xms;
-
-namespace
-{
-//------------------------------------------------------------------------------
-/// \brief Convert an array to a vector of Pt3d.
-//------------------------------------------------------------------------------
-static VecPt3d iArrayToVecPt3d(double* a_array, int a_size)
-{
-  VecPt3d v(a_size / 2);
-  for (int i = 0; i < a_size; i += 2)
-  {
-    v[i / 2].x = a_array[i];
-    v[i / 2].y = a_array[i + 1];
-  }
-  return v;
-} // iArrayToVecPt3d
-} // namespace
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class MeRelaxerUnitTests
@@ -939,7 +921,6 @@ void MeRelaxerUnitTests::testSpringRelaxSinglePoint3()
   r.SetupNeighbors();
 
   Pt3d newloc, startPt(8, 7, 0), ptZero;
-  double startDist(Mdist(0.0, 0.0, startPt.x, startPt.y));
   r.SpringRelaxSinglePoint(4, newloc);
   TS_ASSERT(!r.NewLocationIsValid(4, newloc));
 } // MeRelaxerUnitTests::testSpringRelaxSinglePoint3
@@ -950,11 +931,11 @@ void MeRelaxerUnitTests::testSpringRelaxSinglePoint3()
 ///
 ///  x is a missing triangle
 ///
-///  6----7----8
-///  | /  | \ /
-///  3----4--5
-///  | /  | \ \ 
-///  0----1----2
+///  6----7----8      //
+///  | /  | \ /       //
+///  3----4--5        //
+///  | /  | \ \       //
+///  0----1----2      //
 ///
 /// \endcode
 //------------------------------------------------------------------------------

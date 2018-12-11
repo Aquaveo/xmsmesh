@@ -140,7 +140,6 @@ void MePolyRedistributePtsCurvatureImpl::Setup(const VecPt3d& a_points)
   gmExtents2D(m_points, pMin, pMax);
   m_tol = Mdist(pMin.x, pMin.y, pMax.x, pMax.y) * 1e-9;
   m_open = m_points.back() != m_points.front();
-  size_t nLengths = m_open ? m_points.size() - 1 : m_points.size();
   m_segmentLengths.assign(m_points.size(), 0.0);
   m_accumulatedSegmentLengths.assign(m_points.size(), 0.0);
 
@@ -365,7 +364,6 @@ void MePolyRedistributePtsCurvatureImpl::ShiftAndAggregateOpen()
 {
   VecDbl shiftedParametricDistance(m_parametricDistance.size() + 1);
   VecDbl shiftedCurvature(m_curvature.size() + 1);
-  size_t i = 0;
 
   // shifted is 1 longer than a_paramCurv so this has to happend once:
   double agg_curv = 0;
@@ -395,8 +393,8 @@ void MePolyRedistributePtsCurvatureImpl::ShiftAndAggregateClosed()
   VecDbl& pdist(m_parametricDistance);
   VecDbl& curve(m_curvature);
   int idxA(static_cast<int>(m_parametricDistance.size() - 2)), idxB(0), idxC(1);
-  double p_a(pdist[idxA]), p_b(pdist[idxB]), p_c(pdist[idxC]);
-  double curv_a(curve[idxA]), curv_b(curve[idxB]), curv_c(curve[idxC]);
+  double p_a(pdist[idxA]), p_c(pdist[idxC]);
+  double curv_a(curve[idxA]), curv_b(curve[idxB]);
   double s_ab(1.0 - p_a);
   double s_bc(p_c); // p_c - 0.0;
   double proportion = s_ab / (s_ab + s_bc);
