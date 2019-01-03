@@ -5,7 +5,7 @@ from conans.errors import ConanException
 
 class XmsinterpConan(ConanFile):
     name = "xmsmesh"
-    version = None
+    # version = None  # This no longer worked after conan version 1.11
     license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmsmesh"
     description = "Meshing library for XMS products"
