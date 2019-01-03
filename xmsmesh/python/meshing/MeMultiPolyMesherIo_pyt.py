@@ -112,7 +112,7 @@ class TestPolyInput(unittest.TestCase):
                         ((4, 8, 0), (3, 7, 0), (2, 8, 0)))
         poly_corners = (0, 1, 2, 3)
         bias = 3.14159
-        pts = ((1, 0, 0), (10, 0, 0))
+        pts = ((1, 0, 0), (10, 0, 0), (10, 10, 0))
         size_func = InterpLinear(pts)
         elev_func = InterpIdw(pts)
 
@@ -134,7 +134,7 @@ class TestPolyInput(unittest.TestCase):
         inside_polys = (((3, 3, 0), (2.5, 4, 0), (2, 3, 0)),
                         ((4, 8, 0), (3, 7, 0), (2, 8, 0)))
         poly_corners = (0, 1, 2, 3)
-        pts = ((1, 2, 3), (4, 5, 6))
+        pts = ((1, 2, 3), (4, 5, 6), (0, 5, 7))
         size_func = InterpLinear(pts)
         elev_func = InterpIdw(pts)
         seed_points = ((3, 3, 0), (4, 3, 0), (4, 8, 0), (3, 8, 0))

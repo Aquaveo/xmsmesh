@@ -34,7 +34,7 @@ class TestPolyRedistributePts(unittest.TestCase):
 
     def test_set_size_func_01(self):
         r = PolyRedistributePts()
-        pts = ()
+        pts = ((0, 0, 0), (1, 1, 0), (0, 1, 0))
         sf = InterpLinear(pts)
         r.set_size_func(sf)
         # TODO: No way to test if there size function was set correctly
