@@ -2,5 +2,5 @@
 MeMultiPolyMesherIo
 *******************
 
-.. autoclass:: xmsmesh_py.meshing.MeMultiPolyMesherIo
+.. autoclass:: xmsmesh.meshing.MultiPolyMesherIo
    :members:

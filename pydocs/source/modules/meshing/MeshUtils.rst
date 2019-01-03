@@ -2,5 +2,5 @@
 MeMeshUtils
 ***********
 
-.. automodule:: xmsmesh_py.meshing.MeMeshUtils
+.. automodule:: xmsmesh.meshing.mesh_utils
    :members:

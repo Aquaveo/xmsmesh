@@ -2,5 +2,5 @@
 MePolyRedistributePts
 *********************
 
-.. autoclass:: xmsmesh_py.meshing.MePolyRedistributePts
+.. autoclass:: xmsmesh.meshing.PolyRedistributePts
    :members:

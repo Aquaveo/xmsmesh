@@ -25,6 +25,8 @@ copyright = '2018, aquaveo'
 author = 'aquaveo'
 
 # The short X.Y version
+import xmsmesh
+version = xmsmesh.__version__
 version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
@@ -155,7 +157,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'xmsmesh', 'xmsmesh Documentation',
-     author, 'xmsmesh', 'GridTrace library used by aquaveo libraries.',
+     author, 'xmsmesh', 'Meshing library used by aquaveo libraries.',
      'Miscellaneous'),
 ]
 
