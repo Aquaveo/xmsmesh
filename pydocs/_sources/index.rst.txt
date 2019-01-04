@@ -7,7 +7,7 @@
 XmsMesh |version|
 *****************
 
-**Last Updated:** October 5, 2018
+**Last Updated:** January 3, 2019
 
 The xmsmesh library is a meshing library for other aquaveo products. This library contains classes used to perform meshing.
 

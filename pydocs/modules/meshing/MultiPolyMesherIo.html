@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MeQuadBlossom &mdash; XmsMesh Library  documentation</title>
+  <title>MultiPolyMesherIo &mdash; XmsMesh Library  documentation</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="MePolyRedistributePts" href="MePolyRedistributePts.html" /> 
+    <link rel="next" title="PolyRedistributePts" href="PolyRedistributePts.html" />
+    <link rel="prev" title="MeshUtils" href="MeshUtils.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -80,15 +81,10 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#meshing">Meshing</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="MeBadQuadRemover.html">MeBadQuadRemover</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MeMeshUtils.html">MeMeshUtils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesher.html">MeMultiPolyMesher</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MeMultiPolyMesherIo.html">MeMultiPolyMesherIo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MeMultiPolyTo2dm.html">MeMultiPolyTo2dm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MePolyMesher.html">MePolyMesher</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MePolyRedistributePts.html">MePolyRedistributePts</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">MeQuadBlossom</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh.meshing">Meshing</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="MeshUtils.html">MeshUtils</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MultiPolyMesherIo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolyRedistributePts.html">PolyRedistributePts</a></li>
 </ul>
 </li>
 </ul>
@@ -140,13 +136,13 @@
         
           <li><a href="../../modules.html">Modules</a> &raquo;</li>
         
-      <li>MeQuadBlossom</li>
+      <li>MultiPolyMesherIo</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/modules/meshing/MeQuadBlossom.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/modules/meshing/MultiPolyMesherIo.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -159,8 +155,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="mequadblossom">
-<h1>MeQuadBlossom<a class="headerlink" href="#mequadblossom" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="multipolymesherio">
+<h1>MultiPolyMesherIo<a class="headerlink" href="#multipolymesherio" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo">
+<em class="property">class </em><code class="descclassname">xmsmesh.meshing.</code><code class="descname">MultiPolyMesherIo</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.cell_polygons">
+<code class="descname">cell_polygons</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.cell_polygons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Polygon index of each cell.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.cells">
+<code class="descname">cells</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cells of the resulting mesh, as a stream.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.check_topology">
+<code class="descname">check_topology</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.check_topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional. If true, checks polygon input topology for errors.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.points">
+<code class="descname">points</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.points" title="Permalink to this definition">¶</a></dt>
+<dd><p>The points of the resulting mesh.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.poly_inputs">
+<code class="descname">poly_inputs</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.poly_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required (but some data is optional). Inputs for each polygon.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.refine_points">
+<code class="descname">refine_points</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.refine_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional. Refine points.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.MultiPolyMesherIo.return_cell_polygons">
+<code class="descname">return_cell_polygons</code><a class="headerlink" href="#xmsmesh.meshing.MultiPolyMesherIo.return_cell_polygons" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, returns the polygon index of each cell.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -171,8 +214,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="PolyRedistributePts.html" class="btn btn-neutral float-right" title="PolyRedistributePts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="MePolyRedistributePts.html" class="btn btn-neutral" title="MePolyRedistributePts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="MeshUtils.html" class="btn btn-neutral" title="MeshUtils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -206,6 +251,7 @@
         <script type="text/javascript" src="../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
     
 
   
