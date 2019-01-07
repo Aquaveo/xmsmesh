@@ -20,6 +20,7 @@ See xmscore build [instructions](https://github.com/Aquaveo/xmscore/wiki/Buildin
 Documentation
 -------------
 
-C++: [xmsmesh](https://aquaveo.github.io/xmsmesh/)
-Python:[xmsmesh python](https://aquaveo.github.io/xmsmesh/pydocs)
+[C++ Documentation](https://aquaveo.github.io/xmsmesh/)
+
+[Python Documentation](https://aquaveo.github.io/xmsmesh/pydocs)
 
