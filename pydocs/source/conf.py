@@ -27,7 +27,6 @@ author = 'aquaveo'
 # The short X.Y version
 import xmsmesh
 version = xmsmesh.__version__
-version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
 
