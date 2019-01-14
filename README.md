@@ -1,10 +1,15 @@
-[![Build Status](https://travis-ci.org/Aquaveo/xmsmesh.svg?branch=master)](https://travis-ci.org/Aquaveo/xmsmesh)
-[![Build status](https://ci.appveyor.com/api/projects/status/9rt489nowh8rt7ib?svg=true)](https://ci.appveyor.com/project/Aquaveo/xmsmesh)
-
 
 XMSMesh
-========
+=======
+
 Meshing library for XMS products
+
+Master Branch Status
+--------------------
+
+[![Build Status](https://travis-ci.org/Aquaveo/xmsmesh.svg?branch=master)](https://travis-ci.org/Aquaveo/xmsmesh)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/9rt489nowh8rt7ib?svg=true)](https://ci.appveyor.com/project/Aquaveo/xmsmesh)
 
 Prerequisites
 --------------
