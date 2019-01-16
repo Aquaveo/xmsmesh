@@ -1,0 +1,23 @@
+#xms.yml
+# Configuration file for creating a Conda environment with dependencies needed for the xms libraries.
+# Create the environment by running the following command (after installing Miniconda):
+#    $ conda env create -f xms.yml
+
+name: xms
+
+channels:
+  - Aquaveo
+  - pyviz/label/dev
+  - defaults
+  - conda-forge
+  
+dependencies:
+  - python=3.6.*
+  - xmscore
+  - xmsinterp
+  - xmsgrid
+  - xmsmesh
+  - xmsextractor
+  - xmsstamper
+  - xmsgridtrace
+  - pyviz
