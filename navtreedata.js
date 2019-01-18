@@ -24,18 +24,16 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "xmsmesh", "index.html", [
-    [ "xmscore", "index.html", [
-      [ "xmsmesh ", "index.html#xmsmesh", [
-        [ "Introduction ", "index.html#XmsmeshIntroduction", null ],
-        [ "License ", "index.html#XmsmeshLicense", null ],
-        [ "Features ", "index.html#XmsmeshFeatures", null ],
-        [ "Testing ", "index.html#XmsmeshTesting", null ],
-        [ "The Code ", "index.html#XmsmeshTheCode", [
-          [ "Namespaces", "index.html#XmsmeshNamespaces", null ],
-          [ "Interface pattern", "index.html#XmsmeshInterfacePattern", null ]
-        ] ],
-        [ "\"xmsmesh\" Name ", "index.html#xmsmeshName", null ]
-      ] ]
+    [ "xmsmesh ", "index.html#xmsmesh", [
+      [ "Introduction ", "index.html#XmsmeshIntroduction", null ],
+      [ "License ", "index.html#XmsmeshLicense", null ],
+      [ "Features ", "index.html#XmsmeshFeatures", null ],
+      [ "Testing ", "index.html#XmsmeshTesting", null ],
+      [ "The Code ", "index.html#XmsmeshTheCode", [
+        [ "Namespaces", "index.html#XmsmeshNamespaces", null ],
+        [ "Interface pattern", "index.html#XmsmeshInterfacePattern", null ]
+      ] ],
+      [ "\"xmsmesh\" Name ", "index.html#xmsmeshName", null ]
     ] ],
     [ "Meshing_Tutorial", "md__meshing__tutorial.html", [
       [ "Meshing Tutorial", "md__meshing__tutorial.html#Meshing_Tutorial", [

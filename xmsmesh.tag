@@ -5402,7 +5402,7 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>xmscore</title>
+    <title>xmsmesh</title>
     <filename>index</filename>
     <docanchor file="index" title="xmsmesh ">xmsmesh</docanchor>
     <docanchor file="index" title="Introduction ">XmsmeshIntroduction</docanchor>
