@@ -84,6 +84,9 @@ wget https://raw.githubusercontent.com/Aquaveo/xmsinterp/gh-pages/xmsinterp.tag
 wget https://raw.githubusercontent.com/Aquaveo/xmsgrid/gh-pages/xmsgrid.tag
 doxygen -v
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
+mkdir ./html/examples
+cp ../examples/*.html ./html/examples
+ls ./html/examples
 
 # Check for warnings in doxygen
 if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
