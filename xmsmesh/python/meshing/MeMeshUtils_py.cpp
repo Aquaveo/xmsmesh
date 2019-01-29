@@ -211,13 +211,12 @@ void initMeMeshUtils(py::module &m) {
         Creates a 2dm file from polygons
 
         Args:
-          mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options
-            for generating a mesh.
-          file_name (str): output filename
-          precision (:obj:`int`, optional) decimal point precision
+            mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options for generating a mesh.
+            file_name (str): output filename
+            precision (:obj:`int`, optional) decimal point precision
 
         Returns:
-          tuple: true if the mesh was generated., and resultant filename
+            tuple: true if the mesh was generated., and resultant filename
     )pydoc";
     modMeshUtils.def("generate_2dm",
      [](xms::MeMultiPolyMesherIo &mesh_io,
