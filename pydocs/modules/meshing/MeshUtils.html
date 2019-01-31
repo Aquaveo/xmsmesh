@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                2.0.3
+                2.0.4
               </div>
             
           
@@ -165,18 +165,25 @@
 <dt id="xmsmesh.meshing.mesh_utils.generate_2dm">
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">generate_2dm</code><span class="sig-paren">(</span><em>mesh_io: xms::MeMultiPolyMesherIo</em>, <em>file_name: unicode</em>, <em>precision: int=15L</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.generate_2dm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a 2dm file from polygons</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first docutils">
-<dt>mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options</dt>
-<dd>for generating a mesh.</dd>
-</dl>
-<p class="last">file_name (str): output filename
-precision (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional) decimal point precision</p>
-</dd>
-<dt>Returns:</dt>
-<dd>tuple: true if the mesh was generated., and resultant filename</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mesh_io</strong> (<em>MeMultiPolyMesherIo</em>) – Input/output of polygons and options for generating a mesh.</li>
+<li><strong>file_name</strong> (<em>str</em>) – output filename</li>
+<li><strong>precision</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">true if the mesh was generated., and resultant filename</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -184,54 +191,71 @@ precision (<code class="xref py py-obj docutils literal notranslate"><span class
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">generate_mesh</code><span class="sig-paren">(</span><em>mesh_io: xms::MeMultiPolyMesherIo</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.generate_mesh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a triangle mesh from the input polygons. The polygons can not
 overlap.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options for</dt>
-<dd>generating a mesh.</dd>
-</dl>
-</dd>
-<dt>Returns:</dt>
-<dd>iterable: True if successful, false with errors otherwise</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mesh_io</strong> (<em>MeMultiPolyMesherIo</em>) – Input/output of polygons and options for
+generating a mesh.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if successful, false with errors otherwise</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">iterable</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.size_function_from_depth">
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">size_function_from_depth</code><span class="sig-paren">(</span><em>depths: iterable</em>, <em>min_size: float</em>, <em>max_size: float</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.size_function_from_depth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a size at each point based on the depth at the point and the min 
-and max sizes the equation is  min_depth + ( (depth - min_depth) / 
+<dd><p>Creates a size at each point based on the depth at the point and the min
+and max sizes the equation is  min_depth + ( (depth - min_depth) /
 (max_depth - min_depth) ) * (max_size - min_size)</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>depths (iterable): The measured depths at point locations
-min_size (float): The minimum element edge size
-max_size (float): The maximum element edge size</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>depths</strong> (<em>iterable</em>) – The measured depths at point locations</li>
+<li><strong>min_size</strong> (<em>float</em>) – The minimum element edge size</li>
+<li><strong>max_size</strong> (<em>float</em>) – The maximum element edge size</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.smooth_elev_by_slope">
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">smooth_elev_by_slope</code><span class="sig-paren">(</span><em>tin: xms::TrTin</em>, <em>sizes: iterable</em>, <em>max_slope: float</em>, <em>anchor_type: int</em>, <em>pts_flag: iterable</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.smooth_elev_by_slope" title="Permalink to this definition">¶</a></dt>
-<dd><p>Smooths a elevations based on max specified slope (a_maxSlope) preserving 
+<dd><p>Smooths a elevations based on max specified slope (a_maxSlope) preserving
 either the min or max based on a_anchorType</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first docutils">
-<dt>tin (TrTin): Points and triangles defining the</dt>
-<dd>connectivity of the size function.</dd>
-</dl>
-<p>sizes (iterable): Array of the current sizes
-max_slope (float): Maximum allowable slope
-anchor_type (int): The minimum element edge size
-pts_flag (iterable): Flag to indicate if the value at the point should</p>
-<blockquote class="last">
-<div>be adjusted (a value of true will skip the point). Leave the bitset 
-empty to process all points.</div></blockquote>
-</dd>
-<dt>Returns:</dt>
-<dd>iterable: Array of smoothed elevations</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tin</strong> (<em>TrTin</em>) – Points and triangles defining the
+connectivity of the size function.</li>
+<li><strong>sizes</strong> (<em>iterable</em>) – Array of the current sizes</li>
+<li><strong>max_slope</strong> (<em>float</em>) – Maximum allowable slope</li>
+<li><strong>anchor_type</strong> (<em>int</em>) – The minimum element edge size</li>
+<li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should
+be adjusted (a value of true will skip the point). Leave the bitset
+empty to process all points.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of smoothed elevations</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">iterable</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -240,26 +264,32 @@ empty to process all points.</div></blockquote>
 <dd><p>Smooths a size function. Ensures that the size function transitions over a
 sufficient distance so that the area change of adjacent elements meets the
 size ratio passed in.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first docutils">
-<dt>tin (TrTin): Points and triangles defining the</dt>
-<dd>connectivity of the size function.</dd>
-</dl>
-<p>sizes (iterable): Array of the current sizes
-size_ratio (float): Allowable size difference between adjacent</p>
-<blockquote>
-<div>elements</div></blockquote>
-<p>min_size (float): Minimum specified element size
-anchor_type (int): The minimum element edge size
-pts_flag (iterable): Flag to indicate if the value at the point should</p>
-<blockquote class="last">
-<div>be adjusted (a value of true will skip the point). Leave the bitset 
-empty to process all points.</div></blockquote>
-</dd>
-<dt>Returns:</dt>
-<dd>iterable: Array of smoothed sizes</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tin</strong> (<em>TrTin</em>) – Points and triangles defining the
+connectivity of the size function.</li>
+<li><strong>sizes</strong> (<em>iterable</em>) – Array of the current sizes</li>
+<li><strong>size_ratio</strong> (<em>float</em>) – Allowable size difference between adjacent
+elements</li>
+<li><strong>min_size</strong> (<em>float</em>) – Minimum specified element size</li>
+<li><strong>anchor_type</strong> (<em>int</em>) – The minimum element edge size</li>
+<li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should
+be adjusted (a value of true will skip the point). Leave the bitset
+empty to process all points.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of smoothed sizes</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">iterable</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
