@@ -27,6 +27,18 @@ namespace py = pybind11;
 PYBIND11_DECLARE_HOLDER_TYPE(T, BSHP<T>);
 
 void initMeMultiPolyMesherIo(py::module &m) {
+
+    const char* multi_poly_mesher_doc_init = R"pydoc(
+        Creates a mesh from one or more PolyInputs, and other settings that are defined
+        in the PolyMesherIo that is passed into this class.
+
+        Args:
+            poly_inputs (iterable): A list of PolyInputs.
+            refine_points (iterable): A list of RefinePoints.
+            check_topology (bool): Check polygon input topology for errors.
+            return_cell_polygons (bool): Return the polygon index of each cell.
+    )pydoc";
+
     py::class_<xms::MeMultiPolyMesherIo, BSHP<xms::MeMultiPolyMesherIo>> polyMesherIo(m, "MultiPolyMesherIo");
 
     polyMesherIo.def(py::init<>([](py::iterable poly_inputs, py::iterable refine_points,
@@ -54,7 +66,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
       rval->m_returnCellPolygons = return_cell_polygons;
       return rval;
     }), py::arg("poly_inputs"), py::arg("refine_points") = py::make_tuple(),
-        py::arg("check_topology") = false, py::arg("return_cell_polygons") = true);
+        py::arg("check_topology") = false, py::arg("return_cell_polygons") = true, multi_poly_mesher_doc_init);
     // ---------------------------------------------------------------------------
     // function: check_topology
     // ---------------------------------------------------------------------------
@@ -147,7 +159,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
     // function: poly_inputs
     // ---------------------------------------------------------------------------
     const char* poly_inputs_doc = R"pydoc(
-        Required (but some data is optional). Inputs for each polygon.
+        Required. Inputs for each polygon.
     )pydoc";
     polyMesherIo.def_property("poly_inputs",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
@@ -169,7 +181,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
     // function: refine_points
     // ---------------------------------------------------------------------------
     const char* refine_points_doc = R"pydoc(
-        Optional. Refine points.
+        Optional. List of RefinePoints used for mesh refinement.
     )pydoc";
     polyMesherIo.def_property("refine_points",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
