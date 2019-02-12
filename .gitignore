@@ -55,6 +55,7 @@ Doxygen/html/*.js
 Doxygen/html/*.png
 Doxygen/html/search
 Doxygen/html/pydocs/*
+Doxygen/html/images/*
 doxy_warn.log
 
 # Sphinx

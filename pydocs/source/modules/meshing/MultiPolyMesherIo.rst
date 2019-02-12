@@ -22,12 +22,14 @@ For example a cell stream from a MultiPolyMesherIo might look something like thi
     >> print(mesh_io.cells)
     >> [5, 3, 0, 40, 1, 5, 3, 40, 0, 39, ...]
 
-The cell stream is organized as follows: [<VTK_CELL_TYPE>, <NUMBER_OF_ELEMENTS> <ELEMENT__ID_1>, ... <ELEMENT_ID_N>,
-<VTK_CELL_TYPE>, <NUMBER_OF_ELEMENTS> <ELEMENT_ID_1>, ... <ELEMENT_ID_N>, ...]. So our example above could be read
-as VTK_CELL_TYPE = 5 (TRIANGLE), there are 3 elements, and their ID's are 0, 30, and 1, and so on.
+The cell stream is organized as follows: [<CELL_TYPE>, <NUMBER_OF_ELEMENTS> <ELEMENT__ID_1>, ... <ELEMENT_ID_N>,
+<CELL_TYPE>, <NUMBER_OF_ELEMENTS> <ELEMENT_ID_1>, ... <ELEMENT_ID_N>, ...]. So our example above could be read
+as CELL_TYPE = 5 (TRIANGLE), there are 3 elements, and their ID's are 0, 30, and 1, and so on.
 
-Class Structure
----------------
+The cell_polygons property is a list of ints referring to the index of the PolyInput that each cell was generated
+from. The length of cell_polygons will be the total number of cells in your mesh. This property can be useful
+because each mesh can be generated from many different polygons. It may sometimes be useful to know which polygon
+each cell came from.
 
 .. autoclass:: xmsmesh.meshing.MultiPolyMesherIo
    :members:
