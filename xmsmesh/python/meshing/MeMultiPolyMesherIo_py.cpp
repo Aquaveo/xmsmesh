@@ -39,8 +39,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
             return_cell_polygons (bool): Return the polygon index of each cell.
     )pydoc";
 
-    py::class_<xms::MeMultiPolyMesherIo, BSHP<xms::MeMultiPolyMesherIo>> polyMesherIo(m, "MultiPolyMesherIo",
-                        multi_poly_mesher_doc_init);
+    py::class_<xms::MeMultiPolyMesherIo, BSHP<xms::MeMultiPolyMesherIo>> polyMesherIo(m, "MultiPolyMesherIo");
 
     polyMesherIo.def(py::init<>([](py::iterable poly_inputs, py::iterable refine_points,
             bool check_topology, bool return_cell_polygons) {
@@ -66,7 +65,7 @@ void initMeMultiPolyMesherIo(py::module &m) {
       rval->m_checkTopology = check_topology;
       rval->m_returnCellPolygons = return_cell_polygons;
       return rval;
-    }), py::arg("poly_inputs"), py::arg("refine_points") = py::make_tuple(),
+    }), multi_poly_mesher_doc_init, py::arg("poly_inputs"), py::arg("refine_points") = py::make_tuple(),
         py::arg("check_topology") = false, py::arg("return_cell_polygons") = true);
     // ---------------------------------------------------------------------------
     // function: check_topology
@@ -227,19 +226,20 @@ void initMeMultiPolyMesherIo(py::module &m) {
     // function: __init__
     // -------------------------------------------------------------------------
 void initMePolyInput(py::module &m) {
-    py::class_<xms::MePolyInput, BSHP<xms::MePolyInput>> polyInput(m, "PolyInput");
 
     const char* PolyInput_init_doc = R"pydoc(
         PolyInput initializer
 
         Args:
-            out_poly (iterable): Point locations of outer polygon. Clockwise. 1st pt != last
+            out_poly (iterable): Point locations of outer polygon. Clockwise
             inside_polys (:obj:`iterable` optional): Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.
             bias (:obj:`Float` optional): Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.
-            size_function (:obj:`InterpBase` optional): Size function for scalar paving. Default to None
+            size_function (:class:`InterpBase <xmsinterp.interpolate.InterpBase>` optional): Size function for scalar paving. Default to None
             poly_corners (:obj:`iterable` optional): Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.
-            elev_function (:obj:`InterpBase` optional): Elevation function for interpolating z coordinate of mesh points. Deafults to None.
+            elev_function (:class:`InterpBase <xmsinterp.interpolate.InterpBase>` optional): Elevation function for interpolating z coordinate of mesh points. Deafults to None.
     )pydoc";
+
+    py::class_<xms::MePolyInput, BSHP<xms::MePolyInput>> polyInput(m, "PolyInput");
 
     polyInput.def(py::init<>([](py::iterable out_poly, py::iterable inside_polys, double bias,
                            py::object size_function, py::iterable poly_corners, py::object elev_function) {
@@ -258,14 +258,17 @@ void initMePolyInput(py::module &m) {
             }
             return new xms::MePolyInput(vec_out_poly, vec_inside_polys, bias, c_size_function,
                                         vec_poly_corners, c_elev_function);
-        }), py::arg("out_poly"), py::arg("inside_polys") = py::make_tuple(), py::arg("bias") = 1.0,
+        }), PolyInput_init_doc, py::arg("out_poly"), py::arg("inside_polys") = py::make_tuple(), py::arg("bias") = 1.0,
             py::arg("size_function") = py::none(), py::arg("poly_corners") = py::make_tuple(),
             py::arg("elev_function") = py::none());
     // ---------------------------------------------------------------------------
     // function: outside_poly
     // ---------------------------------------------------------------------------
     const char* outside_poly_doc = R"pydoc(
-        Required. Outer polygons. Clockwise. 1st pt != last.
+        List of points defining the outside polygon.
+
+        Warning:
+            These points must be in clockwise order, and the first point must not equal the last point.
     )pydoc";
     polyInput.def_property("outside_poly",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -300,7 +303,9 @@ void initMePolyInput(py::module &m) {
     // function: inside_polys
     // ---------------------------------------------------------------------------
     const char* inside_polys_doc = R"pydoc(
-        Optional. Inner polygons (holes). Counter clockwise. 1st pt != last.
+        A list of polygons representing holes in the PolyInput
+
+        The polygons should be in clockwise order and the first point must not equal the last point.
     )pydoc";
     polyInput.def_property("inside_polys",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -313,9 +318,9 @@ void initMePolyInput(py::module &m) {
     // function: poly_corners
     // -------------------------------------------------------------------------
     const char* poly_corners_doc = R"pydoc(
-        Optional. Corner nodes for creating meshes using the patch algorithm. 
-        3 per outer poly (not 4 - outer poly index point [0] is assumed to be 
-        a corner
+        Corner nodes for creating meshes using the patch algorithm.
+
+        There can be 3 poly_corners per outer_poly not 4. The outer_poly point at index 0 is assumed to be a corner
     )pydoc";
     polyInput.def_property("poly_corners",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -331,8 +336,7 @@ void initMePolyInput(py::module &m) {
     // function: bound_pts_to_remove
     // -------------------------------------------------------------------------
     const char* bound_pts_to_remove_doc = R"pydoc(
-        Optional. Outer boundary locations to remove after the paving 
-        process. Used by the ugAutoCorrectCells class.
+        Outer boundary locations to remove after the paving process.
     )pydoc";
     polyInput.def_property("bound_pts_to_remove",
             [](xms::MePolyInput &self) -> py::iterable {
@@ -367,15 +371,14 @@ void initMePolyInput(py::module &m) {
     // function: bias
     // -------------------------------------------------------------------------
     const char* bias_doc = R"pydoc(
-       Optional. Factor for transitioning between areas of high refinement to 
-       less refinement.
+        Factor for transitioning between areas of high refinement to less refinement.
     )pydoc";
     polyInput.def_readwrite("bias", &xms::MePolyInput::m_bias, bias_doc);
     // -------------------------------------------------------------------------
     // function: size_function
     // -------------------------------------------------------------------------
     const char* size_function_doc = R"pydoc(
-            Optional. Size function for scalar paving.
+        Size function for scalar paving.
     )pydoc";
     polyInput.def_readwrite("size_function", &xms::MePolyInput::m_sizeFunction,
             size_function_doc);
@@ -383,8 +386,7 @@ void initMePolyInput(py::module &m) {
     // function: elev_function
     // -------------------------------------------------------------------------
     const char* elev_function_doc = R"pydoc(
-        Optional. Elevation function for interpolating z coordinate of mesh 
-        points.
+        Elevation function for interpolating z coordinate of mesh points.
     )pydoc";
     polyInput.def_readwrite("elev_function", &xms::MePolyInput::m_elevFunction,
         elev_function_doc);
@@ -392,7 +394,7 @@ void initMePolyInput(py::module &m) {
     // function: const_size_function
     // -------------------------------------------------------------------------
     const char* const_size_function_doc = R"pydoc(
-        Optional. Transition factor for constant size function.
+        Constant to be used for size function.
     )pydoc";
     polyInput.def_readwrite("const_size_function", &xms::MePolyInput::m_constSizeFunction,
         const_size_function_doc);
@@ -400,7 +402,7 @@ void initMePolyInput(py::module &m) {
     // function: const_size_bias
     // -------------------------------------------------------------------------
     const char* const_size_bias_doc = R"pydoc(
-        Optional. Transition factor for constant size function.
+        Transition factor for constant size function.
     )pydoc";
     polyInput.def_readwrite("const_size_bias", &xms::MePolyInput::m_constSizeBias,
         const_size_bias_doc);
@@ -408,24 +410,22 @@ void initMePolyInput(py::module &m) {
     // function: remove_internal_four_triangle_pts
     // -------------------------------------------------------------------------
     const char* remove_internal_four_triangle_pts_doc = R"pydoc(
-        Optional. Remove internal points that are only connected to 4 cells. 
-        Used by the ugAutoCorrectCells class
+        Remove internal points that are only connected to 4 cells.
     )pydoc";
     polyInput.def_readwrite("remove_internal_four_triangle_pts", &xms::MePolyInput::m_removeInternalFourTrianglePts,
             remove_internal_four_triangle_pts_doc);
     // -------------------------------------------------------------------------
     // function: poly_id
     // -------------------------------------------------------------------------
-    const char* poly_id_doc = R"pydoc(
-        Optional. Set when needed. Can be useful for classes who need an ID.
-    )pydoc";
-    polyInput.def_readwrite("poly_id", &xms::MePolyInput::m_polyId,
-        poly_id_doc);
+//    const char* poly_id_doc = R"pydoc(
+//        Optional. Set when needed. Can be useful for classes who need an ID.
+//    )pydoc";
+    polyInput.def_readwrite("poly_id", &xms::MePolyInput::m_polyId);
     // -------------------------------------------------------------------------
     // function: seed_points
     // -------------------------------------------------------------------------
     const char* seed_points_doc = R"pydoc(
-        Optional array of seed points. If the user has some methodology for 
+        A list of seed points. If the user has some methodology for
         creating points inside the polygon then those points can be specified 
         here. If these points are specified then the paving is not performed.
         These points will not be used if the meshing option is patch.
@@ -463,7 +463,7 @@ void initMePolyInput(py::module &m) {
     // property: relaxation_method
     // ---------------------------------------------------------------------------
     const char* relaxation_method_doc = R"pydoc(
-        Optional. Relaxation method. The default relaxation method is an area
+        Relaxation method. The default relaxation method is an area
         relax. Set the value to "spring_relaxation". See MeRelaxer.cpp for
         details on spring relaxation.
     )pydoc";
@@ -500,19 +500,27 @@ void initMePolyInput(py::module &m) {
 }
 
 void initMeRefinePoint(py::module &m) {
+
+    const char* refine_point_doc = R"pydoc(
+        A location and options used for refining a mesh.
+
+        Args:
+            pt (iterable): An (x, y, z) location for the point.
+            size (float): A size for the refinement. A negative value represents a hard point.
+            create_mesh_point (bool optional): Force a mesh point at the refine point location.
+    )pydoc";
+
     py::class_<xms::MeRefinePoint, BSHP<xms::MeRefinePoint>> refinePoint(m, "RefinePoint");
 
     refinePoint.def(py::init<>([](py::tuple pt, double size, bool create_mesh_point) {
             xms::Pt3d point = xms::Pt3dFromPyIter(pt);
             return new xms::MeRefinePoint(point, size, create_mesh_point);
-        }), py::arg("pt"), py::arg("size"), py::arg("create_mesh_point") = true);
+        }),refine_point_doc, py::arg("pt"), py::arg("size"), py::arg("create_mesh_point") = true);
     // -------------------------------------------------------------------------
     // function: point
     // -------------------------------------------------------------------------
     const char* point_doc = R"pydoc(
-        Location of refine point or hard points. Hard points are points that 
-        must be included in the final mesh but have no user specified size 
-        associated with them
+        Location of refine refine point
 
     )pydoc";
     refinePoint.def_property("point",
@@ -527,7 +535,7 @@ void initMeRefinePoint(py::module &m) {
     // function: size
     // -------------------------------------------------------------------------
     const char* size_doc = R"pydoc(
-        Element size at the refine point. A negative value indicates a hard 
+        Element size at the refine point.
         point.
     )pydoc";
     refinePoint.def_readwrite("size", &xms::MeRefinePoint::m_size,size_doc);
@@ -535,7 +543,7 @@ void initMeRefinePoint(py::module &m) {
     // function: create_mesh_point
     // -------------------------------------------------------------------------
     const char* create_mesh_point_doc = R"pydoc(
-        Should a mesh node/point be created at the refine point.
+        Create a mesh point at this location with attached cells at the specified size.
     )pydoc";
     refinePoint.def_readwrite("create_mesh_point", &xms::MeRefinePoint::m_createMeshPoint,
       create_mesh_point_doc);

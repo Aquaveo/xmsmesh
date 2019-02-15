@@ -181,3 +181,7 @@ epub_exclude_files = ['search.html']
 
 
 # -- Extension configuration -------------------------------------------------
+intersphinx_mapping = {
+    'xmsinterp': ('https://aquaveo.github.io/xmsinterp/pydocs', None),
+    'xmscore': ('https://aquaveo.github.io/xmscore/pydocs', None),
+}

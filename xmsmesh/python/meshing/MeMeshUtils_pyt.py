@@ -87,8 +87,8 @@ class TestMeshUtils(unittest.TestCase):
         pts = ((0, 0, 0), (10, 0, 0), (20, 0, 0), (30, 0, 0), (0, 10, 0), (10, 10, 0),
                (20, 10, 0), (30, 10, 0), (0, 20, 0), (10, 20, 0), (20, 20, 0), (30, 20, 0))
 
-        sizes = [100 for _ in range(0, 12)]
-        sizes[4] = 1
+        elevations = [100 for _ in range(0, 12)]
+        elevations[4] = 1
 
         tris = ()
         adj_tris = ()
@@ -100,7 +100,7 @@ class TestMeshUtils(unittest.TestCase):
         min_size = 0.5
         anchor_type = 0
         pt_flags = ()
-        smooth_sizes = mesh_utils.smooth_elev_by_slope(tin, sizes, min_size,
+        smooth_sizes = mesh_utils.smooth_elev_by_slope(tin, elevations, min_size,
                                                       anchor_type, pt_flags)
         base = (6.00,  8.07,  13.07, 18.07, 1.0,   6.00,
                 11.00, 16.00, 6.00,  11.00, 16.00, 21.00)
@@ -110,8 +110,8 @@ class TestMeshUtils(unittest.TestCase):
         pts = ((0, 0, 0), (10, 0, 0), (20, 0, 0), (30, 0, 0), (0, 10, 0), (10, 10, 0),
                (20, 10, 0), (30, 10, 0), (0, 20, 0), (10, 20, 0), (20, 20, 0), (30, 20, 0))
 
-        sizes = [1 for _ in range(0, 12)]
-        sizes[4] = 100
+        elevations = [1 for _ in range(0, 12)]
+        elevations[4] = 100
 
         tris = ()
         adj_tris = ()
@@ -123,7 +123,7 @@ class TestMeshUtils(unittest.TestCase):
         min_size = 0.5
         anchor_type = 1
         pt_flags = ()
-        smooth_sizes = mesh_utils.smooth_elev_by_slope(tin, sizes, min_size,
+        smooth_sizes = mesh_utils.smooth_elev_by_slope(tin, elevations, min_size,
                                                       anchor_type, pt_flags)
         base = (95.00, 92.92, 87.92, 82.92, 100.0, 95.00,
                 90.00, 85.00, 95.00, 90.00, 85.00, 80.00)

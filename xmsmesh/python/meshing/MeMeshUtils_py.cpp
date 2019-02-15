@@ -35,12 +35,16 @@ void initMeMeshUtils(py::module &m) {
   const char* size_function_from_depth_doc = R"pydoc(
       Creates a size at each point based on the depth at the point and the min 
       and max sizes the equation is  min_depth + ( (depth - min_depth) / 
-      (max_depth - min_depth) ) * (max_size - min_size)
+      (max_depth - min_depth) ) * (max_size - min_size). This is often useful for
+      coastal numerical model simulations.
 
       Args:
           depths (iterable): The measured depths at point locations
           min_size (float): The minimum element edge size
           max_size (float): The maximum element edge size
+
+      Returns:
+        iterable: Array of sizes based on depth
   )pydoc";
     modMeshUtils.def("size_function_from_depth", [](py::iterable depths, double min_size,
                                          double max_size) -> py::iterable {
@@ -73,16 +77,12 @@ void initMeMeshUtils(py::module &m) {
       size ratio passed in.
 
       Args:
-          tin (TrTin): Points and triangles defining the
-            connectivity of the size function.
+          tin (:class:`Tin <xmsinterp.triangulate.Tin>`): Points and triangles defining the connectivity of the size function.
           sizes (iterable): Array of the current sizes
-          size_ratio (float): Allowable size difference between adjacent 
-            elements
+          size_ratio (float): Allowable size difference between adjacent elements
           min_size (float): Minimum specified element size
           anchor_type (int): The minimum element edge size
-          pts_flag (iterable): Flag to indicate if the value at the point should
-            be adjusted (a value of true will skip the point). Leave the bitset 
-            empty to process all points.
+          pts_flag (iterable): Flag to indicate if the value at the point should be adjusted (a value of true will skip the point). Leave the bitset empty to process all points.
 
       Returns:
         iterable: Array of smoothed sizes
@@ -127,28 +127,25 @@ void initMeMeshUtils(py::module &m) {
   // function: smooth_elev_by_slope
   // ---------------------------------------------------------------------------
   const char* smooth_elev_by_slope_doc = R"pydoc(
-      Smooths a elevations based on max specified slope (a_maxSlope) preserving 
-      either the min or max based on a_anchorType
+      Smooths a elevations based on max specified slope (max_slope) preserving
+      either the min or max based on anchor_type
 
       Args:
-          tin (TrTin): Points and triangles defining the
-            connectivity of the size function.
-          sizes (iterable): Array of the current sizes
+          tin (:class:`Tin <xmsinterp.triangulate.Tin>`): Points and triangles defining the connectivity of the elevations.
+          elevations (iterable): Array of the current elevations
           max_slope (float): Maximum allowable slope
-          anchor_type (int): The minimum element edge size
-          pts_flag (iterable): Flag to indicate if the value at the point should
-            be adjusted (a value of true will skip the point). Leave the bitset 
-            empty to process all points.
+          anchor_type (int): Indicates weather you are anchoring to the top or bottom of the slope.
+          pts_flag (iterable): Flag to indicate if the value at the point should be adjusted (a value of true will skip the point). Leave the bitset empty to process all points.
 
       Returns:
         iterable: Array of smoothed elevations
   )pydoc";
-    modMeshUtils.def("smooth_elev_by_slope", [](boost::shared_ptr<xms::TrTin> tin, py::iterable sizes,
+    modMeshUtils.def("smooth_elev_by_slope", [](boost::shared_ptr<xms::TrTin> tin, py::iterable elevations,
                                     double max_slope, int anchor_type,
                                     py::iterable pts_flag) -> py::iterable {
-        xms::VecFlt vec_sizes, vec_smooth_sizes;
-        for (auto item : sizes) {
-          vec_sizes.push_back(item.cast<float>());
+        xms::VecFlt vec_elevations, vec_smooth_elevations;
+        for (auto item : elevations) {
+          vec_elevations.push_back(item.cast<float>());
         }
         xms::DynBitset bitset;
         std::vector<unsigned char> bitvals;
@@ -162,35 +159,33 @@ void initMeMeshUtils(py::module &m) {
         }
         xms::VecBooleanToDynBitset(bitvals, bitset);
 
-        xms::meSmoothElevBySlope(tin, vec_sizes, max_slope, anchor_type, bitset, vec_smooth_sizes);
+        xms::meSmoothElevBySlope(tin, vec_elevations, max_slope, anchor_type, bitset, vec_smooth_elevations);
 
-        if (py::isinstance<py::array>(sizes)) {
+        if (py::isinstance<py::array>(elevations)) {
           // NOTE: This is a copy operation
-          return py::array(vec_smooth_sizes.size(), vec_smooth_sizes.data());
+          return py::array(vec_smooth_elevations.size(), vec_smooth_elevations.data());
         } else {
           // NOTE: This is a copy operation
-          auto tuple_ret = py::tuple(vec_smooth_sizes.size());
-          for (size_t i = 0; i < vec_smooth_sizes.size(); ++i) {
-            tuple_ret[i] = vec_smooth_sizes.at(i);
+          auto tuple_ret = py::tuple(vec_smooth_elevations.size());
+          for (size_t i = 0; i < vec_smooth_elevations.size(); ++i) {
+            tuple_ret[i] = vec_smooth_elevations.at(i);
           }
           return tuple_ret;
         }
-    },smooth_elev_by_slope_doc, py::arg("tin"),py::arg("sizes"),
+    },smooth_elev_by_slope_doc, py::arg("tin"),py::arg("elevations"),
     py::arg("max_slope"),py::arg("anchor_type"),py::arg("pts_flag"));
 
   // ---------------------------------------------------------------------------
   // function: generate_mesh
   // ---------------------------------------------------------------------------
   const char* generate_mesh_doc = R"pydoc(
-      Creates a triangle mesh from the input polygons. The polygons can not
-      overlap.
+      Creates a mesh from the input polygons.
 
       Args:
-          mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options for
-            generating a mesh.
+          mesh_io (:class:`MultiPolyMesherIo <xmsmesh.meshing.MultiPolyMesherIo>`): Input polygons and options for generating a mesh.
 
       Returns:
-        iterable: True if successful, false with errors otherwise
+        tuple: true if the mesh was generated successfully false otherwise, and a string of errors
   )pydoc";
     modMeshUtils.def("generate_mesh",
      [](xms::MeMultiPolyMesherIo &mesh_io) -> py::iterable
@@ -208,15 +203,15 @@ void initMeMeshUtils(py::module &m) {
   // function: generate_2dm
   // ---------------------------------------------------------------------------
     const char* generate_2dm_doc = R"pydoc(
-        Creates a 2dm file from polygons
+        Creates a mesh from the input polygons and writes it to a 2dm file.
 
         Args:
-            mesh_io (MeMultiPolyMesherIo): Input/output of polygons and options for generating a mesh.
-            file_name (str): output filename
-            precision (:obj:`int`, optional) decimal point precision
+            mesh_io (:class:`MultiPolyMesherIo <xmsmesh.meshing.MultiPolyMesherIo>`): Input polygons and options for generating a mesh.
+            file_name (str): The file name of the output 2dm file.
+            precision (int, optional): The decimal point precision of the resulting mesh.
 
         Returns:
-            tuple: true if the mesh was generated., and resultant filename
+            tuple: true if the mesh was generated successfully false otherwise, and filename of the written 2dm
     )pydoc";
     modMeshUtils.def("generate_2dm",
      [](xms::MeMultiPolyMesherIo &mesh_io,
