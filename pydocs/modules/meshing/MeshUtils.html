@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MultiPolyMesherIo" href="MultiPolyMesherIo.html" />
-    <link rel="prev" title="Modules" href="../../modules.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+    <link rel="prev" title="Installation" href="../../getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +60,7 @@
             
             
               <div class="version">
-                2.0.4
+                2.0.5
               </div>
             
           
@@ -82,17 +84,18 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh.meshing">Meshing</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">MeshUtils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MultiPolyMesherIo.html">MultiPolyMesherIo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PolyRedistributePts.html">PolyRedistributePts</a></li>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#usage">Usage</a></li>
 </ul>
-</li>
-</ul>
-</li>
+<p class="caption"><span class="caption-text">User Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MeshUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultiPolyMesherIo.html">MultiPolyMesherIo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PolyInput.html">PolyInput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RefinePoint.html">RefinePoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PolyRedistributePts.html">PolyRedistributePts</a></li>
 </ul>
 
             
@@ -138,8 +141,6 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../modules.html">Modules</a> &raquo;</li>
-        
       <li>MeshUtils</li>
     
     
@@ -159,24 +160,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-xmsmesh.meshing.mesh_utils">
-<span id="meshutils"></span><h1>MeshUtils<a class="headerlink" href="#module-xmsmesh.meshing.mesh_utils" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+  <div class="section" id="meshutils">
+<h1>MeshUtils<a class="headerlink" href="#meshutils" title="Permalink to this headline">¶</a></h1>
+<p>The mesh_utils module contains the functions needed to generate a mesh. It also contains several
+other helper functions that make using the meshing library easier. There are two ways to generate
+a new mesh, <a class="reference internal" href="#xmsmesh.meshing.mesh_utils.generate_2dm" title="xmsmesh.meshing.mesh_utils.generate_2dm"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_utils.generate_2dm</span></code></a> and
+<a class="reference internal" href="#xmsmesh.meshing.mesh_utils.generate_mesh" title="xmsmesh.meshing.mesh_utils.generate_mesh"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_utils.generate_mesh</span></code></a>.</p>
+<p>The <a class="reference internal" href="#xmsmesh.meshing.mesh_utils.generate_mesh" title="xmsmesh.meshing.mesh_utils.generate_mesh"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_utils.generate_mesh</span></code></a> function takes a
+<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a> object and generates the mesh by filling
+in the <a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo.points" title="xmsmesh.meshing.MultiPolyMesherIo.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> and the
+<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo.cells" title="xmsmesh.meshing.MultiPolyMesherIo.cells"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cells</span></code></a> properties. The
+<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo.cell_polygons" title="xmsmesh.meshing.MultiPolyMesherIo.cell_polygons"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cell_polygons</span></code></a> property is also generated if
+you have set the <a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo.return_cell_polygons" title="xmsmesh.meshing.MultiPolyMesherIo.return_cell_polygons"><code class="xref py py-attr docutils literal notranslate"><span class="pre">return_cell_polygons</span></code></a>
+property set to true on the MultiPolyMesherIo. This gives you
+the definition of the mesh in memory so that you can work with it using other python libraries.</p>
+<p>The <a class="reference internal" href="#xmsmesh.meshing.mesh_utils.generate_2dm" title="xmsmesh.meshing.mesh_utils.generate_2dm"><code class="xref py py-func docutils literal notranslate"><span class="pre">mesh_utils.generate_mesh</span></code></a> function takes a
+<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a> object and a file_name. While this
+function does everything that generate_mesh does, it also generates a 2dm file which can be useful
+if you are working with a product/library that can read 2dm files.</p>
+<span class="target" id="module-xmsmesh.meshing.mesh_utils"></span><dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.generate_2dm">
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">generate_2dm</code><span class="sig-paren">(</span><em>mesh_io: xms::MeMultiPolyMesherIo</em>, <em>file_name: unicode</em>, <em>precision: int=15L</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.generate_2dm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a 2dm file from polygons</p>
+<dd><p>Creates a mesh from the input polygons and writes it to a 2dm file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>mesh_io</strong> (<em>MeMultiPolyMesherIo</em>) – Input/output of polygons and options for generating a mesh.</li>
-<li><strong>file_name</strong> (<em>str</em>) – output filename</li>
-<li><strong>precision</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional) – </li>
+<li><strong>mesh_io</strong> (<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a>) – Input polygons and options for generating a mesh.</li>
+<li><strong>file_name</strong> (<em>str</em>) – The file name of the output 2dm file.</li>
+<li><strong>precision</strong> (<em>int</em><em>, </em><em>optional</em>) – The decimal point precision of the resulting mesh.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">true if the mesh was generated., and resultant filename</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">true if the mesh was generated successfully false otherwise, and filename of the written 2dm</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
@@ -189,18 +206,16 @@
 <dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.generate_mesh">
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">generate_mesh</code><span class="sig-paren">(</span><em>mesh_io: xms::MeMultiPolyMesherIo</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.generate_mesh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a triangle mesh from the input polygons. The polygons can not
-overlap.</p>
+<dd><p>Creates a mesh from the input polygons.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mesh_io</strong> (<em>MeMultiPolyMesherIo</em>) – Input/output of polygons and options for
-generating a mesh.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mesh_io</strong> (<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a>) – Input polygons and options for generating a mesh.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if successful, false with errors otherwise</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if the mesh was generated successfully false otherwise, and a string of errors</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">iterable</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
 </tr>
 </tbody>
 </table>
@@ -211,16 +226,23 @@ generating a mesh.</td>
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">size_function_from_depth</code><span class="sig-paren">(</span><em>depths: iterable</em>, <em>min_size: float</em>, <em>max_size: float</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.size_function_from_depth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a size at each point based on the depth at the point and the min
 and max sizes the equation is  min_depth + ( (depth - min_depth) /
-(max_depth - min_depth) ) * (max_size - min_size)</p>
+(max_depth - min_depth) ) * (max_size - min_size). This is often useful for
+coastal numerical model simulations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>depths</strong> (<em>iterable</em>) – The measured depths at point locations</li>
 <li><strong>min_size</strong> (<em>float</em>) – The minimum element edge size</li>
 <li><strong>max_size</strong> (<em>float</em>) – The maximum element edge size</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of sizes based on depth</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">iterable</p>
 </td>
 </tr>
 </tbody>
@@ -229,22 +251,19 @@ and max sizes the equation is  min_depth + ( (depth - min_depth) /
 
 <dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.smooth_elev_by_slope">
-<code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">smooth_elev_by_slope</code><span class="sig-paren">(</span><em>tin: xms::TrTin</em>, <em>sizes: iterable</em>, <em>max_slope: float</em>, <em>anchor_type: int</em>, <em>pts_flag: iterable</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.smooth_elev_by_slope" title="Permalink to this definition">¶</a></dt>
-<dd><p>Smooths a elevations based on max specified slope (a_maxSlope) preserving
-either the min or max based on a_anchorType</p>
+<code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">smooth_elev_by_slope</code><span class="sig-paren">(</span><em>tin: xms::TrTin</em>, <em>elevations: iterable</em>, <em>max_slope: float</em>, <em>anchor_type: int</em>, <em>pts_flag: iterable</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.smooth_elev_by_slope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooths a elevations based on max specified slope (max_slope) preserving
+either the min or max based on anchor_type</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tin</strong> (<em>TrTin</em>) – Points and triangles defining the
-connectivity of the size function.</li>
-<li><strong>sizes</strong> (<em>iterable</em>) – Array of the current sizes</li>
+<li><strong>tin</strong> (<a class="reference external" href="https://aquaveo.github.io/xmsinterp/pydocs/modules/triangulate/Tin.html#xmsinterp.triangulate.Tin" title="(in XmsInterp Library v2.2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tin</span></code></a>) – Points and triangles defining the connectivity of the elevations.</li>
+<li><strong>elevations</strong> (<em>iterable</em>) – Array of the current elevations</li>
 <li><strong>max_slope</strong> (<em>float</em>) – Maximum allowable slope</li>
-<li><strong>anchor_type</strong> (<em>int</em>) – The minimum element edge size</li>
-<li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should
-be adjusted (a value of true will skip the point). Leave the bitset
-empty to process all points.</li>
+<li><strong>anchor_type</strong> (<em>int</em>) – Indicates weather you are anchoring to the top or bottom of the slope.</li>
+<li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should be adjusted (a value of true will skip the point). Leave the bitset empty to process all points.</li>
 </ul>
 </td>
 </tr>
@@ -269,16 +288,12 @@ size ratio passed in.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tin</strong> (<em>TrTin</em>) – Points and triangles defining the
-connectivity of the size function.</li>
+<li><strong>tin</strong> (<a class="reference external" href="https://aquaveo.github.io/xmsinterp/pydocs/modules/triangulate/Tin.html#xmsinterp.triangulate.Tin" title="(in XmsInterp Library v2.2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tin</span></code></a>) – Points and triangles defining the connectivity of the size function.</li>
 <li><strong>sizes</strong> (<em>iterable</em>) – Array of the current sizes</li>
-<li><strong>size_ratio</strong> (<em>float</em>) – Allowable size difference between adjacent
-elements</li>
+<li><strong>size_ratio</strong> (<em>float</em>) – Allowable size difference between adjacent elements</li>
 <li><strong>min_size</strong> (<em>float</em>) – Minimum specified element size</li>
 <li><strong>anchor_type</strong> (<em>int</em>) – The minimum element edge size</li>
-<li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should
-be adjusted (a value of true will skip the point). Leave the bitset
-empty to process all points.</li>
+<li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should be adjusted (a value of true will skip the point). Leave the bitset empty to process all points.</li>
 </ul>
 </td>
 </tr>
@@ -305,7 +320,7 @@ empty to process all points.</li>
         <a href="MultiPolyMesherIo.html" class="btn btn-neutral float-right" title="MultiPolyMesherIo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../../modules.html" class="btn btn-neutral" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../../getting_started.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -331,26 +346,16 @@ empty to process all points.</li>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PolyInput &mdash; XmsMesh Library  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="RefinePoint" href="RefinePoint.html" />
+    <link rel="prev" title="MultiPolyMesherIo" href="MultiPolyMesherIo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> XmsMesh Library
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#usage">Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Interface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MeshUtils.html">MeshUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultiPolyMesherIo.html">MultiPolyMesherIo</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PolyInput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RefinePoint.html">RefinePoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PolyRedistributePts.html">PolyRedistributePts</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">XmsMesh Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>PolyInput</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/modules/meshing/PolyInput.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="polyinput">
+<h1>PolyInput<a class="headerlink" href="#polyinput" title="Permalink to this headline">¶</a></h1>
+<p>The PolyInput class contains information about polygons that you would like to mesh using the
+<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a> class. This class defines the
+polygon to be meshed. A polygon is made up of an outer polygon
+(<a class="reference internal" href="#xmsmesh.meshing.PolyInput.outside_poly" title="xmsmesh.meshing.PolyInput.outside_poly"><code class="xref py py-attr docutils literal notranslate"><span class="pre">outside_poly</span></code></a>), and a list of inner polygons
+(<a class="reference internal" href="#xmsmesh.meshing.PolyInput.inside_polys" title="xmsmesh.meshing.PolyInput.inside_polys"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inside_polys</span></code></a>) representing
+holes in the outer polygon. The other options available in this class help define
+features of the polygons, such as <a class="reference internal" href="#xmsmesh.meshing.PolyInput.seed_points" title="xmsmesh.meshing.PolyInput.seed_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">seed_poins</span></code></a>,
+<a class="reference internal" href="#xmsmesh.meshing.PolyInput.relaxation_method" title="xmsmesh.meshing.PolyInput.relaxation_method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">relaxation_method</span></code></a>, and many more
+that are described below.</p>
+<dl class="class">
+<dt id="xmsmesh.meshing.PolyInput">
+<em class="property">class </em><code class="descclassname">xmsmesh.meshing.</code><code class="descname">PolyInput</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="xmsmesh.meshing.PolyInput.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self: xmsmesh.meshing.PolyInput</em>, <em>out_poly: iterable</em>, <em>inside_polys: iterable=()</em>, <em>bias: float=1.0</em>, <em>size_function: object=None</em>, <em>poly_corners: iterable=()</em>, <em>elev_function: object=None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh.meshing.PolyInput.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>PolyInput initializer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>out_poly</strong> (<em>iterable</em>) – Point locations of outer polygon. Clockwise</li>
+<li><strong>inside_polys</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> optional) – Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.</li>
+<li><strong>bias</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Float</span></code> optional) – Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.</li>
+<li><strong>size_function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">InterpBase</span></code> optional) – Size function for scalar paving. Default to None</li>
+<li><strong>poly_corners</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> optional) – Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.</li>
+<li><strong>elev_function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">InterpBase</span></code> optional) – Elevation function for interpolating z coordinate of mesh points. Deafults to None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.bias">
+<code class="descname">bias</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factor for transitioning between areas of high refinement to less refinement.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.bound_pts_to_remove">
+<code class="descname">bound_pts_to_remove</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.bound_pts_to_remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outer boundary locations to remove after the paving process.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.const_size_bias">
+<code class="descname">const_size_bias</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.const_size_bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transition factor for constant size function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.const_size_function">
+<code class="descname">const_size_function</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.const_size_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constant to be used for size function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.elev_function">
+<code class="descname">elev_function</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.elev_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elevation function for interpolating z coordinate of mesh points.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.inside_polys">
+<code class="descname">inside_polys</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.inside_polys" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of polygons representing holes in the PolyInput</p>
+<p>The polygons should be in clockwise order and the first point must not equal the last point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.outside_poly">
+<code class="descname">outside_poly</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.outside_poly" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of points defining the outside polygon.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">These points must be in clockwise order, and the first point must not equal the last point.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.poly_corners">
+<code class="descname">poly_corners</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.poly_corners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corner nodes for creating meshes using the patch algorithm.</p>
+<p>There can be 3 poly_corners per outer_poly not 4. The outer_poly point at index 0 is assumed to be a corner</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.relaxation_method">
+<code class="descname">relaxation_method</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.relaxation_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relaxation method. The default relaxation method is an area
+relax. Set the value to “spring_relaxation”. See MeRelaxer.cpp for
+details on spring relaxation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.remove_internal_four_triangle_pts">
+<code class="descname">remove_internal_four_triangle_pts</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.remove_internal_four_triangle_pts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove internal points that are only connected to 4 cells.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.seed_points">
+<code class="descname">seed_points</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.seed_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of seed points. If the user has some methodology for
+creating points inside the polygon then those points can be specified
+here. If these points are specified then the paving is not performed.
+These points will not be used if the meshing option is patch.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="xmsmesh.meshing.PolyInput.size_function">
+<code class="descname">size_function</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.size_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size function for scalar paving.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="RefinePoint.html" class="btn btn-neutral float-right" title="RefinePoint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MultiPolyMesherIo.html" class="btn btn-neutral float-left" title="MultiPolyMesherIo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, aquaveo
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

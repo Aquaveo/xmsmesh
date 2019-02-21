@@ -17,33 +17,35 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="MultiPolyMesherIo" href="MultiPolyMesherIo.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+    <link rel="prev" title="RefinePoint" href="RefinePoint.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +59,7 @@
             
             
               <div class="version">
-                2.0.4
+                2.0.5
               </div>
             
           
@@ -81,17 +83,18 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../modules.html#module-xmsmesh.meshing">Meshing</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="MeshUtils.html">MeshUtils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MultiPolyMesherIo.html">MultiPolyMesherIo</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">PolyRedistributePts</a></li>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#usage">Usage</a></li>
 </ul>
-</li>
-</ul>
-</li>
+<p class="caption"><span class="caption-text">User Interface</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MeshUtils.html">MeshUtils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MultiPolyMesherIo.html">MultiPolyMesherIo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PolyInput.html">PolyInput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RefinePoint.html">RefinePoint</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PolyRedistributePts</a></li>
 </ul>
 
             
@@ -137,8 +140,6 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../modules.html">Modules</a> &raquo;</li>
-        
       <li>PolyRedistributePts</li>
     
     
@@ -160,6 +161,22 @@
             
   <div class="section" id="polyredistributepts">
 <h1>PolyRedistributePts<a class="headerlink" href="#polyredistributepts" title="Permalink to this headline">¶</a></h1>
+<p>The PolyRedistributePts class is used to help redistribute pts on a polyline.
+There are several functions on this class used to set options
+(<a class="reference internal" href="#xmsmesh.meshing.PolyRedistributePts.set_constant_size_bias" title="xmsmesh.meshing.PolyRedistributePts.set_constant_size_bias"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_constant_size_bias</span></code></a>,
+<a class="reference internal" href="#xmsmesh.meshing.PolyRedistributePts.set_constant_size_func" title="xmsmesh.meshing.PolyRedistributePts.set_constant_size_func"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_constant_size_func</span></code></a>,
+<a class="reference internal" href="#xmsmesh.meshing.PolyRedistributePts.set_size_func" title="xmsmesh.meshing.PolyRedistributePts.set_size_func"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_size_func</span></code></a>) as well as the
+function <a class="reference internal" href="#xmsmesh.meshing.PolyRedistributePts.redistribute" title="xmsmesh.meshing.PolyRedistributePts.redistribute"><code class="xref py py-func docutils literal notranslate"><span class="pre">redistribute</span></code></a> that actaully does all the work.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xmsmesh.meshing</span> <span class="kn">import</span> <span class="n">PolyRedistributePts</span>
+
+<span class="n">polygon_corners</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                   <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">rp</span> <span class="o">=</span> <span class="n">PolyRedistributePts</span><span class="p">()</span>
+<span class="n">rp</span><span class="o">.</span><span class="n">set_constant_size_func</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">redistributed_points</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">redistribute</span><span class="p">(</span><span class="n">polygon_corners</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="class">
 <dt id="xmsmesh.meshing.PolyRedistributePts">
 <em class="property">class </em><code class="descclassname">xmsmesh.meshing.</code><code class="descname">PolyRedistributePts</code><a class="headerlink" href="#xmsmesh.meshing.PolyRedistributePts" title="Permalink to this definition">¶</a></dt>
@@ -174,13 +191,9 @@ comes from the edge lengths in the original polygon.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>poly_line</strong> (<em>iterable</em>) – Input closed loop polylines</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>poly_line</strong> (<em>iterable</em>) – List of (x, y, z) coordinates defining the polygon</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
-<dt>Redistributed closed loop polylines, Number of iterations</dt>
-<dd>from the polygon boundary</dd>
-</dl>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Redistributed polyline.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">iterable</td>
 </tr>
@@ -224,7 +237,7 @@ comes from the edge lengths in the original polygon.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interp</strong> (<em>InterpBase</em>) – Size function interpolator class</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>interp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">InterpBase</span></code>) – Size function interpolator class</td>
 </tr>
 </tbody>
 </table>
@@ -233,23 +246,7 @@ comes from the edge lengths in the original polygon.</p>
 <dl class="method">
 <dt id="xmsmesh.meshing.PolyRedistributePts.set_size_func_from_poly">
 <code class="descname">set_size_func_from_poly</code><span class="sig-paren">(</span><em>self: xmsmesh.meshing.PolyRedistributePts</em>, <em>out_poly: iterable</em>, <em>inside_polys: iterable</em>, <em>size_bias: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh.meshing.PolyRedistributePts.set_size_func_from_poly" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates an interpolator that uses the spacing on the input polygon as
-its scalar</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>out_poly</strong> (<em>iterable</em>) – The outside polygon</li>
-<li><strong>inside_polys</strong> (<em>iterable</em>) – Inside polygons that are inside of
-a_outPoly</li>
-<li><strong>size_bias</strong> (<em>float</em>) – A factor used in transitioning the size</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="xmsmesh.meshing.PolyRedistributePts.set_use_curvature_redistribution">
@@ -260,15 +257,10 @@ a_outPoly</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>feature_size</strong> (<em>float</em>) – The size of the smallest feature in the
-polyline to be detected.</li>
-<li><strong>mean_spacing</strong> (<em>float</em>) – The mean spacing between the distributed
-points.</li>
-<li><strong>minimum_curvature</strong> (<em>float</em>) – The value of the curvature to be used
-instead of 0 in staight lines. It limits the maximum spacing
-between points. If not included, the default is 0.001.</li>
-<li><strong>smooth</strong> (<em>bool</em>) – Detemines if the curvatures are to be averaged by a
-rolling 0.25-0.5-0.25 weighted rolling average.</li>
+<li><strong>feature_size</strong> (<em>float</em>) – The size of the smallest feature in the polyline to be detected.</li>
+<li><strong>mean_spacing</strong> (<em>float</em>) – The mean spacing between the distributed points.</li>
+<li><strong>minimum_curvature</strong> (<em>float</em>) – The value of the curvature to be used instead of 0 in staight lines. It limits the maximum spacing between points. If not included, the default is 0.001.</li>
+<li><strong>smooth</strong> (<em>bool</em>) – Detemines if the curvatures are to be averaged by a rolling 0.25-0.5-0.25 weighted rolling average.</li>
 </ul>
 </td>
 </tr>
@@ -289,7 +281,7 @@ rolling 0.25-0.5-0.25 weighted rolling average.</li>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="MultiPolyMesherIo.html" class="btn btn-neutral" title="MultiPolyMesherIo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="RefinePoint.html" class="btn btn-neutral float-left" title="RefinePoint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -315,26 +307,16 @@ rolling 0.25-0.5-0.25 weighted rolling average.</li>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
