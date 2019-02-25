@@ -50,22 +50,9 @@ void initMeMeshUtils(py::module &m) {
                                          double max_size) -> py::iterable {
 
         xms::VecDbl vec_depths, vec_size;
-        for (auto item : depths) {
-          vec_depths.push_back(item.cast<double>());
-        }
+        vec_depths = *xms::VecDblFromPyIter(depths);
         xms::meSizeFunctionFromDepth(vec_depths, vec_size, min_size, max_size);
-
-        if (py::isinstance<py::array>(depths)) {
-          // NOTE: This is a copy operation
-          return py::array(vec_size.size(), vec_size.data());
-        } else {
-          // NOTE: This is a copy operation
-          auto tuple_ret = py::tuple(vec_size.size());
-          for (size_t i = 0; i < vec_size.size(); ++i) {
-            tuple_ret[i] = vec_size.at(i);
-          }
-          return tuple_ret;
-        }
+        return xms::PyIterFromVecDbl(vec_size);
     },size_function_from_depth_doc,py::arg("depths"),py::arg("min_size"),
     py::arg("max_size"));
   // ---------------------------------------------------------------------------

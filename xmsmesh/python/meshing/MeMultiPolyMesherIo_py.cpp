@@ -91,32 +91,10 @@ void initMeMultiPolyMesherIo(py::module &m) {
     )pydoc";
     polyMesherIo.def_property("points",
         [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
-            xms::VecPt3d &vec_pts = self.m_points;
-            py::array_t<double, py::array::c_style> ret_points({(int)vec_pts.size(), 3});
-            auto r = ret_points.mutable_unchecked<2>();
-            int i = 0;
-            for (ssize_t i = 0; i < r.shape(0); i++) {
-                r(i, 0) = vec_pts[i].x;
-                r(i, 1) = vec_pts[i].y;
-                r(i, 2) = vec_pts[i].z;
-            }
-            return ret_points;
+            return xms::PyIterFromVecPt3d(self.m_points);
         },
-        [](xms::MeMultiPolyMesherIo &self, py::iterable out_poly) {
-                self.m_points.clear();
-                self.m_points.reserve(py::len(out_poly));
-                for (auto item : out_poly) {
-                if(!py::isinstance<py::iterable>(item)) {
-                    throw py::type_error("First arg must be a n-tuple of 3-tuples");
-                }
-                py::tuple tuple = item.cast<py::tuple>();
-                if (py::len(tuple) != 3) {
-                    throw py::type_error("Input points must be 3-tuples");
-                } else {
-                    xms::Pt3d point(tuple[0].cast<double>(), tuple[1].cast<double>(), tuple[2].cast<double>());
-                    self.m_points.push_back(point);
-                }
-                }
+        [](xms::MeMultiPolyMesherIo &self, py::iterable outside_polygon) {
+            self.m_points = *xms::VecPt3dFromPyIter(outside_polygon);
         },points_doc);
     // ---------------------------------------------------------------------------
     // function: cells
@@ -126,15 +104,10 @@ void initMeMultiPolyMesherIo(py::module &m) {
     )pydoc";
     polyMesherIo.def_property("cells",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
-                return py::array(self.m_cells.size(), self.m_cells.data());
+                return xms::PyIterFromVecInt(self.m_cells);
             },
             [](xms::MeMultiPolyMesherIo &self, py::iterable cells) {
-                 xms::VecInt &vecInt = self.m_cells;
-                 vecInt.clear();
-                 vecInt.reserve(py::len(cells));
-                 for (auto item : cells) {
-                    vecInt.push_back(item.cast<int>());
-                 }
+                 self.m_cells = *xms::VecIntFromPyIter(cells);
             },
             cells_doc);
     // ---------------------------------------------------------------------------
@@ -145,15 +118,10 @@ void initMeMultiPolyMesherIo(py::module &m) {
     )pydoc";
     polyMesherIo.def_property("cell_polygons",
             [](xms::MeMultiPolyMesherIo &self) -> py::iterable {
-                return py::array(self.m_cellPolygons.size(), self.m_cellPolygons.data());
+                return xms::PyIterFromVecInt(self.m_cellPolygons);
             },
             [](xms::MeMultiPolyMesherIo &self, py::iterable cell_polygons) {
-                 xms::VecInt &vecInt = self.m_cellPolygons;
-                 vecInt.clear();
-                 vecInt.reserve(py::len(cell_polygons));
-                 for (auto item : cell_polygons) {
-                    vecInt.push_back(item.cast<int>());
-                 }
+                self.m_cellPolygons = *xms::VecIntFromPyIter(cell_polygons);
             },cell_polygons_doc);
     // ---------------------------------------------------------------------------
     // function: poly_inputs
@@ -231,20 +199,29 @@ void initMePolyInput(py::module &m) {
         PolyInput initializer
 
         Args:
-            out_poly (iterable): Point locations of outer polygon. Clockwise
-            inside_polys (:obj:`iterable` optional): Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.
-            bias (:obj:`Float` optional): Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.
+            outside_polygon (iterable): Point locations of outer polygon. Clockwise
+            inside_polygons (iterable optional): Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.
+            bias (Float optional): Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.
+            const_size_bias (Float optional): Transition factor for constant size function.
+            const_size_function (Float optional): Constat to be used for size function.
+            bound_pts_to_remove (iterable optional): Outer boundary locations to remove after the paving process.
+            relaxation_method (str optional): The relaxation method to be used.
+            remove_internal_four_triangle_pts (bool optional): Remove internal points that are only connected to 4 cells.
+            seed_points (iterable optional): A list of seed points.
             size_function (:class:`InterpBase <xmsinterp.interpolate.InterpBase>` optional): Size function for scalar paving. Default to None
-            poly_corners (:obj:`iterable` optional): Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.
+            polygon_corners (iterable optional): Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.
             elev_function (:class:`InterpBase <xmsinterp.interpolate.InterpBase>` optional): Elevation function for interpolating z coordinate of mesh points. Deafults to None.
+
     )pydoc";
 
     py::class_<xms::MePolyInput, BSHP<xms::MePolyInput>> polyInput(m, "PolyInput");
 
-    polyInput.def(py::init<>([](py::iterable out_poly, py::iterable inside_polys, double bias,
-                           py::object size_function, py::iterable poly_corners, py::object elev_function) {
-            xms::VecPt3d vec_out_poly = *xms::VecPt3dFromPyIter(out_poly);
-            xms::VecPt3d2d vec_inside_polys = *xms::VecPt3d2dFromPyIter(inside_polys);
+    polyInput.def(py::init<>([](py::iterable outside_polygon, py::iterable inside_polygons, double bias,
+                            py::object const_size_bias, py::object const_size_function, py::object bound_pts_to_remove,
+                            py::object relaxation_method, py::object remove_internal_four_triangles_pts, py::object seed_points,
+                            py::object size_function, py::iterable poly_corners, py::object elev_function) {
+            xms::VecPt3d vec_outside_polygon = *xms::VecPt3dFromPyIter(outside_polygon);
+            xms::VecPt3d2d vec_inside_polygons = *xms::VecPt3d2dFromPyIter(inside_polygons);
             xms::VecInt vec_poly_corners = *xms::VecIntFromPyIter(poly_corners);
             BSHP<xms::InterpBase> c_size_function;
             BSHP<xms::InterpBase> c_elev_function;
@@ -256,64 +233,72 @@ void initMePolyInput(py::module &m) {
             {
               c_elev_function = elev_function.cast<BSHP<xms::InterpBase>>();
             }
-            return new xms::MePolyInput(vec_out_poly, vec_inside_polys, bias, c_size_function,
+            xms::MePolyInput rval = new xms::MePolyInput(vec_outside_polygon, vec_inside_polygons, bias, c_size_function,
                                         vec_poly_corners, c_elev_function);
-        }), PolyInput_init_doc, py::arg("out_poly"), py::arg("inside_polys") = py::make_tuple(), py::arg("bias") = 1.0,
-            py::arg("size_function") = py::none(), py::arg("poly_corners") = py::make_tuple(),
+            if(!const_size_bias.is_none())
+            {
+                rval.m_constSizeBias = const_size_bias.cast<float>();
+            }
+            if(!const_size_function.is_none())
+            {
+                rval.m_constSizeFunction = const_size_function.cast<float>();
+            }
+            if(!bound_pts_to_remove.is_none())
+            {
+                // TODO: This might need to be list rather than none as default.
+                rval.m_boundPtsToRemove = *xms::VecPt3dFromPyIter(bound_pts_to_remove);
+            }
+            if(!relaxation_method.is_none())
+            {
+                rval.m_relaxationMethod = relaxation_method.cast<std::string>();
+            }
+            if(!remove_internal_four_triangles_pts.is_none())
+            {
+                rval.m_removeInternalFourTrianglePts = remove_internal_four_triangle_pts.cast<bool>();
+            }
+            if(!seed_points.is_none())
+            {
+                // TODO: This might need to be list rather than none as default.
+                rval.m_seedPoints = *xms::VecPt3dFromPyIter(seed_points);
+            }
+            return rval;
+        }), PolyInput_init_doc, py::arg("outside_polygon"), py::arg("inside_polygons") = py::make_tuple(), py::arg("bias") = 1.0,
+            py::arg("const_size_bias") = py::none(), py::arg("const_size_fuction") = py::none(),
+            py::arg("bound_pts_to_remove") = py::none(), py::arg("relaxation_method") = py::none(),
+            py::arg("remove_interal_four_triangle_pts") = py::none(), py::arg("seed_points") = py::none(),
+            py::arg("size_function") = py::none(), py::arg("polygon_corners") = py::make_tuple(),
             py::arg("elev_function") = py::none());
     // ---------------------------------------------------------------------------
-    // function: outside_poly
+    // function: outside_polygon
     // ---------------------------------------------------------------------------
-    const char* outside_poly_doc = R"pydoc(
+    const char* outside_polygon_doc = R"pydoc(
         List of points defining the outside polygon.
 
         Warning:
             These points must be in clockwise order, and the first point must not equal the last point.
     )pydoc";
-    polyInput.def_property("outside_poly",
+    polyInput.def_property("outside_polygon",
             [](xms::MePolyInput &self) -> py::iterable {
-                xms::VecPt3d &vec_pts = self.m_outPoly;
-                py::array_t<double, py::array::c_style> ret_points({(int)vec_pts.size(), 3});
-                auto r = ret_points.mutable_unchecked<2>();
-                int i = 0;
-                for (ssize_t i = 0; i < r.shape(0); i++) {
-                  r(i, 0) = vec_pts[i].x;
-                  r(i, 1) = vec_pts[i].y;
-                  r(i, 2) = vec_pts[i].z;
-                }
-                return ret_points;
+                return xms::PyIterFromVecPt3d(self.m_outPoly);
             },
-            [](xms::MePolyInput &self, py::iterable out_poly) {
-                 self.m_outPoly.clear();
-                 self.m_outPoly.reserve(py::len(out_poly));
-                 for (auto item : out_poly) {
-                   if(!py::isinstance<py::iterable>(item)) {
-                     throw py::type_error("First arg must be a n-tuple of 3-tuples");
-                   }
-                   py::tuple tuple = item.cast<py::tuple>();
-                   if (py::len(tuple) != 3) {
-                     throw py::type_error("Input points must be 3-tuples");
-                   } else {
-                     xms::Pt3d point(tuple[0].cast<double>(), tuple[1].cast<double>(), tuple[2].cast<double>());
-                     self.m_outPoly.push_back(point);
-                   }
-                 }
-            },outside_poly_doc);
+            [](xms::MePolyInput &self, py::iterable outside_polygon) {
+                 self.m_outPoly = * xms::VecPt3dFromPyIter(outside_polygon);
+            },outside_polygon_doc);
     // ---------------------------------------------------------------------------
-    // function: inside_polys
+    // function: inside_polygons
     // ---------------------------------------------------------------------------
-    const char* inside_polys_doc = R"pydoc(
+    const char* inside_polygons_doc = R"pydoc(
         A list of polygons representing holes in the PolyInput
 
         The polygons should be in clockwise order and the first point must not equal the last point.
     )pydoc";
-    polyInput.def_property("inside_polys",
+    polyInput.def_property("inside_polygons",
             [](xms::MePolyInput &self) -> py::iterable {
                 return xms::PyIterFromVecPt3d2d(self.m_insidePolys);
             },
-            [](xms::MePolyInput &self, py::iterable inside_polys) {
-                self.m_insidePolys = *xms::VecPt3d2dFromPyIter(inside_polys);
-            },inside_polys_doc);
+            [](xms::MePolyInput &self, py::iterable inside_polygons) {
+                self.m_insidePolys = *xms::VecPt3d2dFromPyIter(inside_polygons);
+            },inside_polygons_doc);
     // -------------------------------------------------------------------------
     // function: poly_corners
     // -------------------------------------------------------------------------
@@ -324,13 +309,10 @@ void initMePolyInput(py::module &m) {
     )pydoc";
     polyInput.def_property("poly_corners",
             [](xms::MePolyInput &self) -> py::iterable {
-                return py::array(self.m_polyCorners.size(), self.m_polyCorners.data());
+                return xms::PyIterFromVecInt(self.m_polyCorners);
             },
             [](xms::MePolyInput &self, py::iterable poly_corners) {
-                 self.m_polyCorners.clear();
-                 for (auto item : poly_corners) {
-                    self.m_polyCorners.push_back(item.cast<int>());
-                 }
+                 self.m_polyCorners = *xms::VecIntFromPyIter(poly_corners);
             },poly_corners_doc);
     // -------------------------------------------------------------------------
     // function: bound_pts_to_remove
@@ -340,32 +322,10 @@ void initMePolyInput(py::module &m) {
     )pydoc";
     polyInput.def_property("bound_pts_to_remove",
             [](xms::MePolyInput &self) -> py::iterable {
-                xms::VecPt3d &vec_pts = self.m_boundPtsToRemove;
-                py::array_t<double, py::array::c_style> ret_points({(int)vec_pts.size(), 3});
-                auto r = ret_points.mutable_unchecked<2>();
-                int i = 0;
-                for (ssize_t i = 0; i < r.shape(0); i++) {
-                  r(i, 0) = vec_pts[i].x;
-                  r(i, 1) = vec_pts[i].y;
-                  r(i, 2) = vec_pts[i].z;
-                }
-                return ret_points;
+                return xms::PyIterFromVecPt3d(self.m_boundPtsToRemove);
             },
-            [](xms::MePolyInput &self, py::iterable out_poly) {
-                 self.m_boundPtsToRemove.clear();
-                 self.m_boundPtsToRemove.reserve(py::len(out_poly));
-                 for (auto item : out_poly) {
-                   if(!py::isinstance<py::iterable>(item)) {
-                     throw py::type_error("First arg must be a n-tuple of 3-tuples");
-                   }
-                   py::tuple tuple = item.cast<py::tuple>();
-                   if (py::len(tuple) != 3) {
-                     throw py::type_error("Input points must be 3-tuples");
-                   } else {
-                     xms::Pt3d point(tuple[0].cast<double>(), tuple[1].cast<double>(), tuple[2].cast<double>());
-                     self.m_boundPtsToRemove.push_back(point);
-                   }
-                 }
+            [](xms::MePolyInput &self, py::iterable outside_polygon) {
+                 self.m_boundPtsToRemove = xms::VecPt3dFromPyIter(outside_polygon);
             },bound_pts_to_remove_doc);
     // -------------------------------------------------------------------------
     // function: bias
@@ -432,32 +392,10 @@ void initMePolyInput(py::module &m) {
     )pydoc";
     polyInput.def_property("seed_points",
             [](xms::MePolyInput &self) -> py::iterable {
-                xms::VecPt3d &vec_pts = self.m_seedPoints;
-                py::array_t<double, py::array::c_style> ret_points({(int)vec_pts.size(), 3});
-                auto r = ret_points.mutable_unchecked<2>();
-                int i = 0;
-                for (ssize_t i = 0; i < r.shape(0); i++) {
-                  r(i, 0) = vec_pts[i].x;
-                  r(i, 1) = vec_pts[i].y;
-                  r(i, 2) = vec_pts[i].z;
-                }
-                return ret_points;
+                return xms::PyIterFromVecPt3d(self.m_seedPoints);
             },
             [](xms::MePolyInput &self, py::iterable seed_points) {
-                 self.m_seedPoints.clear();
-                 self.m_seedPoints.reserve(py::len(seed_points));
-                 for (auto item : seed_points) {
-                   if(!py::isinstance<py::iterable>(item)) {
-                     throw py::type_error("First arg must be a n-tuple of 3-tuples");
-                   }
-                   py::tuple tuple = item.cast<py::tuple>();
-                   if (py::len(tuple) != 3) {
-                     throw py::type_error("Input points must be 3-tuples");
-                   } else {
-                     xms::Pt3d point(tuple[0].cast<double>(), tuple[1].cast<double>(), tuple[2].cast<double>());
-                     self.m_seedPoints.push_back(point);
-                   }
-                 }                
+                 self.m_seedPoints = *xms::VecPt3dFromPyIter(seed_points);
             }, seed_points_doc);
     // ---------------------------------------------------------------------------
     // property: relaxation_method
@@ -487,8 +425,8 @@ void initMePolyInput(py::module &m) {
                     "elev_func: " << elevf << std::endl <<
                     "const_size_function: " << self.m_constSizeFunction << std::endl <<
                     "const_size_bias: " << self.m_constSizeBias << std::endl <<
-                    "outside_poly size: " << self.m_outPoly.size() << std::endl <<
-                    "inside_polys size: " << self.m_insidePolys.size() << std::endl;
+                    "outside_polygon size: " << self.m_outPoly.size() << std::endl <<
+                    "inside_polygons size: " << self.m_insidePolys.size() << std::endl;
              return ss.str();
         },__str__doc);
     // -------------------------------------------------------------------------
