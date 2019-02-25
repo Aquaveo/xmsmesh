@@ -133,7 +133,7 @@ class TestMeshUtils(unittest.TestCase):
         io = MultiPolyMesherIo(())
         io.check_topology = True
 
-        poly_input = PolyInput(out_poly=((0, 0, 0), (100, 0, 0), (100, 10, 0), (0, -10, 0)))
+        poly_input = PolyInput(outside_polygon=((0, 0, 0), (100, 0, 0), (100, 10, 0), (0, -10, 0)))
         io.poly_inputs = (poly_input,)
 
         expected = \
@@ -263,7 +263,7 @@ class TestMeshUtils(unittest.TestCase):
         outside_poly = self.array_to_vec_pt3d(out_a)
         inside_polys = (self.array_to_vec_pt3d(in_a1), self.array_to_vec_pt3d(in_a2))
         bias = 1.0
-        poly_input_a = PolyInput(out_poly=outside_poly, inside_polys=inside_polys, bias=bias)
+        poly_input_a = PolyInput(outside_polygon=outside_poly, inside_polygons=inside_polys, bias=bias)
 
         out_b = (30, 60, 40, 60, 50, 60, 60, 60, 70, 60, 70, 50, 70, 40, 70, 30,
                  70, 20, 70, 10, 70, 0, 60, 0, 50, 0, 40, 0, 40, 10, 30, 10,

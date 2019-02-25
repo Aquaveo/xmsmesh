@@ -209,7 +209,7 @@ void initMePolyInput(py::module &m) {
             remove_internal_four_triangle_pts (bool optional): Remove internal points that are only connected to 4 cells.
             seed_points (iterable optional): A list of seed points.
             size_function (:class:`InterpBase <xmsinterp.interpolate.InterpBase>` optional): Size function for scalar paving. Default to None
-            polygon_corners (iterable optional): Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.
+            patch_polygon_corners (iterable optional): Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.
             elev_function (:class:`InterpBase <xmsinterp.interpolate.InterpBase>` optional): Elevation function for interpolating z coordinate of mesh points. Deafults to None.
 
     )pydoc";
@@ -219,10 +219,10 @@ void initMePolyInput(py::module &m) {
     polyInput.def(py::init<>([](py::iterable outside_polygon, py::iterable inside_polygons, double bias,
                             py::object const_size_bias, py::object const_size_function, py::object bound_pts_to_remove,
                             py::object relaxation_method, py::object remove_internal_four_triangles_pts, py::object seed_points,
-                            py::object size_function, py::iterable poly_corners, py::object elev_function) {
+                            py::object size_function, py::iterable patch_polygon_corners, py::object elev_function) {
             xms::VecPt3d vec_outside_polygon = *xms::VecPt3dFromPyIter(outside_polygon);
             xms::VecPt3d2d vec_inside_polygons = *xms::VecPt3d2dFromPyIter(inside_polygons);
-            xms::VecInt vec_poly_corners = *xms::VecIntFromPyIter(poly_corners);
+            xms::VecInt vec_poly_corners = *xms::VecIntFromPyIter(patch_polygon_corners);
             BSHP<xms::InterpBase> c_size_function;
             BSHP<xms::InterpBase> c_elev_function;
             if (!size_function.is_none())
@@ -233,40 +233,40 @@ void initMePolyInput(py::module &m) {
             {
               c_elev_function = elev_function.cast<BSHP<xms::InterpBase>>();
             }
-            xms::MePolyInput rval = new xms::MePolyInput(vec_outside_polygon, vec_inside_polygons, bias, c_size_function,
-                                        vec_poly_corners, c_elev_function);
+            BSHP<xms::MePolyInput> rval(new xms::MePolyInput(vec_outside_polygon, vec_inside_polygons, bias, c_size_function,
+                                                         vec_poly_corners, c_elev_function));
             if(!const_size_bias.is_none())
             {
-                rval.m_constSizeBias = const_size_bias.cast<float>();
+                rval->m_constSizeBias = const_size_bias.cast<float>();
             }
             if(!const_size_function.is_none())
             {
-                rval.m_constSizeFunction = const_size_function.cast<float>();
+                rval->m_constSizeFunction = const_size_function.cast<float>();
             }
             if(!bound_pts_to_remove.is_none())
             {
                 // TODO: This might need to be list rather than none as default.
-                rval.m_boundPtsToRemove = *xms::VecPt3dFromPyIter(bound_pts_to_remove);
+                rval->m_boundPtsToRemove = *xms::VecPt3dFromPyIter(bound_pts_to_remove);
             }
             if(!relaxation_method.is_none())
             {
-                rval.m_relaxationMethod = relaxation_method.cast<std::string>();
+                rval->m_relaxationMethod = relaxation_method.cast<std::string>();
             }
             if(!remove_internal_four_triangles_pts.is_none())
             {
-                rval.m_removeInternalFourTrianglePts = remove_internal_four_triangle_pts.cast<bool>();
+                rval->m_removeInternalFourTrianglePts = remove_internal_four_triangles_pts.cast<bool>();
             }
             if(!seed_points.is_none())
             {
                 // TODO: This might need to be list rather than none as default.
-                rval.m_seedPoints = *xms::VecPt3dFromPyIter(seed_points);
+                rval->m_seedPoints = *xms::VecPt3dFromPyIter(seed_points);
             }
             return rval;
         }), PolyInput_init_doc, py::arg("outside_polygon"), py::arg("inside_polygons") = py::make_tuple(), py::arg("bias") = 1.0,
             py::arg("const_size_bias") = py::none(), py::arg("const_size_fuction") = py::none(),
             py::arg("bound_pts_to_remove") = py::none(), py::arg("relaxation_method") = py::none(),
             py::arg("remove_interal_four_triangle_pts") = py::none(), py::arg("seed_points") = py::none(),
-            py::arg("size_function") = py::none(), py::arg("polygon_corners") = py::make_tuple(),
+            py::arg("size_function") = py::none(), py::arg("patch_polygon_corners") = py::make_tuple(),
             py::arg("elev_function") = py::none());
     // ---------------------------------------------------------------------------
     // function: outside_polygon
@@ -300,20 +300,20 @@ void initMePolyInput(py::module &m) {
                 self.m_insidePolys = *xms::VecPt3d2dFromPyIter(inside_polygons);
             },inside_polygons_doc);
     // -------------------------------------------------------------------------
-    // function: poly_corners
+    // function: patch_polygon_corners
     // -------------------------------------------------------------------------
-    const char* poly_corners_doc = R"pydoc(
+    const char* patch_polygon_corners_doc = R"pydoc(
         Corner nodes for creating meshes using the patch algorithm.
 
-        There can be 3 poly_corners per outer_poly not 4. The outer_poly point at index 0 is assumed to be a corner
+        There can be 3 patch_polygon_corners per outer_poly not 4. The outer_poly point at index 0 is assumed to be a corner
     )pydoc";
-    polyInput.def_property("poly_corners",
+    polyInput.def_property("patch_polygon_corners",
             [](xms::MePolyInput &self) -> py::iterable {
                 return xms::PyIterFromVecInt(self.m_polyCorners);
             },
-            [](xms::MePolyInput &self, py::iterable poly_corners) {
-                 self.m_polyCorners = *xms::VecIntFromPyIter(poly_corners);
-            },poly_corners_doc);
+            [](xms::MePolyInput &self, py::iterable patch_polygon_corners) {
+                 self.m_polyCorners = *xms::VecIntFromPyIter(patch_polygon_corners);
+            },patch_polygon_corners_doc);
     // -------------------------------------------------------------------------
     // function: bound_pts_to_remove
     // -------------------------------------------------------------------------
@@ -325,7 +325,7 @@ void initMePolyInput(py::module &m) {
                 return xms::PyIterFromVecPt3d(self.m_boundPtsToRemove);
             },
             [](xms::MePolyInput &self, py::iterable outside_polygon) {
-                 self.m_boundPtsToRemove = xms::VecPt3dFromPyIter(outside_polygon);
+                 self.m_boundPtsToRemove = *xms::VecPt3dFromPyIter(outside_polygon);
             },bound_pts_to_remove_doc);
     // -------------------------------------------------------------------------
     // function: bias

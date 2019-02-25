@@ -97,8 +97,8 @@ class TestPolyInput(unittest.TestCase):
         out_poly = ((0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0))
         pi = PolyInput(out_poly)
         self.assertIsInstance(pi, PolyInput)
-        self.assertEqual(4, len(pi.outside_poly))
-        self.assertEqual(0, len(pi.inside_polys))
+        self.assertEqual(4, len(pi.outside_polygon))
+        self.assertEqual(0, len(pi.inside_polygons))
         self.assertEqual(1.0, pi.bias)
         self.assertEqual(None, pi.size_function)
         self.assertEqual(None, pi.elev_function)
@@ -116,10 +116,12 @@ class TestPolyInput(unittest.TestCase):
         size_func = InterpLinear(pts)
         elev_func = InterpIdw(pts)
 
-        pi = PolyInput(outside_poly, inside_polys, bias, size_func, poly_corners, elev_func)
+        pi = PolyInput(outside_polygon=outside_poly, inside_polygons=inside_polys,
+                       bias=bias, size_function=size_func, patch_polygon_corners=poly_corners,
+                       elev_function=elev_func)
         self.assertIsInstance(pi, PolyInput)
-        self.assertArraysEqual(outside_poly, pi.outside_poly)
-        self.assertInsidePolysEqual(inside_polys, pi.inside_polys)
+        self.assertArraysEqual(outside_poly, pi.outside_polygon)
+        self.assertInsidePolysEqual(inside_polys, pi.inside_polygons)
         self.assertEqual(bias, pi.bias)
         self.assertEqual(size_func.to_string(), pi.size_function.to_string())
         self.assertEqual(elev_func.to_string(), pi.elev_function.to_string())
@@ -140,17 +142,17 @@ class TestPolyInput(unittest.TestCase):
         seed_points = ((3, 3, 0), (4, 3, 0), (4, 8, 0), (3, 8, 0))
         relaxation_method = "spring_relaxation"
 
-        self.assertEqual(4, len(pi.outside_poly))
-        pi.outside_poly = outside_poly
-        self.assertArraysEqual(outside_poly, pi.outside_poly)
+        self.assertEqual(4, len(pi.outside_polygon))
+        pi.outside_polygon = outside_poly
+        self.assertArraysEqual(outside_poly, pi.outside_polygon)
 
-        self.assertEqual(0, len(pi.inside_polys))
-        pi.inside_polys = inside_polys
-        self.assertInsidePolysEqual(inside_polys, pi.inside_polys)
+        self.assertEqual(0, len(pi.inside_polygons))
+        pi.inside_polygons = inside_polys
+        self.assertInsidePolysEqual(inside_polys, pi.inside_polygons)
 
-        self.assertEqual(0, len(pi.poly_corners))
-        pi.poly_corners = poly_corners
-        self.assertArraysEqual(poly_corners, pi.poly_corners)
+        self.assertEqual(0, len(pi.patch_polygon_corners))
+        pi.patch_polygon_corners = poly_corners
+        self.assertArraysEqual(poly_corners, pi.patch_polygon_corners)
 
         self.assertEqual(1.0, pi.bias)
         pi.bias = 0.3

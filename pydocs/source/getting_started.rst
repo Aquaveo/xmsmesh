@@ -35,7 +35,7 @@ polygon.
     # so we remove the last element
     polygon_boundary = rp.redistribute(polygon_corners)[:-1]
 
-    poly_input = PolyInput(out_poly=polygon_boundary)
+    poly_input = PolyInput(outside_polygon=polygon_boundary)
 
 Now we will create our PolyMesherIo and generate our mesh
 

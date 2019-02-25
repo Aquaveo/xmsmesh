@@ -11,6 +11,7 @@
 #include <boost/shared_ptr.hpp>
 #include <xmscore/misc/DynBitset.h>
 #include <xmscore/misc/XmError.h>
+#include <xmscore/python/misc/PyUtils.h>
 #include <xmsinterp/triangulate/TrTin.h>
 #include <xmsmesh/meshing/MeMeshUtils.h>
 #include <xmsmesh/meshing/MeMultiPolyMesher.h>
