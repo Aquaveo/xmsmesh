@@ -317,7 +317,6 @@ void MeMultiPolyMesherImpl::EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io)
     if (area > 0)
     {
       std::reverse(polyInput.m_outPoly.begin(), polyInput.m_outPoly.end());
-      std::cout << "Reverse outer polygon\n";
     }
 
     for (size_t j = 0; j < polyInput.m_insidePolys.size(); ++j)
@@ -326,7 +325,6 @@ void MeMultiPolyMesherImpl::EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io)
       if (area < 0)
       {
         std::reverse(polyInput.m_insidePolys[j].begin(), polyInput.m_insidePolys[j].end());
-        std::cout << "Reverse inner polygon\n";
       }
     }
   }
@@ -994,9 +992,9 @@ void MeMultiPolyMesherUnitTests::testCheckForIntersections4()
   input.m_checkTopology = true;
   {
     MePolyInput poly;
-    poly.m_outPoly = {{0, 0, 0}, {100, 0, 0}, {100, 100, 0}, {0, 100, 0}};
+    poly.m_outPoly = {{0, 0, 0}, {0, 100, 0}, {100, 100, 0}, {100, 0, 0}};
     input.m_polys.push_back(poly);
-    poly.m_outPoly = {{10, 10, 0}, {110, 10, 0}, {110, 110, 0}, {10, 110, 0}};
+    poly.m_outPoly = {{10, 10, 0}, {10, 110, 0}, {110, 110, 0}, {110, 10, 0}};
     input.m_polys.push_back(poly);
   }
 
