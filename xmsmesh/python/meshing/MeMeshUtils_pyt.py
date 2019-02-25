@@ -349,3 +349,15 @@ class TestMeshUtils(unittest.TestCase):
         self.assertTrue(os.path.isfile("out_file_02.2dm"))
         self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file_02.2dm"), "Files not equal")
 
+
+    def test_redistribute_polyline(self):
+        polygon_corners = [(0, 0, 0), (0, 100, 0), (100, 100, 0),
+                           (100, 0, 0), (0, 0, 0)]
+
+        polygon_boundary = mesh_utils.redistribute_poly_line(polygon_corners, 25)
+        base_poly_boundary = [(0, 0, 0), (0, 25, 0), (0, 50, 0), (0, 75, 0), (0, 100, 0),
+                              (25, 100, 0), (50, 100, 0), (75, 100, 0), (100, 100, 0),
+                              (100, 75, 0), (100, 50, 0), (100, 25, 0), (100, 0, 0),
+                              (75, 0, 0), (50, 0, 0), (25, 0, 0), (0, 0, 0)]
+        np.testing.assert_array_equal(base_poly_boundary, polygon_boundary)
+

@@ -17,6 +17,7 @@
 #include <xmsmesh/meshing/MeMultiPolyMesher.h>
 #include <xmsmesh/meshing/MeMultiPolyMesherIo.h>
 #include <xmsmesh/meshing/MeMultiPolyTo2dm.h>
+#include <xmsmesh/meshing/MePolyRedistributePts.h>
 
 
 //----- Namespace declaration --------------------------------------------------
@@ -208,5 +209,27 @@ void initMeMeshUtils(py::module &m) {
         std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
         return py::make_tuple(result, errors);
         },generate_2dm_doc,py::arg("mesh_io"),py::arg("file_name"),py::arg("precision")=15);
+
+  // ---------------------------------------------------------------------------
+  // function: redistribute_line
+  // ---------------------------------------------------------------------------
+    const char* redistribute_poly_line_doc = R"pydoc(
+        Redistributes the points along a line to a constant spacing
+
+        Args:
+            poly_lin (iterable): Input poly line locations.
+            size (Float): The desired spacing for point redistribution
+
+        Returns:
+            iterable: redistributed poly line locations
+    )pydoc";
+    modMeshUtils.def("redistribute_poly_line",
+     [](py::iterable poly_line, double size) -> py::iterable {
+        BSHP<xms::MePolyRedistributePts> redist(xms::MePolyRedistributePts::New());
+        redist->SetConstantSizeFunc(size);
+        BSHP<xms::VecPt3d> vPolyLine = xms::VecPt3dFromPyIter(poly_line);
+        xms::VecPt3d rval = redist->Redistribute(*vPolyLine);
+        return xms::PyIterFromVecPt3d(rval);
+        },redistribute_poly_line_doc,py::arg("poly_line"),py::arg("size"));
 
 }
