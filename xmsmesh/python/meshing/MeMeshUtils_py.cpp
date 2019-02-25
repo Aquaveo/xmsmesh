@@ -173,19 +173,15 @@ void initMeMeshUtils(py::module &m) {
           mesh_io (:class:`MultiPolyMesherIo <xmsmesh.meshing.MultiPolyMesherIo>`): Input polygons and options for generating a mesh.
 
       Returns:
-        tuple: true if the mesh was generated successfully false otherwise, and a string of errors
+        tuple: true if the mesh was generated successfully false otherwise, and a string of messages.
   )pydoc";
     modMeshUtils.def("generate_mesh",
      [](xms::MeMultiPolyMesherIo &mesh_io) -> py::iterable
      {
        BSHP<xms::MeMultiPolyMesher> multiPolyMesher = xms::MeMultiPolyMesher::New();
-       if (multiPolyMesher->MeshIt(mesh_io)) {
-         return py::make_tuple(true, "");
-       }
-       else {
-         std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
-         return py::make_tuple(false, errors);
-       }
+       bool rval = multiPolyMesher->MeshIt(mesh_io);
+       std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
+       return py::make_tuple(rval, errors);
      },generate_mesh_doc, py::arg("mesh_io"));
   // ---------------------------------------------------------------------------
   // function: generate_2dm
@@ -199,18 +195,18 @@ void initMeMeshUtils(py::module &m) {
             precision (int, optional): The decimal point precision of the resulting mesh.
 
         Returns:
-            tuple: true if the mesh was generated successfully false otherwise, and filename of the written 2dm
+            tuple: true if the mesh was generated successfully false otherwise, and a string of messages.
     )pydoc";
     modMeshUtils.def("generate_2dm",
      [](xms::MeMultiPolyMesherIo &mesh_io,
         std::string file_name, int precision) -> py::tuple {
         BSHP<xms::MeMultiPolyTo2dm> mesher = xms::MeMultiPolyTo2dm::New();
-          if (file_name.empty()) {
-            std::stringstream ss;
-            bool result = mesher->Generate2dm(mesh_io, ss, precision);
-            return py::make_tuple(result, ss.str());
-          }
-          return py::make_tuple(mesher->Generate2dm(mesh_io, file_name), "");
+        if (file_name.empty()) {
+          throw py::value_error("file_name not specifed. Aborting mesh procedure.");
+        }
+        bool result = mesher->Generate2dm(mesh_io, file_name, precision);
+        std::string errors = xms::XmLog::Instance().GetAndClearStackStr();
+        return py::make_tuple(result, errors);
         },generate_2dm_doc,py::arg("mesh_io"),py::arg("file_name"),py::arg("precision")=15);
 
 }
