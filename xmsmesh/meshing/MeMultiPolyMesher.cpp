@@ -55,6 +55,8 @@ public:
   ~MeMultiPolyMesherImpl() {}
 
   virtual bool MeshIt(MeMultiPolyMesherIo& a_io) override;
+  virtual void CheckForIntersections(const MeMultiPolyMesherIo& a_io,
+                                     std::string& a_errors) const override;
 
 private:
   void AppendMesh(VecPt3d& a_points, const VecInt& a_triangles, VecInt& a_cells);
@@ -68,7 +70,6 @@ private:
   void ReportUnusedRefinePts(const MeMultiPolyMesherIo& a_io, const VecPt3d& a_usedPts);
   void EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io);
   bool ValidateInput(const MeMultiPolyMesherIo& a_io);
-  void CheckForIntersections(const MeMultiPolyMesherIo& a_io, std::string& a_errors) const;
   bool ExtentsOverlap(const Pt3d& oneMn,
                       const Pt3d& oneMx,
                       const Pt3d& two1,

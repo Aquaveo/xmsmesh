@@ -130,6 +130,19 @@ class TestMeshUtils(unittest.TestCase):
                 90.00, 85.00, 95.00, 90.00, 85.00, 80.00)
         np.testing.assert_almost_equal(base, smooth_sizes, 2)
 
+    def test_check_for_intersections(self):
+        io = MultiPolyMesherIo(())
+        poly_input = PolyInput(outside_polygon=((0, 0, 0), (100, 0, 0), (100, 10, 0), (0, -10, 0)))
+        io.poly_inputs = (poly_input,)
+
+        expected = \
+            "Error: Input polygon segments intersect. The segment defined by points 0 and 1 of outer " \
+            "polygon 0 intersects with the segment defined by points 2 and 3 of outer polygon 0.\n"
+
+        (success, errors) = mesh_utils.check_mesh_input_topology(io)
+        self.assertEqual(False, success)
+        self.assertEqual(expected, errors)
+
     def test_check_for_intersections_1(self):
         io = MultiPolyMesherIo(())
         io.check_topology = True

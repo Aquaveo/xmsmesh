@@ -165,6 +165,27 @@ void initMeMeshUtils(py::module &m) {
     py::arg("max_slope"),py::arg("anchor_to_max"),py::arg("pts_flag"));
 
   // ---------------------------------------------------------------------------
+  // function: check_mesh_input_topology
+  // ---------------------------------------------------------------------------
+  const char* check_mesh_input_topology_doc = R"pydoc(
+      Checks if the input polygons intersect one another
+
+      Args:
+          mesh_io (:class:`MultiPolyMesherIo <xmsmesh.meshing.MultiPolyMesherIo>`): Input polygons and options for generating a mesh.
+
+      Returns:
+        tuple: true if mesh inputs are topologically correct, and a string of messages.
+  )pydoc";
+    modMeshUtils.def("check_mesh_input_topology",
+     [](xms::MeMultiPolyMesherIo &mesh_io) -> py::iterable
+     {
+       BSHP<xms::MeMultiPolyMesher> multiPolyMesher = xms::MeMultiPolyMesher::New();
+       std::string errors;
+       multiPolyMesher->CheckForIntersections(mesh_io, errors);
+       bool rval(errors.empty());
+       return py::make_tuple(rval, errors);
+     },check_mesh_input_topology_doc, py::arg("mesh_io"));
+  // ---------------------------------------------------------------------------
   // function: generate_mesh
   // ---------------------------------------------------------------------------
   const char* generate_mesh_doc = R"pydoc(

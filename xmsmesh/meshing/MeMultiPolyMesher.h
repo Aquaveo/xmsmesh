@@ -40,6 +40,8 @@ public:
   /// \cond
 
   virtual bool MeshIt(MeMultiPolyMesherIo& a_io) = 0;
+  virtual void CheckForIntersections(const MeMultiPolyMesherIo& a_io,
+                                     std::string& a_errors) const = 0;
   virtual ~MeMultiPolyMesher() {}
 
   /// \endcond
