@@ -190,8 +190,8 @@ class TestMeshUtils(unittest.TestCase):
         io = MultiPolyMesherIo(())
         io.check_topology = True
 
-        outside_poly1 = ((0, 0, 0), (100, 0, 0), (100, 100, 0), (0, 100, 0))
-        outside_poly2 = ((10, 10, 0), (110, 10, 0), (110, 110, 0), (10, 110, 0))
+        outside_poly1 = ((0, 0, 0), (0, 100, 0), (100, 100, 0), (100, 0, 0))
+        outside_poly2 = ((10, 10, 0), (10, 110, 0), (110, 110, 0), (110, 10, 0))
         poly_input1 = PolyInput(outside_poly1)
         poly_input2 = PolyInput(outside_poly2)
         io.poly_inputs = (poly_input1, poly_input2)
@@ -247,6 +247,32 @@ class TestMeshUtils(unittest.TestCase):
         input = MultiPolyMesherIo(())
         input.poly_inputs = [input_poly]
         status, error = mesh_utils.generate_mesh(input)
+        self.assertEqual(139, len(input.points))
+        self.assertEqual(1150, len(input.cells))
+        self.assertTrue(status)
+        self.assertEqual(error, '')
+
+    def test_simple_polygon_reverse(self):
+        outside_poly = [
+            (0, 10, 0), (0, 20, 0), (0, 30, 0), (0, 40, 0), (0, 50, 0), (0, 60, 0), (0, 70, 0), (0, 80, 0),
+            (0, 90, 0), (0, 100, 0), (10, 100, 0), (20, 100, 0), (30, 100, 0), (40, 100, 0), (50, 100, 0), (60, 100, 0),
+            (70, 100, 0), (80, 100, 0), (90, 100, 0), (100, 100, 0), (100, 90, 0), (100, 80, 0), (100, 70, 0),
+            (100, 60, 0), (100, 50, 0), (100, 40, 0), (100, 30, 0), (100, 20, 0), (100, 10, 0), (100, 0, 0),
+            (90, 0, 0), (80, 0, 0), (70, 0, 0), (60, 0, 0), (50, 0, 0), (40, 0, 0), (30, 0, 0), (20, 0, 0), (10, 0, 0),
+            (0, 0, 0)
+        ]
+        inside_polys = [
+            [(40, 40, 0), (50, 40, 0), (60, 40, 0), (60, 50, 0),
+             (60, 60, 0), (50, 60, 0), (40, 60, 0), (40, 50, 0)]
+        ]
+        outside_poly.reverse()
+        inside_polys[0].reverse()
+        input_poly = PolyInput(outside_poly, inside_polys)
+        input = MultiPolyMesherIo(())
+        input.poly_inputs = [input_poly]
+        status, error = mesh_utils.generate_mesh(input)
+        self.assertEqual(139, len(input.points))
+        self.assertEqual(1150, len(input.cells))
         self.assertTrue(status)
         self.assertEqual(error, '')
 

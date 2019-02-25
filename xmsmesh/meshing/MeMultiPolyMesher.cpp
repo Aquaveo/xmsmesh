@@ -66,7 +66,7 @@ private:
                        VecInt& a_cells) const;
   void AppendNewCells(const VecInt& a_cells);
   void ReportUnusedRefinePts(const MeMultiPolyMesherIo& a_io, const VecPt3d& a_usedPts);
-  void CheckAndRemoveRepeatedFirstLastPolygonPoints(MeMultiPolyMesherIo& a_io);
+  void EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io);
   bool ValidateInput(const MeMultiPolyMesherIo& a_io);
   void CheckForIntersections(const MeMultiPolyMesherIo& a_io, std::string& a_errors) const;
   bool ExtentsOverlap(const Pt3d& oneMn,
@@ -229,7 +229,7 @@ MeMultiPolyMesherImpl::MeMultiPolyMesherImpl()
 bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
 {
   iWriteInputsToDebugFile(a_io);
-  CheckAndRemoveRepeatedFirstLastPolygonPoints(a_io);
+  EnsureProperPolygonInputs(a_io);
   if (!ValidateInput(a_io))
   {
     return false;
@@ -279,28 +279,57 @@ bool MeMultiPolyMesherImpl::MeshIt(MeMultiPolyMesherIo& a_io)
   return true;
 } // MeMultiPolyMesherImpl::MeshIt
 //------------------------------------------------------------------------------
-/// \brief Remove last point of polygon if it is the same as the first point
+/// \brief Remove last point of polygon if it is the same as the first point and
+/// make sure the polygon points are ordered correctly.
 /// \param a_io: The input/output parameters.
 //------------------------------------------------------------------------------
-void MeMultiPolyMesherImpl::CheckAndRemoveRepeatedFirstLastPolygonPoints(MeMultiPolyMesherIo& a_io)
+void MeMultiPolyMesherImpl::EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io)
 {
+  double tol(1e-9);
+  // remove repeated first and last points
   for (size_t i = 0; i < a_io.m_polys.size(); ++i)
   {
     MePolyInput& polyInput = a_io.m_polys[i];
-    if (polyInput.m_outPoly.front() == polyInput.m_outPoly.back())
+    auto &first = polyInput.m_outPoly.front();
+    auto &last = polyInput.m_outPoly.back();
+    if (gmEqualPointsXY(first, last, tol))
     {
       polyInput.m_outPoly.pop_back();
     }
 
     for (size_t j = 0; j < polyInput.m_insidePolys.size(); ++j)
     {
-      if (polyInput.m_insidePolys[j].front() == polyInput.m_insidePolys[j].back())
+      auto &first = polyInput.m_insidePolys[j].front();
+      auto &last = polyInput.m_insidePolys[j].back();
+      if (gmEqualPointsXY(first, last, tol))
       {
         polyInput.m_insidePolys[j].pop_back();
       }
     }
   }
-} // MeMultiPolyMesherImpl::CheckAndRemoveRepeatedFirstLastPolygonPoints
+  // check point ordering. We want the outside polygon should be CW and the
+  // inside polygons should be CCW
+  for (size_t i = 0; i < a_io.m_polys.size(); ++i)
+  {
+    MePolyInput& polyInput = a_io.m_polys[i];
+    double area = gmPolygonArea(&polyInput.m_outPoly[0], polyInput.m_outPoly.size());
+    if (area > 0)
+    {
+      std::reverse(polyInput.m_outPoly.begin(), polyInput.m_outPoly.end());
+      std::cout << "Reverse outer polygon\n";
+    }
+
+    for (size_t j = 0; j < polyInput.m_insidePolys.size(); ++j)
+    {
+      area = gmPolygonArea(&polyInput.m_insidePolys[j][0], polyInput.m_insidePolys[j].size());
+      if (area < 0)
+      {
+        std::reverse(polyInput.m_insidePolys[j].begin(), polyInput.m_insidePolys[j].end());
+        std::cout << "Reverse inner polygon\n";
+      }
+    }
+  }
+} // MeMultiPolyMesherImpl::EnsureProperPolygonInputs
 //------------------------------------------------------------------------------
 /// \brief Make sure the input makes sense.
 /// \param a_io: The input/output parameters.

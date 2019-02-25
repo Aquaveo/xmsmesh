@@ -690,6 +690,8 @@ VecPt3d MePolyRedistributePtsImpl::RedistPts(const VecPt3d& a_pts, const VecDbl&
     // create the points
     // put in the first point
     ret.push_back(a_pts[0]);
+    // set the z to 0.0
+    ret[0].z = 0;
     size_t segIdx(0);
     for (size_t i = 1; i < tVals.size(); ++i)
     { // get the segment that the tval is on
