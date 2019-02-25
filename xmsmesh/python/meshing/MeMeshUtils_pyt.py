@@ -254,7 +254,7 @@ class TestMeshUtils(unittest.TestCase):
         io = MultiPolyMesherIo(())
         _ = mesh_utils.generate_2dm(io, "fname.2dm")
         self.assertTrue(os.path.isfile("fname.2dm"))
-        self.assertTrue(filecmp.cmp("./test_files/python/fname.2dm", "fname.2dm"), "Files not equal")
+        self.assertTrue(filecmp.cmp("../test_files/python/fname.2dm", "fname.2dm"), "Files not equal")
 
     def test_case_4(self):
         # build test case 4 polys
@@ -290,7 +290,7 @@ class TestMeshUtils(unittest.TestCase):
         (success, result) = mesh_utils.generate_2dm(io, "out_file.2dm", 8)
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file.2dm"))
-        self.assertTrue(filecmp.cmp("./test_files/python/out_file.2dm", "out_file.2dm"), "Files not equal")
+        self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file.2dm"), "Files not equal")
 
     def test_repeated_first_and_last(self):
         # build test case 4 polys
@@ -321,5 +321,5 @@ class TestMeshUtils(unittest.TestCase):
         (success, result) = mesh_utils.generate_2dm(io, "out_file_02.2dm", 8)
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file_02.2dm"))
-        self.assertTrue(filecmp.cmp("./test_files/python/out_file.2dm", "out_file_02.2dm"), "Files not equal")
+        self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file_02.2dm"), "Files not equal")
 
