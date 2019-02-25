@@ -122,15 +122,15 @@ void initMeMeshUtils(py::module &m) {
       Args:
           tin (:class:`Tin <xmsinterp.triangulate.Tin>`): Points and triangles defining the connectivity of the elevations.
           elevations (iterable): Array of the current elevations
-          max_slope (float): Maximum allowable slope
-          anchor_type (int): Indicates weather you are anchoring to the top or bottom of the slope.
+          max_slope (Float): Maximum allowable slope
+          anchor_to_max (Bool): Indicates if you are anchoring to the max slope.
           pts_flag (iterable): Flag to indicate if the value at the point should be adjusted (a value of true will skip the point). Leave the bitset empty to process all points.
 
       Returns:
         iterable: Array of smoothed elevations
   )pydoc";
     modMeshUtils.def("smooth_elev_by_slope", [](boost::shared_ptr<xms::TrTin> tin, py::iterable elevations,
-                                    double max_slope, int anchor_type,
+                                    double max_slope, bool anchor_to_max,
                                     py::iterable pts_flag) -> py::iterable {
         xms::VecFlt vec_elevations, vec_smooth_elevations;
         for (auto item : elevations) {
@@ -148,7 +148,7 @@ void initMeMeshUtils(py::module &m) {
         }
         xms::VecBooleanToDynBitset(bitvals, bitset);
 
-        xms::meSmoothElevBySlope(tin, vec_elevations, max_slope, anchor_type, bitset, vec_smooth_elevations);
+        xms::meSmoothElevBySlope(tin, vec_elevations, max_slope, anchor_to_max? 1 : 0, bitset, vec_smooth_elevations);
 
         if (py::isinstance<py::array>(elevations)) {
           // NOTE: This is a copy operation
@@ -162,7 +162,7 @@ void initMeMeshUtils(py::module &m) {
           return tuple_ret;
         }
     },smooth_elev_by_slope_doc, py::arg("tin"),py::arg("elevations"),
-    py::arg("max_slope"),py::arg("anchor_type"),py::arg("pts_flag"));
+    py::arg("max_slope"),py::arg("anchor_to_max"),py::arg("pts_flag"));
 
   // ---------------------------------------------------------------------------
   // function: generate_mesh
