@@ -199,7 +199,7 @@ class TestRefinePoint(unittest.TestCase):
         self.assertEqual(-2.0, rp.size)
         self.assertEqual(True, rp.create_mesh_point)
 
-        rp2 = RefinePoint(pt=(1, 1, 3), create_mesh_point=False, size=2.0)
+        rp2 = RefinePoint(point=(1, 1, 3), create_mesh_point=False, size=2.0)
         self.assertIsInstance(rp2, RefinePoint)
         self.assertEqual((1, 1, 3), rp2.point)
         self.assertEqual(2.0, rp2.size)

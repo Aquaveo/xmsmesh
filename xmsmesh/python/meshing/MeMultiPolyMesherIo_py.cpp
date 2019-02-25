@@ -443,17 +443,17 @@ void initMeRefinePoint(py::module &m) {
         A location and options used for refining a mesh.
 
         Args:
-            pt (iterable): An (x, y, z) location for the point.
+            point (iterable): An (x, y, z) location for the point.
             size (float): A size for the refinement. A negative value represents a hard point.
             create_mesh_point (bool optional): Force a mesh point at the refine point location.
     )pydoc";
 
     py::class_<xms::MeRefinePoint, BSHP<xms::MeRefinePoint>> refinePoint(m, "RefinePoint");
 
-    refinePoint.def(py::init<>([](py::tuple pt, double size, bool create_mesh_point) {
-            xms::Pt3d point = xms::Pt3dFromPyIter(pt);
-            return new xms::MeRefinePoint(point, size, create_mesh_point);
-        }),refine_point_doc, py::arg("pt"), py::arg("size"), py::arg("create_mesh_point") = true);
+    refinePoint.def(py::init<>([](py::tuple point, double size, bool create_mesh_point) {
+            xms::Pt3d _point = xms::Pt3dFromPyIter(point);
+            return new xms::MeRefinePoint(_point, size, create_mesh_point);
+        }),refine_point_doc, py::arg("point"), py::arg("size"), py::arg("create_mesh_point") = true);
     // -------------------------------------------------------------------------
     // function: point
     // -------------------------------------------------------------------------
