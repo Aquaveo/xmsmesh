@@ -292,4 +292,34 @@ class TestMeshUtils(unittest.TestCase):
         self.assertTrue(os.path.isfile("out_file.2dm"))
         self.assertTrue(filecmp.cmp("./test_files/python/out_file.2dm", "out_file.2dm"), "Files not equal")
 
+    def test_repeated_first_and_last(self):
+        # build test case 4 polys
+        out_a = (0, 60, 10, 60, 20, 60, 30, 60, 30, 50, 30, 40, 30, 30, 30, 20, 30, 10,
+                 30, 0, 20, 0, 10, 0, 0, 0, 0, 10, 0, 20, 0, 30, 0, 40, 0, 50, 0, 60)
+        in_a1 = (10, 50, 10, 40, 20, 40, 20, 50, 10, 50)
+        in_a2 = (10, 20, 10, 10, 20, 10, 20, 20, 10, 20)
+        outside_poly = self.array_to_vec_pt3d(out_a)
+        inside_polys = (self.array_to_vec_pt3d(in_a1), self.array_to_vec_pt3d(in_a2))
+        bias = 1.0
+        poly_input_a = PolyInput(outside_polygon=outside_poly, inside_polygons=inside_polys, bias=bias)
+
+        out_b = (30, 60, 40, 60, 50, 60, 60, 60, 70, 60, 70, 50, 70, 40, 70, 30,
+                 70, 20, 70, 10, 70, 0, 60, 0, 50, 0, 40, 0, 40, 10, 30, 10,
+                 30, 20, 40, 20, 40, 30, 30, 30, 30, 40, 40, 40, 40, 50, 30, 50)
+        in_b1 = (50, 50, 50, 40, 60, 40, 60, 50)
+        in_b2 = (50, 20, 50, 10, 60, 10, 60, 20)
+
+        outside_poly_b = self.array_to_vec_pt3d(out_b)
+        inside_polys_b = (self.array_to_vec_pt3d(in_b1), self.array_to_vec_pt3d(in_b2))
+        bias_b = 1.0
+        poly_input_b = PolyInput(outside_poly_b, inside_polys_b, bias=bias_b)
+
+        io = MultiPolyMesherIo(())
+        io.poly_inputs = (poly_input_a, poly_input_b)
+
+        # mesh the polys
+        (success, result) = mesh_utils.generate_2dm(io, "out_file_02.2dm", 8)
+        self.assertTrue(success)
+        self.assertTrue(os.path.isfile("out_file_02.2dm"))
+        self.assertTrue(filecmp.cmp("./test_files/python/out_file.2dm", "out_file_02.2dm"), "Files not equal")
 
