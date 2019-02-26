@@ -328,7 +328,7 @@ class TestMeshUtils(unittest.TestCase):
 
         # mesh the polys
         (success, result) = mesh_utils.generate_2dm(io, "out_file.2dm", 3)
-        with open("out_file.2dm" "r") as o:
+        with open("out_file.2dm", "r") as o:
             print(o.readlines())
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file.2dm"))
@@ -361,7 +361,7 @@ class TestMeshUtils(unittest.TestCase):
 
         # mesh the polys
         (success, result) = mesh_utils.generate_2dm(io, "out_file_02.2dm", 3)
-        with open("out_file.2dm" "r") as o:
+        with open("out_file.2dm", "r") as o:
             print(o.readlines())
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file_02.2dm"))
