@@ -358,7 +358,7 @@ class TestMeshUtils(unittest.TestCase):
         io.poly_inputs = (poly_input_a, poly_input_b)
 
         # mesh the polys
-        (success, result) = mesh_utils.generate_2dm(io, "out_file_02.2dm", 8)
+        (success, result) = mesh_utils.generate_2dm(io, "out_file_02.2dm", 3)
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file_02.2dm"))
         self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file_02.2dm"), "Files not equal")
