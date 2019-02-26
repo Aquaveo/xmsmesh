@@ -3,6 +3,7 @@
 *~
 *.pyc
 build/
+build_py/
 test_package/build/
 
 # Generated Files

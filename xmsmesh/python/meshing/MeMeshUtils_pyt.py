@@ -323,10 +323,11 @@ class TestMeshUtils(unittest.TestCase):
         # Value Error when file not specified
         with self.assertRaises(ValueError) as context:
             mesh_utils.generate_2dm(io, '')
-        self.assertTrue('file_name not specifed. Aborting mesh procedure.' in context.exception)
+        print("'{}'".format(context.exception))
+        self.assertTrue('file_name not specifed. Aborting mesh procedure.' in str(context.exception))
 
         # mesh the polys
-        (success, result) = mesh_utils.generate_2dm(io, "out_file.2dm", 8)
+        (success, result) = mesh_utils.generate_2dm(io, "out_file.2dm", 3)
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file.2dm"))
         self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file.2dm"), "Files not equal")
