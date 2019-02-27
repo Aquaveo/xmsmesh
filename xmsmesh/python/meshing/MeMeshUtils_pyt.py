@@ -356,7 +356,7 @@ class TestMeshUtils(unittest.TestCase):
         (success, result) = mesh_utils.generate_2dm(io, "out_file.2dm", 3)
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file.2dm"))
-        self.assertFileLinesEqual("../test_files/python/out_file.2dm", "out_file_02.2dm")
+        self.assertFileLinesEqual("../test_files/python/out_file.2dm", "out_file.2dm")
 
     def test_repeated_first_and_last(self):
         # build test case 4 polys
@@ -386,7 +386,7 @@ class TestMeshUtils(unittest.TestCase):
         # mesh the polys
         (success, result) = mesh_utils.generate_2dm(io, "out_file_02_repeated.2dm", 3)
         self.assertTrue(success)
-        self.assertTrue(os.path.isfile("out_file_02.2dm"))
+        self.assertTrue(os.path.isfile("out_file_02_repeated.2dm"))
         self.assertFileLinesEqual("../test_files/python/out_file.2dm", "out_file_02_repeated.2dm")
 
 
