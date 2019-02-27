@@ -17,6 +17,33 @@ class TestMeshUtils(unittest.TestCase):
     def array_to_vec_pt3d(a_array):
         return [(a_array[i], a_array[i+1], 0) for i in range(0, len(a_array), 2)]
 
+    def assertFileLinesEqual(self, base_file, out_file):
+        base_lines = []
+        out_lines = []
+
+        with open(base_file, "r") as bf:
+            base_lines = bf.readlines()
+
+        with open(out_file, "r") as of:
+            out_lines = of.readlines()
+
+        for line_number, line in enumerate(base_lines):
+            if line_number >= len(out_lines):
+                self.assertTrue(False, "{} has more lines than {}. '{}' != '{}'".format(
+                    base_file, out_file, "".join(base_lines), "".join(out_lines)
+                ))
+
+            stripped_base_line = line.strip()
+            stripped_out_line = out_lines[line_number].strip()
+            self.assertEqual(stripped_base_line, stripped_out_line, "Files different on line {}. '{}' != '{}'".format(
+                line_number, stripped_base_line, stripped_out_line
+            ))
+
+        if len(base_lines) < len(out_lines):
+            self.assertTrue(False, "{} has more lines than {}. '{}' != '{}'".format(
+                out_file, base_file, "".join(base_lines), "".join(out_lines)
+            ))
+
     def setUp(self):
         pass
 
@@ -323,16 +350,13 @@ class TestMeshUtils(unittest.TestCase):
         # Value Error when file not specified
         with self.assertRaises(ValueError) as context:
             mesh_utils.generate_2dm(io, '')
-        print("'{}'".format(context.exception))
         self.assertTrue('file_name not specifed. Aborting mesh procedure.' in str(context.exception))
 
         # mesh the polys
         (success, result) = mesh_utils.generate_2dm(io, "out_file.2dm", 3)
-        with open("out_file.2dm", "r") as o:
-            print(o.readlines())
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file.2dm"))
-        self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file.2dm"), "Files not equal")
+        self.assertFileLinesEqual("../test_files/python/out_file.2dm", "out_file_02.2dm")
 
     def test_repeated_first_and_last(self):
         # build test case 4 polys
@@ -360,12 +384,10 @@ class TestMeshUtils(unittest.TestCase):
         io.poly_inputs = (poly_input_a, poly_input_b)
 
         # mesh the polys
-        (success, result) = mesh_utils.generate_2dm(io, "out_file_02.2dm", 3)
-        with open("out_file.2dm", "r") as o:
-            print(o.readlines())
+        (success, result) = mesh_utils.generate_2dm(io, "out_file_02_repeated.2dm", 3)
         self.assertTrue(success)
         self.assertTrue(os.path.isfile("out_file_02.2dm"))
-        self.assertTrue(filecmp.cmp("../test_files/python/out_file.2dm", "out_file_02.2dm"), "Files not equal")
+        self.assertFileLinesEqual("../test_files/python/out_file.2dm", "out_file_02_repeated.2dm")
 
 
     def test_redistribute_polyline(self):
