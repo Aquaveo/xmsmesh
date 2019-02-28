@@ -1607,6 +1607,13 @@
       <anchor>a158c6ffdda1e035af9d20cfc3d531dfc</anchor>
       <arglist>(MeMultiPolyMesherIo &amp;a_io) override</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>CheckForIntersections</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a58d6795efa5720eae2231bc4d3c640c1</anchor>
+      <arglist>(const MeMultiPolyMesherIo &amp;a_io, std::string &amp;a_errors) const override</arglist>
+    </member>
     <member kind="function" protection="private">
       <type>void</type>
       <name>AppendMesh</name>
@@ -1643,18 +1650,18 @@
       <arglist>(const MeMultiPolyMesherIo &amp;a_io, const VecPt3d &amp;a_usedPts)</arglist>
     </member>
     <member kind="function" protection="private">
+      <type>void</type>
+      <name>EnsureProperPolygonInputs</name>
+      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
+      <anchor>a1646a11489099dc57097a9d1b1f6474a</anchor>
+      <arglist>(MeMultiPolyMesherIo &amp;a_io)</arglist>
+    </member>
+    <member kind="function" protection="private">
       <type>bool</type>
       <name>ValidateInput</name>
       <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
       <anchor>acc44cac7bfb802e5d545371c527d3e13</anchor>
       <arglist>(const MeMultiPolyMesherIo &amp;a_io)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>CheckForIntersections</name>
-      <anchorfile>classxms_1_1_me_multi_poly_mesher_impl.html</anchorfile>
-      <anchor>af4dc84607c20590364f7bb80e23f8975</anchor>
-      <arglist>(const MeMultiPolyMesherIo &amp;a_io, std::string &amp;a_errors) const</arglist>
     </member>
     <member kind="function" protection="private">
       <type>bool</type>

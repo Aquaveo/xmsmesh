@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                2.0.5
+                3.0.0
               </div>
             
           
@@ -179,6 +179,24 @@ the definition of the mesh in memory so that you can work with it using other py
 function does everything that generate_mesh does, it also generates a 2dm file which can be useful
 if you are working with a product/library that can read 2dm files.</p>
 <span class="target" id="module-xmsmesh.meshing.mesh_utils"></span><dl class="function">
+<dt id="xmsmesh.meshing.mesh_utils.check_mesh_input_topology">
+<code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">check_mesh_input_topology</code><span class="sig-paren">(</span><em>mesh_io: xms::MeMultiPolyMesherIo</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.check_mesh_input_topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the input polygons intersect one another</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mesh_io</strong> (<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a>) – Input polygons and options for generating a mesh.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if mesh inputs are topologically correct, and a string of messages.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.generate_2dm">
 <code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">generate_2dm</code><span class="sig-paren">(</span><em>mesh_io: xms::MeMultiPolyMesherIo</em>, <em>file_name: unicode</em>, <em>precision: int=15L</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.generate_2dm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a mesh from the input polygons and writes it to a 2dm file.</p>
@@ -193,7 +211,7 @@ if you are working with a product/library that can read 2dm files.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">true if the mesh was generated successfully false otherwise, and filename of the written 2dm</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">true if the mesh was generated successfully false otherwise, and a string of messages.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
@@ -213,9 +231,33 @@ if you are working with a product/library that can read 2dm files.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mesh_io</strong> (<a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a>) – Input polygons and options for generating a mesh.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if the mesh was generated successfully false otherwise, and a string of errors</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if the mesh was generated successfully false otherwise, and a string of messages.</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="xmsmesh.meshing.mesh_utils.redistribute_poly_line">
+<code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">redistribute_poly_line</code><span class="sig-paren">(</span><em>poly_line: iterable</em>, <em>size: float</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.redistribute_poly_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redistributes the points along a line to a constant spacing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>poly_lin</strong> (<em>iterable</em>) – Input poly line locations.</li>
+<li><strong>size</strong> (<em>Float</em>) – The desired spacing for point redistribution</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">redistributed poly line locations</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">iterable</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -251,7 +293,7 @@ coastal numerical model simulations.</p>
 
 <dl class="function">
 <dt id="xmsmesh.meshing.mesh_utils.smooth_elev_by_slope">
-<code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">smooth_elev_by_slope</code><span class="sig-paren">(</span><em>tin: xms::TrTin</em>, <em>elevations: iterable</em>, <em>max_slope: float</em>, <em>anchor_type: int</em>, <em>pts_flag: iterable</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.smooth_elev_by_slope" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">xmsmesh.meshing.mesh_utils.</code><code class="descname">smooth_elev_by_slope</code><span class="sig-paren">(</span><em>tin: xms::TrTin</em>, <em>elevations: iterable</em>, <em>max_slope: float</em>, <em>anchor_to_max: bool</em>, <em>pts_flag: iterable</em><span class="sig-paren">)</span> &#x2192; iterable<a class="headerlink" href="#xmsmesh.meshing.mesh_utils.smooth_elev_by_slope" title="Permalink to this definition">¶</a></dt>
 <dd><p>Smooths a elevations based on max specified slope (max_slope) preserving
 either the min or max based on anchor_type</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -261,8 +303,8 @@ either the min or max based on anchor_type</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>tin</strong> (<a class="reference external" href="https://aquaveo.github.io/xmsinterp/pydocs/modules/triangulate/Tin.html#xmsinterp.triangulate.Tin" title="(in XmsInterp Library v2.2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tin</span></code></a>) – Points and triangles defining the connectivity of the elevations.</li>
 <li><strong>elevations</strong> (<em>iterable</em>) – Array of the current elevations</li>
-<li><strong>max_slope</strong> (<em>float</em>) – Maximum allowable slope</li>
-<li><strong>anchor_type</strong> (<em>int</em>) – Indicates weather you are anchoring to the top or bottom of the slope.</li>
+<li><strong>max_slope</strong> (<em>Float</em>) – Maximum allowable slope</li>
+<li><strong>anchor_to_max</strong> (<em>Bool</em>) – Indicates if you are anchoring to the max slope.</li>
 <li><strong>pts_flag</strong> (<em>iterable</em>) – Flag to indicate if the value at the point should be adjusted (a value of true will skip the point). Leave the bitset empty to process all points.</li>
 </ul>
 </td>

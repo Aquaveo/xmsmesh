@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MeshUtils" href="modules/meshing/MeshUtils.html" />
-    <link rel="prev" title="XmsMesh 2.0.5" href="index.html" /> 
+    <link rel="prev" title="XmsMesh 3.0.0" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                2.0.5
+                3.0.0
               </div>
             
           
@@ -189,7 +189,7 @@ polygon.</p>
 <span class="c1"># so we remove the last element</span>
 <span class="n">polygon_boundary</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">redistribute</span><span class="p">(</span><span class="n">polygon_corners</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">poly_input</span> <span class="o">=</span> <span class="n">PolyInput</span><span class="p">(</span><span class="n">out_poly</span><span class="o">=</span><span class="n">polygon_boundary</span><span class="p">)</span>
+<span class="n">poly_input</span> <span class="o">=</span> <span class="n">PolyInput</span><span class="p">(</span><span class="n">outside_polygon</span><span class="o">=</span><span class="n">polygon_boundary</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now we will create our PolyMesherIo and generate our mesh</p>
@@ -229,7 +229,7 @@ additional examples that can be found on the <a class="reference external" href=
         <a href="modules/meshing/MeshUtils.html" class="btn btn-neutral float-right" title="MeshUtils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="XmsMesh 2.0.5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="XmsMesh 3.0.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

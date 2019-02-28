@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                2.0.5
+                3.0.0
               </div>
             
           
@@ -165,8 +165,8 @@
 <p>The PolyInput class contains information about polygons that you would like to mesh using the
 <a class="reference internal" href="MultiPolyMesherIo.html#xmsmesh.meshing.MultiPolyMesherIo" title="xmsmesh.meshing.MultiPolyMesherIo"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPolyMesherIo</span></code></a> class. This class defines the
 polygon to be meshed. A polygon is made up of an outer polygon
-(<a class="reference internal" href="#xmsmesh.meshing.PolyInput.outside_poly" title="xmsmesh.meshing.PolyInput.outside_poly"><code class="xref py py-attr docutils literal notranslate"><span class="pre">outside_poly</span></code></a>), and a list of inner polygons
-(<a class="reference internal" href="#xmsmesh.meshing.PolyInput.inside_polys" title="xmsmesh.meshing.PolyInput.inside_polys"><code class="xref py py-attr docutils literal notranslate"><span class="pre">inside_polys</span></code></a>) representing
+(<code class="xref py py-attr docutils literal notranslate"><span class="pre">outside_poly</span></code>), and a list of inner polygons
+(<code class="xref py py-attr docutils literal notranslate"><span class="pre">inside_polys</span></code>) representing
 holes in the outer polygon. The other options available in this class help define
 features of the polygons, such as <a class="reference internal" href="#xmsmesh.meshing.PolyInput.seed_points" title="xmsmesh.meshing.PolyInput.seed_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">seed_poins</span></code></a>,
 <a class="reference internal" href="#xmsmesh.meshing.PolyInput.relaxation_method" title="xmsmesh.meshing.PolyInput.relaxation_method"><code class="xref py py-attr docutils literal notranslate"><span class="pre">relaxation_method</span></code></a>, and many more
@@ -176,18 +176,24 @@ that are described below.</p>
 <em class="property">class </em><code class="descclassname">xmsmesh.meshing.</code><code class="descname">PolyInput</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="xmsmesh.meshing.PolyInput.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self: xmsmesh.meshing.PolyInput</em>, <em>out_poly: iterable</em>, <em>inside_polys: iterable=()</em>, <em>bias: float=1.0</em>, <em>size_function: object=None</em>, <em>poly_corners: iterable=()</em>, <em>elev_function: object=None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh.meshing.PolyInput.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self: xmsmesh.meshing.PolyInput</em>, <em>outside_polygon: iterable</em>, <em>inside_polygons: iterable=()</em>, <em>bias: float=1.0</em>, <em>const_size_bias: object=None</em>, <em>const_size_fuction: object=None</em>, <em>bound_pts_to_remove: object=None</em>, <em>relaxation_method: object=None</em>, <em>remove_interal_four_triangle_pts: object=None</em>, <em>seed_points: object=None</em>, <em>size_function: object=None</em>, <em>patch_polygon_corners: iterable=()</em>, <em>elev_function: object=None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmsmesh.meshing.PolyInput.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>PolyInput initializer</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>out_poly</strong> (<em>iterable</em>) – Point locations of outer polygon. Clockwise</li>
-<li><strong>inside_polys</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> optional) – Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.</li>
-<li><strong>bias</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Float</span></code> optional) – Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.</li>
+<li><strong>outside_polygon</strong> (<em>iterable</em>) – Point locations of outer polygon. Clockwise</li>
+<li><strong>inside_polygons</strong> (<em>iterable optional</em>) – Point locations of inner polygons (holes). Counter clockwise. 1st pt != last. Defaults to empty tuple.</li>
+<li><strong>bias</strong> (<em>Float optional</em>) – Factor for transitioning between areas of high refinement to less refinement. Defaults to 0.3.</li>
+<li><strong>const_size_bias</strong> (<em>Float optional</em>) – Transition factor for constant size function.</li>
+<li><strong>const_size_function</strong> (<em>Float optional</em>) – Constat to be used for size function.</li>
+<li><strong>bound_pts_to_remove</strong> (<em>iterable optional</em>) – Outer boundary locations to remove after the paving process.</li>
+<li><strong>relaxation_method</strong> (<em>str optional</em>) – The relaxation method to be used.</li>
+<li><strong>remove_internal_four_triangle_pts</strong> (<em>bool optional</em>) – Remove internal points that are only connected to 4 cells.</li>
+<li><strong>seed_points</strong> (<em>iterable optional</em>) – A list of seed points.</li>
 <li><strong>size_function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">InterpBase</span></code> optional) – Size function for scalar paving. Default to None</li>
-<li><strong>poly_corners</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">iterable</span></code> optional) – Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.</li>
+<li><strong>patch_polygon_corners</strong> (<em>iterable optional</em>) – Corner nodes for creating meshes using the patch algorithm. 3 per outer poly (not 4 - outer poly index point [0] is assumed to be a corner). Defaults to empty tuple.</li>
 <li><strong>elev_function</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">InterpBase</span></code> optional) – Elevation function for interpolating z coordinate of mesh points. Deafults to None.</li>
 </ul>
 </td>
@@ -227,15 +233,15 @@ that are described below.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="xmsmesh.meshing.PolyInput.inside_polys">
-<code class="descname">inside_polys</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.inside_polys" title="Permalink to this definition">¶</a></dt>
+<dt id="xmsmesh.meshing.PolyInput.inside_polygons">
+<code class="descname">inside_polygons</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.inside_polygons" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of polygons representing holes in the PolyInput</p>
 <p>The polygons should be in clockwise order and the first point must not equal the last point.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="xmsmesh.meshing.PolyInput.outside_poly">
-<code class="descname">outside_poly</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.outside_poly" title="Permalink to this definition">¶</a></dt>
+<dt id="xmsmesh.meshing.PolyInput.outside_polygon">
+<code class="descname">outside_polygon</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.outside_polygon" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of points defining the outside polygon.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -244,10 +250,10 @@ that are described below.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="xmsmesh.meshing.PolyInput.poly_corners">
-<code class="descname">poly_corners</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.poly_corners" title="Permalink to this definition">¶</a></dt>
+<dt id="xmsmesh.meshing.PolyInput.patch_polygon_corners">
+<code class="descname">patch_polygon_corners</code><a class="headerlink" href="#xmsmesh.meshing.PolyInput.patch_polygon_corners" title="Permalink to this definition">¶</a></dt>
 <dd><p>Corner nodes for creating meshes using the patch algorithm.</p>
-<p>There can be 3 poly_corners per outer_poly not 4. The outer_poly point at index 0 is assumed to be a corner</p>
+<p>There can be 3 patch_polygon_corners per outer_poly not 4. The outer_poly point at index 0 is assumed to be a corner</p>
 </dd></dl>
 
 <dl class="attribute">

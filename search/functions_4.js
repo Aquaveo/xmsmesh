@@ -5,6 +5,7 @@ var searchData=
   ['elapsedtimeinseconds',['ElapsedTimeInSeconds',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf',1,'xms::Observer::impl']]],
   ['endoperation',['EndOperation',['https://aquaveo.github.io/xmscore/classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2',1,'xms::Observer::impl::EndOperation()'],['https://aquaveo.github.io/xmscore/classxms_1_1_observer.html#a6ab39e266617c93fb0720f23efa723e0',1,'xms::Observer::EndOperation()']]],
   ['ensureendpointsrepresented',['EnsureEndPointsRepresented',['https://aquaveo.github.io/xmsinterp/classxms_1_1_gm_multi_poly_intersector_impl.html#a0d3c6c5b4daa721d5fb2edec53d28dbb',1,'xms::GmMultiPolyIntersectorImpl']]],
+  ['ensureproperpolygoninputs',['EnsureProperPolygonInputs',['../classxms_1_1_me_multi_poly_mesher_impl.html#a1646a11489099dc57097a9d1b1f6474a',1,'xms::MeMultiPolyMesherImpl']]],
   ['errcount',['ErrCount',['https://aquaveo.github.io/xmscore/classxms_1_1_xm_log.html#a20ed692af6d8c0100c02f314c6395379',1,'xms::XmLog']]],
   ['errormessage',['ErrorMessage',['https://aquaveo.github.io/xmsinterp/classxms_1_1_tr_breakline_adder_impl.html#aa4036d3ba5e6ab3e3b9eba71cae6dbc3',1,'xms::TrBreaklineAdderImpl']]],
   ['estimatedruntimeinminutes',['EstimatedRunTimeInMinutes',['../classxms_1_1_me_quad_blossom.html#a2b7a90fb4e78a40f0b12336d4b1f8eda',1,'xms::MeQuadBlossom']]],
