@@ -446,10 +446,17 @@ void MePolyRedistributePtsImpl::IntersectWithTris(VecPt3d& a_pts)
     if (i < a_pts.size() - 1)
       p1 = a_pts[i + 1];
     m_polyIntersector->TraverseLineSegment(p0.x, p0.y, p1.x, p1.y, polys, pts);
-    auto start = pts.begin();
-    if (i > 0)
-      ++start;
-    newPts.insert(newPts.end(), start, pts.end());
+    if (!pts.empty())
+    {
+      auto start = pts.begin();
+      if (i > 0)
+        ++start;
+      newPts.insert(newPts.end(), start, pts.end());
+    }
+    else
+    {
+      newPts.push_back(p1);
+    }
   }
   a_pts.swap(newPts);
   a_pts.pop_back();
@@ -655,7 +662,8 @@ VecPt3d MePolyRedistributePtsImpl::RedistPts(const VecPt3d& a_pts, const VecDbl&
   {
     aveTincrement += tVals[i] - tVals[i - 1];
   }
-  aveTincrement /= (tVals.size() - 1);
+  if (tVals.size() > 1)
+    aveTincrement /= (tVals.size() - 1);
 
   VecPt3d ret;
   // adjust the tvals based on what was left over when processing the last

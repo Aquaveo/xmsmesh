@@ -140,7 +140,8 @@ bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
         interp = InterpIdw::New();
       }
 
-      os >> numpts;
+      int numtri;
+      os >> numpts >> numtri;
       BSHP<VecPt3d> vpts(new VecPt3d());
       VecPt3d& pts(*vpts);
       for (int i = 0; i < (int)numpts; ++i)
@@ -148,12 +149,19 @@ bool tutReadMeshIoFromFile(const std::string& a_fname, MeMultiPolyMesherIo& a_io
         os >> pt.x >> pt.y >> pt.z;
         pts.push_back(pt);
       }
+      BSHP<VecInt> tris(new VecInt());
+      for (int i = 0; i < numtri; ++i)
+      {
+        int t;
+        os >> t;
+        tris->push_back(t);
+      }
 
       if (interp)
       {
-        BSHP<VecInt> tris(new VecInt());
         TrTriangulatorPoints tri(pts, *tris);
-        tri.Triangulate();
+        if (tris->empty())
+          tri.Triangulate();
         interp->SetPtsTris(vpts, tris);
         if ("SIZE_FUNCTION" == card)
           p->m_sizeFunction = interp;

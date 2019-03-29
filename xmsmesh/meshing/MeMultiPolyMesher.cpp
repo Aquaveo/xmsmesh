@@ -291,20 +291,23 @@ void MeMultiPolyMesherImpl::EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io)
   for (size_t i = 0; i < a_io.m_polys.size(); ++i)
   {
     MePolyInput& polyInput = a_io.m_polys[i];
-    auto &first = polyInput.m_outPoly.front();
-    auto &last = polyInput.m_outPoly.back();
-    if (gmEqualPointsXY(first, last, tol))
+    if (!polyInput.m_outPoly.empty())
     {
-      polyInput.m_outPoly.pop_back();
-    }
-
-    for (size_t j = 0; j < polyInput.m_insidePolys.size(); ++j)
-    {
-      auto &first = polyInput.m_insidePolys[j].front();
-      auto &last = polyInput.m_insidePolys[j].back();
+      auto &first = polyInput.m_outPoly.front();
+      auto &last = polyInput.m_outPoly.back();
       if (gmEqualPointsXY(first, last, tol))
       {
-        polyInput.m_insidePolys[j].pop_back();
+        polyInput.m_outPoly.pop_back();
+      }
+
+      for (size_t j = 0; j < polyInput.m_insidePolys.size(); ++j)
+      {
+        auto &first = polyInput.m_insidePolys[j].front();
+        auto &last = polyInput.m_insidePolys[j].back();
+        if (gmEqualPointsXY(first, last, tol))
+        {
+          polyInput.m_insidePolys[j].pop_back();
+        }
       }
     }
   }
@@ -313,7 +316,9 @@ void MeMultiPolyMesherImpl::EnsureProperPolygonInputs(MeMultiPolyMesherIo& a_io)
   for (size_t i = 0; i < a_io.m_polys.size(); ++i)
   {
     MePolyInput& polyInput = a_io.m_polys[i];
-    double area = gmPolygonArea(&polyInput.m_outPoly[0], polyInput.m_outPoly.size());
+    double area(0);
+    if (!polyInput.m_outPoly.empty())
+      area = gmPolygonArea(&polyInput.m_outPoly[0], polyInput.m_outPoly.size());
     if (area > 0)
     {
       std::reverse(polyInput.m_outPoly.begin(), polyInput.m_outPoly.end());
@@ -382,6 +387,39 @@ bool MeMultiPolyMesherImpl::ValidateInput(const MeMultiPolyMesherIo& a_io)
         ss << "Error: Polygon patch corners for polygon " << id << " is size "
            << polyInput.m_polyCorners.size() << ". It must be size 0 or 3.\n";
         errors += ss.str();
+      }
+      // check size function
+      BSHP<InterpBase> sf = polyInput.m_sizeFunction;
+      if (sf)
+      {
+        // get the min/max of the scalars
+        BSHP<VecFlt> scalars = sf->GetScalars();
+        auto result = std::minmax_element(scalars->begin(), scalars->end());
+        double sMin = static_cast<double>(*result.first);
+        double sMax = static_cast<double>(*result.second);
+        BSHP<InterpIdw> idw = BDPC<InterpIdw>(sf);
+        BSHP<InterpLinear> linear = BDPC<InterpLinear>(sf);
+        double minTruncVal(0);
+        if (linear)
+        {
+          if (!linear->GetTruncateInterpolatedValues())
+            linear->SetTrunc(sMax, sMin);
+          minTruncVal = linear->GetTruncMin();
+        }
+        if (idw)
+        {
+          if (!idw->GetTruncateInterpolatedValues())
+            idw->SetTrunc(sMax, sMin);
+          minTruncVal = idw->GetTruncMin();
+        }
+
+        // make sure the min truncation is positive
+        if (minTruncVal <= 0)
+        {
+          std::stringstream ss;
+          ss << "Error: Size function minimum value is <= 0. Size function values must be > 0.\n";
+          errors += ss.str();
+        }
       }
     }
 
@@ -1060,6 +1098,25 @@ void MeMultiPolyMesherUnitTests::testCheckForIntersections5()
 
   TS_ASSERT_EQUALS(expected, errors);
 } // MeMultiPolyMesherUnitTests::testCheckForIntersections5
+//------------------------------------------------------------------------------
+/// \brief Tests sending empty outer polygon.
+//------------------------------------------------------------------------------
+void MeMultiPolyMesherUnitTests::testEmptyOuterPolygon()
+{
+  MeMultiPolyMesherIo input;
+  input.m_polys.push_back(MePolyInput());
+  BSHP<MeMultiPolyMesher> mesher = MeMultiPolyMesher::New();
+  bool asserting = xmAsserting();
+  xmAsserting() = false;
+  mesher->MeshIt(input);
+  xmAsserting() = asserting;
+  std::string errors = XmLog::Instance().GetAndClearStackStr();
+  std::string expected =
+    "---Error: Outer polygon index 0 is empty.\n"
+    "\n\n";
+
+  TS_ASSERT_EQUALS(expected, errors);
+} // MeMultiPolyMesherUnitTests::testEmptyOuterPolygon
 
 //} // namespace xms
 

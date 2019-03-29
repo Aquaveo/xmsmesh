@@ -29,6 +29,7 @@ public:
   void testCheckForIntersections3();
   void testCheckForIntersections4();
   void testCheckForIntersections5();
+  void testEmptyOuterPolygon();
 };
 
 //} // namespace xms
